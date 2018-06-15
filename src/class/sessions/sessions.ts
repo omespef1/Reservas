@@ -12,8 +12,10 @@ constructor(private nativeStorage: NativeStorage){
 
 }
 //Setea la sesión cuando se loguea un usuario
-loggedIn(user:any){
+setLoggedIn(user:any){
   this.nativeStorage.setItem('loggedUser',user);
-  
+}
+GetLoggedin(){
+  return this.nativeStorage.getItem('loggedUser');
 }
 }

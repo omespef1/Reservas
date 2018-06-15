@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,Events } from 'ionic-angular';
 import {PartnerProvider} from '../../providers/partner/partner';
 import { NgForm }   from '@angular/forms';
 
@@ -21,7 +21,7 @@ import {sessions} from '../../class/sessions/sessions';
 })
 export class LoginPage {
   user:any ={userAction:"",userPass:""}
-  constructor(private _partner:PartnerProvider,private general:general,private session:sessions) {
+  constructor(private _partner:PartnerProvider,private general:general,private session:sessions,private events:Events) {
   }
 
   ionViewDidLoad() {
@@ -35,7 +35,7 @@ onSubmit(f: NgForm){
   this._partner.GetPartner(this.user.userAction, this.user.userPass).then((resp: any) => {
     console.log('then');
     if (resp != null) {
-      this.session.loggedIn(resp.ObjTransaction);
+    this.events.publish('user:logout',resp.ObjTransaction);
     }
   })
 }
