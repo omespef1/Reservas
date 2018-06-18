@@ -35,7 +35,8 @@ onSubmit(f: NgForm){
   this._partner.GetPartner(this.user.userAction, this.user.userPass).then((resp: any) => {
     console.log('then');
     if (resp != null) {
-    this.events.publish('user:logout',resp.ObjTransaction);
+      console.log('login');
+     this.events.publish('user:login',resp.ObjTransaction);
     }
   })
 }
