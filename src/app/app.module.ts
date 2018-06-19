@@ -32,6 +32,7 @@ import { ClassSpacesProvider } from '../providers/class-spaces/class-spaces';
 import { ProductsProvider } from '../providers/products/products';
 import { HistoryProvider } from '../providers/history/history';
 import { PqrProvider } from '../providers/pqr/pqr';
+import { RegisterProvider } from '../providers/register/register';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { PqrProvider } from '../providers/pqr/pqr';
     ClassSpacesProvider,
     ProductsProvider,
     HistoryProvider,
-    PqrProvider
+    PqrProvider,
+    RegisterProvider
   ]
 })
 export class AppModule {}
