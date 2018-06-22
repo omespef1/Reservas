@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {ComunicationsProvider} from '../comunications/comunications';
 
+//models
+import {TOSoRsoci } from '../../class/Models/models';
 /*
   Generated class for the RegisterProvider provider.
 
@@ -10,8 +13,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class RegisterProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private _communications:ComunicationsProvider) {
     console.log('Hello RegisterProvider Provider');
+  }
+
+  SetRegister(register:TOSoRsoci){
+    return  this._communications.Post(register,'SoRsoci')
   }
 
 }

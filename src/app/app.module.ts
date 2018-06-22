@@ -16,6 +16,7 @@ import {BookingPage} from '../pages/booking/booking';
 import {SettingsPage} from '../pages/settings/settings';
 import {PqrPage} from '../pages/pqr/pqr';
 import {LoginPage} from '../pages/login/login';
+import {ClassSpacesPage} from '../pages/class-spaces/class-spaces';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,10 +46,11 @@ import { RegisterProvider } from '../providers/register/register';
     BookingPage,
     SettingsPage,
     PqrPage,
-    LoginPage
+    LoginPage,
+    ClassSpacesPage
   ],
-  imports: [ 
-    FormsModule, 
+  imports: [
+    FormsModule,
     MbscModule,
     BrowserModule,
     HttpModule,
@@ -66,7 +68,8 @@ import { RegisterProvider } from '../providers/register/register';
     BookingPage,
     SettingsPage,
     PqrPage,
-    LoginPage
+    LoginPage,
+    ClassSpacesPage
   ],
   providers: [
     StatusBar,

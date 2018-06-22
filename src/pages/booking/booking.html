@@ -6,16 +6,22 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Tipo de Servicio</ion-title>
+    <ion-title>Reservas</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
+  <ion-fab top right>
+   <button ion-fab (click)="newBooking()">
+ <ion-icon  name="add"></ion-icon>
+   </button>
+
+ </ion-fab>
   <ion-list>
-    <ion-list-header>
+    <!-- <ion-list-header>
       Servicios
-    </ion-list-header>
+    </ion-list-header> -->
     <ion-item *ngFor="let typeSpace of typeSpaces">
       <ion-avatar item-start>
         <img src="assets/img/avatar-finn.png">
