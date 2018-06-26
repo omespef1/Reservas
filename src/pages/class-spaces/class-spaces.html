@@ -9,20 +9,23 @@
     <ion-title>Tipo de Servicio</ion-title>
   </ion-navbar>
 </ion-header>
-
-
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      Servicios
-    </ion-list-header>
-    <ion-item *ngFor="let typeSpace from typeSpaces">
+<ion-list>
+  <ion-item *ngFor="let typeSpace of typeSpaces">
+    <ion-thumbnail item-start>
+      <img src="data:image/jpeg;base64,{{typeSpace.Cla_foto}}">
+    </ion-thumbnail>
+    <h2>{{typeSpace.Cla_nomb}}</h2>
+    <p>Hayao Miyazaki • 1988</p>
+    <button ion-button clear item-end (click)="SetSpaceType(typeSpace)">Continuar</button>
+  </ion-item>
+</ion-list>
+    <!-- <ion-item *ngFor="let typeSpace from typeSpaces">
       <ion-avatar item-start>
         <img src="assets/img/avatar-finn.png">
       </ion-avatar>
       <h2>{{typeSpace.Cla_nomb}}</h2>
       <h3>I'm a big deal</h3>
       <p>Listen, I've had a pretty messed up day...</p>
-    </ion-item>
-  </ion-list>
+    </ion-item> -->
 </ion-content>

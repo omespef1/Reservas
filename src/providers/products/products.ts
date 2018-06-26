@@ -17,6 +17,6 @@ export class ProductsProvider {
   }
 
 GetProducts(classSpace:any){
-  return this._comunications.Get(`producto/Cla_cont=${classSpace.Cla_cont}`);
+  return this._comunications.Get(`producto?Cla_cont=${classSpace.Cla_cont}`);
 }
 }

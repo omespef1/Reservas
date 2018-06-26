@@ -17,21 +17,24 @@ import {ProductsPage} from '../products/products';
   templateUrl: 'class-spaces.html',
 })
 export class ClassSpacesPage {
-  typeSpaces : any={};
+  typeSpaces:any[];
   constructor(private _classSpaces:ClassSpacesProvider,private nav:NavController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClassSpacesPage');
+    this.GetClassSpaces();
   }
   GetClassSpaces(){
+      console.log('cinsulta');
     this._classSpaces.GetClassSpaces().then((resp:any)=>{
+
       if(resp!=null){
+        console.log(resp);
         this.typeSpaces = resp.ObjTransaction;
       }
     })
   }
-  SetProducts(ClassSpace:any){
+  SetSpaceType(ClassSpace:any){
     this.nav.push(ProductsPage,{'classSpace':ClassSpace});
   }
 

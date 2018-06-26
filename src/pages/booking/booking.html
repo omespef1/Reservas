@@ -18,10 +18,24 @@
    </button>
 
  </ion-fab>
+<div>
   <ion-list>
-    <!-- <ion-list-header>
-      Servicios
-    </ion-list-header> -->
+    <ion-item *ngFor="let booking of bookings">
+      <ion-thumbnail item-start>
+        <img src="data:image/jpeg;base64,{{product.Bmp_prod}}">
+      </ion-thumbnail>
+        <h3>Tipo de servicio:{{booking.Cla_nomb}}</h3>
+        <expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+          <h3>Espacio:{{booking.Esp_nomb}}</h3>
+          <h3>Servicio:{{booking.Pro_nomb}}</h3>
+          <h3>Hora final:{{booking.FechaFin | date:'shortTime' }}</h3>
+     </expandable>
+
+      <button ion-button clear item-end (click)="SetProducts(typeSpace)">Continuar</button>
+    </ion-item>
+  </ion-list>
+</div>
+  <!-- <ion-list>
     <ion-item *ngFor="let typeSpace of typeSpaces">
       <ion-avatar item-start>
         <img src="assets/img/avatar-finn.png">
@@ -30,5 +44,5 @@
       <h3>I'm a big deal</h3>
       <p>Listen, I've had a pretty messed up day...</p>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

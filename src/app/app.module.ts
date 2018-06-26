@@ -17,6 +17,7 @@ import {SettingsPage} from '../pages/settings/settings';
 import {PqrPage} from '../pages/pqr/pqr';
 import {LoginPage} from '../pages/login/login';
 import {ClassSpacesPage} from '../pages/class-spaces/class-spaces';
+import {ProductsPage} from '../pages/products/products';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +25,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
 import { NativeStorage } from '@ionic-native/native-storage';
+
+//Components
+import {ExpandableComponent} from '../components/expandable/expandable';
 
 //clases
 
@@ -34,6 +38,7 @@ import { ProductsProvider } from '../providers/products/products';
 import { HistoryProvider } from '../providers/history/history';
 import { PqrProvider } from '../providers/pqr/pqr';
 import { RegisterProvider } from '../providers/register/register';
+import { BookingProvider } from '../providers/booking/booking';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,9 @@ import { RegisterProvider } from '../providers/register/register';
     SettingsPage,
     PqrPage,
     LoginPage,
-    ClassSpacesPage
+    ClassSpacesPage,
+    ProductsPage,
+    ExpandableComponent
   ],
   imports: [
     FormsModule,
@@ -69,7 +76,9 @@ import { RegisterProvider } from '../providers/register/register';
     SettingsPage,
     PqrPage,
     LoginPage,
-    ClassSpacesPage
+    ClassSpacesPage,
+    ProductsPage,
+    ExpandableComponent
   ],
   providers: [
     StatusBar,
@@ -84,7 +93,8 @@ import { RegisterProvider } from '../providers/register/register';
     ProductsProvider,
     HistoryProvider,
     PqrProvider,
-    RegisterProvider
+    RegisterProvider,
+    BookingProvider
   ]
 })
 export class AppModule {}

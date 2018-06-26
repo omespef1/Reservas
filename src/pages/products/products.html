@@ -13,6 +13,16 @@
 
 <ion-content>
   <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-thumbnail item-start>
+        <img src="data:image/jpeg;base64,{{product.Bmp_prod}}">
+      </ion-thumbnail>
+      <h2>{{product.Pro_nomb}}</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <button ion-button clear item-end (click)="SetProducts(typeSpace)">Continuar</button>
+    </ion-item>
+  </ion-list>
+  <!-- <ion-list>
     <ion-list-header>
       Servicios
     </ion-list-header>
@@ -24,5 +34,5 @@
       <h3>I'm a big deal</h3>
       <p>Listen, I've had a pretty messed up day...</p>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

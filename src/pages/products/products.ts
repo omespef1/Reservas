@@ -18,18 +18,20 @@ import {ProductsProvider} from '../../providers/products/products';
 })
 export class ProductsPage {
   classSpace: any={};
+  products:any[];
   constructor(public navCtrl: NavController, public navParam: NavParams,private _product:ProductsProvider) {
     this.classSpace = navParam.get('classSpace');
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductsPage');
+  this.GetProducts();
   }
 
     GetProducts(){
       this._product.GetProducts(this.classSpace).then((resp:any)=>{
         if(resp!=null){
-          
+            this.products = resp.ObjTransaction;
         }
       })
     }
