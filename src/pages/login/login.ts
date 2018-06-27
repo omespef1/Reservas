@@ -47,9 +47,8 @@ export class LoginPage {
 
   onSubmit(f: NgForm) {
     this._partner.GetPartner(this.user.userAction, this.user.userPass).then((resp: any) => {
-      console.log('then');
       if (resp != null) {
-        console.log('login');
+        console.log(resp);
         this.events.publish('user:login', resp.ObjTransaction);
       }
     })

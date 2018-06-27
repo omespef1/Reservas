@@ -27,7 +27,7 @@ export class BookingPage {
   }
 
   ionViewDidLoad() {
-    this.session.GetLoggedin().then((resp:any)=>{
+    this.session.GetLoggedin().then(resp=>{
       console.log(resp);
         this.user = resp;
           this.GetBooking();
@@ -38,23 +38,14 @@ export class BookingPage {
 
   GetBooking(){
       this._booking.GetBooking(this.user).then((resp:any)=>{
+        console.log(resp);
          if(resp.ObjTransaction!=null){
            this.bookings = resp.ObjTransaction;
          }
-      })
+      }),err=>(console.log("problemas " + err));
   }
 newBooking(){
   this.navCtrl.push(ClassSpacesPage);
 }
-expandItem(item){
 
-       this.bookings.map((listItem) => {
-           if(item == listItem){
-               listItem.expanded = !listItem.expanded;
-           } else {
-               listItem.expanded = false;
-           }
-           return listItem;
-       });
-   }
 }

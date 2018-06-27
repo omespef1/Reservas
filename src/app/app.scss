@@ -13,11 +13,13 @@
     transform: translate3d(0,0,0);
   }
 }
-  
+
 .slide-in-both-ways {
   animation: slideInBothWays ease-in 1;
   animation-duration: 750ms;
 }
+
+
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

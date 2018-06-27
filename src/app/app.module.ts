@@ -18,7 +18,7 @@ import {PqrPage} from '../pages/pqr/pqr';
 import {LoginPage} from '../pages/login/login';
 import {ClassSpacesPage} from '../pages/class-spaces/class-spaces';
 import {ProductsPage} from '../pages/products/products';
-
+import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 //Providers
@@ -62,7 +62,8 @@ import { BookingProvider } from '../providers/booking/booking';
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -87,7 +88,7 @@ import { BookingProvider } from '../providers/booking/booking';
     ComunicationsProvider,
     PartnerProvider,
     general,
-    NativeStorage,
+
     sessions,
     ClassSpacesProvider,
     ProductsProvider,

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 import {NavController} from 'ionic-angular'
 //pages
 import {TabsPage} from '../../pages/tabs/tabs';
@@ -8,15 +8,15 @@ import {TabsPage} from '../../pages/tabs/tabs';
 
 export class sessions {
 
-constructor(private nativeStorage: NativeStorage){
+constructor(private nativeStorage: Storage){
 console.log('read from storage')
 }
 //Setea la sesión cuando se loguea un usuario
 setLoggedIn(user:any){
-  this.nativeStorage.setItem('loggedUser',user);
+console.log(user);
+  this.nativeStorage.set('loggedUser',user);
 }
 GetLoggedin(){
-
-  return this.nativeStorage.getItem('loggedUser');
+  return this.nativeStorage.get('loggedUser');
 }
 }
