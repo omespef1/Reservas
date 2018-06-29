@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ModalController,Events} from 'ionic-angular';
 import {  sessions} from '../../class/sessions/sessions';
+import {PartnerDetailPage}  from '../partner-detail/partner-detail';
+
 
 /**
  * Generated class for the SettingsPage page.
@@ -16,12 +18,18 @@ import {  sessions} from '../../class/sessions/sessions';
 })
 export class SettingsPage {
   user:any={};
-  constructor(private _sessions:sessions) {
+  constructor(private _sessions:sessions,private _modalCtrl:ModalController,private _events:Events) {
     this._sessions.GetLoggedin().then(user=>{
       this.user = user;
     })
   }
 
-
+ showPartnerDetail(partner:any){
+  let modal = this._modalCtrl.create( PartnerDetailPage  ,  { 'user': partner });
+  modal.present();
+ }
+sessionOut(){
+    this._events.publish('user:logout');
+}
 
 }

@@ -19,4 +19,7 @@ console.log(user);
 GetLoggedin(){
   return this.nativeStorage.get('loggedUser');
 }
+removeSession(){
+  this.nativeStorage.remove('loggedUser');
+}
 }

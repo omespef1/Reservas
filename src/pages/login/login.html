@@ -28,13 +28,13 @@
 <ion-content>
   <div [ngSwitch]="type">
   <form (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
-  <ion-list>
-    <ion-item class="slide-in-both-ways">
+  <ion-list class="animate-in-secondary">
+    <ion-item >
       <ion-label floating>Número de acción</ion-label>
         <ion-icon name="person" item-start></ion-icon>
       <ion-input [(ngModel)]="user.userAction"  name="action"  type="text"  placeholder="Número de acción" type="number" clearInput="true" required></ion-input>
     </ion-item>
-  <ion-item class="slide-in-both-ways">
+  <ion-item>
       <ion-label floating>Contraseña</ion-label>
         <ion-icon name="lock" item-start></ion-icon>
       <ion-input type="password" [(ngModel)]="user.userPass" name="pass" clearInput="true" required></ion-input>

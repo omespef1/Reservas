@@ -5,6 +5,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 //pages
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -17,9 +20,8 @@ import {PqrPage} from '../pages/pqr/pqr';
 import {LoginPage} from '../pages/login/login';
 import {ClassSpacesPage} from '../pages/class-spaces/class-spaces';
 import {ProductsPage} from '../pages/products/products';
-import { IonicStorageModule } from '@ionic/storage';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {PartnerDetailPage} from '../pages/partner-detail/partner-detail';
+
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -53,7 +55,8 @@ import { BookingProvider } from '../providers/booking/booking';
     LoginPage,
     ClassSpacesPage,
     ProductsPage,
-    ExpandableComponent
+    ExpandableComponent,
+    PartnerDetailPage
   ],
   imports: [
     FormsModule,
@@ -77,7 +80,8 @@ import { BookingProvider } from '../providers/booking/booking';
     LoginPage,
     ClassSpacesPage,
     ProductsPage,
-    ExpandableComponent
+    ExpandableComponent,
+    PartnerDetailPage
   ],
   providers: [
     StatusBar,

@@ -28,8 +28,10 @@ export class MyApp {
   }
   listenToLoginEvents() {
   this.events.subscribe('user:logout', () => {
+    this._sessions.removeSession();
+  this.nav.setRoot(LoginPage);
   this._general.showToastMessage('Su sesión se ha cerrado!','bottom');
-    this.nav.setRoot(LoginPage);
+
   });
   this.events.subscribe('user:login',(user:any)=>{
     console.log(user);
@@ -37,4 +39,5 @@ export class MyApp {
       this.nav.setRoot(TabsPage);
   })
 }
+
 }

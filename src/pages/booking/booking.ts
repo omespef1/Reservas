@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Refresher } from 'ionic-angular';
 //Providers
 import { ClassSpacesProvider } from '../../providers/class-spaces/class-spaces';
 import { ClassSpacesPage } from '../class-spaces/class-spaces';
 import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { sessions } from '../../class/sessions/sessions';
+import { general } from '../../class/general/general';
 
 /**
  * Generated class for the BookingPage page.
@@ -22,13 +23,14 @@ import { sessions } from '../../class/sessions/sessions';
 export class BookingPage {
   user: any;
   bookings: any[];
-  constructor(public navCtrl: NavController, private _booking: BookingProvider, private session: sessions) {
+  bookingsList: any[];
+  cancelValue:number;
+  constructor(public navCtrl: NavController, private _booking: BookingProvider, private session: sessions, private _general: general) {
 
   }
 
   ionViewDidLoad() {
     this.session.GetLoggedin().then(resp => {
-      console.log(resp);
       this.user = resp;
       this.GetBooking();
     })
@@ -39,6 +41,10 @@ export class BookingPage {
       console.log(resp);
       if (resp.ObjTransaction != null) {
         this.bookings = resp.ObjTransaction;
+        this.initializeItems();
+      }
+      else {
+        this._general.showToastMessage('No tiene reservas aún!','bottom');
       }
     }), err => (console.log("problemas " + err));
   }
@@ -46,7 +52,44 @@ export class BookingPage {
     this.navCtrl.push(ClassSpacesPage);
   }
 
-cancelBooking(booking:any){
 
-}
+  doRefresh(refresher: Refresher) {
+    this._booking.GetBooking(this.user).then((resp: any) => {
+      this.bookings = resp.ObjTransaction;
+      this.initializeItems();
+      refresher.complete();
+      // this._general.showToastMessage('Reservas actualizadas!', 'bottom')
+    }).catch(err => {
+      this._general.showToastMessage(err, 'bottom')
+      //Error
+    })
+  }
+  initializeItems(): void {
+    this.bookingsList = this.bookings;
+  }
+  getItems(q: string) {
+    //Reseteo los items a su estado original
+    this.initializeItems();
+    //Si el valor es vacío ni filtra ndada
+    if (!q || q.trim() === '') {
+      return;
+    }
+    //Realiza el filtrado
+    this.bookingsList = this.bookingsList.filter((v) => v.Res_nume.toString().indexOf(q.toString()) > -1 || v.Cla_nomb.toString().indexOf(q.toLowerCase()) > -1 || v.Esp_nomb.toString().indexOf(q.toLowerCase()) > -1);
+  }
+
+  CancelChange(){
+    console.log(this.cancelValue)
+    if(this.cancelValue==80){
+       this._general.showMessageOption('Cancelar reserva','¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(()=>{
+         console.log('cancelada');
+         this.ionViewDidLoad();
+       })
+    }
+    else{
+      console.log('d');
+      this.cancelValue=20;
+    }
+
+  }
 }
