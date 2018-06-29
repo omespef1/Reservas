@@ -25,7 +25,7 @@ import { TOSoRsoci } from '../../class/Models/models';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user: any = { userAction: "", userPass: "" }
+  user: any = { userAction: "18000501", userPass: "evc426" }
   register: TOSoRsoci = new TOSoRsoci();
   private codeConfirm:string="";
 

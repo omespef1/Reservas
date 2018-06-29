@@ -8,67 +8,61 @@
 
   <ion-navbar>
     <ion-title>
-      Reservas
+      Mis Reservas
     </ion-title>
   </ion-navbar>
-
+  <ion-toolbar no-border-top>
+    <ion-searchbar
+    (ionChange)="getItems($event.value)"
+    [showCancelButton]="shouldShowCancel"
+    placeholder="Buscar reserva">
+  </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-fab top right edge>
-    <button ion-fab (click)="newBooking()">
+  <ion-fab bottom right>
+    <button ion-fab (click)="newBooking()" class="element">
   <ion-icon  name="add"></ion-icon>
    </button>
   </ion-fab>
-  <ion-card class="adv-map" *ngFor="let booking of bookings">
-    <div style="position: relative">
-      <img src="assets/img/advance-card-map-mario.png">
-    </div>
-    <ion-item>
-      <ion-icon color="subtle" large item-start name='cloud'></ion-icon>
-      <h2>Yoshi's Island</h2>
-      <p>Iggy Koopa</p>
-    </ion-item>
-    <ion-item>
-      <ion-icon color="subtle" large item-start name='leaf'></ion-icon>
-      <h2>Forest of Illusion</h2>
-      <p>Roy Koopa</p>
-    </ion-item>
-    <ion-item actions>
-      <span ion-text item-start class="item-bold">3 hr</span>
-      <span ion-text item-start color="subtle">(4.8 mi)</span>
-      <button ion-button color="danger" clear item-end icon-start>
-      <ion-icon name='navigate'></ion-icon>
-      Start
-    </button>
-    </ion-item>
+  <ion-card class="slide-in-both-ways" *ngFor="let booking of bookings">
+    <ion-card-header>
 
+
+      #{{booking.Res_nume}} - {{booking.FechaInicio | date}} : {{booking.FechaInicio | date:'shortTime' }}
+  <ion-icon item-end  name="arrow-dropdown"></ion-icon>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="">
+        </ion-thumbnail>
+        <ion-icon color="primary" item-start name='cloud'></ion-icon>
+        <h2>Tipo de servicio</h2>
+        <p>{{booking.Cla_nomb}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="">
+        </ion-thumbnail>
+        <ion-icon color="primary" item-start name='browsers'></ion-icon>
+        <h2>Espacio</h2>
+        <p>{{booking.Esp_nomb}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon color="primary" item-start name='clock'></ion-icon>
+        <h2>Termina a la(s)</h2>
+        <p>{{booking.FechaFin | date:'shortTime'}}</p>
+      </ion-item>
+      <!-- <ion-item *ngIf="booking.Res_vige != 'N'"> -->
+      <ion-item>
+        <ion-icon color="danger" item-start name='close-circle' ></ion-icon>
+        <ion-label>Cancelar reserva</ion-label>
+        <ion-toggle class="toogle"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
   </ion-card>
-  <!-- <div>
-  <ion-list>
-    <ion-item *ngFor="let booking of bookings">
-      <ion-thumbnail item-start>
-        <img src="data:image/jpeg;base64,{{booking.Bmp_prod}}">
-      </ion-thumbnail>
-        <h3>Tipo de servicio:{{booking.Cla_nomb}}</h3>
 
-          <h2>Espacio:{{booking.Esp_nomb}}</h2>
-          <h2>Servicio:{{booking.Pro_nomb}}</h2>
-          <h2>Hora final:{{booking.FechaFin | date:'shortTime' }}</h2>
-
-
-    </ion-item>
-  </ion-list>
-</div> -->
-  <!-- <ion-list>
-    <ion-item *ngFor="let typeSpace of typeSpaces">
-      <ion-avatar item-start>
-        <img src="assets/img/avatar-finn.png">
-      </ion-avatar>
-      <h2>Finn</h2>
-      <h3>I'm a big deal</h3>
-      <p>Listen, I've had a pretty messed up day...</p>
-    </ion-item>
-  </ion-list> -->
 </ion-content>

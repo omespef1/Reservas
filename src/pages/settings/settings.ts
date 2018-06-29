@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  sessions} from '../../class/sessions/sessions';
 
 /**
  * Generated class for the SettingsPage page.
@@ -14,12 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user:any={};
+  constructor(private _sessions:sessions) {
+    this._sessions.GetLoggedin().then(user=>{
+      this.user = user;
+    })
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
-  }
+
 
 }

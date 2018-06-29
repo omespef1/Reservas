@@ -1,3 +1,14 @@
 page-booking {
+ ion-card-header{
+   color: white !important;
+   background-color: color($colors, primary);
+   border-radius: 5px 5px 0px 0px;
+ }
 
+ ion-card-content{
+   border-left: 2px solid color($colors, danger);
+ }
+ .fab{
+   border:1px solid white;
+ }
 }

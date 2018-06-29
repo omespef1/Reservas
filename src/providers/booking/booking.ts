@@ -16,5 +16,8 @@ export class BookingProvider {
   GetBooking(partner:any){
     return  this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}`);
   }
+  cancelBooking(booking:any){
+
+  }
 
 }

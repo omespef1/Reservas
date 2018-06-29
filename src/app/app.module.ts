@@ -1,5 +1,4 @@
 import { FormsModule } from '@angular/forms';
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -58,7 +57,6 @@ import { BookingProvider } from '../providers/booking/booking';
   ],
   imports: [
     FormsModule,
-    MbscModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,

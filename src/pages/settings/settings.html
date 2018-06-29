@@ -7,12 +7,59 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>settings</ion-title>
+    <ion-title>Mi perfil de socio</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-list no-border>
+    <ion-list-header>
+        INFORMACION PERSONAL
+    </ion-list-header>
+    <ion-item>
+        <ion-avatar item-start>
+        <img src="data:image/jpeg;base64,{{user.Soc_foto}}" />
+        </ion-avatar>
+        <h2>{{user.Soc_nomb}} {{user.Soc_apel}}</h2>
+        <p>Socio desde: {{ user.Sbe_fexp | date }} </p>
+      </ion-item>
+    <ion-item>
+      <ion-icon item-start name="card"></ion-icon>
+      Acción
+      <ion-note item-end>{{user.Mac_nume}}</ion-note>
+    </ion-item>
+  <ion-item>
+    <ion-icon name="mail" item-start></ion-icon>
+      Email
+    <ion-note item-end>{{user.Sbe_mail}}</ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="call" item-start></ion-icon>
+      Teléfono
+    <ion-note item-end>{{user.Soc_tele}}</ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="phone-portrait" item-start></ion-icon>
+      Celular
+    <ion-note item-end>{{user.Sbe_ncel}}</ion-note>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="locate" item-start></ion-icon>
+      Dirección
+    <ion-note item-end>cvdsvsd</ion-note>
+  </ion-item>
 
+</ion-list>
+<ion-list>
+  <ion-list-header>
+    MIS BENEFICIARIOS
+  </ion-list-header>
+  <ion-item *ngFor="let beneficiary of user.beneficiarios">
+    <ion-avatar>
+    </ion-avatar>
+
+  </ion-item>
+</ion-list>
 </ion-content>

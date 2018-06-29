@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //Providers
-import {ClassSpacesProvider} from '../../providers/class-spaces/class-spaces';
-import {ClassSpacesPage} from '../class-spaces/class-spaces';
-import {BookingProvider} from '../../providers/booking/booking';
+import { ClassSpacesProvider } from '../../providers/class-spaces/class-spaces';
+import { ClassSpacesPage } from '../class-spaces/class-spaces';
+import { BookingProvider } from '../../providers/booking/booking';
 //clases
-import {sessions} from '../../class/sessions/sessions';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the BookingPage page.
@@ -20,32 +20,33 @@ import {sessions} from '../../class/sessions/sessions';
   templateUrl: 'booking.html',
 })
 export class BookingPage {
-  user:any;
-  bookings:any[];
-  constructor(public navCtrl: NavController, private _booking:BookingProvider,private session:sessions) {
+  user: any;
+  bookings: any[];
+  constructor(public navCtrl: NavController, private _booking: BookingProvider, private session: sessions) {
 
   }
 
   ionViewDidLoad() {
-    this.session.GetLoggedin().then(resp=>{
+    this.session.GetLoggedin().then(resp => {
       console.log(resp);
-        this.user = resp;
-          this.GetBooking();
+      this.user = resp;
+      this.GetBooking();
     })
-    console.log('ionViewDidLoad BookingPage');
-
   }
 
-  GetBooking(){
-      this._booking.GetBooking(this.user).then((resp:any)=>{
-        console.log(resp);
-         if(resp.ObjTransaction!=null){
-           this.bookings = resp.ObjTransaction;
-         }
-      }),err=>(console.log("problemas " + err));
+  GetBooking() {
+    this._booking.GetBooking(this.user).then((resp: any) => {
+      console.log(resp);
+      if (resp.ObjTransaction != null) {
+        this.bookings = resp.ObjTransaction;
+      }
+    }), err => (console.log("problemas " + err));
   }
-newBooking(){
-  this.navCtrl.push(ClassSpacesPage);
+  newBooking() {
+    this.navCtrl.push(ClassSpacesPage);
+  }
+
+cancelBooking(booking:any){
+
 }
-
 }

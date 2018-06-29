@@ -5,7 +5,7 @@
       true
     ]
   },
-  "rulesDirectory": [
+  "rulesDirectory"npm install rxjs@5.4.3 --save: [
     "node_modules/tslint-eslint-rules/dist/rules"
   ]
 }
