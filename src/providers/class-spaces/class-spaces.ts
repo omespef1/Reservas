@@ -16,4 +16,7 @@ export class ClassSpacesProvider {
 GetClassSpaces(){
  return  this._comunications.Get('aeclase');
 }
+GetClassSpace(booking:any){
+   return  this._comunications.Get(`aeclase/GetAeClase?cla_cont=${booking.Cla_cont}`);
+}
 }

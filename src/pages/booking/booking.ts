@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Refresher } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Refresher, ModalController } from 'ionic-angular';
+import { timer } from 'rxjs/observable/timer';
 //Providers
 import { ClassSpacesProvider } from '../../providers/class-spaces/class-spaces';
 import { ClassSpacesPage } from '../class-spaces/class-spaces';
@@ -7,7 +8,7 @@ import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
-
+//Pages
 /**
  * Generated class for the BookingPage page.
  *
@@ -24,9 +25,13 @@ export class BookingPage {
   user: any;
   bookings: any[];
   bookingsList: any[];
-  cancelValue:number;
-  constructor(public navCtrl: NavController, private _booking: BookingProvider, private session: sessions, private _general: general) {
-
+  cancelValue: number;
+  constructor(public navCtrl: NavController,
+    private _booking: BookingProvider,
+    private session: sessions,
+    private _general: general,
+    private _classSpaces: ClassSpacesProvider,
+    private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -44,7 +49,7 @@ export class BookingPage {
         this.initializeItems();
       }
       else {
-        this._general.showToastMessage('No tiene reservas aún!','bottom');
+        this._general.showToastMessage('No tiene reservas aún!', 'bottom');
       }
     }), err => (console.log("problemas " + err));
   }
@@ -78,18 +83,51 @@ export class BookingPage {
     this.bookingsList = this.bookingsList.filter((v) => v.Res_nume.toString().indexOf(q.toString()) > -1 || v.Cla_nomb.toString().indexOf(q.toLowerCase()) > -1 || v.Esp_nomb.toString().indexOf(q.toLowerCase()) > -1);
   }
 
-  CancelChange(){
+  CancelChange(booking: any) {
     console.log(this.cancelValue)
-    if(this.cancelValue==80){
-       this._general.showMessageOption('Cancelar reserva','¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(()=>{
-         console.log('cancelada');
-         this.ionViewDidLoad();
-       })
+    if (this.cancelValue == 80) {
+      this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
+
+        this.cancelBooking(booking);
+      })
     }
-    else{
-      console.log('d');
-      this.cancelValue=20;
+    else {
+      this.cancelValue = 20;
     }
 
   }
+  cancelBooking(booking: any) {
+    //Se optiene la clase de espacio para verificar si ya se cumplió el tiempo de cancelación
+    this._classSpaces.GetClassSpace(booking).then((resp: any) => {
+      let fechaInicio = new Date(resp.FechaInicio);
+      let fechaInicioPosible = this._general.addMinutes(resp.Cla_Tica);
+      if (fechaInicioPosible > fechaInicio) {
+        this._general.showToastMessage(`El plazo para cancelar la reserva  (${resp.Cla_Tica}) minuto(s) ha vencido.`, 'bottom')
+        return;
+      }
+      //Se obtienen los items para llenar los motivos de rechazo
+      this._booking.GetGnItems().then((resp: any) => {
+        if (resp != null) {
+          let items = resp.ObjTransaction;
+          this._general.showRadioOptions(items).then(resp => {
+            if (resp != null && resp != 0) {
+              let cancel = { justification: resp, id: booking.Res_cont }
+              //Se cancela la reserva según el motivo de selección del usuario
+              this._booking.cancelBooking(cancel).then((resp: any) => {
+                if (resp != null) {
+                  this._general.showToastMessage('La reserva se ha cancelado!', 'bottom');
+                  this.ionViewDidLoad();
+                }
+                else {
+                  this.cancelValue = 20;
+                }
+              })
+            }
+          })
+        }
+      })
+
+    })
+  }
+
 }

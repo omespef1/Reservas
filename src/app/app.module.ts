@@ -21,6 +21,7 @@ import {LoginPage} from '../pages/login/login';
 import {ClassSpacesPage} from '../pages/class-spaces/class-spaces';
 import {ProductsPage} from '../pages/products/products';
 import {PartnerDetailPage} from '../pages/partner-detail/partner-detail';
+import {DisponibilityPage} from '../pages/disponibility/disponibility';
 
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
@@ -28,8 +29,7 @@ import { PartnerProvider } from '../providers/partner/partner';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 //Components
-import {ExpandableComponent} from '../components/expandable/expandable';
-
+import {NgCalendarModule} from 'ionic2-calendar';
 //clases
 
 import {general} from '../class/general/general';
@@ -55,15 +55,18 @@ import { BookingProvider } from '../providers/booking/booking';
     LoginPage,
     ClassSpacesPage,
     ProductsPage,
-    ExpandableComponent,
-    PartnerDetailPage
+    PartnerDetailPage,
+    DisponibilityPage
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
+    NgCalendarModule,
+    IonicModule.forRoot(MyApp,{
+      backButtonText: 'Atrás',
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -80,8 +83,8 @@ import { BookingProvider } from '../providers/booking/booking';
     LoginPage,
     ClassSpacesPage,
     ProductsPage,
-    ExpandableComponent,
-    PartnerDetailPage
+    PartnerDetailPage,
+    DisponibilityPage
   ],
   providers: [
     StatusBar,
@@ -90,7 +93,6 @@ import { BookingProvider } from '../providers/booking/booking';
     ComunicationsProvider,
     PartnerProvider,
     general,
-
     sessions,
     ClassSpacesProvider,
     ProductsProvider,

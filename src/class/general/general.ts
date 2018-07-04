@@ -46,7 +46,7 @@ export class general {
     let toastCtrl = this.toast.create({
       message: msg,
       position: position,
-      duration:3000
+      duration: 3000
     });
     toastCtrl.present();
   }
@@ -82,6 +82,47 @@ export class general {
       })
       alertCtrl.present();
     });
+    return promise;
+  }
+  addMinutes(minutes) {
+    let momentOfTime = new Date();
+    let myTimeSpan = minutes * 60 * 1000;
+    momentOfTime.setTime(momentOfTime.getTime() + myTimeSpan);
+    return momentOfTime;
+  }
+
+  showRadioOptions(data: any[]) {
+    var promise = new Promise((resolve, reject) => {
+
+      if (data == null)
+        resolve(0);
+      // if (countActions.length == 1)
+      //   resolve(countActions[0].ACC_CONT);
+      let alert = this.alert.create();
+      alert.setTitle('¿Está seguro de que desea cancelar la reserva?');
+      for (let option of data ) {
+        alert.addInput({
+          type: 'radio',
+          label: option.Ite_nomb,
+          value: option.Ite_cont,
+        });
+      }
+      alert.addButton({
+        text: 'Cancelar',
+        handler: () => {
+        }
+      });
+      alert.addButton({
+        text: 'OK',
+        handler: (data: any) => {
+          if(data!=undefined)
+           resolve(data);
+           if(data==undefined)
+           reject(null);
+        }
+      });
+      alert.present();
+    })
     return promise;
   }
 }

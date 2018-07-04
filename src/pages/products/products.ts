@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+//Pages
+import {DisponibilityPage} from '../disponibility/disponibility';
 
 //providers
-import {ProductsProvider} from '../../providers/products/products';
+import { ProductsProvider } from '../../providers/products/products';
 
 /**
  * Generated class for the ProductsPage page.
@@ -17,23 +19,55 @@ import {ProductsProvider} from '../../providers/products/products';
   templateUrl: 'products.html',
 })
 export class ProductsPage {
-  classSpace: any={};
-  products:any[];
-  constructor(public navCtrl: NavController, public navParam: NavParams,private _product:ProductsProvider) {
+  classSpace: any = {};
+  products: any[];
+  constructor(public navCtrl: NavController, public navParam: NavParams, private _product: ProductsProvider, private actionCtrl: ActionSheetController) {
     this.classSpace = navParam.get('classSpace');
 
   }
 
   ionViewDidLoad() {
-  this.GetProducts();
+    this.GetProducts();
   }
 
-    GetProducts(){
-      this._product.GetProducts(this.classSpace).then((resp:any)=>{
-        if(resp!=null){
-            this.products = resp.ObjTransaction;
+  GetProducts() {
+    this._product.GetProducts(this.classSpace).then((resp: any) => {
+      if (resp != null) {
+        this.products = resp.ObjTransaction;
+      }
+    })
+  }
+  SetProducts(product: any) {
+    let modal = this.actionCtrl.create({
+      buttons: [
+        {
+          icon: 'person',
+          text: 'Profesional',
+          handler: () => {
+
+          }
+        },
+        {
+          icon: 'calendar',
+          text: 'Disponibilidad de fecha',
+          handler: () => {
+            this.navCtrl.push(DisponibilityPage);
+          }
         }
-      })
+      ],
+      title: 'Tipo de búsqueda para reserva',
+      subTitle: '¿Como desea realizar la búsqueda de disponibilidad para su reserva'
+    });
+
+
+    if (product.esp_mdit.toString().toUpperCase() == "S") {
+          modal.present();
     }
+    else {
+       this.navCtrl.push(DisponibilityPage);
+
+    }
+
+  }
 
 }

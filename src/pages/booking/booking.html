@@ -39,31 +39,33 @@
   <ion-icon item-end  name="arrow-dropdown"></ion-icon>
     </ion-card-header>
     <ion-card-content class="animate-in-primary">
-      <ion-item>
+      <ion-item class="labelColorRed">
         <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">
         </ion-thumbnail>
         <h2>Tipo de servicio</h2>
         <p>{{booking.Cla_nomb}}</p>
       </ion-item>
-      <ion-item>
+      <ion-item class="labelColorBlue">
         <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{booking.Esp_imag}}">
-        </ion-thumbnail>      
+        </ion-thumbnail>
         <h2>Espacio</h2>
         <p>{{booking.Esp_nomb}}</p>
       </ion-item>
       <ion-item>
-        <ion-icon color="primary" item-start name='clock'></ion-icon>
+
+        <ion-icon color="dark" item-start name='clock'></ion-icon>
         <h2>Termina a la(s)</h2>
         <p>{{booking.FechaFin | date:'shortTime'}}</p>
+
       </ion-item>
 
       <ion-list-header *ngIf="booking.Res_vige != 'N'">
         Desliza para cancelar la reserva
       </ion-list-header>
       <ion-item *ngIf="booking.Res_vige != 'N'">
-         <ion-range  min="20" max="80" step="2"  color="danger" (ionChange)="CancelChange()" debounce="200" [(ngModel)]="cancelValue" >
+         <ion-range  min="20" max="80" step="2"  color="danger" (ionChange)="CancelChange(booking)" debounce="200" [(ngModel)]="cancelValue" >
            <ion-icon color="primary" range-left name="checkmark-circle"></ion-icon>
            <ion-icon color="danger" range-right name="close-circle"></ion-icon>
          </ion-range>

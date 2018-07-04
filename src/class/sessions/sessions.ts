@@ -22,4 +22,5 @@ GetLoggedin(){
 removeSession(){
   this.nativeStorage.remove('loggedUser');
 }
+
 }

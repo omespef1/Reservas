@@ -12,17 +12,19 @@
 
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>
-      Servicios
-    </ion-list-header>
-    <ion-item *ngFor="let history of histories">
-      <ion-avatar item-start>
-        <img src="assets/img/avatar-finn.png">
-      </ion-avatar>
-
-      <h3>I'm a big deal</h3>
-      <p>Listen, I've had a pretty messed up day...</p>
-    </ion-item>
-  </ion-list>
+  <ion-card *ngFor="let history of histories">
+    <ion-card-header>
+      #{{booking.Res_nume}} - {{booking.FechaInicio | date}} : {{booking.FechaInicio | date:'shortTime' }}
+  <ion-icon item-end  name="arrow-dropdown"></ion-icon>
+    </ion-card-header>
+    <ion-card-content class="animate-in-primary">
+      <ion-item class="labelColorRed">
+        <ion-thumbnail item-start>
+          <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">
+        </ion-thumbnail>
+        <h2>Tipo de servicio</h2>
+        <p>{{booking.Cla_nomb}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

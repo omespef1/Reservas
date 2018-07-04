@@ -5,8 +5,13 @@ page-booking {
    border-radius: 5px 5px 0px 0px;
  }
 
- ion-card-content{
+ .labelColorRed ion-label{
    border-left: 2px solid color($colors, danger);
+   padding-left: 10px;
+ }
+ .labelColorBlue ion-label{
+   border-left: 2px solid color($colors, primary);
+   padding-left: 10px;
  }
 
 }
