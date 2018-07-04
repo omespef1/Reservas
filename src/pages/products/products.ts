@@ -55,8 +55,8 @@ export class ProductsPage {
           }
         }
       ],
-      title: 'Tipo de búsqueda para reserva',
-      subTitle: '¿Como desea realizar la búsqueda de disponibilidad para su reserva'
+
+      title: '¿Como desea realizar la búsqueda de disponibilidad para su reserva?'
     });
 
 

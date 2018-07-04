@@ -66,6 +66,7 @@ import { BookingProvider } from '../providers/booking/booking';
     NgCalendarModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: 'Atrás',
+       monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo','junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre' ],
     }),
     IonicStorageModule.forRoot()
   ],

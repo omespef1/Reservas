@@ -1,17 +1,4 @@
 page-booking {
- ion-card-header{
-   color: white !important;
-   background-color: color($colors, primary);
-   border-radius: 5px 5px 0px 0px;
- }
 
- .labelColorRed ion-label{
-   border-left: 2px solid color($colors, danger);
-   padding-left: 10px;
- }
- .labelColorBlue ion-label{
-   border-left: 2px solid color($colors, primary);
-   padding-left: 10px;
- }
 
 }

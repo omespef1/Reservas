@@ -15,6 +15,6 @@ export class HistoryProvider {
     console.log('Hello HistoryProvider Provider');
   }
 GetHistory(history:any){
-return  this._comucations.Get(`consumos?soc_cont=${history.Soc_cont}&sbe_cont=${history.Sbe_cont}&fac_mesp=${history.fac_mesp}&fac_anop=${history}`)
+return  this._comucations.Get(`consumos?soc_cont=${history.Soc_cont}&sbe_cont=${history.Sbe_cont}&fac_mesp=${history.fac_mesp}&fac_anop=${history.fac_anop}`)
 }
 }

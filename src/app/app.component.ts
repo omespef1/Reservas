@@ -37,7 +37,7 @@ export class MyApp {
     console.log(user);
       this._sessions.setLoggedIn(user);
       this.nav.setRoot(TabsPage);
-      
+
   })
 }
 
