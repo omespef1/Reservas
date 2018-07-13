@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {ComunicationsProvider} from '../../providers/comunications/comunications';
+import { ComunicationsProvider } from '../../providers/comunications/comunications';
 
 /*
   Generated class for the PqrProvider provider.
@@ -11,14 +11,12 @@ import {ComunicationsProvider} from '../../providers/comunications/comunications
 @Injectable()
 export class PqrProvider {
 
-  constructor(public http: HttpClient,private _comunications:ComunicationsProvider) {
+  constructor(public http: HttpClient, private _comunications: ComunicationsProvider) {
     console.log('Hello PqrProvider Provider');
   }
 
 
-  GetPqr()
-  {
-    this._comunications.Get(`pqinpqr?soc_cont=data.Soc_cont + '&sbe_cont=' + data.Sbe_cont`)
-
+  GetPqr(user: any) {
+    return this._comunications.Get(`pqinpqr?soc_cont=${user.Soc_cont}&sbe_cont=${user.Sbe_cont}`)
   }
 }

@@ -1,28 +1,46 @@
 // http://ionicframework.com/docs/theming/
 
-@-webkit-keyframes slideInBothWays {
-  0% {
-    transform: translate3d(-100%,0,0);
-  }
-
-  50% {
-    transform: translate3d(50%,0,0);
-  }
-
-  100% {
-    transform: translate3d(0,0,0);
-  }
+ion-card-header {
+  color: white !important;
+  background-color: color($colors, primary);
+  border-radius: 5px 5px 0 0;
 }
 
-.slide-in-both-ways {
-  animation: slideInBothWays ease-in 1;
-  animation-duration: 750ms;
-}
 .content-ios {
   background-color: #F4F4F7;
 }
+
 .content-md {
   background-color: #F4F4F7;
+}
+
+
+.labelColorRed ion-label {
+  border-left: 2px solid color($colors, danger);
+  padding-left: 10px;
+}
+
+.labelColorBlue ion-label {
+  border-left: 2px solid color($colors, primary);
+  padding-left: 10px;
+}
+
+.BigButton {
+  font-size: 2.5rem;
+}
+
+
+// Clases con animaciones
+
+.toogle {
+  animation-name: sobreponer;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
 }
 .element {
   margin: 0 auto;
@@ -37,59 +55,73 @@
   animation-play-state: running;
 }
 
+.slide-in-both-ways {
+  animation: slideInBothWays ease-in 1;
+  animation-duration: 750ms;
+}
+
+.animate-in-primary {
+  -webkit-animation: animateInPrimary;
+  animation: animateInPrimary;
+  -webkit-animation-duration: 750ms;
+  animation-duraton: 750ms;
+}
+
+.animate-in-secondary {
+  -webkit-animation: animateInSecondary ease-in 1;
+  animation: animateInSecondary ease-in 1;
+  -webkit-animation-duration: 750ms;
+  animation-duraton: 750ms;
+}
+
+.bounce-animation {
+  -webkit-animation: bounce ease-in 1;
+  animation: bounce ease-in 1;
+  -webkit-animation-duration: 1000ms;
+  animation-duration: 1000ms;
+}
+// Animaciones
+@-webkit-keyframes slideInBothWays {
+  0% {
+    transform: translate3d(-100%,0,0);
+  }
+
+  50% {
+    transform: translate3d(50%,0,0);
+  }
+
+  100% {
+    transform: translate3d(0,0,0);
+  }
+}
+@keyframes sobreponer {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1.08);
+  }
+}
 @keyframes stretch {
   0% {
     transform: scale(.8);
     background-color: color($colors, primary);
     border-radius: 100%;
   }
+
   50% {
     background-color: color($colors, danger);
   }
+
   100% {
     transform: scale(1.1);
     background-color: color($colors, danger);
   }
-}
-ion-card-header{
-  color: white !important;
-  background-color: color($colors, primary);
-  border-radius: 5px 5px 0px 0px;
-}
-.labelColorRed ion-label{
-  border-left: 2px solid color($colors, danger);
-  padding-left: 10px;
-}
-.labelColorBlue ion-label{
-  border-left: 2px solid color($colors, primary);
-  padding-left: 10px;
-}
-
-.toogle{
-  animation-name: sobreponer;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-out;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-fill-mode: none;
-  animation-play-state: running;
-}
-@keyframes sobreponer {
-  0% {
-    transform: scale(1);
-
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1.08);
-
-  }
-}
-.BigButton{
-  font-size: 2.5rem;
 }
 @-webkit-keyframes animateInPrimary {
   0% {
@@ -100,9 +132,7 @@ ion-card-header{
     -webkit-transform: translate3d(0,0,0);
   }
 }
-
-@-webkit-keyframes animateInSecondary{
-
+@-webkit-keyframes animateInSecondary {
   0% {
     opacity: 0;
   }
@@ -114,20 +144,6 @@ ion-card-header{
   100% {
     opacity: 1;
   }
-}
-
-.animate-in-primary {
-    -webkit-animation: animateInPrimary;
-    animation: animateInPrimary;
-    -webkit-animation-duration: 750ms;
-    animation-duraton: 750ms;
-}
-
-.animate-in-secondary {
-    -webkit-animation: animateInSecondary ease-in 1;
-    animation: animateInSecondary ease-in 1;
-    -webkit-animation-duration: 750ms;
-    animation-duraton: 750ms;
 }
 @-webkit-keyframes bounce {
   0% {
@@ -149,13 +165,6 @@ ion-card-header{
   100% {
     -webkit-transform: translate3d(0,0,0);
   }
-}
-
-.bounce-animation {
-  -webkit-animation: bounce ease-in 1;
-  animation: bounce ease-in 1;
-  -webkit-animation-duration: 1000ms;
-  animation-duration: 1000ms;
 }
 // App Global Sass
 // --------------------------------------------------
