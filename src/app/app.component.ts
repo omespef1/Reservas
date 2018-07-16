@@ -8,6 +8,7 @@ import {sessions} from '../class/sessions/sessions';
 //pages
 import { LoginPage } from '../pages/login/login';
 import {TabsPage} from '../pages/tabs/tabs';
+import {PqrProvider} from '../providers/pqr/pqr';
 
 
 @Component({
@@ -17,12 +18,25 @@ export class MyApp {
    @ViewChild(Nav) nav: Nav
   rootPage:any = LoginPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private events: Events,private _general:general,private _sessions:sessions) {
+  constructor(platform: Platform,
+     statusBar: StatusBar,
+      splashScreen: SplashScreen,
+      private events: Events,
+      private _general:general,
+      private _sessions:sessions,
+      private _pqr:PqrProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this._pqr.GetGnItems(327).then((resp:any)=>{
+        this._sessions.setReasonsPrq(resp.ObjTransaction);
+      })
+      this._pqr.GetGnArbol(3).then((resp:any)=>{
+        this._sessions.setAmbientPqr(resp.ObjTransaction);
+      })
+
       this.listenToLoginEvents();
     });
   }
@@ -34,7 +48,7 @@ export class MyApp {
 
   });
   this.events.subscribe('user:login',(user:any)=>{
-    console.log(user);
+      console.log(user);
       this._sessions.setLoggedIn(user);
       this.nav.setRoot(TabsPage);
 

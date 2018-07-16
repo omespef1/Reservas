@@ -13,17 +13,25 @@
     <ion-searchbar
     (ionChange)="getItems($event.value)"
     [showCancelButton]="shouldShowCancel"
-    placeholder="Buscar reserva">
+    placeholder="Buscar Pqr">
   </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
+  <ion-fab top right edge>
+    <button ion-fab (click)="newPqr()" class="element">
+  <ion-icon  name="add"></ion-icon>
+   </button>
+  </ion-fab>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+<ion-refresher-content>
+</ion-refresher-content>
+</ion-refresher>
   <ion-list no-lines>
-
-<ion-item-group>
-        <ion-item class="animate-in-primary" (click)="toggleSection(pqr)" detail-none *ngFor="let pqr of pqrs; let i = index">
+<div  no-border  *ngFor="let pqr of pqrsList; let i = index">
+        <ion-item class="animate-in-primary labelColorRed" (click)="toggleSection(pqr)" detail-none>
         <ion-badge *ngIf="pqr.seguimientos.length>0" item-end>{{pqr.seguimientos.length}}</ion-badge>
          <ion-icon name="arrow-dropdown-circle" item-end *ngIf="!pqr.open && pqr.seguimientos.length>0"></ion-icon>
          <ion-icon name="arrow-dropup-circle" item-end *ngIf="pqr.open && pqr.seguimientos.length>0"></ion-icon>
@@ -34,21 +42,24 @@
             {{pqr.inp_feve| date}}
       </p>
       </ion-item>
-      <ion-item>
-      <ion-card-content *ngIf="pqr.open && pqr.open && pqr.seguimientos.length>0">
+      <ion-item *ngIf="pqr.open  && pqr.seguimientos.length>0">
+      <ion-card-content>
         <h3>Seguimiento</h3>
-        <ion-item *ngFor="let seguimiento of pqr.seguimientos" detail-push>
-          <h4>{{seguimiento.Din_fese}}</h4>
+        <ion-item class="labelColorBlue" *ngFor="let seguimiento of pqr.seguimientos" (click)="OpenTrace(seguimiento,$event)">
+           <ion-icon name="information-circle" color="danger" item-end></ion-icon>
+          <h4>{{seguimiento.Din_fese | date :'dd-MM-yyyy hh:mm:a'}}</h4>
           <p>{{seguimiento.Din_segt}}</p>
         </ion-item>
       </ion-card-content>
     </ion-item>
-  </ion-item-group>
 
-
-
-
-
+  </div>
 </ion-list>
+
+
+
+
+
+
 
 </ion-content>

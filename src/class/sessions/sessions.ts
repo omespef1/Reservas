@@ -22,5 +22,16 @@ GetLoggedin(){
 removeSession(){
   this.nativeStorage.remove('loggedUser');
 }
-
+setReasonsPrq(reasons:any){
+    this.nativeStorage.set('reasonsPqr',reasons);
+}
+getReasonsPqr(){
+    return this.nativeStorage.get('reasonsPqr');
+}
+setAmbientPqr(reasons:any){
+    this.nativeStorage.set('ambientPqr',reasons);
+}
+getAmbientPqr(){
+    return this.nativeStorage.get('ambientPqr');
+}
 }

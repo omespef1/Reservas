@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LOCALE_ID } from '@angular/core';
 //pages
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -22,11 +23,20 @@ import {ClassSpacesPage} from '../pages/class-spaces/class-spaces';
 import {ProductsPage} from '../pages/products/products';
 import {PartnerDetailPage} from '../pages/partner-detail/partner-detail';
 import {DisponibilityPage} from '../pages/disponibility/disponibility';
-
+import {PqrDetailPage} from '../pages/pqr-detail/pqr-detail';
+import {PopOverPage} from '../pages/pop-over/pop-over';
+import {ItemsPage} from '../pages/items/items';
+import {NewPqrPage} from '../pages/new-pqr/new-pqr';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { ClassSpacesProvider } from '../providers/class-spaces/class-spaces';
+import { ProductsProvider } from '../providers/products/products';
+import { HistoryProvider } from '../providers/history/history';
+import { PqrProvider } from '../providers/pqr/pqr';
+import { RegisterProvider } from '../providers/register/register';
+import { BookingProvider } from '../providers/booking/booking';
 
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
@@ -34,12 +44,7 @@ import {NgCalendarModule} from 'ionic2-calendar';
 
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
-import { ClassSpacesProvider } from '../providers/class-spaces/class-spaces';
-import { ProductsProvider } from '../providers/products/products';
-import { HistoryProvider } from '../providers/history/history';
-import { PqrProvider } from '../providers/pqr/pqr';
-import { RegisterProvider } from '../providers/register/register';
-import { BookingProvider } from '../providers/booking/booking';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +61,11 @@ import { BookingProvider } from '../providers/booking/booking';
     ClassSpacesPage,
     ProductsPage,
     PartnerDetailPage,
-    DisponibilityPage
+    DisponibilityPage,
+    PqrDetailPage,
+    PopOverPage,
+    ItemsPage,
+    NewPqrPage
   ],
   imports: [
     FormsModule,
@@ -85,9 +94,14 @@ import { BookingProvider } from '../providers/booking/booking';
     ClassSpacesPage,
     ProductsPage,
     PartnerDetailPage,
-    DisponibilityPage
+    DisponibilityPage,
+    PqrDetailPage,
+    PopOverPage,
+    ItemsPage,
+    NewPqrPage
   ],
   providers: [
+  {  provide: LOCALE_ID, useValue: "es-ES" },
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

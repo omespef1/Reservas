@@ -15,14 +15,16 @@ export class ComunicationsProvider {
   constructor(public http: HttpClient, private load:LoadingController,private toast:ToastController) {
   }
 
-Get(UrlService:string){
+Get(UrlService:string,loading:boolean=true){
   this.loading= this.load.create({
       content:'Cargando...'
     });
     let promise = new Promise((resolve,reject)=>{
+      if(loading)
       this.loading.present();
       return this.http.get(SERVICES_URL + UrlService ).subscribe((resp:any)=>{
         console.log(resp);
+        if(loading)
         this.loading.dismiss();
         if(resp.Retorno==1){
           this.ErrMessage(resp.TxtError);
