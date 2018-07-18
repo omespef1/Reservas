@@ -10,16 +10,6 @@ export class TOSoRsoci {
   public Sbe_pass: string;
   public Soc_cfec: string;
   constructor(
-    // Emp_codi = 0,
-    // Mac_nume = "",
-    // Sbe_ncar = "",
-    // Sbe_mail = "",
-    // Sbe_ncel = "",
-    // Soc_cont = "",
-    // Sbe_cont = "",
-    // Soc_cing = "",
-    // Sbe_pass = "",
-    // Soc_cfec = "",
   ) {
 
   }
@@ -59,36 +49,55 @@ export class pqr {
 }
 
 export interface user {
-  Soc_nomb :string   ;
-  Soc_apel :string   ;
-  Soc_tele :string   ;
-  Mac_nume :string   ;
-  Soc_pass :string   ;
-  Soc_cont :number      ;
-  Sbe_cont :number      ;
-  Sbe_codi :string   ;
-  Emp_codi :number    ;
-  Soc_foto :string   ;
-  be_fexp  :Date ;
-  Sbe_ncar :string   ;
-  Mac_nume1:string   ;
-  Soc_ncar :string   ;
-  Sbe_mail :string   ;
-  Sbe_ncel :string   ;
-  Sbe_dire :string   ;
-  Emp_tele :string   ;
-  Emp_nite :string   ;
-  soc_ncar :string   ;
+  Soc_nomb: string;
+  Soc_apel: string;
+  Soc_tele: string;
+  Mac_nume: string;
+  Soc_pass: string;
+  Soc_cont: number;
+  Sbe_cont: number;
+  Sbe_codi: string;
+  Emp_codi: number;
+  Soc_foto: string;
+  be_fexp: Date;
+  Sbe_ncar: string;
+  Mac_nume1: string;
+  Soc_ncar: string;
+  Sbe_mail: string;
+  Sbe_ncel: string;
+  Sbe_dire: string;
+  Emp_tele: string;
+  Emp_nite: string;
+  soc_ncar: string;
 }
 export interface transaction {
-  Retorno:number;
-  TxtError:string;
-  ObjTransaction:any;
+  Retorno: number;
+  TxtError: string;
+  ObjTransaction: any;
 }
 
 export interface disponibility {
   title: string,
-  startTime : Date;
-  endTime:Date,
-  allDay:boolean,
+  startTime: Date;
+  endTime: Date,
+  allDay: boolean,
+}
+export interface booking {
+  Emp_codi: number;
+  Res_fini: Date;
+  Res_fina: Date;
+  Soc_cont: number;
+  Mac_nume: string;
+  Sbe_cont: number;
+  Esp_cont: number;
+  Res_numd: number;
+  Ite_cont: number;
+  Ter_codi: number;
+  Res_tdoc: number;
+  Res_dinv: number;
+  Res_ninv: string;
+  Res_inac: string;
+  Productos: any[];
+  Cla_cont: number;
+  Esp_mdit: string;
 }

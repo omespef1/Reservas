@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BookingProvider } from '../../providers/booking/booking';
-import { transaction, transactionDisponiblity } from '../../class/Models/models';
+import { transaction } from '../../class/Models/models';
 
 /**
  * Generated class for the DisponibilityPage page.

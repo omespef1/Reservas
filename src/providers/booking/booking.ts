@@ -27,7 +27,7 @@ export class BookingProvider {
     return this._comunications.Post(booking, `reserva/cancelar`);
   }
   GetDisponibility(){
-    return this._comunications.PostTest('http://localhost/NogalApi/api/Agenda?Cla_cont=4&pro_cont=15028&year=2018&month=7&day=17&esp_mdit=N&ter_codi=0&Op_Disp=undefined')
+    return this._comunications.PostTest('http://186.154.240.180:8098/api/Agenda?Cla_cont=4&pro_cont=15028&year=2018&month=7&day=17&esp_mdit=N&ter_codi=0&Op_Disp=undefined')
   }
 
 }
