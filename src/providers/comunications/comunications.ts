@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {SERVICES_URL} from '../../app/config/config';
+import {SERVICES_URL} from '../../assets/config/config';
 import {LoadingController,ToastController} from 'ionic-angular';
 
 /*
@@ -47,6 +47,34 @@ Post(params:any, urlService:string){
     console.log(SERVICES_URL+ urlService);
     console.log(params);
    return this.http.post(SERVICES_URL+ urlService,params).subscribe((resp:any)=>{
+     this.loading.dismiss();
+     console.log(resp)
+     if(resp.Retorno==1){
+       this.ErrMessage(resp.TxtError);
+       resp=null;
+     }
+     resolve(resp);
+   }),err=>{
+     console.log('error');
+     this.ErrMessage(err)    ;
+   }
+  })
+return promise;
+  // .subscribe(res=>{
+  //
+  // }),err=>{
+  //   this.ErrMessage(err)
+  // }
+}
+
+
+PostTest(urlService:string){
+  this.loading= this.load.create({
+      content:'Cargando...'
+    });
+  let promise = new Promise((resolve,reject)=>{
+    this.loading.present();
+   return this.http.post(urlService,null).subscribe((resp:any)=>{
      this.loading.dismiss();
      console.log(resp)
      if(resp.Retorno==1){

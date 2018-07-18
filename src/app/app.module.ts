@@ -27,6 +27,7 @@ import {PqrDetailPage} from '../pages/pqr-detail/pqr-detail';
 import {PopOverPage} from '../pages/pop-over/pop-over';
 import {ItemsPage} from '../pages/items/items';
 import {NewPqrPage} from '../pages/new-pqr/new-pqr';
+import {AgreementsPage} from '../pages/agreements/agreements';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -44,8 +45,10 @@ import {NgCalendarModule} from 'ionic2-calendar';
 
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
+import { AgreementsProvider } from '../providers/agreements/agreements';
 
-
+//plugins
+import { BrowserTab } from '@ionic-native/browser-tab';
 @NgModule({
   declarations: [
     MyApp,
@@ -65,7 +68,8 @@ import {sessions} from '../class/sessions/sessions';
     PqrDetailPage,
     PopOverPage,
     ItemsPage,
-    NewPqrPage
+    NewPqrPage,
+    AgreementsPage
   ],
   imports: [
     FormsModule,
@@ -98,7 +102,8 @@ import {sessions} from '../class/sessions/sessions';
     PqrDetailPage,
     PopOverPage,
     ItemsPage,
-    NewPqrPage
+    NewPqrPage,
+    AgreementsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -114,7 +119,9 @@ import {sessions} from '../class/sessions/sessions';
     HistoryProvider,
     PqrProvider,
     RegisterProvider,
-    BookingProvider
+    BookingProvider,
+    AgreementsProvider,
+    BrowserTab
   ]
 })
 export class AppModule {}

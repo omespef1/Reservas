@@ -20,7 +20,27 @@
 
 
 <ion-content class="has-header">
-  <calendar noEventsLabel="Sin reservas"
+  <!-- <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+              <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
+                  <ion-item *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
+                          <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}}
+                              -
+                              {{event.endTime|date: 'HH:mm'}}
+                          </span>
+                      <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">All day</span>
+                      <span class="event-detail">  |  {{event.title}}</span>
+                  </ion-item>
+                  <ion-item *ngIf="selectedDate?.events.length==0">
+                      <div class="no-events-label">{{noEventsLabel}}</div>
+                  </ion-item>
+              </ion-list>
+          </template> -->
+
+
+
+
+
+  <calendar noEventsLabel="No hay disponibiliad para esta fecha"  [eventSource]="eventSource"
   [locale]="calendar.locale"
              [calendarMode]="calendar.mode"
              [currentDate]="calendar.currentDate"
@@ -28,9 +48,20 @@
              (onEventSelected)="onEventSelected($event)"
              (onTitleChanged)="onViewTitleChanged($event)"
              (onTimeSelected)="onTimeSelected($event)"
-
-
+             [monthviewEventDetailTemplate]="template"
+             [showEventDetail]="true"
              step="30">
    </calendar>
-
+   <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+              <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
+                    <ion-item  class="labelColorRed" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
+                      <h3><b>{{event.title}}</b></h3>
+                          <p> Desde la(s)  {{event.startTime|date: 'HH:mm'}} Hasta la(s) {{event.endTime|date: 'HH:mm'}}</p>
+                           <ion-icon name="clock" item-start></ion-icon>
+                    </ion-item>
+                    <ion-item *ngIf="selectedDate?.events.length==0">
+                        <div class="no-events-label">{{noEventsLabel}}</div>
+                    </ion-item>
+                </ion-list>
+        </ng-template>
 </ion-content>

@@ -27,7 +27,7 @@ import { TOSoRsoci } from '../../class/Models/models';
 export class LoginPage {
   user: any = { userAction: "18000501", userPass: "evc426" }
   register: TOSoRsoci = new TOSoRsoci();
-  private codeConfirm:string="";
+  private codeConfirm: string = "";
 
   constructor(
     private _partner: PartnerProvider,
@@ -35,14 +35,14 @@ export class LoginPage {
     private session: sessions,
     private events: Events,
     private _register: RegisterProvider
-    ) {
+  ) {
 
   }
-
+//Variable para controlar la pestaña visible (Login o registro)
   type: string = "login";
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+
   }
 
   onSubmit(f: NgForm) {
@@ -54,23 +54,23 @@ export class LoginPage {
     })
   }
   onRegister(f: NgForm) {
-    this._register.SetRegister(this.register).then((resp:any)=>{
-      if(resp!=null){
-        if(resp.Soc_cing!="0"){
+    this._register.SetRegister(this.register).then((resp: any) => {
+      if (resp != null) {
+        if (resp.Soc_cing != "0") {
           this.codeConfirm = resp.Soc_cing;
           this.showConfirmCode();
         }
         else {
-          this.general.showToastMessage('Información actualizada,por favor ingrese','bottom');
+          this.general.showToastMessage('Información actualizada,por favor ingrese', 'bottom');
           f.reset();
         }
       }
     })
   }
-  showConfirmCode(){
-    this.general.showMessageInput('Confirmación de registro','Ingrese el código de confirmación enviado a su correo electrónico para terminar el registro',
-     'title','Código de confirmación',this.codeConfirm).then((code:number)=>{
+  showConfirmCode() {
+    this.general.showMessageInput('Confirmación de registro', 'Ingrese el código de confirmación enviado a su correo electrónico para terminar el registro',
+      'title', 'Código de confirmación', this.codeConfirm).then((code: number) => {
 
-    })
+      })
   }
 }

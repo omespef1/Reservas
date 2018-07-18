@@ -14,13 +14,15 @@
 
 
 <ion-content>
+  <form (ngSubmit)="onSubmit(pqrForm);" #pqrForm="ngForm">
   <ion-list>
     <ion-item detail-push (click)="openTypesPqr()">
     <ion-icon name="paper"></ion-icon>
       <ion-label>Tipo de PQR</ion-label>
-      <ion-note class="note" item-end>
+      <ion-note class="note" item-end  required >
         {{typePqrSelected}}
       </ion-note>
+        <ion-input hidden [(ngModel)]="pqr.ite_tpqr" name="reason"  required></ion-input>
     </ion-item>
     <ion-item detail-push (click)="openAmbients()">
     <ion-icon name="clipboard"></ion-icon>
@@ -28,17 +30,19 @@
       <ion-note class="note" item-end>
        {{ambientSelected}}
       </ion-note>
+        <ion-input hidden [(ngModel)]="pqr.arb_ccec" name="type"   required></ion-input>
     </ion-item>
     <ion-item>
 <ion-icon name="clock"></ion-icon>
    <ion-label>Fecha PQR</ion-label>
-   <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat ="DD/MM/YYYY" [(ngModel)]="pqr.Inp_feve"></ion-datetime>
+   <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat ="DD/MM/YYYY" name="Inp_feve" [(ngModel)]="pqr.Inp_feve" required></ion-datetime>
  </ion-item>
  <ion-item>
-    <ion-textarea [(ngModel)]="pqr.Inp_mpqr"  placeholder="Motivo"></ion-textarea>
+    <ion-textarea [(ngModel)]="pqr.Inp_mpqr" name="Inp_mpqr"  placeholder="Motivo" required></ion-textarea>
   </ion-item>
   </ion-list>
-  <button ion-button full icon-left (click) = "addPqr()">
+  <button [disabled]="!pqrForm.form.valid" ion-button full icon-left>
   <ion-icon name ="checkmark"></ion-icon>Enviar PQR
 </button>
+</form>
 </ion-content>

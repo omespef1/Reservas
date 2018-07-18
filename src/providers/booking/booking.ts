@@ -20,12 +20,14 @@ export class BookingProvider {
   GetBooking(partner: any) {
     return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}`);
   }
-  GetGnItems(){
-  return   this._comunications.Get(`GnItems?tit_cont=349`);
+  GetGnItems() {
+    return this._comunications.Get(`GnItems?tit_cont=349`);
   }
-
-  cancelBooking(booking:any){
-    return this._comunications.Post(booking,`reserva/cancelar`);
+  cancelBooking(booking: any) {
+    return this._comunications.Post(booking, `reserva/cancelar`);
+  }
+  GetDisponibility(){
+    return this._comunications.PostTest('http://localhost/NogalApi/api/Agenda?Cla_cont=4&pro_cont=15028&year=2018&month=7&day=17&esp_mdit=N&ter_codi=0&Op_Disp=undefined')
   }
 
 }

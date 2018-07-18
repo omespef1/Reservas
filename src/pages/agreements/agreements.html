@@ -1,0 +1,26 @@
+<!--
+  Generated template for the AgreementsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Convenios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let agreement of agreements" detail-push (tap)="openUrl(agreement.Osa_Link)">
+      <ion-thumbnail item-start>
+        <img src="data:image/jpeg;base64,{{agreement.Osa_Bmpr}}">
+      </ion-thumbnail>
+      <h2>{{agreement.Osa_Nomb}}</h2>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

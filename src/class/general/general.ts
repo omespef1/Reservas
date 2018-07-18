@@ -1,11 +1,12 @@
 import { AlertController, ToastController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 
 
 @Injectable()
 export class general {
-  constructor(private alert: AlertController, private toast: ToastController) {
+  constructor(private alert: AlertController, private toast: ToastController,private _browser:BrowserTab) {
 
   }
   ShowMessageAlert(title: string, msg: string) {
@@ -124,5 +125,12 @@ export class general {
       alert.present();
     })
     return promise;
+  }
+
+  openUrl(url:string){
+    if(url.indexOf('http')<0 || url.indexOf('http')<0 )
+      url = 'http://' + url;
+        this._browser.openUrl(url)
+
   }
 }
