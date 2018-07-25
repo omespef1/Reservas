@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 //providers
 import { ComunicationsProvider } from '../../providers/comunications/comunications';
 import { ClassSpacesProvider } from '../class-spaces/class-spaces';
+//clases
+import {disponibilityRequest} from '../../class/Models/models';
+
 
 
 /*
@@ -26,8 +29,11 @@ export class BookingProvider {
   cancelBooking(booking: any) {
     return this._comunications.Post(booking, `reserva/cancelar`);
   }
-  GetDisponibility(){
-    return this._comunications.PostTest('http://186.154.240.180:8098/api/Agenda?Cla_cont=4&pro_cont=15028&year=2018&month=7&day=17&esp_mdit=N&ter_codi=0&Op_Disp=undefined')
+  GetDisponibility(booking:disponibilityRequest){
+    return this._comunications.Get(`Agenda?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}&year=${booking.year}&month=${booking.month+1}&esp_mdit=${booking.esp_mdit}&ter_codi=${booking.ter_codi}&Op_Disp=${booking.Op_Disp}`)
+  }
+  SetBooking(booking:any){
+    return this._comunications.Post(booking,'reserva');
   }
 
 }

@@ -31,7 +31,7 @@
   <ion-icon  name="add"></ion-icon>
    </button>
   </ion-fab>
-  <ion-card *ngFor="let booking of bookingsList">
+  <ion-card *ngFor="let booking of bookingsList;let i =index">
     <ion-card-header>
 
 
@@ -65,7 +65,7 @@
         Desliza para cancelar la reserva
       </ion-list-header>
       <ion-item *ngIf="booking.Res_vige != 'N'">
-         <ion-range  min="20" max="80" step="2"  color="danger" (ionChange)="CancelChange(booking)" debounce="200" [(ngModel)]="cancelValue" >
+         <ion-range  min="20" max="80" step="2"  color="danger" (ionChange)="CancelChange(booking,i)" debounce="200" [(ngModel)]="cancelValue[i]" >
            <ion-icon color="primary" range-left name="checkmark-circle"></ion-icon>
            <ion-icon color="danger" range-right name="close-circle"></ion-icon>
          </ion-range>

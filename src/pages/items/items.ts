@@ -31,12 +31,14 @@ export class ItemsPage {
     this.viewCtrl.dismiss(item);
   }
   getItems(q: string) {
+    console.log(q);
   //Reseteo los items a su estado original
   this.initializeItems();
 //Si el valor es vacío no filtra ndada
-  if (q || q.trim() === '') {
+  if (!q || q.trim() === '') {
   return;
   }
+
   //Realiza el filtrado
   this.itemsList = this.itemsList.filter((v) =>  v.Ite_nomb.toLowerCase().indexOf(q.toLowerCase()) > -1);
 }

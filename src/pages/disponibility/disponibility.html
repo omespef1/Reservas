@@ -40,7 +40,7 @@
 
 
 
-  <calendar noEventsLabel="No hay disponibiliad para esta fecha"  [eventSource]="eventSource"
+  <calendar [noEventsLabel]="noEventsLabel"  [eventSource]="eventSource"
   [locale]="calendar.locale"
              [calendarMode]="calendar.mode"
              [currentDate]="calendar.currentDate"
@@ -54,13 +54,14 @@
    </calendar>
    <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
-                    <ion-item  class="labelColorRed" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
-                      <h3><b>{{event.title}}</b></h3>
-                          <p> Desde la(s)  {{event.startTime|date: 'HH:mm'}} Hasta la(s) {{event.endTime|date: 'HH:mm'}}</p>
+                    <ion-item  class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
+                      <h3><b> Desde la(s)  {{event.startTime|date: 'HH:mm'}} Hasta la(s) {{event.endTime|date: 'HH:mm'}}</b></h3>
+                          <h3> {{event.title}}</h3>
+                          <p>Toca para reservar</p>
                            <ion-icon name="clock" item-start></ion-icon>
                     </ion-item>
                     <ion-item *ngIf="selectedDate?.events.length==0">
-                        <div class="no-events-label">{{noEventsLabel}}</div>
+                        <div class="no-events-label"><p>{{noEventsLabel}}</p></div>
                     </ion-item>
                 </ion-list>
         </ng-template>

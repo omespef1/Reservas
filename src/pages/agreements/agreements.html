@@ -16,9 +16,10 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let agreement of agreements" detail-push (tap)="openUrl(agreement.Osa_Link)">
-      <ion-thumbnail item-start>
-        <img src="data:image/jpeg;base64,{{agreement.Osa_Bmpr}}">
-      </ion-thumbnail>
+      <ion-avatar item-start>
+        <img *ngIf="agreement.Osa_Bmpr!=null" src="data:image/jpeg;base64,{{agreement.Osa_Bmpr}}">
+          <img *ngIf="agreement.Osa_Bmpr==null" src="assets/imgs/Imagen-no-disponible.png">
+      </ion-avatar>
       <h2>{{agreement.Osa_Nomb}}</h2>
     </ion-item>
   </ion-list>

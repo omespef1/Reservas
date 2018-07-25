@@ -15,7 +15,8 @@
   <ion-list>
     <ion-item *ngFor="let product of products">
       <ion-thumbnail item-start>
-        <img src="data:image/jpeg;base64,{{product.Bmp_prod}}">
+        <img *ngIf="product.Bmp_prod!=null" src="data:image/jpeg;base64,{{product.Bmp_prod}}">
+          <img *ngIf="product.Bmp_prod==null" src="assets/imgs/Imagen-no-disponible.png">
       </ion-thumbnail>
       <h2>{{product.Pro_nomb}}</h2>
       <p>Hayao Miyazaki • 1988</p>

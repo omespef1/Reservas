@@ -19,9 +19,5 @@ export class ProductsProvider {
 GetProducts(classSpace:any){
   return this._comunications.Get(`producto?Cla_cont=${classSpace.Cla_cont}`);
 }
-setProducto(product:any){
-  if(product.esp_mdit =="N"){
 
-  }
-}
 }

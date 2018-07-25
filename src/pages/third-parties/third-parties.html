@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ThirdPartiesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Terceros</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let thirdPartie of thirdParties">
+      <ion-avatar item-start>
+        <img  src="data:image/jpeg;base64,{{thirdPartie.Ter_foto}}">
+      </ion-avatar>
+      <h2>{{thirdPartie.Ter_noco}}</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <button ion-button outline item-end (click)="SetThirdPartie(thirdPartie)">Seleccionar</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

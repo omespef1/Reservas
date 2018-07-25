@@ -101,3 +101,45 @@ export interface booking {
   Cla_cont: number;
   Esp_mdit: string;
 }
+export class disponibilityRequest {
+public  Cla_cont:number=0;
+public  pro_cont:number=0;
+public  year:number=0;
+public  month :number=0;
+public  day:number=0;
+public  esp_mdit:string="";
+public  ter_codi:number=0;
+public  Op_Disp:string="";
+public Cla_nomb:string="";
+public Pro_nomb:string="";
+public startTime:Date;
+public endTime:Date;
+constructor(){
+
+}
+
+
+}
+
+export class factory {
+ public  class:any;
+ public agend:any;
+ public space:any;
+ public product:any;
+ public user:any;
+ public thirdPartie:any= {Ter_codi:0};
+ public optionDisp:any = { OpDisp: ""}
+ constructor(){
+
+ }
+}
+export interface Ifactory {
+class:any;
+agend:any;
+space:any;
+product:any;
+user:any;
+thirdPartie:any;
+optionDisp:any;
+
+}

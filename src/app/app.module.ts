@@ -28,6 +28,8 @@ import {PopOverPage} from '../pages/pop-over/pop-over';
 import {ItemsPage} from '../pages/items/items';
 import {NewPqrPage} from '../pages/new-pqr/new-pqr';
 import {AgreementsPage} from '../pages/agreements/agreements';
+import {ConfirmPage} from '../pages/confirm/confirm';
+import {ThirdPartiesPage} from '../pages/third-parties/third-parties';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -49,6 +51,9 @@ import { AgreementsProvider } from '../providers/agreements/agreements';
 
 //plugins
 import { BrowserTab } from '@ionic-native/browser-tab';
+import * as moment from 'moment';
+import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
+import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 @NgModule({
   declarations: [
     MyApp,
@@ -69,7 +74,9 @@ import { BrowserTab } from '@ionic-native/browser-tab';
     PopOverPage,
     ItemsPage,
     NewPqrPage,
-    AgreementsPage
+    AgreementsPage,
+    ConfirmPage,
+    ThirdPartiesPage
   ],
   imports: [
     FormsModule,
@@ -103,7 +110,9 @@ import { BrowserTab } from '@ionic-native/browser-tab';
     PopOverPage,
     ItemsPage,
     NewPqrPage,
-    AgreementsPage
+    AgreementsPage,
+    ConfirmPage,
+    ThirdPartiesPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -121,7 +130,9 @@ import { BrowserTab } from '@ionic-native/browser-tab';
     RegisterProvider,
     BookingProvider,
     AgreementsProvider,
-    BrowserTab
+    BrowserTab,
+    ThirdPartiesProvider,
+    KeychainTouchId
   ]
 })
 export class AppModule {}

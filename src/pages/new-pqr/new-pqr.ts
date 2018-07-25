@@ -10,6 +10,10 @@ import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
 //interfaces
 import { item, itemSource, pqr, user, transaction } from '../../class/Models/models';
+//plugins
+import * as moment from 'moment';
+//pages
+import {PqrPage} from '../pqr/pqr';
 
 /**
  * Generated class for the NewPqrPage page.
@@ -30,11 +34,20 @@ export class NewPqrPage {
   pqr: pqr = new pqr();
   typePqrSelected: string="";
   ambientSelected: string="";
-  constructor(public navParams: NavParams, private _pqr: PqrProvider, private _sesion: sessions, private modalCtrl: ModalController, private _general: general) {
+  myDate: string = new Date().toISOString();
+  constructor(public navParams: NavParams,
+    private _pqr: PqrProvider,
+    private _sesion: sessions,
+    private modalCtrl: ModalController,
+    private _general: general,
+  private _nav:NavController) {
     this.setSourcesItems();
+
+
   }
 
   ionViewDidLoad() {
+
   }
   setSourcesItems() {
     this._sesion.getReasonsPqr().then(resp => {
@@ -60,8 +73,10 @@ export class NewPqrPage {
     let modal = this.modalCtrl.create(ItemsPage, { 'source': source })
     modal.present();
     modal.onDidDismiss((resp: item) => {
+      if(resp!=null){
       this.pqr.ite_tpqr = resp.Ite_cont;
       this.typePqrSelected = resp.Ite_nomb;
+    }
     })
   }
   openAmbients(): void {
@@ -71,8 +86,10 @@ export class NewPqrPage {
     let modal = this.modalCtrl.create(ItemsPage, { 'source': source })
     modal.present();
     modal.onDidDismiss((resp: item) => {
+      if(resp!=null){
       this.pqr.arb_ccec = resp.Ite_cont.toString();
       this.ambientSelected = resp.Ite_nomb;
+    }
     })
   }
   onSubmit(f: NgForm) {
@@ -81,6 +98,7 @@ export class NewPqrPage {
       this.pqr.sbe_cont = user.Sbe_cont;
       this.pqr.inp_ncar = user.Mac_nume;
       this.pqr.mac_nume = user.Mac_nume1;
+      this.pqr.inp_feve = new Date(this.myDate);
       this.pqr.ite_spre = 0;
       this.pqr.ite_ancu = 0;
       this._pqr.setPqr(this.pqr).then((resp: transaction) => {
@@ -90,6 +108,7 @@ export class NewPqrPage {
           this.ambientSelected="";
           this.typePqrSelected="";
           f.reset();
+          this._nav.setRoot(PqrPage);
         }
       })
     })

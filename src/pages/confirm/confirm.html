@@ -15,38 +15,48 @@
 
 <ion-content>
   <ion-list>
-    <ion-item detail-push (click)="openTypesPqr()">
-      <ion-icon name="paper"></ion-icon>
+    <ion-item  (click)="openTypesPqr()">
+      <ion-icon name="paper" item-start></ion-icon>
       <ion-label>Tipo de servicio</ion-label>
       <ion-note class="note" item-end>
+        {{booking.class.Cla_nomb}}
       </ion-note>
     </ion-item>
-    <ion-item detail-push>
-      <ion-icon name="clipboard"></ion-icon>
-      <ion-label>Tipo de servicio</ion-label>
+    <ion-item>
+      <ion-icon name="clipboard" item-start></ion-icon>
+      <ion-label>Clase de servicio</ion-label>
       <ion-note class="note" item-end>
+            {{booking.product.Pro_nomb}}
       </ion-note>
     </ion-item>
-    <ion-item detail-push>
-      <ion-icon name="clipboard"></ion-icon>
+    <ion-item>
+      <ion-icon name="clock" item-start></ion-icon>
       <ion-label>Fecha de la reserva</ion-label>
       <ion-note class="note" item-end>
+          {{today | date : 'dd/MM/yyyy hh:mm a' }}
       </ion-note>
     </ion-item>
-    <ion-item detail-push>
-      <ion-icon name="clipboard"></ion-icon>
+    <ion-item>
+      <ion-icon name="time"  item-start></ion-icon>
       <ion-label>Inicio servicio</ion-label>
       <ion-note class="note" item-end>
-      </ion-note>
-    </ion-item>3
-    <ion-item detail-push>
-      <ion-icon name="clipboard"></ion-icon>
-      <ion-label>Fin servicio</ion-label>
-      <ion-note class="note" item-end>
+      {{booking.agend.FechaInicio | date : 'dd/MM/yyyy hh:mm a' }}
       </ion-note>
     </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Fin servicio</ion-label>
+      <ion-note class="note" item-end>
+          {{booking.agend.FechaFin | date : 'dd/MM/yyyy hh:mm a' }}
+      </ion-note>
+    </ion-item>
+    <ion-item *ngIf="booking.agend.thirdPartie.Ter_codi!=0">
+      <ion-icon name ="person" item-start></ion-icon>
+      <ion-label>Tercero</ion-label>
+      <ion-note></ion-note>
+    </ion-item>
   </ion-list>
-  <button ion-button full icon-left>
+  <button ion-button full icon-left (click)="SetBooking()">
   <ion-icon name ="checkmark"></ion-icon>Reservar
 </button>
 </ion-content>

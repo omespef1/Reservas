@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ClassSpacesProvider} from '../../providers/class-spaces/class-spaces';
 //pages
 import {ProductsPage} from '../products/products';
+import {factory} from '../../class/models/models';
 
 /**
  * Generated class for the ClassSpacesPage page.
@@ -35,7 +36,10 @@ export class ClassSpacesPage {
     })
   }
   SetSpaceType(ClassSpace:any){
-    this.nav.push(ProductsPage,{'classSpace':ClassSpace});
+  //  let newRequest: disponibilityRequest = new disponibilityRequest();
+  let newFactory:factory = new factory();
+  newFactory.class = ClassSpace;
+    this.nav.push(ProductsPage,{'booking':newFactory});
   }
 
 }

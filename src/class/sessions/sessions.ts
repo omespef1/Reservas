@@ -9,7 +9,6 @@ import {TabsPage} from '../../pages/tabs/tabs';
 export class sessions {
 
 constructor(private nativeStorage: Storage){
-console.log('read from storage')
 }
 //Setea la sesión cuando se loguea un usuario
 setLoggedIn(user:any){
@@ -25,6 +24,13 @@ removeSession(){
 setReasonsPrq(reasons:any){
     this.nativeStorage.set('reasonsPqr',reasons);
 }
+setUserFingerPrint(user:string){
+  this.nativeStorage.set('secureUser',user);
+}
+getUserFingerPrint(){
+  return this.nativeStorage.get('secureUser');
+}
+
 getReasonsPqr(){
     return this.nativeStorage.get('reasonsPqr');
 }

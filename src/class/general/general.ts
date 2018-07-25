@@ -1,4 +1,4 @@
-import { AlertController, ToastController } from 'ionic-angular';
+import { AlertController, ToastController,ActionSheetController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { BrowserTab } from '@ionic-native/browser-tab';
 
@@ -6,7 +6,7 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 
 @Injectable()
 export class general {
-  constructor(private alert: AlertController, private toast: ToastController,private _browser:BrowserTab) {
+  constructor(private alert: AlertController, private toast: ToastController,private _browser:BrowserTab,private actionCtrl:ActionSheetController) {
 
   }
   ShowMessageAlert(title: string, msg: string) {
@@ -92,15 +92,17 @@ export class general {
     return momentOfTime;
   }
 
-  showRadioOptions(data: any[]) {
+  showConfirmMessage(title:string,subTitle:string, data: any[] = null) {
     var promise = new Promise((resolve, reject) => {
 
-      if (data == null)
-        resolve(0);
+      // if (data == null)
+      //   resolve(0);
       // if (countActions.length == 1)
       //   resolve(countActions[0].ACC_CONT);
       let alert = this.alert.create();
-      alert.setTitle('¿Está seguro de que desea cancelar la reserva?');
+      alert.setTitle(title);
+      alert.setSubTitle(subTitle);
+      if(data){
       for (let option of data ) {
         alert.addInput({
           type: 'radio',
@@ -108,6 +110,7 @@ export class general {
           value: option.Ite_cont,
         });
       }
+    }
       alert.addButton({
         text: 'Cancelar',
         handler: () => {
@@ -132,5 +135,12 @@ export class general {
       url = 'http://' + url;
         this._browser.openUrl(url)
 
+  }
+  ShowActionSheetAlert(title:string,butttons:any[]){
+    let action = this.actionCtrl.create({
+      title: title,
+      buttons : butttons
+    })
+    action.present();
   }
 }
