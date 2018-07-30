@@ -8,6 +8,7 @@ import { Ifactory, disponibilityRequest } from '../../class/Models/models';
 import { general } from '../../class/general/general';
 //pages
 import { ConfirmPage } from '../confirm/confirm';
+import {ThirdPartiesPage} from '../../pages/third-parties/third-parties';
 import { ThirdPartiesProvider } from '../../providers/third-parties/third-parties';
 
 
@@ -143,20 +144,36 @@ export class DisponibilityPage {
   };
   setBooking(event: any) {
     try {
+      if(this.newFactory.class.Cla_Fchr!=null){
+        let maxDate =new Date(this.newFactory.class.Cla_Fchr);
+        if(new Date(event.startTime) > maxDate)
+        throw Error(`Fecha Límite de reserva excedida ${this.newFactory.class.Cla_Fchr}:`)
+      }
+
       this.newFactory.agend = event;
       this.newFactory.agend.startTime = new Date(event.startTime);
       this.newFactory.agend.endTime = new Date(event.endTime);
-      if (this.newFactory.optionDisp.OpDisp != 'F' && this.newFactory.product.esp_mdit == 'S') {
-        this.newBookingRequest.startTime = this.newFactory.agend.startTime;
-        this.newBookingRequest.endTime = this.newFactory.agend.endTime;
+       this.newBookingRequest.startTime = this.newFactory.agend.startTime;
+       this.newBookingRequest.endTime = this.newFactory.agend.endTime;
         this._third.GetThirParties(this.newBookingRequest).then((resp: transaction) => {
-          let terceros: any[] = resp.ObjTransaction;
+            let terceros: any[] = resp.ObjTransaction;
+            //Si ya majena disponibilidad significa que ya elegí el tercero
+          if ( this.newFactory.product.esp_mdit == 'S') {
           if (terceros.length == 0)
-            throw new Error("No hay disponibilidad de instructores!");
-          if (terceros.length == 0)
+            throw new Error("No hay disponibilidad de instructores y es requerido!");
+          if (terceros.length == 1)
             this.newFactory.thirdPartie = terceros[0];
+            if(terceros.length>0){
+              this._navCtrl.push(ThirdPartiesPage,{'thirdParties':terceros});
+            }
+          }
+          else {
+            if (terceros.length>0)
+            this._navCtrl.push(ThirdPartiesPage);
+
+          }
         })
-      }
+       if(this.newFactory.optionDisp.opCodi =='P')
       this._navCtrl.push(ConfirmPage, { 'booking': this.newFactory });
     }
     catch (err) {

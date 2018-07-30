@@ -43,6 +43,7 @@ export class ProductsPage {
   }
   SetProducts(product: any) {
    this.newFactory.product = product;
+   //Si maneja disponibilidad por tercero se muestra el modal de opciones
     if (this.newFactory.product.esp_mdit.toString().toUpperCase() == "S") {
      this.ShowOptionsSearch();
     }

@@ -34,6 +34,7 @@ export class ThirdPartiesPage {
       this.newDisponibilityRequest.endTime = this.newFactory.agend.endTime;
     }
     else {
+      console.log('Fechas nulas ya que la busqueda es por profesional')
       this.newDisponibilityRequest.startTime = null;
       this.newDisponibilityRequest.endTime = null;
     }
@@ -51,12 +52,12 @@ export class ThirdPartiesPage {
   }
   SetThirdPartie(thirdPartie:any){
     this.newFactory.thirdPartie = thirdPartie;
+     // this.navCtrl.push(DisponibilityPage, {'booking': this.newFactory});
+    if(this.newFactory.optionDisp.OpDisp=='P')
      this.navCtrl.push(DisponibilityPage, {'booking': this.newFactory});
-    // if(this.newFactory.optionDisp.OpDisp=='P')
-    //  this.navCtrl.push(DisponibilityPage, {'booking': this.newFactory});
-    //  else {
-    //    this.navCtrl.push(ConfirmPage , {'booking':this.newFactory});
-    //  }
+     else {
+       this.navCtrl.push(ConfirmPage , {'booking':this.newFactory});
+     }
 
   }
 
