@@ -40,19 +40,21 @@
       <ion-icon name="time"  item-start></ion-icon>
       <ion-label>Inicio servicio</ion-label>
       <ion-note class="note" item-end>
-      {{booking.agend.FechaInicio | date : 'dd/MM/yyyy hh:mm a' }}
+      {{booking.agend.startTime | date : 'dd/MM/yyyy hh:mm a' }}
       </ion-note>
     </ion-item>
     <ion-item>
       <ion-icon name="time" item-start></ion-icon>
       <ion-label>Fin servicio</ion-label>
       <ion-note class="note" item-end>
-          {{booking.agend.FechaFin | date : 'dd/MM/yyyy hh:mm a' }}
+          {{booking.agend.endTime | date : 'dd/MM/yyyy hh:mm a' }}
       </ion-note>
     </ion-item>
-    <ion-item *ngIf="booking.agend.thirdPartie.Ter_codi!=0">
-      <ion-icon name ="person" item-start></ion-icon>
-      <ion-label>Tercero</ion-label>
+    <ion-item *ngIf="booking.thirdPartie.Ter_codi!=0">
+      <ion-avatar item-start>
+       <img  src="data:image/jpeg;base64,{{booking.thirdPartie.Ter_foto}}">
+      </ion-avatar>
+      <ion-label>{{booking.thirdPartie.Ter_noco}}</ion-label>
       <ion-note></ion-note>
     </ion-item>
   </ion-list>

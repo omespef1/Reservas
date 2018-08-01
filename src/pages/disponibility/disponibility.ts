@@ -28,6 +28,7 @@ export class DisponibilityPage {
   newFactory: Ifactory;
   newBookingRequest = new disponibilityRequest();
   eventSource: any;
+  formatWeekTitle: "MMMM yyyy, 'Semana' w'";
   noEventsLabel: string = "No hay disponibilidad para este día";
   viewTitle;
   isToday: boolean;
@@ -149,32 +150,19 @@ export class DisponibilityPage {
         if(new Date(event.startTime) > maxDate)
         throw Error(`Fecha Límite de reserva excedida ${this.newFactory.class.Cla_Fchr}:`)
       }
-
       this.newFactory.agend = event;
       this.newFactory.agend.startTime = new Date(event.startTime);
       this.newFactory.agend.endTime = new Date(event.endTime);
-       this.newBookingRequest.startTime = this.newFactory.agend.startTime;
-       this.newBookingRequest.endTime = this.newFactory.agend.endTime;
-        this._third.GetThirParties(this.newBookingRequest).then((resp: transaction) => {
-            let terceros: any[] = resp.ObjTransaction;
+       // this.newBookingRequest.startTime = this.newFactory.agend.startTime;
+       // this.newBookingRequest.endTime = this.newFactory.agend.endTime;
             //Si ya majena disponibilidad significa que ya elegí el tercero
-          if ( this.newFactory.product.esp_mdit == 'S') {
-          if (terceros.length == 0)
-            throw new Error("No hay disponibilidad de instructores y es requerido!");
-          if (terceros.length == 1)
-            this.newFactory.thirdPartie = terceros[0];
-            if(terceros.length>0){
-              this._navCtrl.push(ThirdPartiesPage,{'thirdParties':terceros});
-            }
+          if (this.newFactory.product.esp_mdit == 'S' && this.newFactory.optionDisp.OpDisp=='F') {
+               this._navCtrl.push(ThirdPartiesPage, { 'booking': this.newFactory });
           }
           else {
-            if (terceros.length>0)
-            this._navCtrl.push(ThirdPartiesPage);
-
+            this._navCtrl.push(ConfirmPage, { 'booking': this.newFactory });
           }
-        })
-       if(this.newFactory.optionDisp.opCodi =='P')
-      this._navCtrl.push(ConfirmPage, { 'booking': this.newFactory });
+
     }
     catch (err) {
       this._general.showToastMessage(err, 'bottom');

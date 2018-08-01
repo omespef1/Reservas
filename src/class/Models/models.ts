@@ -112,8 +112,8 @@ public  ter_codi:number=0;
 public  Op_Disp:string="";
 public Cla_nomb:string="";
 public Pro_nomb:string="";
-public startTime:Date;
-public endTime:Date;
+public startTime:string;
+public endTime:string;
 constructor(){
 
 }
