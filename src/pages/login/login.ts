@@ -7,11 +7,13 @@ import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
 //Providers
 import { PartnerProvider } from '../../providers/partner/partner';
-import { RegisterProvider } from '../../providers/register/register';
 //Models
 import { TOSoRsoci } from '../../class/Models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
+//pages
+import {PartnerConfirmPage} from '../partner-confirm/partner-confirm';
+
 
 
 /**
@@ -37,9 +39,9 @@ export class LoginPage {
     private general: general,
     private session: sessions,
     private events: Events,
-    private _register: RegisterProvider,
     private _touch: KeychainTouchId,
-    private _platform: Platform
+    private _platform: Platform,
+    private navCtrl:NavController
   ) {
 
   }
@@ -47,7 +49,7 @@ export class LoginPage {
   type: string = "login";
 
   ionViewDidLoad() {
-     this.GetTouchId();
+    this.GetTouchId();
   }
 
   onSubmit(f: NgForm) {
@@ -63,25 +65,29 @@ export class LoginPage {
     })
   }
   onRegister(f: NgForm) {
-    this._register.SetRegister(this.register).then((resp: any) => {
+    this._partner.SetPartner(this.register).then((resp: any) => {
       if (resp != null) {
-        if (resp.Soc_cing != "0") {
-          this.codeConfirm = resp.Soc_cing;
-          this.showConfirmCode();
-        }
-        else {
-          this.general.showToastMessage('Información actualizada,por favor ingrese', 'bottom');
-          f.reset();
-        }
+        // if (resp.ObjTransaction.Soc_cing != "0") {
+          this.user= resp.ObjTransaction;
+           this.navCtrl.push(PartnerConfirmPage,{'partner':this.user})
+        // }
+        // else {
+        //   this.general.showToastMessage('Información actualizada!', 'bottom');
+        //   f.reset();
+        // }
       }
     })
   }
-  showConfirmCode() {
-    this.general.showMessageInput('Confirmación de registro', 'Ingrese el código de confirmación enviado a su correo electrónico para terminar el registro',
-      'title', 'Código de confirmación', this.codeConfirm).then((code: number) => {
+  // showConfirmCode() {
+  //   this.general.showMessageInput('Confirmación de registro', 'Ingrese el código de confirmación enviado a su correo electrónico para terminar el registro',
+  //     'title', 'Código de confirmación', this.codeConfirm).then((code: number) => {
+  //       if(code == this.user.Soc_cing){
+  //         this.navCtrl.push(PartnerConfirmPage)
+  //         //  this._partner.SetRegister()
+  //       }
+  //     })
+  // }
 
-      })
-  }
 
   GetTouchId() {
     if (this._platform.is("cordova")) {

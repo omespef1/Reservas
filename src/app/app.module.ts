@@ -30,6 +30,7 @@ import {NewPqrPage} from '../pages/new-pqr/new-pqr';
 import {AgreementsPage} from '../pages/agreements/agreements';
 import {ConfirmPage} from '../pages/confirm/confirm';
 import {ThirdPartiesPage} from '../pages/third-parties/third-parties';
+import {PartnerConfirmPage} from '../pages/partner-confirm/partner-confirm';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -38,7 +39,6 @@ import { ClassSpacesProvider } from '../providers/class-spaces/class-spaces';
 import { ProductsProvider } from '../providers/products/products';
 import { HistoryProvider } from '../providers/history/history';
 import { PqrProvider } from '../providers/pqr/pqr';
-import { RegisterProvider } from '../providers/register/register';
 import { BookingProvider } from '../providers/booking/booking';
 
 //Components
@@ -76,7 +76,8 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
     NewPqrPage,
     AgreementsPage,
     ConfirmPage,
-    ThirdPartiesPage
+    ThirdPartiesPage,
+    PartnerConfirmPage
   ],
   imports: [
     FormsModule,
@@ -112,7 +113,8 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
     NewPqrPage,
     AgreementsPage,
     ConfirmPage,
-    ThirdPartiesPage
+    ThirdPartiesPage,
+    PartnerConfirmPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -127,7 +129,6 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
     ProductsProvider,
     HistoryProvider,
     PqrProvider,
-    RegisterProvider,
     BookingProvider,
     AgreementsProvider,
     BrowserTab,

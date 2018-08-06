@@ -15,9 +15,9 @@ export class ComunicationsProvider {
   constructor(public http: HttpClient, private load:LoadingController,private toast:ToastController) {
   }
 
-Get(UrlService:string,loading:boolean=true){
+Get(UrlService:string,loading:boolean=true,content:string="Cargando..."){
   this.loading= this.load.create({
-      content:'Cargando...'
+      content:content
     });
     let promise = new Promise((resolve,reject)=>{
       if(loading)
@@ -38,9 +38,9 @@ Get(UrlService:string,loading:boolean=true){
  return promise;
 }
 
-Post(params:any, urlService:string){
+Post(params:any, urlService:string,content:string="Cargando..."){
   this.loading= this.load.create({
-      content:'Cargando...'
+      content:content,
     });
   let promise = new Promise((resolve,reject)=>{
     this.loading.present();

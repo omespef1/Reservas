@@ -1,0 +1,38 @@
+<!--
+  Generated template for the PartnerConfirmPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{partner.Sbe_ncar}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form  (ngSubmit)="setPartner(confirmForm)" #confirmForm="ngForm">
+    <p padding text-left>
+      Hemos enviado a su correo electrónico un código de seguridad, el cual tiene una validez de  2 horas. Por favor digítelo y a continuación confirme su nueva contraseña
+    </p>
+  <ion-item>
+     <ion-label stacked>Código de verificación</ion-label>
+     <ion-input  [(ngModel)]="ConfirmCode" name="code" required></ion-input>
+   </ion-item>
+   <ion-item>
+      <ion-label stacked>Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="partner.Sbe_pass" name="pass" required></ion-input>
+    </ion-item>
+  <ion-item>
+     <ion-label stacked>Confirmar contraseña</ion-label>
+     <ion-input type="password" [(ngModel)]="ConfirmPassword" name="confirmPass" required></ion-input>
+   </ion-item>
+  <button [disabled]="!confirmForm.form.valid" ion-button block>
+  Registrarme   &nbsp;  
+  <ion-icon name="checkmark-circle"></ion-icon>
+</button>
+</form>
+</ion-content>

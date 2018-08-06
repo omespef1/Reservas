@@ -27,13 +27,13 @@ export class BookingProvider {
     return this._comunications.Get(`GnItems?tit_cont=349`);
   }
   cancelBooking(booking: any) {
-    return this._comunications.Post(booking, `reserva/cancelar`);
+    return this._comunications.Post(booking, `reserva/cancelar`,'Cancelando reserva...');
   }
   GetDisponibility(booking:disponibilityRequest){
-    return this._comunications.Get(`Agenda?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}&year=${booking.year}&month=${booking.month+1}&esp_mdit=${booking.esp_mdit}&ter_codi=${booking.ter_codi}&Op_Disp=${booking.Op_Disp}`)
+    return this._comunications.Get(`Agenda?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}&year=${booking.year}&month=${booking.month+1}&esp_mdit=${booking.esp_mdit}&ter_codi=${booking.ter_codi}&Op_Disp=${booking.Op_Disp}`,true,'Verificando disponibilidad...')
   }
   SetBooking(booking:any){
-    return this._comunications.Post(booking,'reserva');
+    return this._comunications.Post(booking,'reserva','Reservando...');
   }
 
 }

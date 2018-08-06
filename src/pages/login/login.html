@@ -18,7 +18,7 @@
           Login
         </ion-segment-button>
         <ion-segment-button value="register">
-          Registro
+          Registro y/o Actualización
         </ion-segment-button>
       </ion-segment>
     </ion-toolbar>
@@ -64,17 +64,14 @@
       <ion-label floating>Celular</ion-label>
       <ion-input type="tel" [(ngModel)]="register.Sbe_ncel" name="phone" clearInput="true" required></ion-input>
     </ion-item>
-    <ion-item class="slide-in-both-ways">
-        <ion-icon name="lock" item-start></ion-icon>
-      <ion-label floating>Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="register.Sbe_pass" name="password" clearInput="true" required></ion-input>
-    </ion-item>
       <div padding>
-     <button [disabled]="!RegisterForm.form.valid" ion-button block>Registrarme</button>
+     <button [disabled]="!RegisterForm.form.valid" ion-button block>Enviar codigo de seguridad
+        &nbsp;  <ion-icon name="checkmark-circle"></ion-icon>
+     </button>
    </div>
-   <div padding *ngIf="codeConfirm!=''">
+   <!-- <div padding *ngIf="codeConfirm!=''">
   <button ion-button block (click)="showConfirmCode()">Confirmar código</button>
-</div>
+</div> -->
   </ion-list>
 </form>
 </div>
