@@ -21,10 +21,8 @@ export class ThirdPartiesProvider {
   return  this._communications.Get(`gnterce/GetGnTerceNewVersion?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}`);
   }
   else {
-    let data = `gnterce/GetGnTerceNewVersion?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}
-      &Fini=${booking.startTime}&Ffin=${booking.endTime}&Op_Disp=${booking.Op_Disp}`;
-      console.log(data);
-    return this._communications.Get(data)
+    return this._communications.Get(`gnterce/GetGnTerceNewVersion?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}
+      &Fini=${booking.startTime}&Ffin=${booking.endTime}&Op_Disp=${booking.Op_Disp}`)
   }
   }
 

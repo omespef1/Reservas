@@ -32,7 +32,6 @@ export class ConfirmPage {
   constructor(public navParams: NavParams, private _booking: BookingProvider, private _sesion: sessions,private _general:general, private _nav:NavController) {
     this.booking = navParams.get('booking');
     console.log(this.booking);
-    console.log(this.booking);
     this._sesion.GetLoggedin().then((user: user) => {
       this.user = user;
     })
@@ -48,9 +47,7 @@ export class ConfirmPage {
     // })
     console.log(this.booking);
    if(this.booking.thirdPartie==null)
-   this.booking.thirdPartie = {
-     Ter_codi:0
-   }
+   this.booking.thirdPartie.Ter_codi=0;
     let newBooking: any = {
       Emp_codi: 1,
       Res_fini: moment(this.booking.agend.startTime).format(),

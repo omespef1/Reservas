@@ -50,10 +50,7 @@
              (onTimeSelected)="onTimeSelected($event)"
              [monthviewEventDetailTemplate]="template"
              [showEventDetail]="true"
-             step="15"
-             [timeInterval]="30"
-             allDayLabel="Día"
-             startHour="6">
+             step="30">
    </calendar>
    <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
