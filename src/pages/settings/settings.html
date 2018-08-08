@@ -53,7 +53,7 @@
   <ion-item class="animate-in-primary" detail-push (click)="sessionOut()">
     <ion-icon name="power" item-start></ion-icon>
       Cerrar sesión
-    
+
   </ion-item>
 
 </ion-list>
@@ -67,6 +67,16 @@
     </ion-avatar>
     <h2>{{beneficiary.Soc_nomb}} {{beneficiary.Soc_apel}}</h2>
     <p>Socio desde: {{ beneficiary.Sbe_fexp | date }} </p>
+  </ion-item>
+</ion-list>
+
+<ion-list>
+  <ion-list-header>
+    INFORMACION DE LA APLICACION
+  </ion-list-header>
+  <ion-item class="animate-in-primary" push-detail (click)="GoAbout()">
+    <ion-icon item-start name="information-circle"></ion-icon>
+    Acerca de
   </ion-item>
 </ion-list>
 </ion-content>

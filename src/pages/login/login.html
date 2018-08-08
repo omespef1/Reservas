@@ -38,7 +38,9 @@
         <ion-icon name="eye" item-end></ion-icon>
     </ion-item>
       <div padding>
-     <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar</button>
+     <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
+<ion-icon name="checkmark-circle"></ion-icon>
+     </button>
    </div>
   </ion-list>
 </form>
@@ -48,8 +50,7 @@
   <ion-item >
   <ion-icon name="person" item-start></ion-icon>
       <ion-label floating>Acción</ion-label>
-
-      <ion-input [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  placeholder="Acción" type="number" clearInput="true" required></ion-input>
+      <ion-input [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
     </ion-item>
   <ion-item >
       <ion-icon name="mail" item-start></ion-icon>
@@ -71,5 +72,8 @@
 </div> -->
   </ion-list>
 </form>
+</div>
+<div text-center>
+  <img  src="assets/imgs/Logo_Club.png" style="width: 60%;">
 </div>
 </ion-content>

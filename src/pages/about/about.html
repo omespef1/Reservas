@@ -1,11 +1,71 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Acerca de
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-list>
+      <ion-list-header>
+        Información de la aplicación
+      </ion-list-header>
+    <ion-item>
+      <ion-icon name="information-circle" item-start></ion-icon>
+      <ion-label>Versión</ion-label>
+      <ion-note item-end>
+        {{appVersion}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="code-working" item-start></ion-icon>
+      <ion-label>Copyright</ion-label>
+      <ion-note item-end>
+        {{appCopyright}}
+      </ion-note>
+    </ion-item>
+  </ion-list>
 
+  <!-- Informacion del desarrollador -->
+  <ion-list>
+      <ion-list-header>
+        Información del desarrollador
+      </ion-list-header>
+    <ion-item>
+      <ion-icon name="logo-codepen" item-start></ion-icon>
+      <ion-label>Nombre</ion-label>
+      <ion-note item-end>
+        {{developer}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" item-start></ion-icon>
+      <ion-label>Email</ion-label>
+      <ion-note item-end>
+        {{developerMail}}
+      </ion-note>
+    </ion-item>
+      <ion-item detail-push (click)="openBrowser(developerWeb)">
+      <ion-icon name="globe" item-start></ion-icon>
+      <ion-label>Página web</ion-label>
+      <!-- <ion-note item-end>
+        {{developerWeb}}
+      </ion-note> -->
+    </ion-item>
+      <ion-item detail-push (click)="openBrowser(developerTwitter)">
+      <ion-icon name="logo-twitter" color="primary" item-start></ion-icon>
+      <ion-label>Twitter</ion-label>
+      <!-- <ion-note item-end>
+        {{developerTwitter}}
+      </ion-note> -->
+    </ion-item>
+    <ion-item detail-push (click)="openBrowser(developerFacebook)">
+      <ion-icon name="logo-facebook" color="dark" item-start></ion-icon>
+      <ion-label>Facebook</ion-label>
+      <!-- <ion-note item-end>
+        {{developerFacebook}}
+      </ion-note> -->
+    </ion-item>
+  </ion-list>
 </ion-content>

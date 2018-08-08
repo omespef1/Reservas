@@ -107,7 +107,7 @@ export class LoginPage {
       this._touch.isAvailable().then(() => {
         this._touch.has("fingerprint").catch(err => {
           this.session.setUserFingerPrint(this.user.userAction);
-          this._touch.save("password", this.user.userPass);
+          this._touch.save("fingerprint", this.user.userPass);
         })
       })
     }
