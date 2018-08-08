@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,refresher } from 'ionic-angular';
 import {ClassSpacesProvider} from '../../providers/class-spaces/class-spaces';
 //pages
 import {ProductsPage} from '../products/products';
@@ -25,13 +25,16 @@ export class ClassSpacesPage {
   ionViewDidLoad() {
     this.GetClassSpaces();
   }
-  GetClassSpaces(){
-      console.log('cinsulta');
+  GetClassSpaces(ref:refresher=null){
+      'cinsulta');
     this._classSpaces.GetClassSpaces().then((resp:any)=>{
 
       if(resp!=null){
-        console.log(resp);
+        resp);
         this.typeSpaces = resp.ObjTransaction;
+        if(ref)
+        ref.complete();
+
       }
     })
   }
@@ -41,5 +44,8 @@ export class ClassSpacesPage {
   newFactory.class = ClassSpace;
     this.nav.push(ProductsPage,{'booking':newFactory});
   }
-
+doRefresh(ref:refresher)
+{
+  this.GetClassSpaces(ref);
+}
 }

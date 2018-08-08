@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController,Refresher } from 'ionic-angular';
 //Pages
 import { DisponibilityPage } from '../disponibility/disponibility';
 import { ThirdPartiesPage } from '../third-parties/third-parties';
@@ -8,7 +8,7 @@ import { ThirdPartiesPage } from '../third-parties/third-parties';
 import { ProductsProvider } from '../../providers/products/products';
 //Class
 import { Ifactory } from '../../class/Models/models';
-import {general} from '../../class/general/general';
+import { general } from '../../class/general/general';
 
 /**
  * Generated class for the ProductsPage page.
@@ -23,9 +23,9 @@ import {general} from '../../class/general/general';
   templateUrl: 'products.html',
 })
 export class ProductsPage {
-  newFactory: Ifactory ;
+  newFactory: Ifactory;
   products: any[];
-  constructor(public navCtrl: NavController, public navParam: NavParams, private _product: ProductsProvider, private _general:general) {
+  constructor(public navCtrl: NavController, public navParam: NavParams, private _product: ProductsProvider, private _general: general) {
     this.newFactory = navParam.get('booking');
 
   }
@@ -34,22 +34,24 @@ export class ProductsPage {
     this.GetProducts();
   }
 
-  GetProducts() {
+  GetProducts(ref:Refresher=null) {
     this._product.GetProducts(this.newFactory.class).then((resp: any) => {
       if (resp != null) {
         this.products = resp.ObjTransaction;
+        if(ref)
+        ref.complete();
       }
     })
   }
   SetProducts(product: any) {
-   this.newFactory.product = product;
-   //Si maneja disponibilidad por tercero se muestra el modal de opciones
+    this.newFactory.product = product;
+    //Si maneja disponibilidad por tercero se muestra el modal de opciones
     if (this.newFactory.product.esp_mdit.toString().toUpperCase() == "S") {
-     this.ShowOptionsSearch();
+      this.ShowOptionsSearch();
     }
     else {
       this.newFactory.optionDisp.OpDisp = 'F';
-      this.newFactory.thirdPartie = {Ter_codi:0};
+      this.newFactory.thirdPartie = { Ter_codi: 0 };
       this.navCtrl.push(DisponibilityPage, { 'booking': this.newFactory });
     }
 
@@ -62,7 +64,7 @@ export class ProductsPage {
         text: 'Profesional',
         handler: () => {
           this.newFactory.optionDisp.OpDisp = 'P';
-            this.navCtrl.push(ThirdPartiesPage, { 'booking': this.newFactory });
+          this.navCtrl.push(ThirdPartiesPage, { 'booking': this.newFactory });
         }
       },
       {
@@ -70,12 +72,15 @@ export class ProductsPage {
         text: 'Disponibilidad de fecha',
         handler: () => {
           this.newFactory.optionDisp.OpDisp = 'F';
-        this.navCtrl.push(DisponibilityPage, { 'booking': this.newFactory });
+          this.navCtrl.push(DisponibilityPage, { 'booking': this.newFactory });
         }
       }
     ];
-    this._general.ShowActionSheetAlert('¿Como desea realizar la búsqueda de disponibilidad?',buttons);
+    this._general.ShowActionSheetAlert('¿Como desea realizar la búsqueda de disponibilidad?', buttons);
 
+  }
+  doRefresh(ref:Refresher){
+    this.GetProducts(ref);
   }
 
 }
