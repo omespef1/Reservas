@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../../providers/comunications/comunications';
 import { ClassSpacesProvider } from '../class-spaces/class-spaces';
 //clases
-import {disponibilityRequest} from '../../class/Models/models';
+import {disponibilityRequest} from '../../class/models/models';
 
 
 

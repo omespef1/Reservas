@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AgreementsProvider} from '../../providers/agreements/agreements';
 //clases
-import {transaction } from '../../class/Models/models';
+import {transaction } from '../../class/models/models';
 import {general} from '../../class/general/general';
 
 

@@ -9,7 +9,7 @@ import { ItemsPage } from '../items/items';
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
 //interfaces
-import { item, itemSource, pqr, user, transaction } from '../../class/Models/models';
+import { item, itemSource, pqr, user, transaction } from '../../class/models/models';
 //plugins
 import * as moment from 'moment';
 //pages

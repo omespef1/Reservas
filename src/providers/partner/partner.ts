@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import {  ComunicationsProvider} from '../comunications/comunications';
 //clases
-import {TOSoRsoci } from '../../class/Models/models';
+import {TOSoRsoci } from '../../class/models/models';
 
 
 /*

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 //Providers
 import { PartnerProvider } from '../../providers/partner/partner';
 //clases
-import { TOSoRsoci,transaction } from '../../class/Models/models';
+import { TOSoRsoci,transaction } from '../../class/models/models';
 import { general } from '../../class/general/general';
 //pages
 import {LoginPage} from '../login/login';

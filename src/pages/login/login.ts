@@ -8,7 +8,7 @@ import { sessions } from '../../class/sessions/sessions';
 //Providers
 import { PartnerProvider } from '../../providers/partner/partner';
 //Models
-import { TOSoRsoci } from '../../class/Models/models';
+import { TOSoRsoci } from '../../class/models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pages

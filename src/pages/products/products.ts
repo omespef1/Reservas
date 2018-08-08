@@ -7,7 +7,7 @@ import { ThirdPartiesPage } from '../third-parties/third-parties';
 //providers
 import { ProductsProvider } from '../../providers/products/products';
 //Class
-import { Ifactory } from '../../class/Models/models';
+import { Ifactory } from '../../class/models/models';
 import { general } from '../../class/general/general';
 
 /**

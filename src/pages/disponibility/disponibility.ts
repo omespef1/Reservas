@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams,Refresher } from 'ionic-angular';
 //providers
 import { BookingProvider } from '../../providers/booking/booking';
 //clases
-import { transaction } from '../../class/Models/models';
-import { Ifactory, disponibilityRequest } from '../../class/Models/models';
+import { transaction } from '../../class/models/models';
+import { Ifactory, disponibilityRequest } from '../../class/models/models';
 import { general } from '../../class/general/general';
 //pages
 import { ConfirmPage } from '../confirm/confirm';
