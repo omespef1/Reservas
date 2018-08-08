@@ -13,7 +13,7 @@ export class DigitalDatePipe implements PipeTransform {
    * Takes a value and makes it lowercase.
    */
   transform(value: string, ...args) {
-    value = moment(value).format("HH:mm aa");
+    value = moment(value).format("HH:mm a");
     return value;
   }
 }

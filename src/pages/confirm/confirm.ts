@@ -10,6 +10,8 @@ import { user,Ifactory } from '../../class/models/models';
 import {general} from '../../class/general/general';
 //pages
 import {BookingPage} from '../../pages/booking/booking';
+//pipes
+import{DigitalDatePipe} from '../../pipes/digital-date/digital-date';
 
 /**
  * Generated class for the ConfirmPage page.
@@ -53,8 +55,8 @@ export class ConfirmPage {
    }
     let newBooking: any = {
       Emp_codi: 1,
-      Res_fini: moment(this.booking.agend.startTime).format("dd/MM/yyyy HH:mm aa"),
-      Res_fina: moment(this.booking.agend.endTime).format("dd/MM/yyyy HH:mm aa"),
+      Res_fini: moment(this.booking.agend.startTime).format("DD-MM-YYYY HH:mm a"),
+      Res_fina: moment(this.booking.agend.endTime).format("DD-MM-YYYY HH:mm a"),
       Soc_cont: this.user.Soc_cont,
       Mac_nume: this.user.Mac_nume1,
       Sbe_cont: this.user.Sbe_cont,
