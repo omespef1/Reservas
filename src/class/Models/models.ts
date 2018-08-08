@@ -7,7 +7,7 @@ export class TOSoRsoci {
   public Soc_cont: string;
   public Sbe_cont: string;
   public Soc_cing: string;
-  public Sbe_pass: string;
+  public Sbe_pass: string="";
   public Soc_cfec: string;
   constructor(
   ) {
