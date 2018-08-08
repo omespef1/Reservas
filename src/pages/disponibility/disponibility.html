@@ -20,9 +20,9 @@
 
 
 <ion-content class="has-header">
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <!-- <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
               <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
                   <ion-item *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
@@ -62,7 +62,7 @@
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
                     <ion-item  class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
 
-                      <h3><b> Desde la(s)  {{event.startTime|date: 'HH:mm'}} Hasta la(s) {{event.endTime|date: 'HH:mm'}}</b></h3>
+                      <h3><b> Desde la(s)  {{event.startTime|digitalDate}} Hasta la(s) {{event.endTime|digitalDate}}</b></h3>
                         <ion-badge *ngIf="!isToday" color="primary">  {{event.startTime|date: 'dd/MM/yyyy'}}</ion-badge>
                           <ion-badge *ngIf="isToday" color="primary">  HOY</ion-badge>
                           <h3> {{event.title}}</h3>

@@ -11,6 +11,9 @@
   Bienvenido
 </ion-title>
     </ion-toolbar>
+    <div text-center>
+      <img  src="assets/imgs/Logo_Club.png" style="width: 60%;">
+    </div>
 </ion-header>
 <ion-content>
   <div padding>
@@ -29,7 +32,7 @@
     <ion-item >
       <ion-label floating>Número de acción</ion-label>
         <ion-icon name="person" item-start></ion-icon>
-      <ion-input [(ngModel)]="user.userAction"  name="action"  type="text"  placeholder="Número de acción" type="number" clearInput="true" required></ion-input>
+      <ion-input type="number"  [(ngModel)]="user.userAction"  name="action"  type="text"  placeholder="Número de acción" type="number" clearInput="true" required></ion-input>
     </ion-item>
   <ion-item>
       <ion-label floating>Contraseña</ion-label>
@@ -50,7 +53,7 @@
   <ion-item >
   <ion-icon name="person" item-start></ion-icon>
       <ion-label floating>Acción</ion-label>
-      <ion-input [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
+      <ion-input type="number" [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
     </ion-item>
   <ion-item >
       <ion-icon name="mail" item-start></ion-icon>
@@ -67,13 +70,26 @@
         &nbsp;  <ion-icon name="checkmark-circle"></ion-icon>
      </button>
    </div>
-   <!-- <div padding *ngIf="codeConfirm!=''">
+   <div padding *ngIf="codeConfirm!=''">
   <button ion-button block (click)="showConfirmCode()">Confirmar código</button>
-</div> -->
+</div>
   </ion-list>
 </form>
 </div>
-<div text-center>
-  <img  src="assets/imgs/Logo_Club.png" style="width: 60%;">
-</div>
+<!-- <div text-center>
+    <img  src="assets/imgs/clubes.png" style="width: 60%;">
+</div> -->
+
+
 </ion-content>
+<ion-footer>
+  <ion-toolbar text-center>
+
+      <small>  {{appCopyright}}</small><br>
+    <small>  V.{{appVersion}}</small>
+
+
+
+ </ion-toolbar>
+
+</ion-footer>

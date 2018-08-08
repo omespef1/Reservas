@@ -54,7 +54,9 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
-@NgModule({
+//pipes
+import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
+ @NgModule({
   declarations: [
     MyApp,
     AboutPage,
@@ -77,7 +79,8 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
     AgreementsPage,
     ConfirmPage,
     ThirdPartiesPage,
-    PartnerConfirmPage
+    PartnerConfirmPage,
+    DigitalDatePipe
   ],
   imports: [
     FormsModule,
@@ -133,7 +136,8 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
     AgreementsProvider,
     BrowserTab,
     ThirdPartiesProvider,
-    KeychainTouchId
+    KeychainTouchId,
+    DigitalDatePipe
   ]
 })
 export class AppModule {}

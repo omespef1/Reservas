@@ -10,6 +10,8 @@ import { general } from '../../class/general/general';
 import { ConfirmPage } from '../confirm/confirm';
 import {ThirdPartiesPage} from '../../pages/third-parties/third-parties';
 import { ThirdPartiesProvider } from '../../providers/third-parties/third-parties';
+//pipe
+import {DigitalDatePipe} from '../../pipes/digital-date/digital-date';
 
 
 /**
@@ -61,7 +63,7 @@ export class DisponibilityPage {
 
     if (this.newFactory.optionDisp.OpDisp != 'F' && this.newFactory.product.esp_mdit == 'S')
       this.noEventsLabel = 'Este profesional no tiene disponibilidad';
-    this.loadEvents();
+//    this.loadEvents();
   }
 
   GetDisponibility(ref:Refresher=null) {
@@ -96,17 +98,15 @@ export class DisponibilityPage {
       }
     })
   }
-  doRefresh(refresher: Refresher) {
-  this.GetDisponibility(refresher);
-  }
 
   loadEvents() {
     this.GetDisponibility();
   }
   onViewTitleChanged(title) {
     this.viewTitle = title;
-
     console.log(title);
+    this.loadEvents();
+
   }
   onEventSelected(event) {
     console.log('onEventSelected');
@@ -157,8 +157,6 @@ export class DisponibilityPage {
       this.newFactory.agend = event;
       this.newFactory.agend.startTime = new Date(event.startTime);
       this.newFactory.agend.endTime = new Date(event.endTime);
-       // this.newBookingRequest.startTime = this.newFactory.agend.startTime;
-       // this.newBookingRequest.endTime = this.newFactory.agend.endTime;
             //Si ya majena disponibilidad significa que ya elegí el tercero
           if (this.newFactory.product.esp_mdit == 'S' && this.newFactory.optionDisp.OpDisp=='F') {
                this._navCtrl.push(ThirdPartiesPage, { 'booking': this.newFactory });
@@ -166,7 +164,6 @@ export class DisponibilityPage {
           else {
             this._navCtrl.push(ConfirmPage, { 'booking': this.newFactory });
           }
-
     }
     catch (err) {
       this._general.showToastMessage(err, 'bottom');

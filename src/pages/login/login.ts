@@ -13,7 +13,8 @@ import { TOSoRsoci } from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pages
 import {PartnerConfirmPage} from '../partner-confirm/partner-confirm';
-
+//config
+import {appCopyright,appVersion} from '../../assets/config/config';
 
 
 /**
@@ -32,6 +33,8 @@ export class LoginPage {
   user: any = { userAction: "18000501", userPass: "evc426" }
   register: TOSoRsoci = new TOSoRsoci();
   touchID: boolean = false;
+  appVersion:string;
+  appCopyright:string;
   private codeConfirm: string = "";
 
   constructor(
@@ -43,13 +46,17 @@ export class LoginPage {
     private _platform: Platform,
     private navCtrl:NavController
   ) {
-
+this.appVersion = appVersion;
+this.appCopyright = appCopyright;
   }
   //Variable para controlar la pestaña visible (Login o registro)
   type: string = "login";
 
   ionViewDidLoad() {
-    this.GetTouchId();
+
+  }
+  ionViewDidEnter(){
+      this.GetTouchId();
   }
 
   onSubmit(f: NgForm) {
