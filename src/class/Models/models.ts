@@ -143,3 +143,9 @@ thirdPartie:any;
 optionDisp:any;
 
 }
+export interface DisponibilityTime{
+  FechaInicio:Date,
+  FechaFin:Date,
+  esp_cont:number,
+  Estado:string
+}

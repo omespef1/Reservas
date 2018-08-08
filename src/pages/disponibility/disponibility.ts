@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams,Refresher } from 'ionic-angular';
 import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { transaction } from '../../class/models/models';
-import { Ifactory, disponibilityRequest } from '../../class/models/models';
+import { Ifactory, disponibilityRequest ,DisponibilityTime} from '../../class/models/models';
 import { general } from '../../class/general/general';
 //pages
 import { ConfirmPage } from '../confirm/confirm';
@@ -68,7 +68,7 @@ export class DisponibilityPage {
 
   GetDisponibility(ref:Refresher=null) {
     var events = [];
-    let eventsAvailable: any[];
+    let eventsAvailable: DisponibilityTime[];
     this._booking.GetDisponibility(this.newBookingRequest).then((resp: transaction) => {
       if (resp.ObjTransaction != null) {
         console.log(resp.ObjTransaction);
@@ -86,8 +86,8 @@ export class DisponibilityPage {
         for (let disp of eventsAvailable) {
           events.push({
             title: 'Disponible',
-            startTime: new Date(disp.FechaInicio),
-            endTime: new Date(disp.FechaFin),
+            startTime: this._general.convertDateForIos(disp.FechaInicio),
+            endTime: this._general.convertDateForIos(disp.FechaFin),
             allDay: false,
             esp_cont: disp.esp_cont,
             Estado: disp.Estado
@@ -98,6 +98,7 @@ export class DisponibilityPage {
       }
     })
   }
+
 
   loadEvents() {
     this.GetDisponibility();
