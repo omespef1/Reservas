@@ -12,6 +12,7 @@ import {ThirdPartiesPage} from '../../pages/third-parties/third-parties';
 import { ThirdPartiesProvider } from '../../providers/third-parties/third-parties';
 //pipe
 import {DigitalDatePipe} from '../../pipes/digital-date/digital-date';
+import * as moment from 'moment';
 
 
 /**
@@ -86,8 +87,8 @@ export class DisponibilityPage {
         for (let disp of eventsAvailable) {
           events.push({
             title: 'Disponible',
-            startTime: this._general.convertDateForIos(disp.FechaInicio),
-            endTime: this._general.convertDateForIos(disp.FechaFin),
+            startTime:new Date(moment(disp.FechaInicio).toISOString()),
+            endTime: new Date(moment(disp.FechaFin).toISOString()),
             allDay: false,
             esp_cont: disp.esp_cont,
             Estado: disp.Estado
