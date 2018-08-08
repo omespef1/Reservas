@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Refresher } from 'ionic-angular';
 //providers
 import { BookingProvider } from '../../providers/booking/booking';
 //clases
@@ -64,13 +64,15 @@ export class DisponibilityPage {
     this.loadEvents();
   }
 
-  GetDisponibility() {
+  GetDisponibility(ref:Refresher=null) {
     var events = [];
     let eventsAvailable: any[];
     this._booking.GetDisponibility(this.newBookingRequest).then((resp: transaction) => {
       if (resp.ObjTransaction != null) {
         console.log(resp.ObjTransaction);
         eventsAvailable = resp.ObjTransaction;
+        if(ref)
+        ref.complete();
         if (this.newFactory.class.Cla_Fchr != null) {
           let maxDate: Date = this.newFactory.class.Cla_Fchr;
           eventsAvailable.filter((v) => v.FechaInicio <= maxDate);
@@ -94,7 +96,9 @@ export class DisponibilityPage {
       }
     })
   }
-
+  doRefresh(refresher: Refresher) {
+  this.GetDisponibility(refresher);
+  }
 
   loadEvents() {
     this.GetDisponibility();

@@ -6,26 +6,23 @@
 -->
 <ion-header>
 
-  <ion-navbar no-border-bottom>
-  <ion-avatar>
-    <img src="">
-  </ion-avatar>
-
-  </ion-navbar>
   <ion-toolbar no-border-top>
-      <ion-segment [(ngModel)]="type">
-        <ion-segment-button value="login">
-          Login
-        </ion-segment-button>
-        <ion-segment-button value="register">
-          Registro y/o Actualización
-        </ion-segment-button>
-      </ion-segment>
+<ion-title>
+  Bienvenido
+</ion-title>
     </ion-toolbar>
 </ion-header>
-
-
 <ion-content>
+  <div padding>
+  <ion-segment [(ngModel)]="type">
+    <ion-segment-button value="login">
+      Login
+    </ion-segment-button>
+    <ion-segment-button value="register">
+      Registro y/o Actualización
+    </ion-segment-button>
+  </ion-segment>
+</div>
   <div [ngSwitch]="type">
   <form (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
   <ion-list class="animate-in-secondary">
@@ -47,19 +44,19 @@
 </form>
 
   <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
-  <ion-list>
-  <ion-item class="slide-in-both-ways">
+  <ion-list class="animate-in-secondary">
+  <ion-item >
   <ion-icon name="person" item-start></ion-icon>
       <ion-label floating>Acción</ion-label>
 
       <ion-input [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  placeholder="Acción" type="number" clearInput="true" required></ion-input>
     </ion-item>
-  <ion-item class="slide-in-both-ways">
+  <ion-item >
       <ion-icon name="mail" item-start></ion-icon>
       <ion-label floating>Email</ion-label>
       <ion-input type="email" [(ngModel)]="register.Sbe_mail" name="email" clearInput="true" required></ion-input>
     </ion-item>
-    <ion-item class="slide-in-both-ways">
+    <ion-item >
         <ion-icon name="phone-portrait" item-start></ion-icon>
       <ion-label floating>Celular</ion-label>
       <ion-input type="tel" [(ngModel)]="register.Sbe_ncel" name="phone" clearInput="true" required></ion-input>

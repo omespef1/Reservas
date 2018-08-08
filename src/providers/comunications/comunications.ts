@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {SERVICES_URL} from '../../assets/config/config';
 import {LoadingController,ToastController} from 'ionic-angular';
+//clases
+import {general} from '../../class/general/general';
 
 /*
   Generated class for the ComunicationsProvider provider.
@@ -12,7 +14,9 @@ import {LoadingController,ToastController} from 'ionic-angular';
 @Injectable()
 export class ComunicationsProvider {
   loading:any;
-  constructor(public http: HttpClient, private load:LoadingController,private toast:ToastController) {
+  constructor(public http: HttpClient,
+     private load:LoadingController,
+     private _general:general) {
   }
 
 Get(UrlService:string,loading:boolean=true,content:string="Cargando..."){
@@ -93,14 +97,10 @@ return promise;
   // }),err=>{
   //   this.ErrMessage(err)
   // }
-}
+};
 
 
  ErrMessage(msg:string) {
-   let toast = this.toast.create({
-     message: msg,
-     position:'bottom'
-   });
-   toast.present();
- }
+  this._general.showToastMessage(msg,'bottom');
+}
 }

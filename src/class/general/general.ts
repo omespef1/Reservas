@@ -47,7 +47,9 @@ export class general {
     let toastCtrl = this.toast.create({
       message: msg,
       position: position,
-      duration: 3000
+      duration: 3000,
+      closeButtonText:'OK',
+      showCloseButton:true
     });
     toastCtrl.present();
   }
