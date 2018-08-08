@@ -26,11 +26,9 @@ export class ClassSpacesPage {
     this.GetClassSpaces();
   }
   GetClassSpaces(ref:refresher=null){
-      'cinsulta');
     this._classSpaces.GetClassSpaces().then((resp:any)=>{
 
       if(resp!=null){
-        resp);
         this.typeSpaces = resp.ObjTransaction;
         if(ref)
         ref.complete();
