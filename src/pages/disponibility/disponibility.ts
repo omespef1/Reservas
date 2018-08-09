@@ -157,8 +157,8 @@ export class DisponibilityPage {
         throw Error(`Fecha Límite de reserva excedida ${this.newFactory.class.Cla_Fchr}:`)
       }
       this.newFactory.agend = event;
-      this.newFactory.agend.startTime = new Date(event.startTime);
-      this.newFactory.agend.endTime = new Date(event.endTime);
+    //  this.newFactory.agend.startTime = event.startTime;
+      // this.newFactory.agend.endTime = event.endTime;
             //Si ya majena disponibilidad significa que ya elegí el tercero
           if (this.newFactory.product.esp_mdit == 'S' && this.newFactory.optionDisp.OpDisp=='F') {
                this._navCtrl.push(ThirdPartiesPage, { 'booking': this.newFactory });
