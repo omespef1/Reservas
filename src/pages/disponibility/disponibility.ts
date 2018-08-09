@@ -83,7 +83,7 @@ export class DisponibilityPage {
         else
           eventsAvailable = resp.ObjTransaction;
 
-
+        //Convertimos las fechas de la bd a objetos entendibles para el source del componente de caledndario
         for (let disp of eventsAvailable) {
           events.push({
             title: 'Disponible',

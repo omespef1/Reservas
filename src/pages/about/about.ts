@@ -27,6 +27,7 @@ this.developerWeb = developerWeb;
 this.developerTwitter = developerTwitter
 this.appCopyright = appCopyright;
   }
+  //Abre en el navegador una url
   openBrowser(url:string){
     this._general.openUrl(url);
   }

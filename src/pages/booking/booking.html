@@ -35,7 +35,7 @@
     <ion-card-header>
 
 
-      #{{booking.Res_nume}} - {{booking.FechaInicio | date}} : {{booking.FechaInicio | date:'shortTime' }}
+      #{{booking.Res_nume}} - {{booking.FechaInicio | date:'dd/MM/yyyy'}} : {{booking.FechaInicio | date:'hh:mm:a' }}
   <ion-icon item-end  name="arrow-dropdown"></ion-icon>
     </ion-card-header>
     <ion-card-content class="animate-in-primary">
@@ -57,7 +57,7 @@
 
         <ion-icon color="dark" item-start name='clock'></ion-icon>
         <h2>Termina a la(s)</h2>
-        <p>{{booking.FechaFin | date:'shortTime'}}</p>
+        <p>{{booking.FechaFin | date:'hh:mm:a'}}</p>
 
       </ion-item>
 

@@ -40,14 +40,14 @@
       <ion-icon name="time"  item-start></ion-icon>
       <ion-label>Inicio servicio</ion-label>
       <ion-note class="note" item-end>
-      {{booking.agend.startTime | digitalDate}}
+      {{booking.agend.startTime | date : 'dd/MM/yyyy hh:mm a'}}
       </ion-note>
     </ion-item>
     <ion-item>
       <ion-icon name="time" item-start></ion-icon>
       <ion-label>Fin servicio</ion-label>
       <ion-note class="note" item-end>
-          {{booking.agend.endTime | digitalDate}}
+          {{booking.agend.endTime | date : 'dd/MM/yyyy hh:mm a'}}
       </ion-note>
     </ion-item>
     <ion-item *ngIf="booking.thirdPartie.Ter_codi!=0">

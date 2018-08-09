@@ -25,7 +25,7 @@ export class BookingPage {
   user: any;
   bookings: any[];
   bookingsList: any[];
-  cancelValue: number[] =[];
+  cancelValue: number[] = [];
   constructor(public navCtrl: NavController,
     private _booking: BookingProvider,
     private session: sessions,
@@ -57,10 +57,9 @@ export class BookingPage {
     this.navCtrl.push(ClassSpacesPage);
   }
 
-
   doRefresh(refresher: Refresher) {
     this._booking.GetBooking(this.user).then((resp: any) => {
-      this.bookings = resp.ObjTransaction;
+      this.bookings = resp.ObjTransaction;      
       this.initializeItems();
       refresher.complete();
       // this._general.showToastMessage('Reservas actualizadas!', 'bottom')
@@ -83,11 +82,11 @@ export class BookingPage {
     this.bookingsList = this.bookingsList.filter((v) => v.Res_nume.toString().indexOf(q.toString()) > -1 || v.Cla_nomb.toString().indexOf(q.toLowerCase()) > -1 || v.Esp_nomb.toString().indexOf(q.toLowerCase()) > -1);
   }
 
-  CancelChange(booking: any,i:number) {
+  CancelChange(booking: any, i: number) {
     if (this.cancelValue[i] == 80) {
       this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
 
-        this.cancelBooking(booking,i);
+        this.cancelBooking(booking, i);
       })
     }
     else {
@@ -95,7 +94,7 @@ export class BookingPage {
     }
 
   }
-  cancelBooking(booking: any,i:number) {
+  cancelBooking(booking: any, i: number) {
     //Se optiene la clase de espacio para verificar si ya se cumplió el tiempo de cancelación
     this._classSpaces.GetClassSpace(booking).then((resp: any) => {
       let fechaInicio = new Date(resp.FechaInicio);
@@ -108,7 +107,7 @@ export class BookingPage {
       this._booking.GetGnItems().then((resp: any) => {
         if (resp != null) {
           let items = resp.ObjTransaction;
-          this._general.showConfirmMessage('Está seguro de que desea cancelar esta reserva?','Seleccione el motivo',items).then(resp => {
+          this._general.showConfirmMessage('Está seguro de que desea cancelar esta reserva?', 'Seleccione el motivo', items).then(resp => {
             if (resp != null && resp != 0) {
               let cancel = { justification: resp, id: booking.Res_cont }
               //Se cancela la reserva según el motivo de selección del usuario
