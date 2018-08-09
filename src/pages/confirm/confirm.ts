@@ -55,8 +55,8 @@ export class ConfirmPage {
    }
     let newBooking: any = {
       Emp_codi: 1,
-      Res_fini: this.booking.agend.startTime,
-      Res_fina: this.booking.agend.endTime,
+      Res_fini: new Date(moment(this.booking.agend.startTime).toISOString()),
+      Res_fina: new Date(this.booking.agend.endTime).toISOString(),
       Soc_cont: this.user.Soc_cont,
       Mac_nume: this.user.Mac_nume1,
       Sbe_cont: this.user.Sbe_cont,
