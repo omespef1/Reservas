@@ -90,6 +90,8 @@ export class DisponibilityPage {
             startTime:new Date(moment(disp.FechaInicio).toISOString()),
             endTime: new Date(moment(disp.FechaFin).toISOString()),
             allDay: false,
+            age_Fini : disp.FechaInicio,
+            age_Fina :disp.FechaFin,
             esp_cont: disp.esp_cont,
             Estado: disp.Estado
           })
