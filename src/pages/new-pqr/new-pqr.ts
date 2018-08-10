@@ -101,6 +101,7 @@ export class NewPqrPage {
       this.pqr.inp_feve = new Date(this.myDate);
       this.pqr.ite_spre = 0;
       this.pqr.ite_ancu = 0;
+      this.pqr.emp_codi = this._sesion.GetClientEmpCodi();
       this._pqr.setPqr(this.pqr).then((resp: transaction) => {
         if (resp.ObjTransaction != null) {
           this._general.ShowMessageAlert('Pqr Creada!',`Se ha creado la PQR número ${resp.ObjTransaction.inp_cont}`);

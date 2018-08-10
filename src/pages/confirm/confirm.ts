@@ -54,7 +54,7 @@ export class ConfirmPage {
      Ter_codi:0
    }
     let newBooking: any = {
-      Emp_codi: 1,
+      Emp_codi: this._sesion.GetClientEmpCodi(),
       Res_fini: this.booking.agend.age_Fini,
       Res_fina: this.booking.agend.age_Fina,
       Soc_cont: this.user.Soc_cont,

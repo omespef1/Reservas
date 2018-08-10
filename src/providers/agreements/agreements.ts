@@ -16,6 +16,6 @@ export class AgreementsProvider {
     console.log('Hello AgreementsProvider Provider');
   }
  GetAgreements(){
-   return this._comunications.Get('AeOsApp/GetAeOsApp');
+   return this._comunications.Get('AeOsApp/GetAeOsApp?');
  }
 }

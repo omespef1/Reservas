@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import {  ComunicationsProvider} from '../comunications/comunications';
 //clases
 import {TOSoRsoci } from '../../class/models/models';
+import {sessions} from '../../class/sessions/sessions';
 
 
 /*
@@ -13,15 +14,13 @@ import {TOSoRsoci } from '../../class/models/models';
 */
 @Injectable()
 export class PartnerProvider {
-  UrlService:string;
-  constructor(public http: Http,private _comunications:ComunicationsProvider) {
+  constructor(public http: Http,private _comunications:ComunicationsProvider,private _sesion:sessions) {
     console.log('Hello PartnerProvider Provider');
   }
   GetPartner(user:string,password:string){
     //Se realiza por post ya que el api creado solicita los datos de acceso mediente post
     //Se crea el objeto user y sus propiedades para enviarlo
-    let UserObj :any= {  Sbe_ncar:'',Soc_pass:''  }
-    this.UrlService = 'SoSocio/';
+    let UserObj :any= {  Sbe_ncar:'',Soc_pass:'' ,Emp_codi:this._sesion.GetClientEmpCodi() }
     UserObj.Sbe_ncar = user;
     UserObj.Soc_pass = password;
     return this._comunications.Post(UserObj,'SoSocio');

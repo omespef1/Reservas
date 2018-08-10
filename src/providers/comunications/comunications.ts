@@ -21,14 +21,18 @@ export class ComunicationsProvider {
    private _sesion:sessions) {
   }
 
-Get(UrlService:string,loading:boolean=true,content:string="Cargando..."){
+Get(UrlService:string,loading:boolean=true,content:string="Cargando...",requiteEmpCodi=true){
   this.loading= this.load.create({
       content:content
     });
     let promise = new Promise((resolve,reject)=>{
       if(loading)
       this.loading.present();
-      return this.http.get(this._sesion.GetClientUrl() + UrlService ).subscribe((resp:any)=>{
+      let stringUrl = `${this._sesion.GetClientUrl()}${UrlService}`;
+      if(requiteEmpCodi)
+      stringUrl+= `&emp_codi=${this._sesion.GetClientEmpCodi()}`;
+      return this.http.get(stringUrl).subscribe((resp:any)=>{
+        console.log(stringUrl);
         console.log(resp);
         if(loading)
         this.loading.dismiss();

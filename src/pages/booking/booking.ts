@@ -111,7 +111,7 @@ export class BookingPage {
           let items = resp.ObjTransaction;
           this._general.showConfirmMessage('Está seguro de que desea cancelar esta reserva?', 'Seleccione el motivo', items).then(resp => {
             if (resp != null && resp != 0) {
-              let cancel = { justification: resp, id: booking.Res_cont }
+              let cancel = { justification: resp, id: booking.Res_cont,emp_codi:this.session.GetClientEmpCodi() }
               //Se cancela la reserva según el motivo de selección del usuario
               this._booking.cancelBooking(cancel).then((resp: any) => {
                 if (resp != null) {

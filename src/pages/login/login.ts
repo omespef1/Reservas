@@ -79,6 +79,7 @@ export class LoginPage {
     })
   }
   onRegister(f: NgForm) {
+    this.register.Emp_codi = this.session.GetClientEmpCodi();
     this._partner.SetPartner(this.register).then((resp: any) => {
       if (resp != null) {
         this.user = resp.ObjTransaction;
