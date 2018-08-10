@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ViewController,ModalController} from 'ionic-angular';
+//Providers
+import {ConnectionsProvider} from '../../providers/connections/connections';
+import {sessions} from '../../class/sessions/sessions';
+import {gnconex} from '../../class/models/models';
+
+
 
 /**
- * Generated class for the PartnerConnectionsPage page.
+ * Generated class for the ConexPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -14,12 +20,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'partner-connections.html',
 })
 export class PartnerConnectionsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+connections:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     private _conect:ConnectionsProvider,private viewCtrl:ViewController,
+   private modalCtrl:ModalController,
+ private _sesion:sessions) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PartnerConnectionsPage');
+    console.log('ionViewDidLoad ConexPage');
   }
 
+  GetConnections(){
+    this._conect.GetConnections().then((resp:any)=>{
+      if(resp!=null){
+        this.connections = resp;
+      }
+    })
+  }
+
+ closeLupa(connection:gnconex){
+   this._sesion.setPartnerConnections(connection);
+   this.viewCtrl.dismiss(connection);
+ }
+ close(){
+   this.viewCtrl.dismiss();
+ }
 }

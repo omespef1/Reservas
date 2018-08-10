@@ -56,6 +56,7 @@ import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
+import { CompaniesProvider } from '../providers/companies/companies';
 
  @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     ThirdPartiesProvider,
     KeychainTouchId,
     DigitalDatePipe,
-    ConnectionsProvider
+    ConnectionsProvider,
+    CompaniesProvider
   ]
 })
 export class AppModule {}

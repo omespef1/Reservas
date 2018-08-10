@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {SERVICES_URL,appCentralizacionUrl} from '../../assets/config/config';
+import {appCentralizacionUrl} from '../../assets/config/config';
 import {LoadingController,ToastController} from 'ionic-angular';
 //clases
 import {general} from '../../class/general/general';
+import {sessions} from '../../class/sessions/sessions';
 
 /*
   Generated class for the ComunicationsProvider provider.
@@ -16,7 +17,8 @@ export class ComunicationsProvider {
   loading:any;
   constructor(public http: HttpClient,
      private load:LoadingController,
-     private _general:general) {
+     private _general:general,
+   private _sesion:sessions) {
   }
 
 Get(UrlService:string,loading:boolean=true,content:string="Cargando..."){
@@ -26,7 +28,7 @@ Get(UrlService:string,loading:boolean=true,content:string="Cargando..."){
     let promise = new Promise((resolve,reject)=>{
       if(loading)
       this.loading.present();
-      return this.http.get(SERVICES_URL + UrlService ).subscribe((resp:any)=>{
+      return this.http.get(this._sesion.GetClientUrl() + UrlService ).subscribe((resp:any)=>{
         console.log(resp);
         if(loading)
         this.loading.dismiss();
@@ -69,9 +71,9 @@ Post(params:any, urlService:string,content:string="Cargando..."){
     });
   let promise = new Promise((resolve,reject)=>{
     this.loading.present();
-    console.log(SERVICES_URL+ urlService);
+    console.log(this._sesion.GetClientUrl()+ urlService);
     console.log(params);
-   return this.http.post(SERVICES_URL+ urlService,params).subscribe((resp:any)=>{
+   return this.http.post(this._sesion.GetClientUrl()+ urlService,params).subscribe((resp:any)=>{
      this.loading.dismiss();
      console.log(resp)
      if(resp.Retorno==1){

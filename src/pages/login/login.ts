@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Events, Platform } from 'ionic-angular';
+import { IonicPage, NavController, Events, Platform,ModalController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 //clases
@@ -9,11 +9,12 @@ import { sessions } from '../../class/sessions/sessions';
 import { PartnerProvider } from '../../providers/partner/partner';
 import {ConnectionsProvider} from '../../providers/connections/connections';
 //Models
-import { TOSoRsoci } from '../../class/models/models';
+import { TOSoRsoci,gnconex } from '../../class/models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pages
 import {PartnerConfirmPage} from '../partner-confirm/partner-confirm';
+import {PartnerConnectionsPage} from '../partner-connections/partner-connections';
 //config
 import {appCopyright,appVersion} from '../../assets/config/config';
 
@@ -46,7 +47,8 @@ export class LoginPage {
     private _touch: KeychainTouchId,
     private _platform: Platform,
     private navCtrl:NavController,
-    private _connections:ConnectionsProvider
+    private _connections:ConnectionsProvider,
+    private modalCrl:ModalController
   ) {
 this.appVersion = appVersion;
 this.appCopyright = appCopyright;
@@ -108,7 +110,18 @@ this.appCopyright = appCopyright;
   }
 
   GetPartnerConnections(){
-    this._connections.GetConnections().then()
+    this.session.getPartnerConnections().then((resp:gnconex)=>{
+      if(resp){
+        this.session.SetClientUrl(resp.CNX_IPSR);
+      }
+      else{
+      let modal = this.modalCrl.create(PartnerConnectionsPage);
+      modal.present();
+      modal.onDidDismiss((resp:gnconex)=>{
+
+      })
+      }
+    })
   }
 
 }

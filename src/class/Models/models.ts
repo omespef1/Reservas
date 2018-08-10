@@ -149,3 +149,9 @@ export interface DisponibilityTime{
   esp_cont:number,
   Estado:string
 }
+export interface gnconex {
+  CNX_IPSR:string,
+  CNX_BACK:string,
+  CNX_LOGO:string,
+  CNX_LINK:string
+}
