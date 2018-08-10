@@ -8,6 +8,7 @@ import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
+import { DigitalDatePipe} from '../../pipes/digital-date/digital-date';
 //Pages
 /**
  * Generated class for the BookingPage page.
