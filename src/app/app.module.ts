@@ -40,7 +40,7 @@ import { ProductsProvider } from '../providers/products/products';
 import { HistoryProvider } from '../providers/history/history';
 import { PqrProvider } from '../providers/pqr/pqr';
 import { BookingProvider } from '../providers/booking/booking';
-
+import { ConnectionsProvider } from '../providers/connections/connections';
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 //clases
@@ -56,6 +56,7 @@ import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
+
  @NgModule({
   declarations: [
     MyApp,
@@ -137,7 +138,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     BrowserTab,
     ThirdPartiesProvider,
     KeychainTouchId,
-    DigitalDatePipe
+    DigitalDatePipe,
+    ConnectionsProvider
   ]
 })
 export class AppModule {}

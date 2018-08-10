@@ -48,7 +48,7 @@ GetCentralizacion(){
     });
     let promise = new Promise((resolve,reject)=>{
       this.loading.present();
-      return this.http.get(appCentralizacionUrl).subscribe((resp:any)=>{            
+      return this.http.get(appCentralizacionUrl).subscribe((resp:any)=>{
         this.loading.dismiss();
         if(resp.State==false){
           this.ErrMessage(resp.TxtError);
@@ -60,7 +60,7 @@ GetCentralizacion(){
       });
     })
 
-
+ return promise;
 }
 
 Post(params:any, urlService:string,content:string="Cargando..."){

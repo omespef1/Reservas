@@ -7,6 +7,7 @@ import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
 //Providers
 import { PartnerProvider } from '../../providers/partner/partner';
+import {ConnectionsProvider} from '../../providers/connections/connections';
 //Models
 import { TOSoRsoci } from '../../class/models/models';
 //plugins
@@ -44,7 +45,8 @@ export class LoginPage {
     private events: Events,
     private _touch: KeychainTouchId,
     private _platform: Platform,
-    private navCtrl:NavController
+    private navCtrl:NavController,
+    private _connections:ConnectionsProvider
   ) {
 this.appVersion = appVersion;
 this.appCopyright = appCopyright;
@@ -74,27 +76,12 @@ this.appCopyright = appCopyright;
   onRegister(f: NgForm) {
     this._partner.SetPartner(this.register).then((resp: any) => {
       if (resp != null) {
-        // if (resp.ObjTransaction.Soc_cing != "0") {
           this.user= resp.ObjTransaction;
            this.navCtrl.push(PartnerConfirmPage,{'partner':this.user})
-        // }
-        // else {
-        //   this.general.showToastMessage('Información actualizada!', 'bottom');
-        //   f.reset();
-        // }
+
       }
     })
   }
-  // showConfirmCode() {
-  //   this.general.showMessageInput('Confirmación de registro', 'Ingrese el código de confirmación enviado a su correo electrónico para terminar el registro',
-  //     'title', 'Código de confirmación', this.codeConfirm).then((code: number) => {
-  //       if(code == this.user.Soc_cing){
-  //         this.navCtrl.push(PartnerConfirmPage)
-  //         //  this._partner.SetRegister()
-  //       }
-  //     })
-  // }
-
 
   GetTouchId() {
     if (this._platform.is("cordova")) {
@@ -118,6 +105,10 @@ this.appCopyright = appCopyright;
         })
       })
     }
+  }
+
+  GetPartnerConnections(){
+    this._connections.GetConnections().then()
   }
 
 }
