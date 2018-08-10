@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
 //providers
 import {CompaniesProvider} from '../../providers/companies/companies';
+//clases
+import {sessions} from '../../class/sessions/sessions';
 
 /**
  * Generated class for the BusinessPage page.
@@ -19,15 +21,29 @@ export class CompaniesPage {
   business:any[];
   businessList:any[];
   constructor(private navCtrl: NavController, private navParams: NavParams,private _companies:CompaniesProvider,
-  private viewCtrl:ViewController) {
-  this._companies.GetGnEmpre().then((data:any)=>{
-    if(data!=null){
-        this.business = data;
-        this.businessList = data;
-      }
-    })
+  private viewCtrl:ViewController,
+private _sesion:sessions) {
+      this.loadCompanies();
   }
+  loadCompanies(){
+    this._sesion.GetCompanies().then((resp:any)=>{
+         if(resp){
+           //Si las empresas ya están en sesion las carga en la pantalla tomándolas de la sesion
+           this.business = resp;
+           this.businessList=resp;
+         }
+         else {
+           //Si las empresas no están en sesion las carga de la base de datos
+           this._companies.GetGnEmpre().then((data:any)=>{
+             if(data!=null){
+                 this.business = data;
+                 this.businessList = data;
+               }
+             })
+         }
+    })
 
+  }
   ionViewDidLoad() {
     this.initializeItems();
     console.log('ionViewDidLoad BusinessPage');

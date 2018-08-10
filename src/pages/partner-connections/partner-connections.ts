@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,ViewController,ModalController} from 'ionic-angular';
 //Providers
 import {ConnectionsProvider} from '../../providers/connections/connections';
-import {sessions} from '../../class/sessions/sessions';
-import {gnconex} from '../../class/models/models';
+import {GnConex} from '../../class/models/models';
 
 
 
@@ -23,8 +22,7 @@ export class PartnerConnectionsPage {
 connections:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private _conect:ConnectionsProvider,private viewCtrl:ViewController,
-   private modalCtrl:ModalController,
- private _sesion:sessions) {
+   private modalCtrl:ModalController) {
   }
 
   ionViewDidLoad() {
@@ -39,8 +37,7 @@ connections:any;
     })
   }
 
- closeLupa(connection:gnconex){
-   this._sesion.setPartnerConnections(connection);
+ closeLupa(connection:GnConex){
    this.viewCtrl.dismiss(connection);
  }
  close(){

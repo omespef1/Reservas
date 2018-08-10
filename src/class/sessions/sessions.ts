@@ -4,13 +4,13 @@ import {NavController} from 'ionic-angular'
 //pages
 import {TabsPage} from '../../pages/tabs/tabs';
 //config
-import {gnconex} from '../../class/models/models';
+import {GnConex} from '../../class/models/models';
 
 @Injectable()
 
 export class sessions {
   public  clientUrl:string;
-  public  emp_codi:string;
+  public  emp_codi:number;
 constructor(private nativeStorage: Storage){
 }
 //Setea la sesión cuando se loguea un usuario
@@ -43,10 +43,10 @@ setAmbientPqr(reasons:any){
 getAmbientPqr(){
     return this.nativeStorage.get('ambientPqr');
 }
-getPartnerConnections():Promise<gnconex>{
+getPartnerConnections():Promise<GnConex>{
   return this.nativeStorage.get('partnerConnection');
 }
-setPartnerConnections(conex:gnconex){
+setPartnerConnections(conex:GnConex){
     this.nativeStorage.set('partnerConnection',conex);
 }
 GetClientUrl(){
@@ -54,5 +54,17 @@ GetClientUrl(){
 }
 SetClientUrl(value:string){
   this.clientUrl = value;
+}
+GetClientEmpCodi(){
+  return this.emp_codi;
+}
+SetClientEmpCodi(value:number){
+  this.emp_codi = value;
+}
+SetCompanies(companies){
+  this.nativeStorage.set('companies',companies);
+}
+GetCompanies(){
+  return this.nativeStorage.get('companies');
 }
 }

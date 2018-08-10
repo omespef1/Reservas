@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Events, Platform,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, Events, Platform, ModalController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
 //clases
@@ -7,16 +7,17 @@ import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
 //Providers
 import { PartnerProvider } from '../../providers/partner/partner';
-import {ConnectionsProvider} from '../../providers/connections/connections';
+import { ConnectionsProvider } from '../../providers/connections/connections';
 //Models
-import { TOSoRsoci,gnconex } from '../../class/models/models';
+import { TOSoRsoci, GnConex ,GnEmpre} from '../../class/models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pages
-import {PartnerConfirmPage} from '../partner-confirm/partner-confirm';
-import {PartnerConnectionsPage} from '../partner-connections/partner-connections';
+import { PartnerConfirmPage } from '../partner-confirm/partner-confirm';
+import { PartnerConnectionsPage } from '../partner-connections/partner-connections';
+import { CompaniesPage } from '../companies/companies';
 //config
-import {appCopyright,appVersion} from '../../assets/config/config';
+import { appCopyright, appVersion } from '../../assets/config/config';
 
 
 /**
@@ -35,8 +36,8 @@ export class LoginPage {
   user: any = { userAction: "18000501", userPass: "evc426" }
   register: TOSoRsoci = new TOSoRsoci();
   touchID: boolean = false;
-  appVersion:string;
-  appCopyright:string;
+  appVersion: string;
+  appCopyright: string;
   private codeConfirm: string = "";
 
   constructor(
@@ -46,12 +47,12 @@ export class LoginPage {
     private events: Events,
     private _touch: KeychainTouchId,
     private _platform: Platform,
-    private navCtrl:NavController,
-    private _connections:ConnectionsProvider,
-    private modalCrl:ModalController
+    private navCtrl: NavController,
+    private _connections: ConnectionsProvider,
+    private modalCrl: ModalController
   ) {
-this.appVersion = appVersion;
-this.appCopyright = appCopyright;
+    this.appVersion = appVersion;
+    this.appCopyright = appCopyright;
   }
   //Variable para controlar la pestaña visible (Login o registro)
   type: string = "login";
@@ -59,8 +60,8 @@ this.appCopyright = appCopyright;
   ionViewDidLoad() {
 
   }
-  ionViewDidEnter(){
-      this.GetTouchId();
+  ionViewDidEnter() {
+    this.GetTouchId();
   }
 
   onSubmit(f: NgForm) {
@@ -78,8 +79,8 @@ this.appCopyright = appCopyright;
   onRegister(f: NgForm) {
     this._partner.SetPartner(this.register).then((resp: any) => {
       if (resp != null) {
-          this.user= resp.ObjTransaction;
-           this.navCtrl.push(PartnerConfirmPage,{'partner':this.user})
+        this.user = resp.ObjTransaction;
+        this.navCtrl.push(PartnerConfirmPage, { 'partner': this.user })
 
       }
     })
@@ -109,17 +110,22 @@ this.appCopyright = appCopyright;
     }
   }
 
-  GetPartnerConnections(){
-    this.session.getPartnerConnections().then((resp:gnconex)=>{
-      if(resp){
+  GetPartnerConnections() {
+    this.session.getPartnerConnections().then((resp: GnConex) => {
+      if (resp) {
         this.session.SetClientUrl(resp.CNX_IPSR);
       }
-      else{
-      let modal = this.modalCrl.create(PartnerConnectionsPage);
-      modal.present();
-      modal.onDidDismiss((resp:gnconex)=>{
-
-      })
+      else {
+        let modalClient = this.modalCrl.create(PartnerConnectionsPage);
+        modalClient.present();
+        modalClient.onDidDismiss((resp: GnConex) => {
+          this.session.setPartnerConnections(resp);
+          let modalCompanies = this.modalCrl.create(CompaniesPage);
+          modalCompanies.present();
+          modalClient.onDidDismiss((resp:GnEmpre)=>{
+            this.session.SetClientEmpCodi(resp.Emp_Codi);
+          })
+        })
       }
     })
   }

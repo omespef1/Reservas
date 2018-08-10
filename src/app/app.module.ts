@@ -31,6 +31,7 @@ import {AgreementsPage} from '../pages/agreements/agreements';
 import {ConfirmPage} from '../pages/confirm/confirm';
 import {ThirdPartiesPage} from '../pages/third-parties/third-parties';
 import {PartnerConfirmPage} from '../pages/partner-confirm/partner-confirm';
+import {CompaniesPage} from '../pages/companies/companies';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -41,13 +42,14 @@ import { HistoryProvider } from '../providers/history/history';
 import { PqrProvider } from '../providers/pqr/pqr';
 import { BookingProvider } from '../providers/booking/booking';
 import { ConnectionsProvider } from '../providers/connections/connections';
+import { CompaniesProvider } from '../providers/companies/companies';
+import { AgreementsProvider } from '../providers/agreements/agreements';
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 //clases
-
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
-import { AgreementsProvider } from '../providers/agreements/agreements';
+
 
 //plugins
 import { BrowserTab } from '@ionic-native/browser-tab';
@@ -56,7 +58,7 @@ import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
-import { CompaniesProvider } from '../providers/companies/companies';
+
 
  @NgModule({
   declarations: [
@@ -82,7 +84,8 @@ import { CompaniesProvider } from '../providers/companies/companies';
     ConfirmPage,
     ThirdPartiesPage,
     PartnerConfirmPage,
-    DigitalDatePipe
+    DigitalDatePipe,
+    CompaniesPage
   ],
   imports: [
     FormsModule,
@@ -119,7 +122,8 @@ import { CompaniesProvider } from '../providers/companies/companies';
     AgreementsPage,
     ConfirmPage,
     ThirdPartiesPage,
-    PartnerConfirmPage
+    PartnerConfirmPage,
+    CompaniesPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
