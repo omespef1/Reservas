@@ -3,6 +3,8 @@ import { Storage } from '@ionic/storage';
 import {NavController} from 'ionic-angular'
 //pages
 import {TabsPage} from '../../pages/tabs/tabs';
+//config
+import{SERVICES_URL} from '../../assets/config/config';
 
 @Injectable()
 
@@ -39,5 +41,12 @@ setAmbientPqr(reasons:any){
 }
 getAmbientPqr(){
     return this.nativeStorage.get('ambientPqr');
+}
+getSavedConnections():Promise<string>{
+  return this.nativeStorage.get('SavedConnection');
+}
+setSavedConnections(conex:string){
+    conex = SERVICES_URL;
+    this.storage.set('SavedConnection',conex);
 }
 }
