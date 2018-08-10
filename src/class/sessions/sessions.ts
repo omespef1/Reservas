@@ -48,7 +48,17 @@ getPartnerConnections():Promise<GnConex>{
 }
 setPartnerConnections(conex:GnConex){
     this.nativeStorage.set('partnerConnection',conex);
+    this.SetClientUrl(conex.CNX_IPSR);
 }
+
+getEmpCodiSession():Promise<number>{
+  return this.nativeStorage.get('EmpCodi');
+}
+setEmpCodiSession(EmpCodi:number){
+    this.nativeStorage.set('EmpCodi',EmpCodi);
+}
+
+
 GetClientUrl(){
   return this.clientUrl;
 }

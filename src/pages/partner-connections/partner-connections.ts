@@ -19,10 +19,11 @@ import {GnConex} from '../../class/models/models';
   templateUrl: 'partner-connections.html',
 })
 export class PartnerConnectionsPage {
-connections:any;
+connections;
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private _conect:ConnectionsProvider,private viewCtrl:ViewController,
    private modalCtrl:ModalController) {
+    this.GetConnections();
   }
 
   ionViewDidLoad() {
@@ -32,7 +33,7 @@ connections:any;
   GetConnections(){
     this._conect.GetConnections().then((resp:any)=>{
       if(resp!=null){
-        this.connections = resp;
+        this.connections = resp.ObjResult;
       }
     })
   }

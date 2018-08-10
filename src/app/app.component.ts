@@ -30,12 +30,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this._pqr.GetGnItems(327).then((resp:any)=>{
-        this._sessions.setReasonsPrq(resp.ObjTransaction);
-      })
-      this._pqr.GetGnArbol(3).then((resp:any)=>{
-        this._sessions.setAmbientPqr(resp.ObjTransaction);
-      })
+
 
       this.listenToLoginEvents();
     });
@@ -51,6 +46,12 @@ export class MyApp {
       console.log(user);
       this._sessions.setLoggedIn(user);
       this.nav.setRoot(TabsPage);
+      this._pqr.GetGnItems(327).then((resp:any)=>{
+        this._sessions.setReasonsPrq(resp.ObjTransaction);
+      })
+      this._pqr.GetGnArbol(3).then((resp:any)=>{
+        this._sessions.setAmbientPqr(resp.ObjTransaction);
+      })
 
   })
 }

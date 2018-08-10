@@ -9,7 +9,7 @@ import { sessions } from '../../class/sessions/sessions';
 import { PartnerProvider } from '../../providers/partner/partner';
 import { ConnectionsProvider } from '../../providers/connections/connections';
 //Models
-import { TOSoRsoci, GnConex ,GnEmpre} from '../../class/models/models';
+import { TOSoRsoci, GnConex, GnEmpre } from '../../class/models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //pages
@@ -53,6 +53,8 @@ export class LoginPage {
   ) {
     this.appVersion = appVersion;
     this.appCopyright = appCopyright;
+    this.GetPartnerConnections();
+
   }
   //Variable para controlar la pestaña visible (Login o registro)
   type: string = "login";
@@ -111,20 +113,37 @@ export class LoginPage {
   }
 
   GetPartnerConnections() {
+    //Llena la variable de url de conexion ya sea desde la sesión o desde la bd si
     this.session.getPartnerConnections().then((resp: GnConex) => {
       if (resp) {
         this.session.SetClientUrl(resp.CNX_IPSR);
+        this.GetEmpCodiSession();
       }
       else {
         let modalClient = this.modalCrl.create(PartnerConnectionsPage);
         modalClient.present();
         modalClient.onDidDismiss((resp: GnConex) => {
           this.session.setPartnerConnections(resp);
-          let modalCompanies = this.modalCrl.create(CompaniesPage);
-          modalCompanies.present();
-          modalClient.onDidDismiss((resp:GnEmpre)=>{
-            this.session.SetClientEmpCodi(resp.Emp_Codi);
-          })
+            this.session.SetClientUrl(resp.CNX_IPSR);
+          this.GetEmpCodiSession();
+        })
+      }
+    })
+  }
+  GetEmpCodiSession() {
+    //Llena la variable del emp_codi ya sea desde la sesión o desde la bd si
+    this.session.getEmpCodiSession().then(resp => {
+      if (resp) {
+          this.session.SetClientEmpCodi(resp);
+          this.session.setEmpCodiSession(resp);
+      }
+      else {
+        let modalCompanies = this.modalCrl.create(CompaniesPage);
+        modalCompanies.present();
+        modalCompanies.onDidDismiss((resp: GnEmpre) => {
+          this.session.SetClientEmpCodi(resp.Emp_Codi);
+          this.session.setEmpCodiSession(resp.Emp_Codi);
+
         })
       }
     })

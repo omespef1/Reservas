@@ -32,6 +32,7 @@ import {ConfirmPage} from '../pages/confirm/confirm';
 import {ThirdPartiesPage} from '../pages/third-parties/third-parties';
 import {PartnerConfirmPage} from '../pages/partner-confirm/partner-confirm';
 import {CompaniesPage} from '../pages/companies/companies';
+import {PartnerConnectionsPage} from '../pages/partner-connections/partner-connections';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -85,7 +86,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     ThirdPartiesPage,
     PartnerConfirmPage,
     DigitalDatePipe,
-    CompaniesPage
+    CompaniesPage,
+    PartnerConnectionsPage
   ],
   imports: [
     FormsModule,
@@ -123,7 +125,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     ConfirmPage,
     ThirdPartiesPage,
     PartnerConfirmPage,
-    CompaniesPage
+    CompaniesPage,
+    PartnerConnectionsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

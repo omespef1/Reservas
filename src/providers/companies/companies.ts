@@ -16,6 +16,6 @@ export class CompaniesProvider {
     console.log('Hello CompaniesProvider Provider');
   }
   GetGnEmpre(){
-      return this._comu.Get(`GnEmpre/GetEmpresas?`);
+      return this._comu.Get(`GnEmpre/GetEmpresas`);
   }
 }

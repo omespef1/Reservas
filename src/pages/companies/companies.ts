@@ -36,8 +36,8 @@ private _sesion:sessions) {
            //Si las empresas no están en sesion las carga de la base de datos
            this._companies.GetGnEmpre().then((data:any)=>{
              if(data!=null){
-                 this.business = data;
-                 this.businessList = data;
+                 this.business = data.ObjTransaction;
+                 this.businessList = data.ObjTransaction;
                }
              })
          }

@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 //clases
 import {general} from '../../class/general/general';
 //config
-import {SERVICES_URL,developer,developerFacebook,developerMail,developerWeb,developerTwitter,appCopyright,appVersion} from '../../assets/config/config';
+import {developer,developerFacebook,developerMail,developerWeb,developerTwitter,appCopyright,appVersion} from '../../assets/config/config';
 
 @Component({
   selector: 'page-about',
