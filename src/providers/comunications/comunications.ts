@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {SERVICES_URL} from '../../assets/config/config';
+import {SERVICES_URL,appCentralizacionUrl} from '../../assets/config/config';
 import {LoadingController,ToastController} from 'ionic-angular';
 //clases
 import {general} from '../../class/general/general';
@@ -40,6 +40,27 @@ Get(UrlService:string,loading:boolean=true,content:string="Cargando..."){
       });
     })
  return promise;
+}
+
+GetCentralizacion(){
+  this.loading= this.load.create({
+      content:'Consultando información de clientes...'
+    });
+    let promise = new Promise((resolve,reject)=>{
+      this.loading.present();
+      return this.http.get(appCentralizacionUrl).subscribe((resp:any)=>{            
+        this.loading.dismiss();
+        if(resp.State==false){
+          this.ErrMessage(resp.TxtError);
+          resp=null;
+        }
+        resolve(resp);
+      },err=>{
+        this.ErrMessage(err)
+      });
+    })
+
+
 }
 
 Post(params:any, urlService:string,content:string="Cargando..."){

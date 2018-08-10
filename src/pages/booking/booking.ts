@@ -59,7 +59,7 @@ export class BookingPage {
 
   doRefresh(refresher: Refresher) {
     this._booking.GetBooking(this.user).then((resp: any) => {
-      this.bookings = resp.ObjTransaction;      
+      this.bookings = resp.ObjTransaction;
       this.initializeItems();
       refresher.complete();
       // this._general.showToastMessage('Reservas actualizadas!', 'bottom')
@@ -87,6 +87,7 @@ export class BookingPage {
       this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
 
         this.cancelBooking(booking, i);
+        this.cancelValue=[];
       })
     }
     else {
