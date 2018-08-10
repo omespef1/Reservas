@@ -8,6 +8,7 @@ import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
+import { DigitalDatePipe} from '../../pipes/digital-date/digital-date';
 //Pages
 /**
  * Generated class for the BookingPage page.
@@ -59,7 +60,7 @@ export class BookingPage {
 
   doRefresh(refresher: Refresher) {
     this._booking.GetBooking(this.user).then((resp: any) => {
-      this.bookings = resp.ObjTransaction;      
+      this.bookings = resp.ObjTransaction;
       this.initializeItems();
       refresher.complete();
       // this._general.showToastMessage('Reservas actualizadas!', 'bottom')
