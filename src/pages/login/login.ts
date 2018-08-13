@@ -66,11 +66,10 @@ export class LoginPage {
 
   }
   ionViewDidEnter() {
-    if(this.session.getEmpCodiSession().then(resp=>{
+   this.session.getEmpCodiSession().then(resp=>{
       if(resp)
         this.GetTouchId();
-    }))
-
+    })
   }
 
   onSubmit(f: NgForm) {
