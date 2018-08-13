@@ -19,9 +19,12 @@ export class ComunicationsProvider {
      private load:LoadingController,
      private _general:general,
    private _sesion:sessions) {
+     //comentarear para produccion
+
   }
 
 Get(UrlService:string,loading:boolean=true,content:string="Cargando...",requiteEmpCodi=true){
+   // this._sesion.SetClientUrl('http://132.147.157.88/Nogalapi/api/');
   this.loading= this.load.create({
       content:content
     });

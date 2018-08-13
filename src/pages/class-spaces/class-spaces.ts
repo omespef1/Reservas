@@ -4,6 +4,8 @@ import {ClassSpacesProvider} from '../../providers/class-spaces/class-spaces';
 //pages
 import {ProductsPage} from '../products/products';
 import {factory} from '../../class/models/models';
+//class
+import {general} from '../../class/general/general';
 
 /**
  * Generated class for the ClassSpacesPage page.
@@ -19,7 +21,7 @@ import {factory} from '../../class/models/models';
 })
 export class ClassSpacesPage {
   typeSpaces:any[];
-  constructor(private _classSpaces:ClassSpacesProvider,private nav:NavController) {
+  constructor(private _classSpaces:ClassSpacesProvider,private nav:NavController,private _general:general) {
   }
 
   ionViewDidLoad() {
@@ -45,5 +47,8 @@ export class ClassSpacesPage {
 doRefresh(ref:Refresher)
 {
   this.GetClassSpaces(ref);
+}
+showDetail(typeSpace:any){
+  this._general.ShowMessageAlert('Descripción', typeSpace.Cla_desc)
 }
 }

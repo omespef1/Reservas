@@ -16,11 +16,11 @@
     </ion-refresher>
 <ion-list>
   <ion-item *ngFor="let typeSpace of typeSpaces">
-    <ion-thumbnail item-start>
+    <ion-thumbnail item-start (tap)="showDetail(typeSpace)">
       <img src="data:image/jpeg;base64,{{typeSpace.Cla_foto}}">
     </ion-thumbnail>
     <h2>{{typeSpace.Cla_nomb}}</h2>
-    <p>Hayao Miyazaki • 1988</p>
+    <p>{{typeSpace.Cla_desc}}</p>
     <button ion-button outline item-end (click)="SetSpaceType(typeSpace)">Continuar</button>
   </ion-item>
 </ion-list>

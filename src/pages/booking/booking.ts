@@ -89,6 +89,8 @@ export class BookingPage {
 
         this.cancelBooking(booking, i);
         this.cancelValue=[];
+      }).catch(()=>{
+        this.cancelValue[i] = 20;
       })
     }
     else {
@@ -123,6 +125,8 @@ export class BookingPage {
                 }
               })
             }
+          }).catch(err=>{
+            this.cancelValue[i] = 20;
           })
         }
       })

@@ -2,11 +2,16 @@ page-login {
 ion-header {
   background: url('assets/imgs/nogal.jpg');
 }
-.content {
-      background-color: white;
+.item-ios{
+  background-color: transparent;
 }
+
+
 #footer{
- background-color:  #f8f8f8 !important;
+.toolbar-background-md {
+    border-color: #b2b2b2 !important;
+    background: #f8f8f8 !important;
 }
+};
 
 }

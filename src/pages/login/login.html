@@ -12,78 +12,85 @@
 </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content>
-  <div padding>
-  <ion-segment [(ngModel)]="type">
-    <ion-segment-button value="login">
-      Login
-    </ion-segment-button>
-    <ion-segment-button value="register">
-      Registro y/o Actualización
-    </ion-segment-button>
-  </ion-segment>
-</div>
-  <div [ngSwitch]="type">
-  <form (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
-  <ion-list class="animate-in-secondary">
-    <ion-item >
-      <ion-label floating>Número de acción</ion-label>
+<ion-content color="light">
+  <ion-grid padding>
+    <ion-row>
+      <ion-col>
+        <ion-segment [(ngModel)]="type">
+          <ion-segment-button value="login">
+            Login
+          </ion-segment-button>
+          <ion-segment-button value="register">
+            Registro y/o Actualización
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div [ngSwitch]="type">
+        <form (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
+        <ion-list class="animate-in-secondary">
+          <ion-item >
+            <ion-label floating>Número de acción</ion-label>
+              <ion-icon name="person" item-start></ion-icon>
+            <ion-input  [(ngModel)]="user.userAction"  name="action"  type="text" type="number" clearInput="true" required></ion-input>
+          </ion-item>
+        <ion-item>
+            <ion-label floating>Contraseña</ion-label>
+              <ion-icon name="lock" item-start></ion-icon>
+            <ion-input #password [type]="passwordType" [(ngModel)]="user.userPass" name="pass" clearInput="true" required></ion-input>
+              <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)="showKey()"></ion-icon>
+          </ion-item>
+            <div padding>
+           <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
+      <ion-icon name="checkmark-circle"></ion-icon>
+           </button>
+         </div>
+        </ion-list>
+      </form>
+
+        <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
+        <ion-list class="animate-in-secondary">
+        <ion-item >
         <ion-icon name="person" item-start></ion-icon>
-      <ion-input type="number"  [(ngModel)]="user.userAction"  name="action"  type="text"  placeholder="Número de acción" type="number" clearInput="true" required></ion-input>
-    </ion-item>
-  <ion-item>
-      <ion-label floating>Contraseña</ion-label>
-        <ion-icon name="lock" item-start></ion-icon>
-      <ion-input type="password" [(ngModel)]="user.userPass" name="pass" clearInput="true" required></ion-input>
-        <ion-icon name="eye" item-end></ion-icon>
-    </ion-item>
-      <div padding>
-     <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
-<ion-icon name="checkmark-circle"></ion-icon>
-     </button>
-   </div>
-  </ion-list>
-</form>
+            <ion-label floating>Acción</ion-label>
+            <ion-input type="number" [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
+          </ion-item>
+        <ion-item >
+            <ion-icon name="mail" item-start></ion-icon>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" [(ngModel)]="register.Sbe_mail" name="email" clearInput="true" required></ion-input>
+          </ion-item>
+          <ion-item >
+              <ion-icon name="phone-portrait" item-start></ion-icon>
+            <ion-label floating>Celular</ion-label>
+            <ion-input type="tel" [(ngModel)]="register.Sbe_ncel" name="phone" clearInput="true" required></ion-input>
+          </ion-item>
+            <div padding>
+           <button [disabled]="!RegisterForm.form.valid" ion-button block>Enviar codigo de seguridad
+              &nbsp;  <ion-icon name="checkmark-circle"></ion-icon>
+           </button>
+         </div>
+         <div padding *ngIf="codeConfirm!=''">
+        <button ion-button block (click)="showConfirmCode()">Confirmar código</button>
+      </div>
+        </ion-list>
+      </form>
 
-  <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
-  <ion-list class="animate-in-secondary">
-  <ion-item >
-  <ion-icon name="person" item-start></ion-icon>
-      <ion-label floating>Acción</ion-label>
-      <ion-input type="number" [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
-    </ion-item>
-  <ion-item >
-      <ion-icon name="mail" item-start></ion-icon>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="email" [(ngModel)]="register.Sbe_mail" name="email" clearInput="true" required></ion-input>
-    </ion-item>
-    <ion-item >
-        <ion-icon name="phone-portrait" item-start></ion-icon>
-      <ion-label floating>Celular</ion-label>
-      <ion-input type="tel" [(ngModel)]="register.Sbe_ncel" name="phone" clearInput="true" required></ion-input>
-    </ion-item>
-      <div padding>
-     <button [disabled]="!RegisterForm.form.valid" ion-button block>Enviar codigo de seguridad
-        &nbsp;  <ion-icon name="checkmark-circle"></ion-icon>
-     </button>
-   </div>
-   <div padding *ngIf="codeConfirm!=''">
-  <button ion-button block (click)="showConfirmCode()">Confirmar código</button>
-</div>
-  </ion-list>
-</form>
-<div text-center>
-  <img  src="assets/imgs/Logo_Club.png" style="width: 60%;">
-</div>
-</div>
-<!-- <div text-center>
-    <img  src="assets/imgs/clubes.png" style="width: 60%;">
-</div> -->
+      </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
 
-
+  <img  src="assets/imgs/Logo_Club.png" style="width: 45%;">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-<ion-footer #footer>
-  <ion-toolbar text-center>
+<ion-footer>
+  <ion-toolbar id="footer" class='login-footer' text-center>
 
       <small>  {{appCopyright}}</small><br>
     <small>  V.{{appVersion}}</small>

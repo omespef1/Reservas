@@ -28,6 +28,8 @@ import * as moment from 'moment';
   templateUrl: 'disponibility.html',
 })
 export class DisponibilityPage {
+  currentMonth:number;
+  previewMonth:number;
   newFactory: Ifactory;
   newBookingRequest = new disponibilityRequest();
   eventSource: any;
@@ -82,7 +84,6 @@ export class DisponibilityPage {
         }
         else
           eventsAvailable = resp.ObjTransaction;
-
         //Convertimos las fechas de la bd a objetos entendibles para el source del componente de caledndario
         for (let disp of eventsAvailable) {
           events.push({
@@ -109,6 +110,7 @@ export class DisponibilityPage {
   onViewTitleChanged(title) {
     this.viewTitle = title;
     console.log(title);
+    console.log('titulo cambiado');
     this.loadEvents();
 
   }
@@ -141,6 +143,7 @@ export class DisponibilityPage {
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
+    this.currentMonth = event.getMonth();
   }
   onRangeChanged(ev) {
     console.log('rango cambiado');

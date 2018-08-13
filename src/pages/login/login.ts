@@ -33,11 +33,13 @@ import { appCopyright, appVersion } from '../../assets/config/config';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user: any = { userAction: "18000501", userPass: "evc426" }
+  user: any = { userAction: "", userPass: "" }
   register: TOSoRsoci = new TOSoRsoci();
   touchID: boolean = false;
   appVersion: string;
   appCopyright: string;
+  passwordIcon:string="eye";
+  passwordType:string="password";
   private codeConfirm: string = "";
 
   constructor(
@@ -148,6 +150,10 @@ export class LoginPage {
         })
       }
     })
+  }
+  showKey(){
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
 }

@@ -28,7 +28,10 @@ export class general {
 
           {
             role: 'cancel',
-            text: 'Descartar'
+            text: 'Descartar',
+            handler: data => {
+              reject();
+            }
           },
           {
 
@@ -124,6 +127,7 @@ export class general {
       alert.addButton({
         text: 'Cancelar',
         handler: () => {
+
         }
       });
       alert.addButton({
