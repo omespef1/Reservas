@@ -23,6 +23,14 @@ GetLoggedin(){
 }
 removeSession(){
   this.nativeStorage.remove('loggedUser');
+  this.nativeStorage.remove('reasonsPqr');
+  this.nativeStorage.remove('ambientPqr');
+}
+erraseAlldata(){
+  this.nativeStorage.remove('secureUser');
+  this.nativeStorage.remove('EmpCodi');
+  this.nativeStorage.remove('partnerConnection');
+  this.nativeStorage.remove('companies');
 }
 setReasonsPrq(reasons:any){
     this.nativeStorage.set('reasonsPqr',reasons);

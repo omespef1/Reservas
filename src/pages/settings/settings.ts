@@ -38,4 +38,8 @@ export class SettingsPage {
   GoAbout() {
   this.navCtrl.push(AboutPage);
   }
+  Errase(){
+this._sessions.erraseAlldata();
+this._events.publish('user:logout');
+}
 }

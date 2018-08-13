@@ -40,6 +40,7 @@ export class LoginPage {
   appCopyright: string;
   passwordIcon:string="eye";
   passwordType:string="password";
+  logo:string= 'assets/imgs/clubes.png';
   private codeConfirm: string = "";
 
   constructor(
@@ -65,7 +66,11 @@ export class LoginPage {
 
   }
   ionViewDidEnter() {
-    this.GetTouchId();
+    if(this.session.getEmpCodiSession().then(resp=>{
+      if(resp)
+        this.GetTouchId();
+    }))
+
   }
 
   onSubmit(f: NgForm) {
@@ -121,6 +126,7 @@ export class LoginPage {
       if (resp) {
         this.session.SetClientUrl(resp.CNX_IPSR);
         this.GetEmpCodiSession();
+          this.logo=resp.CNX_LOGO;
       }
       else {
         let modalClient = this.modalCrl.create(PartnerConnectionsPage);
@@ -129,6 +135,7 @@ export class LoginPage {
           this.session.setPartnerConnections(resp);
             this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
+            this.logo=resp.CNX_LOGO;
         })
       }
     })
