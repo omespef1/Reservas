@@ -54,13 +54,17 @@
         <p>{{booking.Esp_nomb}}</p>
       </ion-item>
       <ion-item>
-
         <ion-icon color="dark" item-start name='clock'></ion-icon>
         <h2>Termina a la(s)</h2>
         <p>{{booking.FechaFin | digitalDate}}</p>
-
       </ion-item>
-
+      <ion-item>
+        <ion-avatar item-start>
+          <img  src="data:image/jpeg;base64,{{booking.Ter_foto}}">
+        </ion-avatar>
+        <h2>Tercero</h2>
+        <p>{{booking.Ter_noco}}</p>
+      </ion-item>
       <ion-list-header *ngIf="booking.Res_vige != 'N'">
         Desliza para cancelar la reserva
       </ion-list-header>

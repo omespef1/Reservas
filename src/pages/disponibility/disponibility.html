@@ -58,7 +58,36 @@
              allDayLabel="Día"
              startHour="6">
    </calendar>
+   <div padding>
+
+   </div>
    <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+     <!-- <ion-grid>
+       <ion-col>
+         <ion-row>
+           <div>
+           <div class="currentDate">
+           </div>
+             <p>Día Actual</p>
+         </div>
+        <div>
+         <div class="availableDay">
+
+          </div>
+           <p>Día Disponible</p>
+
+       </div>
+     <div>
+        <div class="selectedDay">
+        </div>
+            <p>Día Seleccionado</p>
+      </div>
+         </ion-row>
+       </ion-col>
+     </ion-grid> -->
+
+
+
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
                     <ion-item  class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
 

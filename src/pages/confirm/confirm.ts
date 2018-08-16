@@ -82,12 +82,14 @@ export class ConfirmPage {
     }
      this._booking.SetBooking(newBooking).then((resp:any)=>{
        console.log(resp);
+       if(resp!=null){
           if(resp.InvoiceId==0){
             this._general.ShowMessageAlert('Reserva no realizada', `${resp.TxtError}`);
             return;
           }
             this._general.ShowMessageAlert('Reserva realizada!', `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`);
             this._nav.setRoot(BookingPage);
+          }
      })
   }
 

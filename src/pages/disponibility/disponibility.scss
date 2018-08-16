@@ -2,4 +2,25 @@ page-disponibility {
   .monthview-current[_ngcontent-c1] {
       background-color: red;
   }
+  .currentDate{
+    width:25px;
+    height: 25px;
+    display: inline-block;
+    background-color: red;
+  }
+  .availableDay{
+    width:25px;
+    height: 25px;
+    display: inline-block;
+    background-color: gray;
+  }
+  .selectedDay{
+    width:25px;
+    height: 25px;
+    display: inline-block;
+    background-color: green;
+  }
+  .CalendarConvention{
+    display: inline-block;
+  }
 }
