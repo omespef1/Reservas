@@ -1,4 +1,15 @@
 page-login {
+  .fingerprint{
+  img{
+  width: 25%;
+  height: auto;
+}
+p{
+  color:white;
+  font-weight: bold;
+}
+
+}
   .content-ios {
     background-color: #1C5699;
   }
@@ -28,7 +39,7 @@ ion-icon{
 .toolbar-background-md {
     border-color: #1C5699 !important;
     background: #1C5699 !important;
-    
+
 }
 .toolbar-background-ios {
     border-color: #1C5699 !important;
