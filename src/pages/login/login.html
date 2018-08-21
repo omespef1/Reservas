@@ -29,8 +29,8 @@
     <ion-row>
       <ion-col>
         <div [ngSwitch]="type">
-        <form (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
-        <ion-list class="animate-in-secondary">
+        <form class="animate-in-secondary" (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
+        <ion-list>
           <ion-item >
             <ion-label floating>Número de acción</ion-label>
               <ion-icon name="person" item-start></ion-icon>
@@ -50,7 +50,7 @@
         </ion-list>
       </form>
 
-        <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
+        <form class="animate-in-secondary" (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
         <ion-list class="animate-in-secondary">
         <ion-item >
         <ion-icon name="person" item-start></ion-icon>
@@ -88,7 +88,7 @@
     </ion-row>
     <ion-row>
 			<ion-col text-center>
-			<div  class="fingerprint" button tappable (click)="GetAccessTouchID()" *ngIf="touchID">
+			<div  class="fingerprint" button tappable (click)="GetTouchId()" *ngIf="touchID">
 				<img src="assets/imgs/fingerprint.svg">
 			</div>
 			</ion-col>

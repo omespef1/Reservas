@@ -5,13 +5,14 @@ import {NavController} from 'ionic-angular'
 import {TabsPage} from '../../pages/tabs/tabs';
 //config
 import {GnConex} from '../../class/models/models';
+import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 
 @Injectable()
 
 export class sessions {
   public  clientUrl:string;
   public  emp_codi:number;
-constructor(private nativeStorage: Storage){
+constructor(private nativeStorage: Storage,private _touch:KeychainTouchId){
 }
 //Setea la sesión cuando se loguea un usuario
 setLoggedIn(user:any){
@@ -31,6 +32,7 @@ erraseAlldata(){
   this.nativeStorage.remove('EmpCodi');
   this.nativeStorage.remove('partnerConnection');
   this.nativeStorage.remove('companies');
+
 }
 setReasonsPrq(reasons:any){
     this.nativeStorage.set('reasonsPqr',reasons);
