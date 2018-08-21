@@ -40,7 +40,7 @@ export class LoginPage {
   appCopyright: string;
   passwordIcon:string="eye";
   passwordType:string="password";
-  logo:string= 'assets/imgs/clubes.png';
+  logo:string= 'assets/imgs/icon.png';
   private codeConfirm: string = "";
 
   constructor(

@@ -1,19 +1,39 @@
 page-login {
-ion-header {
-  background: url('assets/imgs/nogal.jpg');
-}
+  .content-ios {
+    background-color: #1C5699;
+  }
+
+  .content-md {
+    background-color: #1C5699;
+  }
+
 .item-ios{
   background-color: transparent;
 }
-
 .item-md{
   background-color: transparent;
 }
 
+ion-label{
+  color: color($colors,light) !important;
+}
+ion-input{
+    color: color($colors,light) !important;
+}
+ion-icon{
+  color: color($colors,light) !important;
+}
 #footer{
+    color: color($colors,light);
 .toolbar-background-md {
-    border-color: #b2b2b2 !important;
-    background: #f8f8f8 !important;
+    border-color: #1C5699 !important;
+    background: #1C5699 !important;
+    
+}
+.toolbar-background-ios {
+    border-color: #1C5699 !important;
+    background: #1C5699 !important;
+
 }
 };
 

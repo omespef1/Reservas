@@ -68,8 +68,8 @@ setEmpCodiSession(EmpCodi:number){
 
 
 GetClientUrl(){
-  //return this.clientUrl;
-  return 'http://localhost/NogalApi/api/'
+  return this.clientUrl;
+  //return 'http://localhost/NogalApi/api/'
 }
 SetClientUrl(value:string){
   this.clientUrl = value;
