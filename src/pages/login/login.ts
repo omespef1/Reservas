@@ -40,7 +40,7 @@ export class LoginPage {
   appCopyright: string;
   passwordIcon:string="eye";
   passwordType:string="password";
-  logo:string= 'assets/imgs/icon.png';
+  logo:string= 'assets/imgs/logo.png';
   private codeConfirm: string = "";
 
   constructor(
@@ -98,6 +98,7 @@ export class LoginPage {
   GetTouchId() {
     if (this._platform.is("cordova")) {
       this._touch.has("fingerprint").then(() => {
+        this.touchID=true;
         this._touch.verify("fingerprint", 'Deslice su huella dactilar para ingresar').then(pass => {
           this.touchID = true;
           this.session.getUserFingerPrint().then(user => {
@@ -111,6 +112,7 @@ export class LoginPage {
   setTouchId() {
     if (this._platform.is("cordova")) {
       this._touch.isAvailable().then(() => {
+        this.touchID = true;
         this._touch.has("fingerprint").catch(err => {
           this.session.setUserFingerPrint(this.user.userAction);
           this._touch.save("fingerprint", this.user.userPass);

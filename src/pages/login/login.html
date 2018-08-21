@@ -40,7 +40,7 @@
             <ion-label floating>Contraseña</ion-label>
               <ion-icon name="lock" item-start></ion-icon>
             <ion-input #password [type]="passwordType" [(ngModel)]="user.userPass" name="pass"  required></ion-input>
-              <ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)="showKey()"></ion-icon>
+              <ion-icon item-end [name]="passwordIcon" class="passwordIcon" tappable  (click)="showKey()"></ion-icon>
           </ion-item>
             <div padding>
            <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
@@ -86,6 +86,13 @@
       <img [src]="logo" style="width: 45%;">
       </ion-col>
     </ion-row>
+    <ion-row>
+			<ion-col text-center>
+			<div  class="fingerprint" button tappable (click)="GetAccessTouchID()" *ngIf="touchID">
+				<img src="assets/imgs/fingerprint.svg">
+			</div>
+			</ion-col>
+		</ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer>
