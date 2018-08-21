@@ -32,6 +32,7 @@ erraseAlldata(){
   this.nativeStorage.remove('EmpCodi');
   this.nativeStorage.remove('partnerConnection');
   this.nativeStorage.remove('companies');
+  this._touch.delete('fingerprint');
 
 }
 setReasonsPrq(reasons:any){
