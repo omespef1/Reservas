@@ -28,8 +28,8 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <div [ngSwitch]="type">
-        <form class="animate-in-secondary" (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
+        <div [ngSwitch]="type" class="animate-in-secondary">
+        <form  (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
         <ion-list>
           <ion-item >
             <ion-label floating>Número de acción</ion-label>
@@ -50,9 +50,9 @@
         </ion-list>
       </form>
 
-        <form class="animate-in-secondary" (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
+        <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
         <ion-list class="animate-in-secondary">
-        <ion-item >
+        <ion-item>
         <ion-icon name="person" item-start></ion-icon>
             <ion-label floating>Acción</ion-label>
             <ion-input type="number" [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
