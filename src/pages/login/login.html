@@ -32,7 +32,7 @@
         <form  (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
         <ion-list>
           <ion-item >
-            <ion-label floating>Número de acción</ion-label>
+            <ion-label floating>No.Acción/No.Identificación</ion-label>
               <ion-icon name="person" item-start></ion-icon>
             <ion-input  [(ngModel)]="user.userAction"  name="action"  type="text" type="number" clearInput="true" required></ion-input>
           </ion-item>
@@ -46,6 +46,7 @@
            <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
       <ion-icon name="checkmark-circle"></ion-icon>
            </button>
+           <label>{{progressStatus}}</label>
          </div>
         </ion-list>
       </form>
@@ -54,7 +55,7 @@
         <ion-list class="animate-in-secondary">
         <ion-item>
         <ion-icon name="person" item-start></ion-icon>
-            <ion-label floating>Acción</ion-label>
+            <ion-label floating>No.Acción/No.Identificación</ion-label>
             <ion-input type="number" [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
           </ion-item>
         <ion-item >

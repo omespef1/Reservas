@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.digitalware.co.seven.reservas" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <platform name="android">
+        <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
+    </platform>
+    <platform name="ios">
+        <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
+    </platform>
     <name>Reservas</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://digitalware.com.co/">DigitalWare Team</author>
@@ -84,7 +90,7 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-keychain-touch-id" spec="^3.2.1" />
-    <engine name="browser" spec="5.0.3" />
+    <engine name="browser" spec="^5.0.4" />
     <engine name="android" spec="~6.4.0" />
     <engine name="ios" spec="~4.5.5" />
 </widget>

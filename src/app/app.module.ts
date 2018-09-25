@@ -57,6 +57,7 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
+import { CodePush } from '@ionic-native/code-push';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 
@@ -148,7 +149,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     KeychainTouchId,
     DigitalDatePipe,
     ConnectionsProvider,
-    CompaniesProvider
+    CompaniesProvider,
+    CodePush
   ]
 })
 export class AppModule {}

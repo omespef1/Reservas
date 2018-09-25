@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,NgZone} from '@angular/core';
 import { IonicPage, NavController, Events, Platform, ModalController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 
@@ -12,6 +12,7 @@ import { ConnectionsProvider } from '../../providers/connections/connections';
 import { TOSoRsoci, GnConex, GnEmpre } from '../../class/models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
+import { CodePush, SyncStatus } from '@ionic-native/code-push';
 //pages
 import { PartnerConfirmPage } from '../partner-confirm/partner-confirm';
 import { PartnerConnectionsPage } from '../partner-connections/partner-connections';
@@ -41,6 +42,7 @@ export class LoginPage {
   passwordIcon:string="eye";
   passwordType:string="password";
   logo:string= 'assets/imgs/logo.png';
+  progressStatus:string="";
   private codeConfirm: string = "";
 
   constructor(
@@ -52,7 +54,9 @@ export class LoginPage {
     private _platform: Platform,
     private navCtrl: NavController,
     private _connections: ConnectionsProvider,
-    private modalCrl: ModalController
+    private modalCrl: ModalController,
+    private _codePush: CodePush,
+    private _ngZone: NgZone
   ) {
     this.appVersion = appVersion;
     this.appCopyright = appCopyright;
@@ -63,6 +67,30 @@ export class LoginPage {
   type: string = "login";
 
   ionViewDidLoad() {
+    if(this._platform.is("cordova")){
+
+      this._codePush.sync({}, (progress) => {
+        this._ngZone.run(()=>{
+          this.progressStatus = JSON.stringify(progress);
+        })
+      }).subscribe((status) => {
+        if (status == SyncStatus.CHECKING_FOR_UPDATE)
+          this.general.ShowMessageAlert("Sistema", "Buscando actualizaciones...");
+        if (status == SyncStatus.DOWNLOADING_PACKAGE)
+          this.general.ShowMessageAlert("Sistema", "Descargando paquetes...");
+        if (status == SyncStatus.IN_PROGRESS)
+          this.general.ShowMessageAlert("Sistema", "En progreso...");
+        if (status == SyncStatus.INSTALLING_UPDATE)
+          this.general.ShowMessageAlert("Sistema", "Instalando paquetes...");
+        if (status == SyncStatus.UP_TO_DATE)
+          this.general.ShowMessageAlert("Sistema", "Paquetes ya instalados!");
+        if (status == SyncStatus.UPDATE_INSTALLED)
+          this.general.ShowMessageAlert("Sistema", "Paquetes instalados!...");
+        if (status == SyncStatus.ERROR)
+          this.general.ShowMessageAlert("Sistema", "Error descargando paquetes...");
+      })
+    }
+
 
   }
   ionViewDidEnter() {
