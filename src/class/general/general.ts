@@ -4,6 +4,7 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 
 
 
+
 @Injectable()
 export class general {
   constructor(private alert: AlertController, private toast: ToastController,private _browser:BrowserTab,private actionCtrl:ActionSheetController) {
@@ -16,6 +17,26 @@ export class general {
       buttons: ['OK']
     });
     alertCtrl.present();
+  }
+  ShowMessageAlertAction(title:string,msg:string):Promise<any>{
+    let promise = new Promise((resolve,reject)=>{
+      let alertCtrl = this.alert.create({
+        title:title,
+        subTitle:msg,
+        buttons:[
+          {
+             text:'Aceptar',
+             handler:()=>{
+               resolve();
+             }
+          }
+        ],
+        enableBackdropDismiss:false
+      });
+      alertCtrl.present();
+    })
+    return promise;
+
   }
 
   showMessageOption(title: string, subTitle: string) {
@@ -157,4 +178,37 @@ export class general {
     })
     action.present();
   }
+
+  launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
+	let app: string;
+	if (Device.device.platform === 'iOS') {
+		app = iosSchemaName;
+	} else if (Device.device.platform === 'Android') {
+		app = androidPackageName;
+	} else {
+		let browser = new InAppBrowser(httpUrl + username, '_system');
+		return;
+	}
+
+	AppAvailability.check(app).then(
+		() => { // success callback
+			let browser = new InAppBrowser(appUrl + username, '_system');
+		},
+		() => { // error callback
+			let browser = new InAppBrowser(httpUrl + username, '_system');
+		}
+	);
+}
+
+openInstagram(username: string) {
+	this.launchExternalApp('instagram://', 'com.instagram.android', 'instagram://user?username=', 'https://www.instagram.com/', username);
+}
+
+openTwitter(username: string) {
+	this.launchExternalApp('twitter://', 'com.twitter.android', 'twitter://user?screen_name=', 'https://twitter.com/', username);
+}
+
+openFacebook(username: string) {
+	this.launchExternalApp('fb://', 'com.facebook.katana', 'fb://profile/', 'https://www.facebook.com/', username);
+}
 }

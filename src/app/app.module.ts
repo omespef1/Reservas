@@ -58,6 +58,7 @@ import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { CodePush } from '@ionic-native/code-push';
+import { AppAvailability } from '@ionic-native/app-availability';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 
@@ -150,7 +151,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     DigitalDatePipe,
     ConnectionsProvider,
     CompaniesProvider,
-    CodePush
+    CodePush,
+    AppAvailability 
   ]
 })
 export class AppModule {}

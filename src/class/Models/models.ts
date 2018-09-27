@@ -159,3 +159,8 @@ export interface GnEmpre{
 Emp_Codi:number,
 Emp_Nomb:string
 }
+export interface GnAppDw {
+  App_Cont:number,
+  App_Nomb:string,
+  App_Vers:string,
+}

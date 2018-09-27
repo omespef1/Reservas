@@ -55,7 +55,7 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$tabs-ios-tab-icon-size:40px;
 
 
 
@@ -64,6 +64,7 @@ $colors: (
 // Material Design only Sass variables can go here
 $toolbar-md-background:                   color($colors, primary);
 $item-md-detail-push-show:true;
+
 
 
 

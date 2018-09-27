@@ -50,13 +50,14 @@ export class ComunicationsProvider {
     return promise;
   }
 
-  GetCentralizacion() {
+  GetCentralizacion(target:string) {
     this.loading = this.load.create({
       content: 'Consultando información de clientes...'
     });
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
-      return this.http.get(appCentralizacionUrl).subscribe((resp: any) => {
+      console.log(`${appCentralizacionUrl}${target}`);
+      return this.http.get(`${appCentralizacionUrl}${target}`).subscribe((resp: any) => {
         this.loading.dismiss();
         if (resp.State == false) {
           this.ErrMessage(resp.TxtError);
