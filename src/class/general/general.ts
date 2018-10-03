@@ -195,9 +195,7 @@ export class general {
          if(this.platform.is("ios"))
           packageId = packageId.split("|")[0];
       }
-      else {
-        packageId = packageId;
-      }
+     this.market.open("packageId");
 
   }
 
