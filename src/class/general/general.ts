@@ -12,7 +12,7 @@ import { Market } from '@ionic-native/market';
 @Injectable()
 export class general {
   constructor(private alert: AlertController, private toast: ToastController, private _browser: BrowserTab, private actionCtrl: ActionSheetController,
-    private device: Device, private InAppBrowser: InAppBrowser, private AppAvailability: AppAvailability, private platform: Platform,private market:Market) {
+    private device: Device, private InAppBrowser: InAppBrowser, private AppAvailability: AppAvailability, private platform: Platform, private market: Market) {
 
   }
   ShowMessageAlert(title: string, msg: string) {
@@ -165,39 +165,18 @@ export class general {
   }
 
   openUrl(url: string) {
-    let UrlApple ="";
-    let UrlGoogle = "";
     if (url.indexOf('http') > -1 || url.indexOf('https') > -1) {
-      if (url.indexOf('|') > 0) {
-         UrlApple = url.split("|")[0];
-         UrlGoogle = url.split("|")[1];
-      }else {
-        UrlApple = url;
-      }
-        if (this.platform.is("android")) {
-          if (UrlGoogle.length > 0)
-            this._browser.openUrl(UrlGoogle)
-          else
-            this.showToastMessage("Error", "Url de Google Play no definida correctamente");
-        }
-        if (this.platform.is("ios")) {
-          if (UrlApple.length > 0)
-            this._browser.openUrl(UrlApple);
-          else
-            this.showToastMessage("Error", "Url de App Store no definida correctamente");
-        }
-        else {
-          this._browser.openUrl(UrlApple);
-
-        }
-
-
-
+      //Si los links tienen http o https son páginas web
+      this._browser.openUrl(url);
     }
     else {
-      url = 'http://' + url;
-      this._browser.openUrl(url)
+      ///Si los links no tiene http o https son apps
+      this.openMarket(url);
     }
+
+
+
+
 
 
   }
@@ -208,11 +187,17 @@ export class general {
     })
     action.present();
   }
-  openMarket(packageId:string){
-    if (this.platform.is("android")) {
-      this.packageId = this.packageId.
-    this.market.open(packageId);
-    }
+  openMarket(packageId: string) {
+
+      if (packageId.split("|").length > 1){
+        if(this.platform.is("android"))
+         packageId = packageId.split("|")[1];
+         if(this.platform.is("ios"))
+          packageId = packageId.split("|")[0];
+      }
+      else {
+        packageId = packageId;
+      }
 
   }
 
