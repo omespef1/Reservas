@@ -61,6 +61,7 @@ import { CodePush } from '@ionic-native/code-push';
 import { AppAvailability } from '@ionic-native/app-availability';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Device } from '@ionic-native/device';
+import { Market } from '@ionic-native/market';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 
@@ -156,7 +157,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     CodePush,
     AppAvailability,
     Device,
-    InAppBrowser
+    InAppBrowser,
+    Market
   ]
 })
 export class AppModule {}

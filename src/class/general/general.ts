@@ -4,6 +4,7 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 import { AppAvailability } from '@ionic-native/app-availability';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Device } from '@ionic-native/device';
+import { Market } from '@ionic-native/market';
 
 
 
@@ -11,7 +12,7 @@ import { Device } from '@ionic-native/device';
 @Injectable()
 export class general {
   constructor(private alert: AlertController, private toast: ToastController, private _browser: BrowserTab, private actionCtrl: ActionSheetController,
-    private device: Device, private InAppBrowser: InAppBrowser, private AppAvailability: AppAvailability, private platform: Platform) {
+    private device: Device, private InAppBrowser: InAppBrowser, private AppAvailability: AppAvailability, private platform: Platform,private market:Market) {
 
   }
   ShowMessageAlert(title: string, msg: string) {
@@ -206,6 +207,13 @@ export class general {
       buttons: butttons
     })
     action.present();
+  }
+  openMarket(packageId:string){
+    if (this.platform.is("android")) {
+      this.packageId = this.packageId.
+    this.market.open(packageId);
+    }
+
   }
 
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
