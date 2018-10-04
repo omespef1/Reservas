@@ -187,16 +187,16 @@ export class general {
     })
     action.present();
   }
-  openMarket(packageId: string) {
-
-      if (packageId.split("|").length > 1){
-        if(this.platform.is("android"))
-         packageId = packageId.split("|")[1];
-         if(this.platform.is("ios"))
-          packageId = packageId.split("|")[0];
-      }
-     this.market.open("packageId");
-
+  async openMarket(packageId: string) {
+    try{
+      await this.platform.ready();
+      const res = await this.market.open(packageId);
+      console.log(res);
+    }
+    catch(e){
+      console.error(e);
+    }
+     this.market.open(packageId);
   }
 
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
