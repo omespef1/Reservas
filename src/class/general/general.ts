@@ -189,7 +189,6 @@ export class general {
   }
   async openMarket(packageId: string) {
     try{
-      await this.platform.ready();
       const res = await this.market.open(packageId);
       console.log(res);
     }

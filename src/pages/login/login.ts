@@ -98,7 +98,7 @@ export class LoginPage {
     })
   }
   else
-  this.general.ShowMessageAlert('Lo sentimos','Debes actualizar la versión de la aplicación para poder continuar');
+   this.GoUpdateApp();
   }
   onRegister(f: NgForm) {
     this.register.Emp_codi = this.session.GetClientEmpCodi();
@@ -188,16 +188,16 @@ export class LoginPage {
         let AppLastVersion: GnAppDw = resp.ObjResult;
         if (appVersion != AppLastVersion.App_Vers) {
           this.IsLastVersion = false;
-          this.general.ShowMessageAlertAction('Actualización Disponible',
-            'Hay una nueva versión disponible de esta aplicación. Es necesario actualizar la aplicación para poder usarla.Presiona aceptar para ir a la tienda y actualizar.').then(() => {
-              if (this._platform.is("ios"))
-                this.general.openUrl(appAppStoreUrl);
-              if (this._platform.is("android"))
-                this.general.openUrl(appGooglePlayUrl);
-            })
+           this.GoUpdateApp();
         }
       }
     })
+  }
+  GoUpdateApp(){
+    this.general.ShowMessageAlertAction('Actualización Disponible',
+      'Hay una nueva versión disponible de esta aplicación. Es necesario actualizar la aplicación para poder ingresar.Presiona aceptar para ir a la tienda y actualizar.').then(() => {
+      this.general.openMarket(appAppStoreUrl);
+      })
   }
   CheckLastPackage(){
     ///Codigo pendiente para actualización a través de inyección de código: Se encuentra en version alpha
