@@ -50,9 +50,11 @@ export class ComunicationsProvider {
     return promise;
   }
 
-  GetCentralizacion(target:string) {
+  GetCentralizacion(target:string,contentText:string="") {
+    if(contentText=="")
+     contentText="Consultando información de clientes...";
     this.loading = this.load.create({
-      content: 'Consultando información de clientes...'
+      content: contentText
     });
     let promise = new Promise((resolve, reject) => {
       this.loading.present();

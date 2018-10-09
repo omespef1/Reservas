@@ -13,7 +13,6 @@ import { ConnectionsProvider } from '../../providers/connections/connections';
 import { TOSoRsoci, GnConex, GnEmpre } from '../../class/models/models';
 //plugins
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
-import { CodePush, SyncStatus } from '@ionic-native/code-push';
 //pages
 import { PartnerConfirmPage } from '../partner-confirm/partner-confirm';
 import { PartnerConnectionsPage } from '../partner-connections/partner-connections';
@@ -57,7 +56,6 @@ export class LoginPage {
     private navCtrl: NavController,
     private _connections: ConnectionsProvider,
     private modalCrl: ModalController,
-    private _codePush: CodePush,
     private _ngZone: NgZone
   ) {
     this.appVersion = appVersion;
@@ -196,32 +194,35 @@ export class LoginPage {
   GoUpdateApp(){
     this.general.ShowMessageAlertAction('Actualización Disponible',
       'Hay una nueva versión disponible de esta aplicación. Es necesario actualizar la aplicación para poder ingresar.Presiona aceptar para ir a la tienda y actualizar.').then(() => {
-      this.general.openMarket(appAppStoreUrl);
+    if(this._platform.is("ios"))
+      this.general.openUrl(appAppStoreUrl);
+      if(this._platform.is("android"))
+        this.general.openUrl(appGooglePlayUrl);
       })
   }
-  CheckLastPackage(){
-    ///Codigo pendiente para actualización a través de inyección de código: Se encuentra en version alpha
-    if (this._platform.is("cordova")) {
-      this._codePush.sync({}, (progress) => {
-        this._ngZone.run(() => {
-          this.progressStatus = JSON.stringify(progress);
-        })
-      }).subscribe((status) => {
-        if (status == SyncStatus.CHECKING_FOR_UPDATE)
-          this.general.ShowMessageAlert("Sistema", "Buscando actualizaciones...");
-        if (status == SyncStatus.DOWNLOADING_PACKAGE)
-          this.general.ShowMessageAlert("Sistema", "Descargando paquetes...");
-        if (status == SyncStatus.IN_PROGRESS)
-          this.general.ShowMessageAlert("Sistema", "En progreso...");
-        if (status == SyncStatus.INSTALLING_UPDATE)
-          this.general.ShowMessageAlert("Sistema", "Instalando paquetes...");
-        if (status == SyncStatus.UP_TO_DATE)
-          this.general.ShowMessageAlert("Sistema", "Paquetes ya instalados!");
-        if (status == SyncStatus.UPDATE_INSTALLED)
-          this.general.ShowMessageAlert("Sistema", "Paquetes instalados!...");
-        if (status == SyncStatus.ERROR)
-          this.general.ShowMessageAlert("Sistema", "Error descargando paquetes...");
-      })
-    }
-  }
+  // CheckLastPackage(){
+  //   ///Codigo pendiente para actualización a través de inyección de código: Se encuentra en version alpha
+  //   if (this._platform.is("cordova")) {
+  //     this._codePush.sync({}, (progress) => {
+  //       this._ngZone.run(() => {
+  //         this.progressStatus = JSON.stringify(progress);
+  //       })
+  //     }).subscribe((status) => {
+  //       if (status == SyncStatus.CHECKING_FOR_UPDATE)
+  //         this.general.ShowMessageAlert("Sistema", "Buscando actualizaciones...");
+  //       if (status == SyncStatus.DOWNLOADING_PACKAGE)
+  //         this.general.ShowMessageAlert("Sistema", "Descargando paquetes...");
+  //       if (status == SyncStatus.IN_PROGRESS)
+  //         this.general.ShowMessageAlert("Sistema", "En progreso...");
+  //       if (status == SyncStatus.INSTALLING_UPDATE)
+  //         this.general.ShowMessageAlert("Sistema", "Instalando paquetes...");
+  //       if (status == SyncStatus.UP_TO_DATE)
+  //         this.general.ShowMessageAlert("Sistema", "Paquetes ya instalados!");
+  //       if (status == SyncStatus.UPDATE_INSTALLED)
+  //         this.general.ShowMessageAlert("Sistema", "Paquetes instalados!...");
+  //       if (status == SyncStatus.ERROR)
+  //         this.general.ShowMessageAlert("Sistema", "Error descargando paquetes...");
+  //     })
+  //   }
+  // }
 }

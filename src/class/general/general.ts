@@ -1,10 +1,7 @@
 import { AlertController, ToastController, ActionSheetController, Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { BrowserTab } from '@ionic-native/browser-tab';
-import { AppAvailability } from '@ionic-native/app-availability';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Device } from '@ionic-native/device';
-import { Market } from '@ionic-native/market';
 
 
 
@@ -12,7 +9,7 @@ import { Market } from '@ionic-native/market';
 @Injectable()
 export class general {
   constructor(private alert: AlertController, private toast: ToastController, private _browser: BrowserTab, private actionCtrl: ActionSheetController,
-    private device: Device, private InAppBrowser: InAppBrowser, private AppAvailability: AppAvailability, private platform: Platform, private market: Market) {
+     private InAppBrowser: InAppBrowser, private platform: Platform) {
 
   }
   ShowMessageAlert(title: string, msg: string) {
@@ -166,13 +163,20 @@ export class general {
 
   openUrl(url: string) {
     if (url.indexOf('http') > -1 || url.indexOf('https') > -1) {
+      if (url.split("|").length > 1){
+          if(this.platform.is("android"))
+           url = url.split("|")[1];
+           if(this.platform.is("ios"))
+            url = url.split("|")[0];
+        }
       //Si los links tienen http o https son páginas web
+      console.log(url);
       this._browser.openUrl(url);
     }
-    else {
-      ///Si los links no tiene http o https son apps
-      this.openMarket(url);
-    }
+    // else {
+    //   ///Si los links no tiene http o https son apps
+    //   this.openMarket(url);
+    // }
 
 
 
@@ -187,15 +191,16 @@ export class general {
     })
     action.present();
   }
-  async openMarket(packageId: string) {
-    try{
-      const res = await this.market.open(packageId);
-      console.log(res);
-    }
-    catch(e){
-      console.error(e);
-    }
-     this.market.open(packageId);
+   openMarket(packageId: string) {
+     if (packageId.split("|").length > 1){
+         if(this.platform.is("android"))
+          packageId = packageId.split("|")[1];
+          if(this.platform.is("ios"))
+           packageId = packageId.split("|")[0];
+       }
+       else {
+         packageId = packageId;
+       }
   }
 
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {

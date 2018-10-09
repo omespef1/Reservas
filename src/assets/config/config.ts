@@ -3,12 +3,12 @@
 // //export const SERVICES_URL = 'http://localhost/Nogalapi/api/';
 //
 // //export const SERVICES_URL = 'http://132.147.157.88/Nogalapi/api/';
- export const appCentralizacionUrl = "http://132.147.157.88/centralizacion/api/";
-//export const appCentralizacionUrl = "http://consultoria.digitalware.co/seven_crm/centralizacion/api/";
-export const appVersion:string = '18.0.9.0';
+ //export const appCentralizacionUrl = "http://132.147.157.88/centralizacion/api/";
+export const appCentralizacionUrl = "http://consultoria.digitalware.co/seven_crm/centralizacion/api/";
+export const appVersion:string = '18.0.10.0';
 export const appCopyright = 'SEVEN-ERP © 1992 - 2018';
-export const appGooglePlayUrl = "com.digitalware.co.seven.reservas";
-export const appAppStoreUrl = "com.digitalware.co.seven.reservas";
+export const appGooglePlayUrl = "https://play.google.com/store/apps/details?id=com.digitalware.com.co.seven.reservas";
+export const appAppStoreUrl = "https://itunes.apple.com/us/app/seven-reservas/id1426063835?l=es&ls=1&mt=8";
 export const developer = 'DigitalWare Team';
 export const developerMail = 'soporte@digitalware.com.co';
 export const developerFacebook = 'https://www.facebook.com/digitalware/';
