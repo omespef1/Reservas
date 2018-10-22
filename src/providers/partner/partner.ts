@@ -32,7 +32,5 @@ export class PartnerProvider {
   SetPartner(register:TOSoRsoci){
     return  this._comunications.Post(register,'SoRsoci')
   }
-  UpdatePartner(){
 
-  }
 }

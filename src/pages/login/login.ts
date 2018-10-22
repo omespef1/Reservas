@@ -1,14 +1,15 @@
 import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, Events, Platform, ModalController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
-
+import {DomSanitizer} from '@angular/platform-browser';
 //clases
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
-import { GnAppDw } from '../../class/models/models';
+import { GnAppDw, GnDigfl } from '../../class/models/models';
 //Providers
 import { PartnerProvider } from '../../providers/partner/partner';
 import { ConnectionsProvider } from '../../providers/connections/connections';
+import { CompaniesProvider } from '../../providers/companies/companies';
 //Models
 import { TOSoRsoci, GnConex, GnEmpre } from '../../class/models/models';
 //plugins
@@ -41,8 +42,9 @@ export class LoginPage {
   appCopyright: string;
   passwordIcon: string = "eye";
   passwordType: string = "password";
-  logo: string = 'assets/imgs/logo.png';
+  logo: any = 'assets/imgs/logo.png';
   progressStatus: string = "";
+  placeHolderLogin: string = "Nro. Acción"
   private codeConfirm: string = "";
   private IsLastVersion = true;
 
@@ -56,11 +58,13 @@ export class LoginPage {
     private navCtrl: NavController,
     private _connections: ConnectionsProvider,
     private modalCrl: ModalController,
-    private _ngZone: NgZone
+    private _companies: CompaniesProvider,
+    private _dom:DomSanitizer
+
   ) {
     this.appVersion = appVersion;
     this.appCopyright = appCopyright;
-    this.GetPartnerConnections();
+      console.log(this.logo);
 
   }
   //Variable para controlar la pestaña visible (Login o registro)
@@ -68,17 +72,26 @@ export class LoginPage {
 
   ionViewDidLoad() {
 
-// CheckLastPackage();
 
   }
   ionViewDidEnter() {
-    this.session.getEmpCodiSession().then(resp => {
-      if (resp)
-        this.GetTouchId();
-    })
+
+
+  this.loadUserData();
+
+
+  }
+
+  async loadUserData() {
+    await   this.GetPartnerConnections();
+    const emp_codi = await <any>this.session.getEmpCodiSession();
+    console.log(emp_codi);
+    this.GetTouchId();
+    console.log('touch');
+    await this.checkForGnDigfl();
+    console.log('digfl');
     this.CheckLastVersion();
-
-
+    console.log('version');
 
   }
 
@@ -86,17 +99,17 @@ export class LoginPage {
     this.doLogin(this.user.userAction, this.user.userPass);
   }
   doLogin(action: string, password: any) {
-    if(this.IsLastVersion){
-    this._partner.GetPartner(action, password).then((resp: any) => {
-      if (resp != null) {
-        console.log(resp);
-        this.setTouchId()
-        this.events.publish('user:login', resp.ObjTransaction);
-      }
-    })
-  }
-  else
-   this.GoUpdateApp();
+    if (this.IsLastVersion) {
+      this._partner.GetPartner(action, password).then((resp: any) => {
+        if (resp != null) {
+          console.log(resp);
+          this.setTouchId()
+          this.events.publish('user:login', resp.ObjTransaction);
+        }
+      })
+    }
+    else
+      this.GoUpdateApp();
   }
   onRegister(f: NgForm) {
     this.register.Emp_codi = this.session.GetClientEmpCodi();
@@ -135,45 +148,56 @@ export class LoginPage {
     }
   }
 
-  GetPartnerConnections() {
+  async GetPartnerConnections() {
     //Llena la variable de url de conexion ya sea desde la sesión o desde la bd
-    this.session.getPartnerConnections().then((resp: GnConex) => {
-      if (resp) {
-        this.session.SetClientUrl(resp.CNX_IPSR);
-        this.GetEmpCodiSession();
-        this.logo = resp.CNX_LOGO;
-      }
-      else {
-        let modalClient = this.modalCrl.create(PartnerConnectionsPage);
-        modalClient.present();
-        modalClient.onDidDismiss((resp: GnConex) => {
-          this.session.setPartnerConnections(resp);
+    let promise = new Promise((resolve,reject)=>{
+      this.session.getPartnerConnections().then((resp: GnConex) => {
+        if (resp) {
           this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
-        })
-      }
+          resolve();
+        }
+        else {
+          let modalClient = this.modalCrl.create(PartnerConnectionsPage);
+          modalClient.present();
+          modalClient.onDidDismiss((resp: GnConex) => {
+            this.session.setPartnerConnections(resp);
+            this.session.SetClientUrl(resp.CNX_IPSR);
+            this.GetEmpCodiSession().then(()=>{
+              resolve();
+            })
+            this.logo =  this._dom.bypassSecurityTrustHtml(resp.CNX_LOGO);
+
+          })
+        }
+      })
     })
+      return promise;
   }
   GetEmpCodiSession() {
-    //Llena la variable del emp_codi ya sea desde la sesión o desde la bd si
-    this.session.getEmpCodiSession().then(resp => {
-      if (resp) {
-        this.session.SetClientEmpCodi(resp);
-        this.session.setEmpCodiSession(resp);
-      }
-      else {
-        let modalCompanies = this.modalCrl.create(CompaniesPage);
-        modalCompanies.present();
-        modalCompanies.onDidDismiss((resp: GnEmpre) => {
-          this.session.SetClientEmpCodi(resp.Emp_Codi);
-          this.session.setEmpCodiSession(resp.Emp_Codi);
-
-        })
-      }
+    let promise = new Promise((resolve,reject)=>{
+      this.session.getEmpCodiSession().then(resp => {
+        if (resp) {
+          this.session.SetClientEmpCodi(resp);
+          this.session.setEmpCodiSession(resp);
+          resolve();
+        }
+        else {
+          let modalCompanies = this.modalCrl.create(CompaniesPage);
+          modalCompanies.present();
+          modalCompanies.onDidDismiss((resp: GnEmpre) => {
+            this.session.SetClientEmpCodi(resp.Emp_Codi);
+            this.session.setEmpCodiSession(resp.Emp_Codi);
+              resolve();
+          })
+        }
+      })
     })
+    //Llena la variable del emp_codi ya sea desde la sesión o desde la bd si
+    return promise;
   }
-  showKey():void {
+  showKey(): void {
     //Controla el icono de visualizar contraseña
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
@@ -186,19 +210,28 @@ export class LoginPage {
         let AppLastVersion: GnAppDw = resp.ObjResult;
         if (appVersion != AppLastVersion.App_Vers) {
           this.IsLastVersion = false;
-           this.GoUpdateApp();
+          this.GoUpdateApp();
         }
       }
     })
   }
-  GoUpdateApp(){
+  GoUpdateApp() {
     this.general.ShowMessageAlertAction('Actualización Disponible',
       'Hay una nueva versión disponible de esta aplicación. Es necesario actualizar la aplicación para poder ingresar.Presiona aceptar para ir a la tienda y actualizar.').then(() => {
-    if(this._platform.is("ios"))
-      this.general.openUrl(appAppStoreUrl);
-      if(this._platform.is("android"))
-        this.general.openUrl(appGooglePlayUrl);
+        if (this._platform.is("ios"))
+          this.general.openUrl(appAppStoreUrl);
+        if (this._platform.is("android"))
+          this.general.openUrl(appGooglePlayUrl);
       })
+  }
+  async checkForGnDigfl() {
+    const digfl: any = <any>await this._companies.GetGnDigfl('SAE000001')
+    if (digfl.Retorno == 0) {
+      let digFl: GnDigfl = digfl.ObjTransaction;
+      if (digFl.dig_valo.toUpperCase() == "S")
+        this.placeHolderLogin = "Número de identificación";
+    }
+    // })
   }
   // CheckLastPackage(){
   //   ///Codigo pendiente para actualización a través de inyección de código: Se encuentra en version alpha

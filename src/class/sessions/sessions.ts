@@ -72,7 +72,7 @@ setEmpCodiSession(EmpCodi:number){
 
 GetClientUrl(){
   return this.clientUrl;
-  //return 'http://localhost/NogalApi/api/'
+  // return 'http://localhost/SevenReservasApi/api/';
 }
 SetClientUrl(value:string){
   this.clientUrl = value;

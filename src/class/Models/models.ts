@@ -164,3 +164,8 @@ export interface GnAppDw {
   App_Nomb:string,
   App_Vers:string,
 }
+export interface GnDigfl {
+  dig_codi:string;
+  dig_valo:string;
+  dig_nomb:string;
+}
