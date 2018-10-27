@@ -77,10 +77,10 @@ export interface transaction {
 }
 
 export interface disponibility {
-  title: string,
+  title: string;
   startTime: Date;
-  endTime: Date,
-  allDay: boolean,
+  endTime: Date;
+  allDay: boolean;
 }
 export interface booking {
   Emp_codi: number;
@@ -128,7 +128,7 @@ export class factory {
  public product:any;
  public user:any;
  public thirdPartie:any= {Ter_codi:0};
- public optionDisp:any = { OpDisp: ""}
+ public optionDisp:any = { OpDisp: ""};
  constructor(){
 
  }
@@ -144,25 +144,25 @@ optionDisp:any;
 
 }
 export interface DisponibilityTime{
-  FechaInicio:Date,
-  FechaFin:Date,
-  esp_cont:number,
-  Estado:string
+  FechaInicio:Date;
+  FechaFin:Date;
+  esp_cont:number;
+  Estado:string;
 }
 export interface GnConex {
-  CNX_IPSR:string,
-  CNX_BACK:string,
-  CNX_LOGO:string,
-  CNX_LINK:string
+  CNX_IPSR:string;
+  CNX_BACK:string;
+  CNX_LOGO:string;
+  CNX_LINK:string;
 }
 export interface GnEmpre{
-Emp_Codi:number,
-Emp_Nomb:string
+Emp_Codi:number;
+Emp_Nomb:string;
 }
 export interface GnAppDw {
-  App_Cont:number,
-  App_Nomb:string,
-  App_Vers:string,
+  App_Cont:number;
+  App_Nomb:string;
+  App_Vers:string;
 }
 export interface GnDigfl {
   dig_codi:string;

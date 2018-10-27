@@ -65,6 +65,7 @@ export class LoginPage {
     this.appVersion = appVersion;
     this.appCopyright = appCopyright;
       console.log(this.logo);
+  
 
   }
   //Variable para controlar la pestaña visible (Login o registro)
