@@ -56,7 +56,7 @@ import {sessions} from '../class/sessions/sessions';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
-import { TouchID } from '@ionic-native/touch-id';
+import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
@@ -146,7 +146,7 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     AgreementsProvider,
     BrowserTab,
     ThirdPartiesProvider,
-    TouchID,
+    KeychainTouchId,
     DigitalDatePipe,
     ConnectionsProvider,
     CompaniesProvider,
