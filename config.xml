@@ -2,6 +2,12 @@
 <widget id="com.digitalware.co.seven.reservas" version="18.0.10.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <platform name="android">
         <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
+        <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
     </platform>
     <platform name="ios">
         <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
@@ -120,9 +126,11 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
-    <plugin name="cordova-plugin-keychain-touch-id" spec="^3.2.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-touch-id" spec="https://github.com/EddyVerbruggen/cordova-plugin-touch-id">
+        <variable name="FACEID_USAGE_DESCRIPTION" value="Para rapida autenticacion" />
+    </plugin>
     <engine name="browser" spec="^5.0.4" />
-    <engine name="android" spec="~6.4.0" />
-    <engine name="ios" spec="~4.5.5" />
+    <engine name="android" spec="^7.1.4" />
+    <engine name="ios" spec="4.5.5" />
 </widget>

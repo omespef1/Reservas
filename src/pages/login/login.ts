@@ -13,7 +13,7 @@ import { CompaniesProvider } from '../../providers/companies/companies';
 //Models
 import { TOSoRsoci, GnConex, GnEmpre } from '../../class/models/models';
 //plugins
-import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
+import { TouchID } from '@ionic-native/touch-id';
 //pages
 import { PartnerConfirmPage } from '../partner-confirm/partner-confirm';
 import { PartnerConnectionsPage } from '../partner-connections/partner-connections';
@@ -53,7 +53,7 @@ export class LoginPage {
     private general: general,
     private session: sessions,
     private events: Events,
-    private _touch: KeychainTouchId,
+    private _touchId: TouchID,
     private _platform: Platform,
     private navCtrl: NavController,
     private _connections: ConnectionsProvider,
@@ -73,7 +73,6 @@ export class LoginPage {
 
   ionViewDidLoad() {
 
-
   }
   ionViewDidEnter() {
 
@@ -88,7 +87,6 @@ export class LoginPage {
     const emp_codi = await <any>this.session.getEmpCodiSession();
     console.log(emp_codi);
     this.GetTouchId();
-    console.log('touch');
     await this.checkForGnDigfl();
     console.log('digfl');
     this.CheckLastVersion();
@@ -124,26 +122,40 @@ export class LoginPage {
   }
 
   GetTouchId() {
+    //Si es dispositivo movil
     if (this._platform.is("cordova")) {
-      this._touch.has("fingerprint").then(() => {
+      //Si tiene lector disponible
+      this._touchId.isAvailable().then(()=> {
+        console.log('lector disponible');
+        this.session.getUserFingerPrint().then((secureUser:any) => {
+          console.log(`usuario touch es ${secureUser.userAction}`);
+          if(secureUser!=null && secureUser!=undefined){
+        //Habilito el logo en la interfaz para proximos ingresos
         this.touchID = true;
-        this._touch.verify("fingerprint", 'Deslice su huella dactilar para ingresar').then(pass => {
-          this.touchID = true;
-          this.session.getUserFingerPrint().then(user => {
-            this.doLogin(user, pass);
+        //muestra el dialog de autenticación
+        this._touchId.verifyFingerprint('Autentíquese por favor').then(() => {
+            this.doLogin(secureUser.userAction, secureUser.userPass);
           })
-
+        }
         })
       })
     }
   }
   setTouchId() {
     if (this._platform.is("cordova")) {
-      this._touch.isAvailable().then(() => {
+      // Si está disponible el touch ID
+      this._touchId.isAvailable().then(() => {
+        // Habiliyta variable para mostrar icono de touch ID
         this.touchID = true;
-        this._touch.has("fingerprint").catch(err => {
-          this.session.setUserFingerPrint(this.user.userAction);
-          this._touch.save("fingerprint", this.user.userPass);
+       this.session.getUserFingerPrint().then((secureUser:any)=>{
+         console.log(`usuario guardado es ${secureUser.userPass}`);
+         //Obtiene los datos seguros del usuario, si no tiene data, la guarda
+          if(secureUser ==null || secureUser == undefined){
+            this._touchId.verifyFingerprint('Habilitar autenticación biométrica para futuros inicios?').then(()=>{
+              this.session.setUserFingerPrint(this.user);
+            })
+       
+          }
         })
       })
     }
