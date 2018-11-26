@@ -144,7 +144,8 @@ export class LoginPage {
   setTouchId() {
     if (this._platform.is("cordova")) {
       // Si está disponible el touch ID
-      this._touchId.isAvailable().then(() => {
+      this._touchId.isAvailable().then((typeBiometric:any) => {
+        console.log(typeBiometric);
         // Habiliyta variable para mostrar icono de touch ID
         this.touchID = true;
        this.session.getUserFingerPrint().then((secureUser:any)=>{
