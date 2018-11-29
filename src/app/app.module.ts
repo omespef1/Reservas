@@ -60,6 +60,7 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
+import { PaymentProvider } from '../providers/payment/payment';
 
 
  @NgModule({
@@ -151,6 +152,7 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     ConnectionsProvider,
     CompaniesProvider,
     InAppBrowser,
+    PaymentProvider,
 
   ]
 })
