@@ -8,8 +8,12 @@ import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
-import { DigitalDatePipe} from '../../pipes/digital-date/digital-date';
-//Pages
+import { DigitalDatePipe } from '../../pipes/digital-date/digital-date';
+//models
+
+import { bookingInfo } from '../../class/Models/models';
+//pages
+import {CarPage} from '../car/car';
 /**
  * Generated class for the BookingPage page.
  *
@@ -57,6 +61,9 @@ export class BookingPage {
   newBooking() {
     this.navCtrl.push(ClassSpacesPage);
   }
+  goCar(){
+    this.navCtrl.push(CarPage);
+  }
 
   doRefresh(refresher: Refresher) {
     this._booking.GetBooking(this.user).then((resp: any) => {
@@ -88,8 +95,8 @@ export class BookingPage {
       this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
 
         this.cancelBooking(booking, i);
-        this.cancelValue=[];
-      }).catch(()=>{
+        this.cancelValue = [];
+      }).catch(() => {
         this.cancelValue[i] = 20;
       })
     }
@@ -98,6 +105,9 @@ export class BookingPage {
     }
 
   }
+
+
+
   cancelBooking(booking: any, i: number) {
     //Se optiene la clase de espacio para verificar si ya se cumplió el tiempo de cancelación
     this._classSpaces.GetClassSpace(booking).then((resp: any) => {
@@ -113,7 +123,7 @@ export class BookingPage {
           let items = resp.ObjTransaction;
           this._general.showConfirmMessage('Está seguro de que desea cancelar esta reserva?', 'Seleccione el motivo', items).then(resp => {
             if (resp != null && resp != 0) {
-              let cancel = { justification: resp, id: booking.Res_cont,emp_codi:this.session.GetClientEmpCodi() }
+              let cancel = { justification: resp, id: booking.Res_cont, emp_codi: this.session.GetClientEmpCodi() }
               //Se cancela la reserva según el motivo de selección del usuario
               this._booking.cancelBooking(cancel).then((resp: any) => {
                 if (resp != null) {
@@ -125,13 +135,27 @@ export class BookingPage {
                 }
               })
             }
-          }).catch(err=>{
+          }).catch(err => {
             this.cancelValue[i] = 20;
           })
         }
       })
 
     })
+  }
+
+ //Agrega la reserva seleccionada al carrito de compra
+ async AddCart(booking: bookingInfo) {
+    // let  test = this.session.verifyCarShopping(booking);
+    // console.log( await test);
+    try {
+      this.session.addShoppingList(booking);
+      this._general.showToastMessage(`La reserva  ${booking.Res_cont} ha sido agregada al carrito!`, 'bottom')
+    }
+    catch (err) {
+      this._general.showToastMessage(`Error agregando al carrito: ${err} `, 'bottom');
+    }
+
   }
 
 }

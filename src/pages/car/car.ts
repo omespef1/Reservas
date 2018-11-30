@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import {bookingInfo} from '../../class/Models/models';
+import {sessions} from '../../class/sessions/sessions';
+import { BookingProvider } from '../../providers/booking/booking';
+
+
 /**
  * Generated class for the CarPage page.
  *
@@ -14,12 +19,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'car.html',
 })
 export class CarPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  bookingCar:bookingInfo[];
+  total:number;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _sesion:sessions) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CarPage');
+    this.getBookingsCar();
   }
 
+
+  async getBookingsCar(){
+    this.bookingCar = <bookingInfo[]> await this._sesion.getShoppingList();
+    console.log(this.bookingCar);  
+   this.total = this.bookingCar.reduce((acc, pilot) => acc + pilot.res_valo, 0);        
+  }
 }

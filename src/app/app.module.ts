@@ -33,6 +33,7 @@ import {ThirdPartiesPage} from '../pages/third-parties/third-parties';
 import {PartnerConfirmPage} from '../pages/partner-confirm/partner-confirm';
 import {CompaniesPage} from '../pages/companies/companies';
 import {PartnerConnectionsPage} from '../pages/partner-connections/partner-connections';
+import {CarPage} from '../pages/car/car';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -89,7 +90,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     PartnerConfirmPage,
     DigitalDatePipe,
     CompaniesPage,
-    PartnerConnectionsPage
+    PartnerConnectionsPage,
+    CarPage
   ],
   imports: [
     FormsModule,
@@ -128,7 +130,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     ThirdPartiesPage,
     PartnerConfirmPage,
     CompaniesPage,
-    PartnerConnectionsPage
+    PartnerConnectionsPage,
+    CarPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

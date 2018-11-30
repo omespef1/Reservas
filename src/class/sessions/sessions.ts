@@ -6,6 +6,9 @@ import {TabsPage} from '../../pages/tabs/tabs';
 //config
 import {GnConex} from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
+//models
+import {bookingInfo } from '../Models/models';
+import { resolveDefinition } from '@angular/core/src/view/util';
 
 @Injectable()
 
@@ -71,14 +74,15 @@ setEmpCodiSession(EmpCodi:number){
 
 
 GetClientUrl(){
-  return this.clientUrl;
-  //return 'http://localhost/sevenreservasapi/api/';
+  //return this.clientUrl;
+  return 'http://localhost:4835/api/';
 }
 SetClientUrl(value:string){
   this.clientUrl = value;
 }
 GetClientEmpCodi(){
-  return this.emp_codi;
+  return 102;
+  //return this.emp_codi;
 }
 SetClientEmpCodi(value:number){
   this.emp_codi = value;
@@ -88,5 +92,51 @@ SetCompanies(companies){
 }
 GetCompanies(){
   return this.nativeStorage.get('companies');
+}
+
+addShoppingList(newBooking:bookingInfo){
+  this.nativeStorage.get('shoppingList').then((bookingList:bookingInfo[])=>{
+    if(bookingList != null && bookingList!=undefined && bookingList.length>0){
+         if(bookingList.filter(b=>b.Res_cont==newBooking.Res_cont).length==0){
+           console.log('agregada');
+           bookingList.push(newBooking);
+           this.nativeStorage.set('shoppingList',bookingList);
+         }
+    }
+    else {
+      let bookingList:bookingInfo[] =[];
+      bookingList.push(newBooking);
+      this.nativeStorage.set('shoppingList',bookingList);
+    }
+  }); 
+}
+async verifyCarShopping(booking:bookingInfo){
+  
+ 
+    const listaS: any[] = <any[]> await this.nativeStorage.get('shoppingList');
+    console.log('Verificando carrito de compra...')
+    if(listaS != null && listaS!=undefined && listaS.length>0){
+      if(listaS.filter(b=>b.Res_cont==booking.Res_cont).length>0){        
+        console.log('deshabilitar')   
+            return true;        
+             
+      }
+     
+      console.log('habilitado') ;
+      return false;
+      
+  }
+  else {
+    
+    console.log('habilitado') ;
+    return true;
+   
+  }
+     
+
+
+}
+getShoppingList(){
+  return this.nativeStorage.get('shoppingList');
 }
 }

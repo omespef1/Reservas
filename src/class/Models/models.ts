@@ -169,3 +169,25 @@ export interface GnDigfl {
   dig_valo:string;
   dig_nomb:string;
 }
+export interface bookingInfo{
+  Cla_nomb 	:string;  
+  Cla_foto 	:string;
+  Esp_imag 	:string;
+  Esp_nomb 	:string;
+  Pro_nomb 	:string;
+  FechaInicio :Date;
+  FechaFin 	:Date;
+  Res_cont 	:number;
+  Res_nume 	:number;
+  Res_esta 	:string;
+  Res_vige 	:string;
+  Esp_mdit 	:string;
+  Cla_cont 	:number;
+  Cla_tica 	:string;
+  Ter_codi 	:number;
+  Ter_foto  	:string;
+  res_valo    :number;
+  Ter_noco 	:string;
+  cla_ppag :string
+
+}

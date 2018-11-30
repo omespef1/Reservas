@@ -19,8 +19,8 @@ export class TabsPage {
   tab2Root = HistoryPage;
   tab3Root = PqrPage;
   tab4Root = AgreementsPage;
-  tab5Root = CarPage;
-  tab6Root: SettingsPage
+  tab5Root = SettingsPage;
+
 
   constructor() {
 

@@ -7,12 +7,32 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>car</ion-title>
+    <ion-title>Carrito de compra</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card *ngFor="let booking of bookingCar">
+  
+      <ion-card-header>
+        Reserva No.  {{booking.Res_cont}}
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+                <ion-avatar>
+                   <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">
+                </ion-avatar>            
+                
+             </ion-item>    
+             <h2>{{booking.Esp_nomb}}</h2>
+                 <h1>Precio: $ {{booking.res_valo}}</h1>    
+        </ion-card-content>      
+         
+    
+  </ion-card>
+
+  <button ion-button large>Pagar en línea  $ {{total}}</button>
 
 </ion-content>
