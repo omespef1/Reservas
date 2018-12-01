@@ -12,7 +12,7 @@
 </ion-title>
     </ion-toolbar>
 </ion-header> -->
-<ion-content>
+<ion-content [style.background-color] ="backgroundColor">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -84,7 +84,7 @@
     </ion-row>
     <ion-row>
       <ion-col text-center>
-      <img [src]="logo" style="width: 45%;">
+      <img text-center [src]="logo" style="max-width: 350px;">
       </ion-col>
     </ion-row>
     <ion-row>

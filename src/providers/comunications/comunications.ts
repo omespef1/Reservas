@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { appCentralizacionUrl } from '../../assets/config/config';
 import { LoadingController, ToastController } from 'ionic-angular';
@@ -22,7 +23,7 @@ export class ComunicationsProvider {
 
 
   }
-x
+  x
   Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {
     this.loading = this.load.create({
       content: content
@@ -33,46 +34,69 @@ x
       let stringUrl = `${this._sesion.GetClientUrl()}${UrlService}`;
       if (requiteEmpCodi)
         stringUrl += `&emp_codi=${this._sesion.GetClientEmpCodi()}`;
-      return this.http.get(stringUrl).subscribe((resp: any) => {
-        console.log(stringUrl);
-        console.log(resp);
-        if (loading)
-          this.loading.dismiss();
-        if (resp.Retorno == 1) {
-          this.ErrMessage(resp.TxtError);
-          resp = null;
-        }
-        resolve(resp);
-      }, err => {
-        console.log(err);
-        this.ErrMessage(err)
-        if(loading)
-        this.loading.dismiss();
+      return this.http.get(stringUrl).retryWhen(error => {
+        return error
+          .flatMap((error: any) => {
+            if (error.status === 503) {
+              return Observable.of(error.status).delay(1000)
+            }
+            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+          })
+          .take(5)
+          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
       })
+        .subscribe((resp: any) => {
+          console.log(stringUrl);
+          console.log(resp);
+          if (loading)
+            this.loading.dismiss();
+          if (resp.Retorno == 1) {
+            this.ErrMessage(resp.TxtError);
+            resp = null;
+          }
+          resolve(resp);
+        }, (err: HttpErrorResponse) => {
+          console.log(err);
+          this.ErrMessage(err.error);
+          if (loading)
+            this.loading.dismiss();
+        })
     })
     return promise;
   }
 
-  GetCentralizacion(target:string,contentText:string="") {
-    if(contentText=="")
-     contentText="Consultando información de clientes...";
+  GetCentralizacion(target: string, contentText: string = "") {
+    if (contentText == "")
+      contentText = "Consultando información de clientes...";
     this.loading = this.load.create({
       content: contentText
     });
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
       console.log(`${appCentralizacionUrl}${target}`);
-      return this.http.get(`${appCentralizacionUrl}${target}`).subscribe((resp: any) => {
-        this.loading.dismiss();
-        if (resp.State == false) {
-          this.ErrMessage(resp.TxtError);
-          resp = null;
-        }
-        resolve(resp);
-      }, err => {
-        this.ErrMessage(err)
-        console.log(err);
-      });
+      return this.http.get(`${appCentralizacionUrl}${target}`).retryWhen(error => {
+        return error
+          .flatMap((error: any) => {
+            if (error.status === 503) {
+              return Observable.of(error.status).delay(1000)
+            }
+            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+          })
+          .take(5)
+          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+      })
+        .subscribe((resp: any) => {
+          this.loading.dismiss();
+          if (resp.State == false) {
+            this.ErrMessage(resp.TxtError);
+            resp = null;
+          }
+          resolve(resp);
+        }, (err: HttpErrorResponse) => {
+          this.ErrMessage(err.error);
+          console.log(err);
+          this.loading.dismiss();
+        })
     })
 
     return promise;
@@ -86,22 +110,38 @@ x
       this.loading.present();
       console.log(this._sesion.GetClientUrl() + urlService);
       console.log(params);
-      return this.http.post(this._sesion.GetClientUrl() + urlService, params).subscribe((resp: any) => {
-        this.loading.dismiss();
-        console.log(resp)
-        if (resp.Retorno == 1) {
-          this.ErrMessage(resp.TxtError);
-          resp = null;
+      return this.http.post(this._sesion.GetClientUrl() + urlService, params).retryWhen(error => {
+        return error
+          .flatMap((error: any) => {
+            if (error.status === 503) {
+              return Observable.of(error.status).delay(1000)
+            }
+            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+          })
+          .take(5)
+          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+      })
+
+        .subscribe((resp: any) => {
+          this.loading.dismiss();
+          console.log(resp)
+          if (resp.Retorno == 1) {
+            this.ErrMessage(resp.TxtError);
+            resp = null;
+          }
+          resolve(resp);
+        }), (err: HttpErrorResponse) => {
+          console.log(err);
+          this.ErrMessage(err.error);
+          this.loading.dismiss();
         }
-        resolve(resp);
-      }), err => {
-        console.log(err);
-        this.ErrMessage(err);
-      }
     })
     return promise;
   }
   ErrMessage(msg: string) {
     this._general.showToastMessage(msg, 'bottom');
   }
+
+
+
 }

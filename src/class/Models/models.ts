@@ -7,7 +7,7 @@ export class TOSoRsoci {
   public Soc_cont: string;
   public Sbe_cont: string;
   public Soc_cing: string;
-  public Sbe_pass: string="";
+  public Sbe_pass: string = "";
   public Soc_cfec: string;
   constructor(
   ) {
@@ -102,92 +102,121 @@ export interface booking {
   Esp_mdit: string;
 }
 export class disponibilityRequest {
-public  Cla_cont:number=0;
-public  pro_cont:number=0;
-public  year:number=0;
-public  month :number=0;
-public  day:number=0;
-public  esp_mdit:string="";
-public  ter_codi:number=0;
-public  Op_Disp:string="";
-public Cla_nomb:string="";
-public Pro_nomb:string="";
-public startTime:string;
-public endTime:string;
-constructor(){
+  public Cla_cont: number = 0;
+  public pro_cont: number = 0;
+  public year: number = 0;
+  public month: number = 0;
+  public day: number = 0;
+  public esp_mdit: string = "";
+  public ter_codi: number = 0;
+  public Op_Disp: string = "";
+  public Cla_nomb: string = "";
+  public Pro_nomb: string = "";
+  public startTime: string;
+  public endTime: string;
+  constructor() {
 
-}
+  }
 
 
 }
 
 export class factory {
- public  class:any;
- public agend:any;
- public space:any;
- public product:any;
- public user:any;
- public thirdPartie:any= {Ter_codi:0};
- public optionDisp:any = { OpDisp: ""};
- constructor(){
+  public class: any;
+  public agend: any;
+  public space: any;
+  public product: any;
+  public user: any;
+  public thirdPartie: any = { Ter_codi: 0 };
+  public optionDisp: any = { OpDisp: "" };
+  constructor() {
 
- }
+  }
 }
 export interface Ifactory {
-class:any;
-agend:any;
-space:any;
-product:any;
-user:any;
-thirdPartie:any;
-optionDisp:any;
+  class: any;
+  agend: any;
+  space: any;
+  product: any;
+  user: any;
+  thirdPartie: any;
+  optionDisp: any;
 
 }
-export interface DisponibilityTime{
-  FechaInicio:Date;
-  FechaFin:Date;
-  esp_cont:number;
-  Estado:string;
+export interface DisponibilityTime {
+  FechaInicio: Date;
+  FechaFin: Date;
+  esp_cont: number;
+  Estado: string;
 }
 export interface GnConex {
-  CNX_IPSR:string;
-  CNX_BACK:string;
-  CNX_LOGO:string;
-  CNX_LINK:string;
+  CNX_IPSR: string;
+  CNX_BACK: string;
+  CNX_LOGO: string;
+  CNX_LINK: string;
 }
-export interface GnEmpre{
-Emp_Codi:number;
-Emp_Nomb:string;
+export interface GnEmpre {
+  Emp_Codi: number;
+  Emp_Nomb: string;
 }
 export interface GnAppDw {
-  App_Cont:number;
-  App_Nomb:string;
-  App_Vers:string;
+  App_Cont: number;
+  App_Nomb: string;
+  App_Vers: string;
 }
 export interface GnDigfl {
-  dig_codi:string;
-  dig_valo:string;
-  dig_nomb:string;
+  dig_codi: string;
+  dig_valo: string;
+  dig_nomb: string;
 }
-export interface bookingInfo{
-  Cla_nomb 	:string;  
-  Cla_foto 	:string;
-  Esp_imag 	:string;
-  Esp_nomb 	:string;
-  Pro_nomb 	:string;
-  FechaInicio :Date;
-  FechaFin 	:Date;
-  Res_cont 	:number;
-  Res_nume 	:number;
-  Res_esta 	:string;
-  Res_vige 	:string;
-  Esp_mdit 	:string;
-  Cla_cont 	:number;
-  Cla_tica 	:string;
-  Ter_codi 	:number;
-  Ter_foto  	:string;
-  res_valo    :number;
-  Ter_noco 	:string;
-  cla_ppag :string
+export interface bookingInfo {
+  Cla_nomb: string;
+  Cla_foto: string;
+  Esp_imag: string;
+  Esp_nomb: string;
+  Pro_nomb: string;
+  FechaInicio: Date;
+  FechaFin: Date;
+  Res_cont: number;
+  Res_nume: number;
+  Res_esta: string;
+  Res_vige: string;
+  Esp_mdit: string;
+  Cla_cont: number;
+  Cla_tica: string;
+  Ter_codi: number;
+  Ter_foto: string;
+  res_valo: number;
+  Ter_noco: string;
+  cla_ppag: string
 
+}
+
+export interface payment {
+  valor: number,
+  sbe_codi: string,
+  sbe_ncar: string,
+  emp_codi: number,
+  soc_mail: string,
+  reservas: number[]
+
+}
+export interface bankTransactDone {
+  EntityCode: string,
+  TicketId: string,
+  TrazabilityCode: string,
+  TranState: string,
+  ReturnCode: string,
+  TransValue: number,
+  TransVatValue: number,
+  CurrencyRate: number,
+  BankProcessDate: Date,
+  FICode: string,
+  BankName: string,
+  PaymentSystem: string,
+  TransCycle: string,
+  Invoice: string,
+  ReferenceArray: string[],
+  AuthReferenceArray: string[],
+  SrvCode :string
 }

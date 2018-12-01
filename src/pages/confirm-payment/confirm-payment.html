@@ -1,0 +1,92 @@
+<!--
+  Generated template for the ConfirmPaymentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>COnfirmación Transacción {{ transact.TicketId }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item >
+      <ion-icon name="paper" item-start></ion-icon>
+      <ion-label>Código de entidad</ion-label>
+      <ion-note class="note" item-end>
+        {{transact.class.EntityCode}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="clipboard" item-start></ion-icon>
+      <ion-label>Código interno Ecollet</ion-label>
+      <ion-note class="note" item-end>
+            {{transact.TicketId}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="clock" item-start></ion-icon>
+      <ion-label>Código de trazabilidad</ion-label>
+      <ion-note class="note" item-end>
+        {{transact.TrazabilityCode}}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time"  item-start></ion-icon>
+      <ion-label>Estado Transacción</ion-label>
+      <ion-note class="note" item-end>
+     {{ transact.TranState  }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Valor</ion-label>
+      <ion-note class="note" item-end>
+         {{transact.transValueField}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Moneda</ion-label>
+      <ion-note class="note" item-end>
+         {{transact.payCurrencyField}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Fecha de proceso</ion-label>
+      <ion-note class="note" item-end>
+         {{transact.bankProcessDateField}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Banco</ion-label>
+      <ion-note class="note" item-end>
+         {{transact.bankNameField}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Socio</ion-label>
+      <ion-note class="note" item-end>
+         {{transact.referenceArrayField[0]}}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" item-start></ion-icon>
+      <ion-label>Email</ion-label>
+      <ion-note class="note" item-end>
+         {{transact.referenceArrayField[1]}}
+      </ion-note>
+    </ion-item>          
+  </ion-list>
+  <button ion-button full icon-left (click)="goReservas()">
+  <ion-icon name ="checkmark"></ion-icon>Cerrar
+</button>
+</ion-content>

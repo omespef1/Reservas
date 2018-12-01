@@ -172,6 +172,7 @@ export class general {
       //Si los links tienen http o https son páginas web
       console.log(url);
       this._browser.openUrl(url);
+      
     }
     // else {
     //   ///Si los links no tiene http o https son apps
@@ -201,6 +202,11 @@ export class general {
        else {
          packageId = packageId;
        }
+  }
+
+  openBrowser(url:string){
+   let browser =  this.InAppBrowser.create(url);
+     return browser;
   }
 
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {

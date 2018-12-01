@@ -43,6 +43,7 @@ export class LoginPage {
   passwordIcon: string = "eye";
   passwordType: string = "password";
   logo: any = 'assets/imgs/logo.png';
+  backgroundColor:string;
   progressStatus: string = "";
   placeHolderLogin: string = "Nro. Acción"
   private codeConfirm: string = "";
@@ -153,22 +154,26 @@ export class LoginPage {
     //Llena la variable de url de conexion ya sea desde la sesión o desde la bd
     let promise = new Promise((resolve,reject)=>{
       this.session.getPartnerConnections().then((resp: GnConex) => {
+        console.log(resp);
         if (resp) {
           this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
+          this.backgroundColor = resp.CNX_BACK;
           resolve();
         }
         else {
           let modalClient = this.modalCrl.create(PartnerConnectionsPage);
           modalClient.present();
           modalClient.onDidDismiss((resp: GnConex) => {
+            console.log(resp);
             this.session.setPartnerConnections(resp);
             this.session.SetClientUrl(resp.CNX_IPSR);
             this.GetEmpCodiSession().then(()=>{
               resolve();
             })
             this.logo =  this._dom.bypassSecurityTrustHtml(resp.CNX_LOGO);
+            this.backgroundColor = resp.CNX_BACK;
 
           })
         }

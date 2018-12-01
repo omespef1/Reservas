@@ -20,19 +20,21 @@
         Reserva No.  {{booking.Res_cont}}
         </ion-card-header>
         <ion-card-content>
-            <ion-item>
-                <ion-avatar>
-                   <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">
-                </ion-avatar>            
-                
-             </ion-item>    
-             <h2>{{booking.Esp_nomb}}</h2>
-                 <h1>Precio: $ {{booking.res_valo}}</h1>    
+          <ion-list>
+            <ion-item>               
+                <button ion-button color="danger" item-end outline icon-only large (click)="removeFromCar(booking)">
+                    <ion-icon name='remove-circle' is-active="false"></ion-icon>
+                  </button>  
+                 {{booking.Esp_nomb}}
+                     <!-- <h1>Precio: $ {{booking.res_valo}}</h1>    -->
+             </ion-item>  
+            </ion-list>
+             
         </ion-card-content>      
          
     
   </ion-card>
-
-  <button ion-button large>Pagar en línea  $ {{total}}</button>
+  <button ion-button block large color="danger"> Pagar en sitio  $ {{total}}</button>
+  <button (click)="pay()" ion-button block large color="danger"> Pagar en línea  $ {{total}}</button>
 
 </ion-content>
