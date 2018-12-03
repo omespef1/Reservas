@@ -201,6 +201,14 @@ export interface payment {
   reservas: number[]
 
 }
+export interface paymentOut {
+  number:pap_tkid,
+  string: pap_tkid,
+ string:pap_proc,
+ string : sbe_codi,
+ number:pad_vpag
+
+}
 export interface bankTransactDone {
   EntityCode: string,
   TicketId: string,

@@ -31,6 +31,7 @@ export class BookingPage {
   bookings: any[];
   bookingsList: any[];
   cancelValue: number[] = [];
+  statesToPay : ['NOT_AUTHORIZED', 'EXPIRED', 'FAILED'];
   constructor(public navCtrl: NavController,
     private _booking: BookingProvider,
     private session: sessions,

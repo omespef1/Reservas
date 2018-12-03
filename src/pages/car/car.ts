@@ -70,13 +70,12 @@ export class CarPage {
             .then((touch)=>{
               console.log(resp);
               this.tickeyID = resp.ObjTransaction.TicketId;
+
               let appBroser =  this._general.openBrowser(resp.ObjTransaction.eCollectUrl)
               appBroser.on('exit').subscribe(resp=>{
                 this._payment.GetTransactionInformation(this.tickeyID).then((resp:bankTransactDone)=>{
-                let modal=   this._modal.create( ConfirmPaymentPage, {'confirmation': resp} )
-                    
-                  
-
+                let modal=   this._modal.create( ConfirmPaymentPage, {'confirmation': resp} );
+                modal.present();                                      
                 })
               })
             })
