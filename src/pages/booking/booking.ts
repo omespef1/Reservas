@@ -14,6 +14,7 @@ import { DigitalDatePipe } from '../../pipes/digital-date/digital-date';
 import { bookingInfo } from '../../class/Models/models';
 //pages
 import {CarPage} from '../car/car';
+import {ConfirmPaymentPage} from  '../confirm-payment/confirm-payment';
 /**
  * Generated class for the BookingPage page.
  *
@@ -31,7 +32,7 @@ export class BookingPage {
   bookings: any[];
   bookingsList: any[];
   cancelValue: number[] = [];
-  statesToPay : ['NOT_AUTHORIZED', 'EXPIRED', 'FAILED'];
+  statesToPay = ['NO AUTORIZADO', 'EXPIRADO', 'FALLIDO'];
   constructor(public navCtrl: NavController,
     private _booking: BookingProvider,
     private session: sessions,
@@ -52,6 +53,7 @@ export class BookingPage {
       console.log(resp);
       if (resp.ObjTransaction != null) {
         this.bookings = resp.ObjTransaction;
+        console.log(this.bookings);
         this.initializeItems();
       }
       else {
@@ -157,6 +159,10 @@ export class BookingPage {
       this._general.showToastMessage(`Error agregando al carrito: ${err} `, 'bottom');
     }
 
+  }
+
+  showDetailsPayment(booking:bookingInfo){
+    this.navCtrl.push(ConfirmPaymentPage,{ 'booking' : booking});
   }
 
 }

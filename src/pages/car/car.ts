@@ -10,6 +10,7 @@ import { BookingProvider } from '../../providers/booking/booking';
 import {PaymentProvider} from '../../providers/payment/payment';
 //pages
 import {ConfirmPaymentPage} from '../confirm-payment/confirm-payment';
+import { BookingPage } from '../booking/booking';
 
 
 /**
@@ -25,7 +26,7 @@ import {ConfirmPaymentPage} from '../confirm-payment/confirm-payment';
   templateUrl: 'car.html',
 })
 export class CarPage {
-  bookingCar: bookingInfo[];
+  bookingCar: bookingInfo[] = [];
   total: number;
   tickeyID :number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams, private _sesion: sessions, private _general: general,
@@ -42,14 +43,16 @@ export class CarPage {
     console.log(this.bookingCar);
     this.total = this.bookingCar.reduce((acc, pilot) => acc + pilot.res_valo, 0);
   }
-  removeFromCar(booking: bookingInfo) {
+  removeFromCar(booking: bookingInfo):void {
     this._sesion.removeFromShoppingList(booking).then(() => {
       this.getBookingsCar();
       this._general.showToastMessage(`La reserva ${booking.Res_cont} ha sido eliminada del carrito`, 'bottom');
     })
   }
-
-  async pay(){
+  GoReservas(){
+    this.navCtrl.setRoot(BookingPage);
+  }
+  async pay():Promise<void>{
     console.log('pagando...')
     let arrBookingNum:number[]=[];
     //Suma el total de las reservas en el carrito
@@ -66,13 +69,17 @@ export class CarPage {
     this._payment.CreateTransactionPayment(_pay).then((resp:transaction)=>{
         if(resp!=null){
           if(resp.Retorno==0){
-            this._general.showConfirmMessage('Pasaralea de pago','Será dirigido a la pasarela de pago, una vez finalice la transacción asegúrese de presionar la X del navegador')
+            this._general.ShowMessageAlertAction('Pasaralea de pago','Será dirigido a la pasarela de pago, una vez finalice la transacción asegúrese de presionar la X del navegador')
             .then((touch)=>{
+              
+              this.bookingCar.forEach(booking=>{
+                console.log('borrado');
+                this._sesion.removeFromShoppingList(booking);
+              })
               console.log(resp);
               this.tickeyID = resp.ObjTransaction.TicketId;
-
               let appBroser =  this._general.openBrowser(resp.ObjTransaction.eCollectUrl)
-              appBroser.on('exit').subscribe(resp=>{
+              appBroser.on('exit').subscribe(resp=>{         
                 this._payment.GetTransactionInformation(this.tickeyID).then((resp:bankTransactDone)=>{
                 let modal=   this._modal.create( ConfirmPaymentPage, {'confirmation': resp} );
                 modal.present();                                      
@@ -84,5 +91,7 @@ export class CarPage {
         }
     })
   }
+
+
  
 }

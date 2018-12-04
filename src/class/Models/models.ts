@@ -188,25 +188,26 @@ export interface bookingInfo {
   Ter_foto: string;
   res_valo: number;
   Ter_noco: string;
-  cla_ppag: string
+  cla_ppag: string;
+  payment:paymentOut;
 
 }
 
 export interface payment {
-  valor: number,
-  sbe_codi: string,
-  sbe_ncar: string,
-  emp_codi: number,
-  soc_mail: string,
+  valor: number;
+  sbe_codi: string;
+  sbe_ncar: string;
+  emp_codi: number;
+  soc_mail: string;
   reservas: number[]
 
 }
 export interface paymentOut {
-  number:pap_tkid,
-  string: pap_tkid,
- string:pap_proc,
- string : sbe_codi,
- number:pad_vpag
+  pap_tkid:number;
+  pap_esta:string;
+  pap_proc:string;
+  sbe_codi:string;
+  pad_vpag:number;
 
 }
 export interface bankTransactDone {

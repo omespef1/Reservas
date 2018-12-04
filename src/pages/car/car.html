@@ -13,28 +13,35 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-card *ngFor="let booking of bookingCar">
-  
-      <ion-card-header>
-        Reserva No.  {{booking.Res_cont}}
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>               
-                <button ion-button color="danger" item-end outline icon-only large (click)="removeFromCar(booking)">
-                    <ion-icon name='remove-circle' is-active="false"></ion-icon>
-                  </button>  
-                 {{booking.Esp_nomb}}
-                     <!-- <h1>Precio: $ {{booking.res_valo}}</h1>    -->
-             </ion-item>  
-            </ion-list>
-             
-        </ion-card-content>      
-         
-    
+
+    <ion-card-header>
+      Reserva No. {{booking.Res_nume}}
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <button ion-button color="danger" item-end outline icon-only large (click)="removeFromCar(booking)">
+          <ion-icon name='remove-circle' is-active="false"></ion-icon>
+        </button>        
+        <h4>Servicio</h4>
+        <p>{{booking.Cla_nomb}}</p>
+        <h4>Espacio</h4>  
+        <p>{{booking.Esp_nomb}}</p>
+        <h4>Precio</h4>
+        <ion-badge color="danger"> $ {{booking.res_valo}}</ion-badge>             
+        <!-- <h1>Precio: $ {{booking.res_valo}}</h1>    -->
+      </ion-item>
+
+
+    </ion-card-content>
+
+
   </ion-card>
-  <button ion-button block large color="danger"> Pagar en sitio  $ {{total}}</button>
-  <button (click)="pay()" ion-button block large color="danger"> Pagar en línea  $ {{total}}</button>
+  <div padding>
+  <button (click)="GoReservas()" ion-button block large color="danger"> Pagar en sitio</button>
+  <button (click)="pay()" ion-button block large color="danger" [disabled]="bookingCar.length==0"> Pagar en línea $ {{total}}</button>
+</div>
 
 </ion-content>

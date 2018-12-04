@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>COnfirmación Transacción {{ transact.TicketId }}</ion-title>
+    <ion-title>Confirmación Transacción</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -19,28 +19,28 @@
       <ion-icon name="paper" item-start></ion-icon>
       <ion-label>Código de entidad</ion-label>
       <ion-note class="note" item-end>
-        {{transact.class.EntityCode}}
+        {{transact.entityCodeField}}
       </ion-note>
     </ion-item>
     <ion-item>
       <ion-icon name="clipboard" item-start></ion-icon>
       <ion-label>Código interno Ecollet</ion-label>
       <ion-note class="note" item-end>
-            {{transact.TicketId}}
+            {{transact.ticketIdField}}
       </ion-note>
     </ion-item>
     <ion-item>
       <ion-icon name="clock" item-start></ion-icon>
       <ion-label>Código de trazabilidad</ion-label>
       <ion-note class="note" item-end>
-        {{transact.TrazabilityCode}}}
+        {{transact.TrazabilityCode}}
       </ion-note>
     </ion-item>
     <ion-item>
       <ion-icon name="time"  item-start></ion-icon>
       <ion-label>Estado Transacción</ion-label>
       <ion-note class="note" item-end>
-     {{ transact.TranState  }}
+     {{ transact.tranStateField  }}
       </ion-note>
     </ion-item>
     <ion-item>
@@ -61,7 +61,7 @@
       <ion-icon name="time" item-start></ion-icon>
       <ion-label>Fecha de proceso</ion-label>
       <ion-note class="note" item-end>
-         {{transact.bankProcessDateField}}
+         {{transact.bankProcessDateField  | date :'dd/MM/yyyy hh:mm:ss:a'}}
       </ion-note>
     </ion-item>
     <ion-item>
@@ -71,14 +71,14 @@
          {{transact.bankNameField}}
       </ion-note>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="transact.referenceArrayField!=undefined">
       <ion-icon name="time" item-start></ion-icon>
       <ion-label>Socio</ion-label>
       <ion-note class="note" item-end>
          {{transact.referenceArrayField[0]}}
       </ion-note>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="transact.referenceArrayField!=undefined">
       <ion-icon name="time" item-start></ion-icon>
       <ion-label>Email</ion-label>
       <ion-note class="note" item-end>
