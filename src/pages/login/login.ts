@@ -44,7 +44,6 @@ export class LoginPage {
   passwordType: string = "password";
   logo: any = 'assets/imgs/logo.png';
   backgroundColor:string;
-  progressStatus: string = "";
   placeHolderLogin: string = "Nro. Acción"
   private codeConfirm: string = "";
   private IsLastVersion = true;
@@ -64,17 +63,12 @@ export class LoginPage {
 
   ) {
     this.appVersion = appVersion;
-    this.appCopyright = appCopyright;
-      console.log(this.logo);
-  
-
+    this.appCopyright = appCopyright;       
   }
   //Variable para controlar la pestaña visible (Login o registro)
   type: string = "login";
 
-  ionViewDidLoad() {
-
-  }
+ 
   ionViewDidEnter() {
 
 
@@ -86,12 +80,12 @@ export class LoginPage {
   async loadUserData() {
     await   this.GetPartnerConnections();
     const emp_codi = await <any>this.session.getEmpCodiSession();
-    console.log(emp_codi);
-    this.GetTouchId();
+    console.log(emp_codi);   
     await this.checkForGnDigfl();
     console.log('digfl');
-    this.CheckLastVersion();
+    await this.CheckLastVersion();
     console.log('version');
+    this.GetTouchId();
 
   }
 
@@ -204,6 +198,7 @@ export class LoginPage {
     return promise;
   }
   showKey(): void {
+    console.log('cambio');
     //Controla el icono de visualizar contraseña
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
@@ -214,7 +209,7 @@ export class LoginPage {
     return this._connections.GetVersioning().then((resp: any) => {
       if (resp.State) {
         let AppLastVersion: GnAppDw = resp.ObjResult;
-        if (appVersion != AppLastVersion.App_Vers) {
+        if (Number(appVersion) < Number(AppLastVersion.App_Vers)) {
           this.IsLastVersion = false;
           this.GoUpdateApp();
         }

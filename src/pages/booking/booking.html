@@ -29,9 +29,16 @@
     </button>
   </ion-fab>
   <ion-fab bottom right>
-    <button ion-fab (click)="goCar()" class="element">
-      <ion-icon name="cart"></ion-icon>
-    </button>
+      <button  ion-fab id="cart-btn" (click)="goCar()" color="danger"  class="element">
+          <ion-icon  name="cart"></ion-icon>
+   
+       
+      </button>
+
+    <!-- <button id="cart-btn" ion-fab icon-only (click)="cart()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge id="cart-badge">26</ion-badge> -->
+
   </ion-fab>
   <ion-card *ngFor="let booking of bookingsList;let i =index">
     <ion-card-header>

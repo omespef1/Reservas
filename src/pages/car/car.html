@@ -20,7 +20,8 @@
       Reserva No. {{booking.Res_nume}}
     </ion-card-header>
     <ion-card-content>
-
+        <ion-list no-lines>
+<ion-item-sliding>
       <ion-item>
         <button ion-button color="danger" item-end outline icon-only large (click)="removeFromCar(booking)">
           <ion-icon name='remove-circle' is-active="false"></ion-icon>
@@ -33,7 +34,14 @@
         <ion-badge color="danger"> $ {{booking.res_valo}}</ion-badge>             
         <!-- <h1>Precio: $ {{booking.res_valo}}</h1>    -->
       </ion-item>
-
+      <ion-item-options side="right">         
+          <button ion-button color="danger"(click)="removeFromCar(booking)">
+              <ion-icon name="archive"></ion-icon>
+              Eliminar
+          </button>
+        </ion-item-options>
+    </ion-item-sliding>
+        </ion-list>
 
     </ion-card-content>
 

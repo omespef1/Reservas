@@ -26,7 +26,8 @@ export class ComunicationsProvider {
   x
   Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {
     this.loading = this.load.create({
-      content: content
+      content: content,
+      spinner: 'ios'
     });
     let promise = new Promise((resolve, reject) => {
       if (loading)
@@ -69,7 +70,8 @@ export class ComunicationsProvider {
     if (contentText == "")
       contentText = "Consultando información de clientes...";
     this.loading = this.load.create({
-      content: contentText
+      content: contentText,
+      spinner: 'ios'
     });
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
@@ -105,6 +107,7 @@ export class ComunicationsProvider {
   Post(params: any, urlService: string, content: string = "Cargando...") {
     this.loading = this.load.create({
       content: content,
+      spinner: 'ios'
     });
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
@@ -130,12 +133,14 @@ export class ComunicationsProvider {
             resp = null;
           }
           resolve(resp);
-        }), (err: HttpErrorResponse) => {
+        }, (err: HttpErrorResponse) => {
           console.log(err);
           this.ErrMessage(err.error);
           this.loading.dismiss();
-        }
-    })
+        })
+    });
+    
+    
     return promise;
   }
   ErrMessage(msg: string) {

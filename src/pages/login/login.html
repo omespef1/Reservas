@@ -12,7 +12,7 @@
 </ion-title>
     </ion-toolbar>
 </ion-header> -->
-<ion-content [style.background-color] ="backgroundColor">
+<ion-content [style.background-color]="backgroundColor">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -29,81 +29,89 @@
     <ion-row>
       <ion-col>
         <div [ngSwitch]="type" class="animate-in-secondary">
-        <form  (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
-        <ion-list>
-          <ion-item >
-            <ion-label floating>{{placeHolderLogin}}</ion-label>
-              <ion-icon name="person" item-start></ion-icon>
-            <ion-input  [(ngModel)]="user.userAction"  name="action"  type="text" type="number" clearInput="true" required></ion-input>
-          </ion-item>
-        <ion-item>
-            <ion-label floating>Contraseña</ion-label>
-              <ion-icon name="lock" item-start></ion-icon>
-            <ion-input #password [type]="passwordType" [(ngModel)]="user.userPass" name="pass"  required></ion-input>
-              <ion-icon item-end [name]="passwordIcon" class="passwordIcon" tappable  (click)="showKey()"></ion-icon>
-          </ion-item>
-            <div padding>
-           <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
-      <ion-icon name="checkmark-circle"></ion-icon>
-           </button>
-           <label>{{progressStatus}}</label>
-         </div>
-        </ion-list>
-      </form>
+          <form (ngSubmit)="onSubmit(loginForm);" #loginForm="ngForm" *ngSwitchCase="'login'">
+            <ion-list>
+              <ion-item>
+                <ion-label floating>{{placeHolderLogin}}</ion-label>
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-input [(ngModel)]="user.userAction" name="action" type="text" type="number" clearInput="true"
+                  required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label floating>Contraseña</ion-label>
+                <ion-icon name="lock" item-start></ion-icon>
+                <ion-input #password [type]="passwordType" [(ngModel)]="user.userPass" name="pass" required></ion-input>
 
-        <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
-        <ion-list class="animate-in-secondary">
-        <ion-item>
-        <ion-icon name="person" item-start></ion-icon>
-            <ion-label floating>{{placeHolderLogin}}</ion-label>
-            <ion-input type="number" [(ngModel)]="register.Sbe_ncar"  name="action"  type="text"  type="number" clearInput="true" required></ion-input>
-          </ion-item>
-        <ion-item >
-            <ion-icon name="mail" item-start></ion-icon>
-            <ion-label floating>Email</ion-label>
-            <ion-input type="email" [(ngModel)]="register.Sbe_mail" name="email" clearInput="true" required></ion-input>
-          </ion-item>
-          <ion-item >
-              <ion-icon name="phone-portrait" item-start></ion-icon>
-            <ion-label floating>Celular</ion-label>
-            <ion-input type="tel" [(ngModel)]="register.Sbe_ncel" name="phone" clearInput="true" required></ion-input>
-          </ion-item>
-            <div padding>
-           <button [disabled]="!RegisterForm.form.valid" ion-button block>Enviar codigo de seguridad
-              &nbsp;  <ion-icon name="checkmark-circle"></ion-icon>
-           </button>
-         </div>
-         <div padding *ngIf="codeConfirm!=''">
-        <button ion-button block (click)="showConfirmCode()">Confirmar código</button>
-      </div>
-        </ion-list>
-      </form>
+                <button type="button" ion-button icon-only clear item-right tappable  (tap)="showKey()">
+                    <ion-icon item-end [name]="passwordIcon" class="passwordIcon"></ion-icon>
+                </button>
+               
+                
 
-      </div>
+
+              </ion-item>
+              <div padding>
+                <button [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
+                  <ion-icon button name="checkmark-circle"></ion-icon>
+                </button>              
+              </div>
+            </ion-list>
+          </form>
+
+          <form (ngSubmit)="onRegister(RegisterForm);" #RegisterForm="ngForm" *ngSwitchCase="'register'">
+            <ion-list class="animate-in-secondary">
+              <ion-item>
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-label floating>{{placeHolderLogin}}</ion-label>
+                <ion-input type="number" [(ngModel)]="register.Sbe_ncar" name="action" type="text" type="number"
+                  clearInput="true" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="mail" item-start></ion-icon>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" [(ngModel)]="register.Sbe_mail" name="email" clearInput="true" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="phone-portrait" item-start></ion-icon>
+                <ion-label floating>Celular</ion-label>
+                <ion-input type="tel" [(ngModel)]="register.Sbe_ncel" name="phone" clearInput="true" required></ion-input>
+              </ion-item>
+              <div padding>
+                <button [disabled]="!RegisterForm.form.valid" ion-button block>Enviar codigo de seguridad
+                  &nbsp; <ion-icon name="checkmark-circle"></ion-icon>
+                </button>
+              </div>
+              <div padding *ngIf="codeConfirm!=''">
+                <button ion-button block (click)="showConfirmCode()">Confirmar código</button>
+              </div>
+            </ion-list>
+          </form>
+
+        </div>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col text-center>
-      <img text-center [src]="logo" style="max-width: 350px;">
+        <img text-center [src]="logo" style="max-width: 350px;">
       </ion-col>
     </ion-row>
     <ion-row>
-			<ion-col text-center>
-			<div  class="fingerprint" button tappable (click)="GetTouchId()" *ngIf="touchID">
-				<img src="assets/imgs/fingerprint.svg">
-			</div>
-			</ion-col>
-		</ion-row>
+      <ion-col text-center>
+        <div class="fingerprint" button tappable (click)="GetTouchId()" *ngIf="touchID">
+          <img src="assets/imgs/fingerprint.svg">
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer>
-  <ion-toolbar id="footer" class='login-footer' text-center>
+  <ion-toolbar id="footer"  text-center>
 
-      <small>  {{appCopyright}}</small><br>
-    <small>  V.{{appVersion}}</small>
+    <small> {{appCopyright}}</small><br>
+    <small> V.{{appVersion}}</small>
 
 
 
- </ion-toolbar>
+  </ion-toolbar>
 
 </ion-footer>

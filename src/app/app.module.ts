@@ -102,6 +102,7 @@ import { PaymentProvider } from '../providers/payment/payment';
     HttpClientModule,
     NgCalendarModule,
     IonicModule.forRoot(MyApp,{
+      autocomplete: 'off',
       backButtonText: 'Atrás',
        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo','junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre' ],
     }),
