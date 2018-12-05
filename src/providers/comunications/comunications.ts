@@ -67,6 +67,7 @@ export class ComunicationsProvider {
   }
 
   GetCentralizacion(target: string, contentText: string = "",loading:boolean=true) {
+
     if (contentText == "")
       contentText = "Consultando información de clientes...";
       if(loading){
@@ -76,7 +77,7 @@ export class ComunicationsProvider {
         });
       }
     let promise = new Promise((resolve, reject) => {
-      if(this.loading)
+      if(loading)
       this.loading.present();
       console.log(`${appCentralizacionUrl}${target}`);
       return this.http.get(`${appCentralizacionUrl}${target}`).retryWhen(error => {

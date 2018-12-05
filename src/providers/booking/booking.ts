@@ -21,7 +21,7 @@ export class BookingProvider {
     console.log('Hello BookingProvider Provider');
   }
   GetBooking(partner: any) {
-    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}`);
+    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}`,true,'Cargando información de reservas realizadas...');
   }
   GetGnItems() {
     return this._comunications.Get(`GnItems?tit_cont=349`);
@@ -33,7 +33,7 @@ export class BookingProvider {
     return this._comunications.Get(`Agenda?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}&year=${booking.year}&month=${booking.month+1}&esp_mdit=${booking.esp_mdit}&ter_codi=${booking.ter_codi}&Op_Disp=${booking.Op_Disp}`,true,'Verificando disponibilidad del mes, esto podría tardar unos minutos...')
   }
   SetBooking(booking:any){
-    return this._comunications.Post(booking,'reserva','Reservando...');
+    return this._comunications.Post(booking,'reserva','Reservando...Esto podría tardar 1 minuto.');
   }
 
 }
