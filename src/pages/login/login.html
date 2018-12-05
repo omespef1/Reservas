@@ -100,6 +100,9 @@
         <div class="fingerprint" button tappable (click)="GetTouchId()" *ngIf="touchID">
           <img src="assets/imgs/fingerprint.svg">
         </div>
+        <div class="fingerprint" button tappable (click)="GetTouchId()" *ngIf="faceID">
+            <img src="assets/imgs/faceid.svg">
+          </div>
       </ion-col>
     </ion-row>
   </ion-grid>

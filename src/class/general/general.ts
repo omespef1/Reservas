@@ -162,28 +162,9 @@ export class general {
   }
 
   openUrl(url: string) {
-    if (url.indexOf('http') > -1 || url.indexOf('https') > -1) {
-      if (url.split("|").length > 1){
-          if(this.platform.is("android"))
-           url = url.split("|")[1];
-           if(this.platform.is("ios"))
-            url = url.split("|")[0];
-        }
-      //Si los links tienen http o https son páginas web
-      console.log(url);
-      this._browser.openUrl(url);
-      
-    }
-    // else {
-    //   ///Si los links no tiene http o https son apps
-    //   this.openMarket(url);
-    // }
-
-
-
-
-
-
+    if (url.indexOf('http') == -1 && url.indexOf('https') ==-1)        
+    url = `http://${url}`;   
+    this._browser.openUrl(url);
   }
   ShowActionSheetAlert(title: string, butttons: any[]) {
     let action = this.actionCtrl.create({

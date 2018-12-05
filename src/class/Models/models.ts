@@ -229,3 +229,11 @@ export interface bankTransactDone {
   AuthReferenceArray: string[],
   SrvCode :string
 }
+export interface agreement {
+  Osa_Bmpr:string;
+  Osa_Link:string;
+  Osa_Nomb:string;
+  Osa_Lian:string;
+  Osa_Liap:string;
+
+}

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { AgreementsProvider } from '../../providers/agreements/agreements';
 //clases
-import { transaction } from '../../class/models/models';
+import { transaction, agreement } from '../../class/models/models';
 import { general } from '../../class/general/general';
 
 
@@ -19,8 +19,8 @@ import { general } from '../../class/general/general';
   templateUrl: 'agreements.html',
 })
 export class AgreementsPage {
-  agreements: any[];
-  constructor(private _agreement: AgreementsProvider, private _general: general) {
+  agreements: agreement[];
+  constructor(private _agreement: AgreementsProvider, private _general: general, private _platform: Platform) {
   }
 
   ionViewDidLoad() {
@@ -36,8 +36,17 @@ export class AgreementsPage {
     })
   }
   //Abre una url en el navegador
-  openUrl(url: string) {
-    this._general.openUrl(url);
-  }
+  openUrl(myAgreement: agreement) {
 
-}
+    //Si el link de página web viene vacío intenta abre los links definidos paera cada plataforma en programa SAEOSAPP
+    if (myAgreement.Osa_Link.length == 0) {
+      if (this._platform.is('android'))
+        this._general.openUrl(myAgreement.Osa_Lian);
+      if (this._platform.is('ios'))
+        this._general.openUrl(myAgreement.Osa_Liap);    
+    }
+    //Si no, entonces abre el link de página web
+    if(myAgreement.Osa_Link.length>0)
+    this._general.openUrl(myAgreement.Osa_Link);
+
+  }
