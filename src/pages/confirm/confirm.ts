@@ -73,7 +73,7 @@ export class ConfirmPage {
       Productos: [
         {
           Pro_cont: this.booking.product.Pro_cont,
-          Dpr_valo:0,
+          Dpr_valo:this.booking.product.Pro_Valo,
           Dpr_dura:  this.booking.product.Pro_dmin
 
         }
