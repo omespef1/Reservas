@@ -130,10 +130,10 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.1" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
-    <plugin name="cordova-plugin-keychain-touch-id" spec="3.2.1">
+    <engine name="browser" spec="^5.0.4" />
+    <engine name="android" spec="^7.1.4" />
+    <engine name="ios" spec="~4.5.5" />
+    <plugin name="cordova-plugin-keychain-touch-id" spec="https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id">
         <variable name="FACEID_USAGE_DESCRIPTION" value="For easy authentication" />
     </plugin>
-    <engine name="browser" spec="^5.0.4" />
-    <engine name="android" spec="~6.4.0" />
-    <engine name="ios" spec="~4.5.5" />
 </widget>

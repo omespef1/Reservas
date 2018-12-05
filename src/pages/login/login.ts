@@ -121,8 +121,10 @@ export class LoginPage {
   GetTouchId() {
     if (this._platform.is("cordova")) {
       this._touch.has("fingerprint").then(() => {
-        this._touch.isAvailable().then((type:string)=>{
-          if(type==='face')
+        this._touch.isAvailable().then((type:any)=>{
+          console.log('validando tipo...');
+          console.log(type);
+          if(type=='face')
           this.faceID = true;
           else
           this.touchID=true;
@@ -137,9 +139,10 @@ export class LoginPage {
   }
   setTouchId() {
     if (this._platform.is("cordova")) {
-      this._touch.isAvailable().then(() => {
-        this._touch.isAvailable().then((type:string)=>{
-          if(type==='face')
+        this._touch.isAvailable().then((type:any)=>{
+          console.log('validando tipo...');
+          console.log(type);
+          if(type=='face')
           this.faceID = true;
           else
           this.touchID=true;
@@ -148,7 +151,7 @@ export class LoginPage {
           this.session.setUserFingerPrint(this.user.userAction);
           this._touch.save("fingerprint", this.user.userPass);
         })
-      })
+    
     }
   }
 
