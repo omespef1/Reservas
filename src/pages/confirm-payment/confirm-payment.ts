@@ -27,14 +27,23 @@ export class ConfirmPaymentPage {
 
   ionViewWillEnter(){
     console.log(this.navParams.get('booking'));
-    this.booking = this.navParams.get('booking');
+    this.booking = this.navParams.get('booking');           
     this.GetDetailTransaction();
   }
   ionViewDidLoad() {
     
   }
   async GetDetailTransaction(){
-    let TransactionResponse = <transaction> await this._payment.GetTransactionInformation(this.booking.payment.pap_tkid); 
+    let tickedId= 0;
+    if(this.booking == undefined){
+     tickedId = this.navParams.get('ticket');
+    }
+    if(this.booking != undefined){
+      tickedId = this.booking.payment.pap_tkid;
+     }
+     
+
+    let TransactionResponse = <transaction> await this._payment.GetTransactionInformation(tickedId); 
     this.transact = TransactionResponse.ObjTransaction;
     console.log(TransactionResponse);
  
