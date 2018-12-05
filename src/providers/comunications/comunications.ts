@@ -66,14 +66,17 @@ export class ComunicationsProvider {
     return promise;
   }
 
-  GetCentralizacion(target: string, contentText: string = "") {
+  GetCentralizacion(target: string, contentText: string = "",loading:boolean=true) {
     if (contentText == "")
       contentText = "Consultando información de clientes...";
-    this.loading = this.load.create({
-      content: contentText,
-      spinner: 'ios'
-    });
+      if(loading){
+        this.loading = this.load.create({
+          content: contentText,
+          spinner: 'ios'
+        });
+      }
     let promise = new Promise((resolve, reject) => {
+      if(this.loading)
       this.loading.present();
       console.log(`${appCentralizacionUrl}${target}`);
       return this.http.get(`${appCentralizacionUrl}${target}`).retryWhen(error => {
@@ -88,6 +91,7 @@ export class ComunicationsProvider {
           .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
       })
         .subscribe((resp: any) => {
+          if(loading)
           this.loading.dismiss();
           if (resp.State == false) {
             this.ErrMessage(resp.TxtError);
@@ -95,8 +99,10 @@ export class ComunicationsProvider {
           }
           resolve(resp);
         }, (err: HttpErrorResponse) => {
+          
           this.ErrMessage(err.error);
           console.log(err);
+          if(loading)
           this.loading.dismiss();
         })
     })

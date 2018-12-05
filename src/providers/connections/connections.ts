@@ -18,7 +18,7 @@ export class ConnectionsProvider {
   return  this._communications.GetCentralizacion('GnConex/GetConnections?app_cont=1001');
   }
   GetVersioning():Promise<{}>{
-  return  this._communications.GetCentralizacion('GnAppDw/1001','Verificando versión...')
+  return  this._communications.GetCentralizacion('GnAppDw/1001','Verificando versión...',false)
   }
   GetAllAps():Promise<{}>{
   return  this._communications.GetCentralizacion('GnAppDw')
