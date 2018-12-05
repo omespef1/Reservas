@@ -50,3 +50,4 @@ export class AgreementsPage {
     this._general.openUrl(myAgreement.Osa_Link);
 
   }
+}
