@@ -41,7 +41,7 @@ export class CarPage {
     console.log('become active page..')
     if(this.tickeyID>0){
     this._payment.GetTransactionInformation(this.tickeyID).then((resp:bankTransactDone)=>{
-      let modal=   this._modal.create( ConfirmPaymentPage, {'confirmation': resp} );
+      let modal=   this._modal.create( ConfirmPaymentPage, {'booking': resp} );
       modal.present();                                      
       })
     }
@@ -88,7 +88,8 @@ export class CarPage {
               })
               console.log(resp);
               this.tickeyID = resp.ObjTransaction.TicketId;
-              let appBroser =  this._general.openBrowser(resp.ObjTransaction.eCollectUrl)
+             this._general.openUrl(resp.ObjTransaction.eCollectUrl)
+          
               // appBroser.on('exit').subscribe(resp=>{         
            
               // })
