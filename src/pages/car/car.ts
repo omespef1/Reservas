@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController ,Platform} from 'ionic-angular';
 //Models
 import { bookingInfo , payment, user,transaction,bankTransactDone} from '../../class/Models/models';
 //clases
@@ -30,23 +30,13 @@ export class CarPage {
   total: number;
   tickeyID :number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams, private _sesion: sessions, private _general: general,
-    private _payment:PaymentProvider,private _modal:ModalController) {
+    private _payment:PaymentProvider,private _modal:ModalController,private _platform:Platform) {
   }
 
   ionViewDidLoad() {
     this.getBookingsCar();
   }
 
-  ionViewWillEnter(){
-    console.log('become active page..')
-    if(this.tickeyID>0){
-    this._payment.GetTransactionInformation(this.tickeyID).then((resp:bankTransactDone)=>{
-      let modal=   this._modal.create( ConfirmPaymentPage, {'booking': resp} );
-      modal.present();                                      
-      })
-    }
-  
-  }
 
   async getBookingsCar() {
     this.bookingCar = <bookingInfo[]>await this._sesion.getShoppingList();
@@ -88,7 +78,16 @@ export class CarPage {
               })
               console.log(resp);
               this.tickeyID = resp.ObjTransaction.TicketId;
-             this._general.openUrl(resp.ObjTransaction.eCollectUrl)
+              this._general.openUrl(resp.ObjTransaction.eCollectUrl)
+              this._platform.resume.subscribe(() => {
+                console.log('volviendo al app');
+                if(this.tickeyID>0){                  
+                  this._payment.GetTransactionInformation(this.tickeyID).then((resp:bankTransactDone)=>{
+                    let modal=   this._modal.create( ConfirmPaymentPage, {'booking': resp} );
+                    modal.present();                                      
+                    })
+                  }
+              });
           
               // appBroser.on('exit').subscribe(resp=>{         
            
