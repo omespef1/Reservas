@@ -20,29 +20,6 @@
 
 
 <ion-content class="has-header">
-  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
-  <!-- <template #monthviewDefaultEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
-              <ion-list class="event-detail-container" has-bouncing="false" *ngIf="showEventDetail" overflow-scroll="false">
-                  <ion-item *ngFor="let event of selectedDate?.events" (click)="eventSelected(event)">
-                          <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}}
-                              -
-                              {{event.endTime|date: 'HH:mm'}}
-                          </span>
-                      <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">All day</span>
-                      <span class="event-detail">  |  {{event.title}}</span>
-                  </ion-item>
-                  <ion-item *ngIf="selectedDate?.events.length==0">
-                      <div class="no-events-label">{{noEventsLabel}}</div>
-                  </ion-item>
-              </ion-list>
-          </template> -->
-
-
-
-
-
   <calendar [noEventsLabel]="noEventsLabel"  [eventSource]="eventSource"
   [locale]="calendar.locale"
              [calendarMode]="calendar.mode"
@@ -59,35 +36,9 @@
              startHour="6">
    </calendar>
    <div padding>
-
+     <button tappable ion-button full *ngIf="iphoneX"> {{viewTitle}}</button>
    </div>
    <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
-     <!-- <ion-grid>
-       <ion-col>
-         <ion-row>
-           <div>
-           <div class="currentDate">
-           </div>
-             <p>Día Actual</p>
-         </div>
-        <div>
-         <div class="availableDay">
-
-          </div>
-           <p>Día Disponible</p>
-
-       </div>
-     <div>
-        <div class="selectedDay">
-        </div>
-            <p>Día Seleccionado</p>
-      </div>
-         </ion-row>
-       </ion-col>
-     </ion-grid> -->
-
-
-
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
                     <ion-item  class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
 

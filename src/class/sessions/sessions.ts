@@ -10,6 +10,7 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { bookingInfo } from '../Models/models';
 import { resolveDefinition } from '@angular/core/src/view/util';
 
+
 @Injectable()
 
 export class sessions {
@@ -130,7 +131,7 @@ export class sessions {
   getShoppingList() {
     return this.nativeStorage.get('shoppingList');
   }
-
+//Elimina un item del carrito de compra
   removeFromShoppingList(booking:bookingInfo){
    return this.getShoppingList().then((items:bookingInfo[])=>{
        if(items!=null&&items.length>0){
@@ -138,5 +139,9 @@ export class sessions {
          this.nativeStorage.set('shoppingList',items);         
        }
     })
+  }
+
+  getAvailableBiometric(){
+    return  this._touch.isAvailable();
   }
 }

@@ -14,7 +14,7 @@
 
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="online">
     <ion-item >
       <ion-icon name="briefcase" item-start></ion-icon>
       <ion-label>Código de entidad</ion-label>
@@ -86,6 +86,61 @@
       </ion-note>
     </ion-item>          
   </ion-list>
+<div *ngIf="!online"> 
+  <ion-list no-border *ngFor="let item of offlineBookings" >
+
+    <ion-list-header>
+
+      <ion-icon name="planet"></ion-icon>
+      Reserva  {{item.Res_nume}}
+    </ion-list-header>
+
+    <ion-item>
+      <ion-icon name='person' item-start></ion-icon>
+      Socio
+      <ion-note item-end>
+      {{user.Soc_nomb}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+        <ion-icon name='card' item-start></ion-icon>
+        Identificación
+        <ion-note item-end>
+        {{item.Sbe_codi}}
+        </ion-note>
+      </ion-item>
+    <ion-item>
+      <ion-icon name='calendar' item-start></ion-icon>
+      Inicio
+      <ion-note item-end>
+     {{item.FechaInicio}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='calendar' item-start></ion-icon>
+      Fin
+      <ion-note item-end>
+     {{item.FechaFin}}
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+        <ion-icon name='logo-usd' item-start></ion-icon>
+        Valor
+        <ion-note item-end>
+       {{item.res_valo}}
+        </ion-note>
+      </ion-item>
+
+
+
+  </ion-list>
+</div>
+  <button ion-button full icon-left (click)="print()" *ngIf="!online">
+      <ion-icon name ="print"></ion-icon>Generar comprobante
+    </button>
   <button ion-button full icon-left (click)="goReservas()">
   <ion-icon name ="checkmark"></ion-icon>Cerrar
 </button>

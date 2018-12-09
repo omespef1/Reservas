@@ -12,6 +12,7 @@ export class general {
      private InAppBrowser: InAppBrowser, private platform: Platform) {
 
   }
+  //Muestra una alerta con botón OK
   ShowMessageAlert(title: string, msg: string) {
     let alertCtrl = this.alert.create({
       title: title,
@@ -20,6 +21,7 @@ export class general {
     });
     alertCtrl.present();
   }
+  //Muestra una alerta con una promesa que se resuelve cuando hacen click en el botón Aceptar
   ShowMessageAlertAction(title: string, msg: string): Promise<any> {
     let promise = new Promise((resolve, reject) => {
       let alertCtrl = this.alert.create({
@@ -40,7 +42,7 @@ export class general {
     return promise;
 
   }
-
+//Muestra una alerta con promesa que se resuelve al dar click en aceptar, el botón descartar rechaza la promesa
   showMessageOption(title: string, subTitle: string) {
 
     let promise = new Promise((resolve, reject) => {
@@ -69,6 +71,7 @@ export class general {
     })
     return promise;
   }
+  //Convertir fecha para ios
   convertDateForIos(date: any) {
     let t = date.split(/[- :]/);
     // Apply each element to the Date function
@@ -76,6 +79,7 @@ export class general {
     var actiondate = new Date(d);
     return actiondate;
   }
+  //Muestra toast con mensaje
   showToastMessage(msg: string, position: string) {
     let toastCtrl = this.toast.create({
       message: msg,
@@ -86,6 +90,7 @@ export class general {
     });
     toastCtrl.present();
   }
+  //Muestra una alerta que incluye caja de texto
   showMessageInput(title: string, msg: string, name: string, placeHolder: string, code: string) {
 
     let promise = new Promise((resolve, reject) => {
@@ -120,6 +125,7 @@ export class general {
     });
     return promise;
   }
+  //añade minutos a una fecha
   addMinutes(minutes) {
     let momentOfTime = new Date();
     let myTimeSpan = minutes * 60 * 1000;

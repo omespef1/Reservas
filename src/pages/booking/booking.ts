@@ -162,7 +162,8 @@ export class BookingPage {
   }
 
   showDetailsPayment(booking:bookingInfo){
-    this.navCtrl.push(ConfirmPaymentPage,{ 'booking' : booking});
+    let payment = {'booking':booking,'online':true}
+    this.navCtrl.push(ConfirmPaymentPage,{ 'payment' : payment});
   }
 
 }

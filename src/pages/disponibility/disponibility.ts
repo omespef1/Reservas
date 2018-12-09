@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Refresher } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Refresher,Platform } from 'ionic-angular';
 //providers
 import { BookingProvider } from '../../providers/booking/booking';
 //clases
 import { transaction } from '../../class/models/models';
 import { Ifactory, disponibilityRequest ,DisponibilityTime} from '../../class/models/models';
 import { general } from '../../class/general/general';
+import { sessions } from '../../class/sessions/sessions';
 //pages
 import { ConfirmPage } from '../confirm/confirm';
 import {ThirdPartiesPage} from '../../pages/third-parties/third-parties';
@@ -31,6 +32,7 @@ export class DisponibilityPage {
   currentMonth:number;
   previewMonth:number;
   newFactory: Ifactory;
+  iphoneX:boolean = false;
   newBookingRequest = new disponibilityRequest();
   eventSource: any;
   formatWeekTitle: "MMMM yyyy, 'Semana' w'";
@@ -47,7 +49,15 @@ export class DisponibilityPage {
     private _nav: NavParams,
     private _navCtrl: NavController,
     private _third: ThirdPartiesProvider,
-    private _general: general) {
+    private _general: general,
+    private _sesion:sessions,
+    private _platform:Platform) {
+      if(this._platform.is('cordova')){
+      this._sesion.getAvailableBiometric().then((biometric:any)=>{
+        console.log(biometric);
+        this.iphoneX =  biometric == 'face';
+      });
+    }
     this.newFactory = _nav.get('booking');
     let currentDate = new Date();
     this.newBookingRequest.year = currentDate.getFullYear();
@@ -162,8 +172,6 @@ export class DisponibilityPage {
         throw Error(`Fecha Límite de reserva excedida ${this.newFactory.class.Cla_Fchr}:`)
       }
       this.newFactory.agend = event;
-    //  this.newFactory.agend.startTime = event.startTime;
-      // this.newFactory.agend.endTime = event.endTime;
             //Si ya majena disponibilidad significa que ya elegí el tercero
           if (this.newFactory.product.esp_mdit == 'S' && this.newFactory.optionDisp.OpDisp=='F') {
                this._navCtrl.push(ThirdPartiesPage, { 'booking': this.newFactory });

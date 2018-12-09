@@ -48,8 +48,8 @@
 
   </ion-card>
   <div padding>
-  <button (click)="GoReservas()" ion-button block large color="danger"> Pagar en sitio</button>
-  <button (click)="pay()" ion-button block large color="danger" [disabled]="bookingCar.length==0"> Pagar en línea $ {{total}}</button>
+  <button (click)="payOffline()" [disabled]="bookingCar==undefined || bookingCar.length==0" ion-button block large color="danger"> Pagar en sitio</button>
+  <button (click)="pay()" ion-button block large color="danger" [disabled]="bookingCar==undefined || bookingCar.length==0"> Pagar en línea $ {{total}}</button>
 </div>
 
 </ion-content>
