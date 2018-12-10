@@ -29,10 +29,8 @@
     </button>
   </ion-fab>
   <ion-fab bottom right>
-      <button  ion-fab id="cart-btn" (click)="goCar()" color="danger"  class="element">
-          <ion-icon  name="cart"></ion-icon>
-   
-       
+      <button *ngIf="showCar"  ion-fab id="cart-btn" (click)="goCar()" color="danger"  class="element">
+          <ion-icon  name="cart"></ion-icon>          
       </button>
 
     <!-- <button id="cart-btn" ion-fab icon-only (click)="cart()">

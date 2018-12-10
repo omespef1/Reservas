@@ -29,6 +29,7 @@ import {ConfirmPaymentPage} from  '../confirm-payment/confirm-payment';
 })
 export class BookingPage {
   user: any;
+  showCar:boolean=false;
   bookings: any[];
   bookingsList: any[];
   cancelValue: number[] = [];
@@ -41,7 +42,12 @@ export class BookingPage {
     private modalCtrl: ModalController) {
   }
 
+  ionViewWillEnter(){
+   this.verifyItemsCar();
+  }
   ionViewDidLoad() {
+
+
     this.session.GetLoggedin().then(resp => {
       this.user = resp;
       this.GetBooking();
@@ -152,8 +158,11 @@ export class BookingPage {
     // let  test = this.session.verifyCarShopping(booking);
     // console.log( await test);
     try {
-      this.session.addShoppingList(booking);
+     await  this.session.addShoppingList(booking);    
+    await  this.verifyItemsCar(); 
       this._general.showToastMessage(`La reserva  ${booking.Res_cont} ha sido agregada al carrito!`, 'bottom')
+      
+      
     }
     catch (err) {
       this._general.showToastMessage(`Error agregando al carrito: ${err} `, 'bottom');
@@ -164,6 +173,18 @@ export class BookingPage {
   showDetailsPayment(booking:bookingInfo){
     let payment = {'booking':booking,'online':true}
     this.navCtrl.push(ConfirmPaymentPage,{ 'payment' : payment});
+  }
+
+  async verifyItemsCar(){    
+    let list :any[] = <any[]>  await this.session.getShoppingList();
+    if(list!=null && list!=undefined){
+      if(list.length>0)
+        this.showCar=true;
+       else{
+        this.showCar=false;
+       }
+    }
+  
   }
 
 }
