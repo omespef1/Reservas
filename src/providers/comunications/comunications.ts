@@ -150,10 +150,52 @@ export class ComunicationsProvider {
     
     return promise;
   }
+
+  Put(params: any, urlService: string, content: string = "Cargando...") {
+    this.loading = this.load.create({
+      content: content,
+      spinner: 'ios'
+    });
+    let promise = new Promise((resolve, reject) => {
+      this.loading.present();
+      console.log(this._sesion.GetClientUrl() + urlService);
+      console.log(params);
+      return this.http.put(this._sesion.GetClientUrl() + urlService, params).retryWhen(error => {
+        return error
+          .flatMap((error: any) => {
+            if (error.status === 503) {
+              return Observable.of(error.status).delay(1000)
+            }
+            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+          })
+          .take(5)
+          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+      })
+
+        .subscribe((resp: any) => {
+          this.loading.dismiss();
+          console.log(resp)
+          if (resp.Retorno == 1) {
+            this.ErrMessage(resp.TxtError);
+            resp = null;
+          }
+          resolve(resp);
+        }, (err: HttpErrorResponse) => {
+          console.log(err);
+          this.ErrMessage(err.error);
+          this.loading.dismiss();
+        })
+    });
+    
+    
+    return promise;
+  }
   ErrMessage(msg: string) {
     this._general.showToastMessage(msg, 'bottom');
   }
 
+
+  
 
 
 }

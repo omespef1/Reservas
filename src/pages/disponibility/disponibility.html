@@ -35,9 +35,7 @@
              allDayLabel="Día"
              startHour="6">
    </calendar>
-   <div padding>
-     <button tappable ion-button full *ngIf="iphoneX"> {{viewTitle}}</button>
-   </div>
+  
    <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
                     <ion-item  class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Refresher,Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Refresher } from 'ionic-angular';
 //providers
 import { BookingProvider } from '../../providers/booking/booking';
 //clases
@@ -32,7 +32,6 @@ export class DisponibilityPage {
   currentMonth:number;
   previewMonth:number;
   newFactory: Ifactory;
-  iphoneX:boolean = false;
   newBookingRequest = new disponibilityRequest();
   eventSource: any;
   formatWeekTitle: "MMMM yyyy, 'Semana' w'";
@@ -50,14 +49,7 @@ export class DisponibilityPage {
     private _navCtrl: NavController,
     private _third: ThirdPartiesProvider,
     private _general: general,
-    private _sesion:sessions,
-    private _platform:Platform) {
-      if(this._platform.is('cordova')){
-      this._sesion.getAvailableBiometric().then((biometric:any)=>{
-        console.log(biometric);
-        this.iphoneX =  biometric == 'face';
-      });
-    }
+    private _sesion:sessions) {
     this.newFactory = _nav.get('booking');
     let currentDate = new Date();
     this.newBookingRequest.year = currentDate.getFullYear();

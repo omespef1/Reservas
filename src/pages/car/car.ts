@@ -81,7 +81,7 @@ export class CarPage {
     this._payment.CreateTransactionPayment(_pay).then((resp: transaction) => {
       if (resp != null) {
         if (resp.Retorno == 0) {
-          this._general.ShowMessageAlertAction('Pasaralea de pago', 'Será dirigido a la pasarela de pago, una vez finalice la transacción asegúrese de presionar la X del navegador')
+          this._general.ShowMessageAlertAction('Pasaralea de pago', 'Se abrirá una ventana de su navegador para realizar el pago, una vez finalice la transacción asegúrese de volver a la aplicación.')
             .then((touch) => {
 
               this.bookingCar.forEach(booking => {
@@ -98,6 +98,10 @@ export class CarPage {
                   let modal = this._modal.create(ConfirmPaymentPage, { 'payment': paymentConfirm });
                   this._platform.resume.unsubscribe();
                   modal.present();
+                  modal.onDidDismiss(()=>{
+                    this.navCtrl.insert(0,BookingPage);
+                    this.navCtrl.popToRoot();
+                  })
 
                 }
               });

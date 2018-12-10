@@ -1,7 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, Events, Platform, ModalController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 //clases
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
@@ -38,13 +38,13 @@ export class LoginPage {
   user: any = { userAction: "", userPass: "" }
   register: TOSoRsoci = new TOSoRsoci();
   touchID: boolean = false;
-  faceID:boolean=false;
+  faceID: boolean = false;
   appVersion: string;
   appCopyright: string;
   passwordIcon: string = "eye";
   passwordType: string = "password";
   logo: any = 'assets/imgs/logo.png';
-  backgroundColor:string;
+  backgroundColor: string;
   placeHolderLogin: string = "Nro. Acción"
   private codeConfirm: string = "";
   private IsLastVersion = true;
@@ -60,24 +60,24 @@ export class LoginPage {
     private _connections: ConnectionsProvider,
     private modalCrl: ModalController,
     private _companies: CompaniesProvider,
-    private _dom:DomSanitizer
+    private _dom: DomSanitizer
 
   ) {
     this.appVersion = appVersion;
-    this.appCopyright = appCopyright;       
+    this.appCopyright = appCopyright;
   }
   //Variable para controlar la pestaña visible (Login o registro)
   type: string = "login";
 
- 
-  ionViewWillEnter(){
-  this.loadUserData();
+
+  ionViewWillEnter() {
+    this.loadUserData();
   }
 
   async loadUserData() {
-    await   this.GetPartnerConnections();
+    await this.GetPartnerConnections();
     const emp_codi = await <any>this.session.getEmpCodiSession();
-    console.log(emp_codi);   
+    console.log(emp_codi);
     await this.checkForGnDigfl();
     console.log('digfl');
     await this.CheckLastVersion();
@@ -117,15 +117,15 @@ export class LoginPage {
   GetTouchId() {
     if (this._platform.is("cordova")) {
       this._touch.has("fingerprint").then(() => {
-        this._touch.isAvailable().then((type:any)=>{
+        this._touch.isAvailable().then((type: any) => {
           console.log('validando tipo...');
           console.log(type);
-          if(type=='face')
-          this.faceID = true;
+          if (type == 'face')
+            this.faceID = true;
           else
-          this.touchID=true;
-        })       
-        this._touch.verify("fingerprint", 'Deslice su huella dactilar para ingresar').then(pass => {         
+            this.touchID = true;
+        })
+        this._touch.verify("fingerprint", 'Deslice su huella dactilar para ingresar').then(pass => {
           this.session.getUserFingerPrint().then(user => {
             this.doLogin(user, pass);
           })
@@ -135,26 +135,26 @@ export class LoginPage {
   }
   setTouchId() {
     if (this._platform.is("cordova")) {
-        this._touch.isAvailable().then((type:any)=>{
-          console.log('validando tipo...');
-          console.log(type);
-          if(type=='face')
+      this._touch.isAvailable().then((type: any) => {
+        console.log('validando tipo...');
+        console.log(type);
+        if (type == 'face')
           this.faceID = true;
-          else
-          this.touchID=true;
-        })       
-        this._touch.has("fingerprint").catch(err => {
-          this.session.setUserFingerPrint(this.user.userAction);
-          this._touch.save("fingerprint", this.user.userPass);
-        })
-    
+        else
+          this.touchID = true;
+      })
+      this._touch.has("fingerprint").catch(err => {
+        this.session.setUserFingerPrint(this.user.userAction);
+        this._touch.save("fingerprint", this.user.userPass);
+      })
+
     }
   }
 
 
   async GetPartnerConnections() {
     //Llena la variable de url de conexion ya sea desde la sesión o desde la bd
-    let promise = new Promise((resolve,reject)=>{
+    let promise = new Promise((resolve, reject) => {
       this.session.getPartnerConnections().then((resp: GnConex) => {
         console.log(resp);
         if (resp) {
@@ -171,20 +171,20 @@ export class LoginPage {
             console.log(resp);
             this.session.setPartnerConnections(resp);
             this.session.SetClientUrl(resp.CNX_IPSR);
-            this.GetEmpCodiSession().then(()=>{
+            this.GetEmpCodiSession().then(() => {
               resolve();
             })
-            this.logo =  this._dom.bypassSecurityTrustHtml(resp.CNX_LOGO);
+            this.logo = this._dom.bypassSecurityTrustHtml(resp.CNX_LOGO);
             this.backgroundColor = resp.CNX_BACK;
 
           })
         }
       })
     })
-      return promise;
+    return promise;
   }
   GetEmpCodiSession() {
-    let promise = new Promise((resolve,reject)=>{
+    let promise = new Promise((resolve, reject) => {
       this.session.getEmpCodiSession().then(resp => {
         if (resp) {
           this.session.SetClientEmpCodi(resp);
@@ -197,7 +197,7 @@ export class LoginPage {
           modalCompanies.onDidDismiss((resp: GnEmpre) => {
             this.session.SetClientEmpCodi(resp.Emp_Codi);
             this.session.setEmpCodiSession(resp.Emp_Codi);
-              resolve();
+            resolve();
           })
         }
       })

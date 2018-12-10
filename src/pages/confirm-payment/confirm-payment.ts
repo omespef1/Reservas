@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angular';
 //pages
 import {BookingPage } from '../booking/booking';
 //models
@@ -9,6 +9,7 @@ import {PaymentProvider} from '../../providers/payment/payment';
 //clases
 import {general} from '../../class/general/general';
 import {sessions} from '../../class/sessions/sessions';
+import { ThirdPartiesPage } from '../third-parties/third-parties';
 
 /**
  * Generated class for the ConfirmPaymentPage page.
@@ -29,7 +30,7 @@ export class ConfirmPaymentPage {
   offlineBookings:bookingInfo[];
   user:user;
   constructor(public navCtrl: NavController, public navParams: NavParams,private _payment:PaymentProvider,
-    private _general:general,private _sesion:sessions) {
+    private _general:general,private _sesion:sessions,private _view:ViewController) {
   }
 
   ionViewWillEnter(){
@@ -67,10 +68,22 @@ export class ConfirmPaymentPage {
  
   }
   goReservas(){
-    this.navCtrl.push(BookingPage);
+   this._view.dismiss();
   }
-  print(){
-    this._general.showToastMessage('Comprobante generado','bottom');
+  async print(){
+    const voucher : transaction = <transaction>await this._payment.CreateVoucher(this.offlineBookings)
+    if(voucher!=null &&  voucher.Retorno==1)
+        this._general.showToastMessage(voucher.TxtError,'bottom');
+        if(voucher!=null &&  voucher.Retorno==0){
+          this._general.showToastMessage('Se envió un email con los datos de la transacción!','bottom');
+          this.offlineBookings.forEach(offline => {
+            this._sesion.removeFromShoppingList(offline);
+            this.navCtrl.insert(0,BookingPage);
+            this.navCtrl.popToRoot();
+          });
+         
+        }
+       
     this.goReservas();
   }
 

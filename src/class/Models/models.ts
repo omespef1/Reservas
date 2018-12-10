@@ -170,6 +170,7 @@ export interface GnDigfl {
   dig_nomb: string;
 }
 export interface bookingInfo {
+  Emp_Codi:number,
   Cla_nomb: string;
   Cla_foto: string;
   Esp_imag: string;

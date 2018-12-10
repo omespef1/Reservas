@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 //provider
 import {ComunicationsProvider} from '../comunications/comunications';
+import { bookingInfo, transaction } from '../../class/models/models';
 
 /*
   Generated class for the PaymentProvider provider.
@@ -22,5 +23,7 @@ export class PaymentProvider {
   GetTransactionInformation(ticketId:number){
     return this._comu.Get(`Pagos/${ticketId}`,true,'Consultando el estado de la transacción...',false);
   }
-
+  CreateVoucher(bookings:bookingInfo[]){
+  return this._comu.Put(bookings,'Pagos','Generando voucher...');
+  }
 }
