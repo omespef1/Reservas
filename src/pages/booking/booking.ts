@@ -31,6 +31,7 @@ export class BookingPage {
   user: any;
   showCar:boolean=false;
   bookings: any[];
+  carItemsCount:number=0;
   bookingsList: any[];
   cancelValue: number[] = [];
   statesToPay = ['NO AUTORIZADO', 'EXPIRADO', 'FALLIDO'];
@@ -178,8 +179,10 @@ export class BookingPage {
   async verifyItemsCar(){    
     let list :any[] = <any[]>  await this.session.getShoppingList();
     if(list!=null && list!=undefined){
-      if(list.length>0)
+      if(list.length>0){
+      this.carItemsCount = list.length
         this.showCar=true;
+      }
        else{
         this.showCar=false;
        }

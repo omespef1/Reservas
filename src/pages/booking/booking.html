@@ -10,6 +10,14 @@
     <ion-title>
       Mis Reservas
     </ion-title>
+    <ion-buttons end>
+        
+        <button  *ngIf="showCar" (click)="goCar()" id="notification-button"  ion-button clear>
+            <ion-icon name="md-cart">
+              <ion-badge id="notifications-badge" color="danger">{{carItemsCount}}</ion-badge>
+            </ion-icon>              
+        </button>
+      </ion-buttons>
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-searchbar (ionChange)="getItems($event.value)" [showCancelButton]="shouldShowCancel" placeholder="Buscar reserva">
@@ -25,19 +33,18 @@
   </ion-refresher>
   <ion-fab top right edge>
     <button ion-fab (click)="newBooking()" class="element">
+        
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <ion-fab bottom right>
-      <button *ngIf="showCar"  ion-fab id="cart-btn" (click)="goCar()" color="danger"  class="element">
-          <ion-icon  name="cart"></ion-icon>          
-      </button>
+  
+    
 
     <!-- <button id="cart-btn" ion-fab icon-only (click)="cart()">
         <ion-icon name="cart"></ion-icon>
         <ion-badge id="cart-badge">26</ion-badge> -->
 
-  </ion-fab>
+ 
   <ion-card *ngFor="let booking of bookingsList;let i =index">
     <ion-card-header>
 
@@ -60,21 +67,21 @@
         <h2>Espacio</h2>
         <p>{{booking.Esp_nomb}}</p>
       </ion-item>
-      <ion-item>
+      <ion-item class="labelColorBlue">
         <!-- <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{booking.Ter_foto}}">
         </ion-thumbnail> -->
-        <ion-icon color="primary" item-start name='person'></ion-icon>
+        <ion-icon  item-start name='person'></ion-icon>
         <h2>Tercero</h2>
         <p>{{booking.Ter_noco}}</p>
       </ion-item>
-      <ion-item>
-        <ion-icon color="primary" item-start name='clock'></ion-icon>
+      <ion-item class="labelColorBlue">
+        <ion-icon  item-start name='clock'></ion-icon>
         <h2>Termina a la(s)</h2>
         <p>{{booking.FechaFin | digitalDate}}</p>
       </ion-item>   
-      <ion-item>
-        <ion-icon name="logo-usd" color="primary" item-start></ion-icon>
+      <ion-item class="labelColorBlue">
+        <ion-icon name="logo-usd" item-start></ion-icon>
         <h2>Valor</h2>
         <ion-badge color="danger">
           <strong>{{booking.res_valo}}</strong> 
