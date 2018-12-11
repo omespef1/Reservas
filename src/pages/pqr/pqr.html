@@ -30,7 +30,7 @@
 </ion-refresher-content>
 </ion-refresher>
   <ion-list no-lines>
-<div  no-border  *ngFor="let pqr of pqrsList; let i = index">
+<div  no-border  *ngFor="let pqr of pqrsList; let i = index" class="element-aparecer">
         <ion-item class="labelColorRed" (click)="toggleSection(pqr)" detail-none>
         <ion-badge *ngIf="pqr.seguimientos.length>0" item-end>{{pqr.seguimientos.length}}</ion-badge>
          <ion-icon name="arrow-dropdown-circle" item-end *ngIf="!pqr.open && pqr.seguimientos.length>0"></ion-icon>

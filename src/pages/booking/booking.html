@@ -12,7 +12,7 @@
     </ion-title>
     <ion-buttons end>
         
-        <button  *ngIf="showCar" (click)="goCar()" id="notification-button"  ion-button clear>
+        <button  *ngIf="showCar" (click)="goCar()" id="notification-button"  ion-button clear class="elementCar">
             <ion-icon name="md-cart">
               <ion-badge id="notifications-badge" color="danger">{{carItemsCount}}</ion-badge>
             </ion-icon>              
@@ -84,7 +84,7 @@
         <ion-icon name="logo-usd" item-start></ion-icon>
         <h2>Valor</h2>
         <ion-badge color="danger">
-          <strong>{{booking.res_valo}}</strong> 
+          <strong>{{booking.res_valo  | currency:'COP'}}</strong> 
         </ion-badge>
       </ion-item>
       <ion-item (click)="showDetailsPayment(booking)" tappable button detail-push *ngIf="booking.payment != undefined">
@@ -95,7 +95,7 @@
         </ion-badge>
       </ion-item>
       <ion-item *ngIf="booking.cla_ppag =='S' && booking.Res_vige=='S' && (booking.payment == undefined ||  statesToPay.indexOf(booking.payment.pap_esta) != -1)">
-        <button ion-button block large color="danger" (click)="AddCart(booking)">
+        <button class="element-animation" ion-button block large color="danger" (click)="AddCart(booking)">
           <ion-icon name="cart" item-start></ion-icon>
           Agregar al carrito
         </button>

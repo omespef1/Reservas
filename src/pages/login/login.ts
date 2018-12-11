@@ -78,11 +78,12 @@ export class LoginPage {
     await this.GetPartnerConnections();
     const emp_codi = await <any>this.session.getEmpCodiSession();
     console.log(emp_codi);
+    this.GetTouchId();
     await this.checkForGnDigfl();
     console.log('digfl');
     await this.CheckLastVersion();
     console.log('version');
-    this.GetTouchId();
+    
 
   }
 
