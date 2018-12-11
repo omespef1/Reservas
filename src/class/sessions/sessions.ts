@@ -31,6 +31,7 @@ export class sessions {
     this.nativeStorage.remove('reasonsPqr');
     this.nativeStorage.remove('ambientPqr');
   }
+
   erraseAlldata() {
     this.nativeStorage.remove('secureUser');
     this.nativeStorage.remove('EmpCodi');
@@ -75,16 +76,16 @@ export class sessions {
 
 
   GetClientUrl() {
-    //return this.clientUrl;
+    return this.clientUrl;
     //return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
-    return 'http://localhost:4835/api/';
+    //return 'http://localhost:4835/api/';
   }
   SetClientUrl(value: string) {
     this.clientUrl = value;
   }
   GetClientEmpCodi() {
-    return 102;
-    //return this.emp_codi;
+   // return 102;
+    return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {
     this.emp_codi = value;
@@ -144,7 +145,9 @@ export class sessions {
        }
     })
   }
-
+  removeCar(){
+    this.nativeStorage.remove('shoppingList');
+  }
   getAvailableBiometric(){
     return  this._touch.isAvailable();
   }

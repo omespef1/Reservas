@@ -54,10 +54,7 @@ export class CarPage {
     this.navCtrl.setRoot(BookingPage);
   }
   payOffline() {
-    this.bookingCar.forEach(booking => {
-      console.log('borrado');
-      this._sesion.removeFromShoppingList(booking);
-    })
+    this._sesion.removeCar();
     let offLinePayment = { 'online': false, 'bookings': this.bookingCar }
     this.navCtrl.push(ConfirmPaymentPage, { 'payment': offLinePayment });
 
@@ -81,13 +78,10 @@ export class CarPage {
     this._payment.CreateTransactionPayment(_pay).then((resp: transaction) => {
       if (resp != null) {
         if (resp.Retorno == 0) {
+          //Elimina el carrito de compra
+          this._sesion.removeCar();
           this._general.ShowMessageAlertAction('Pasaralea de pago', 'Se abrirá una ventana de su navegador para realizar el pago, una vez finalice la transacción asegúrese de volver a la aplicación.')
-            .then((touch) => {
-
-              this.bookingCar.forEach(booking => {
-                console.log('borrado');
-                this._sesion.removeFromShoppingList(booking);
-              })
+            .then((touch) => {            
               console.log(resp);
               this.tickeyID = resp.ObjTransaction.TicketId;
               this._general.openBrowser(resp.ObjTransaction.eCollectUrl)

@@ -95,7 +95,7 @@
         </ion-badge>
       </ion-item>
       <ion-item *ngIf="booking.cla_ppag =='S' && booking.Res_vige=='S' && (booking.payment == undefined ||  statesToPay.indexOf(booking.payment.pap_esta) != -1)">
-        <button class="element-animation" ion-button block large color="danger" (click)="AddCart(booking)">
+        <button class="element-animation" ion-button block large color="danger" tappable (click)="AddCart(booking)">
           <ion-icon name="cart" item-start></ion-icon>
           Agregar al carrito
         </button>

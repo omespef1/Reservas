@@ -187,6 +187,9 @@ export class BookingPage {
         this.showCar=false;
        }
     }
+    else{
+      this.showCar=false;
+    }
   
   }
 
