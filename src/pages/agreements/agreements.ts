@@ -39,7 +39,7 @@ export class AgreementsPage {
   openUrl(myAgreement: agreement) {
 
     //Si el link de página web viene vacío intenta abre los links definidos paera cada plataforma en programa SAEOSAPP
-    if (myAgreement.Osa_Link.length == 0) {
+    if (myAgreement.Osa_Link.length  <=1) {
       if (this._platform.is('android'))
         this._general.openUrl(myAgreement.Osa_Lian);
       if (this._platform.is('ios'))

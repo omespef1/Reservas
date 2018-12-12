@@ -76,9 +76,9 @@ export class sessions {
 
 
   GetClientUrl() {
-    return this.clientUrl;
+    //return this.clientUrl;
     //return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
-    //return 'http://localhost:4835/api/';
+    return 'http://localhost:4835/api/';
   }
   SetClientUrl(value: string) {
     this.clientUrl = value;
