@@ -23,7 +23,7 @@ export class PartnerProvider {
     let UserObj :any= {  Sbe_ncar:'',Soc_pass:'' ,Emp_codi:this._sesion.GetClientEmpCodi() }
     UserObj.Sbe_ncar = user;
     UserObj.Soc_pass = password;
-    return this._comunications.Post(UserObj,'SoSocio');
+    return this._comunications.Post(UserObj,'SoSocio','Verificando datos...');
   }
 
   GetPartnerRegister(partner:any):Promise<any>{

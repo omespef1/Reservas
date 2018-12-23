@@ -47,10 +47,14 @@ export class MyApp {
       this._sessions.setLoggedIn(user);
       this.nav.setRoot(TabsPage);
       this._pqr.GetGnItems(327).then((resp: any) => {
+        if(resp!=null){
         this._sessions.setReasonsPrq(resp.ObjTransaction);
+        }
       })
       this._pqr.GetGnArbol(3).then((resp: any) => {
+        if(resp!=null){
         this._sessions.setAmbientPqr(resp.ObjTransaction);
+        }
       })
 
     })
