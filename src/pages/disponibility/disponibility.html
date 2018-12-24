@@ -38,12 +38,12 @@
   
    <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
               <ion-list  has-bouncing="false"  overflow-scroll="false" no-lines>
-                    <ion-item  class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
+                    <ion-item  tappable class="labelColorBlue" *ngFor="let event of selectedDate?.events" (click)="EventSelected(event)" detail-push>
 
                       <h3><b> Desde la(s)  {{event.startTime|date:'HH:mm'}} Hasta la(s) {{event.endTime|date:'HH:mm'}}</b></h3>
                         <ion-badge *ngIf="!isToday" color="primary">  {{event.startTime|date: 'dd/MM/yyyy'}}</ion-badge>
                           <ion-badge *ngIf="isToday" color="primary">  HOY</ion-badge>
-                          <h3> {{event.title}}</h3>
+                          <h3> Disponible!!</h3>
                           <p>Toca para reservar</p>
                            <ion-icon name="clock" item-start></ion-icon>
                     </ion-item>

@@ -89,7 +89,7 @@ export class DisponibilityPage {
         //Convertimos las fechas de la bd a objetos entendibles para el source del componente de caledndario
         for (let disp of eventsAvailable) {
           events.push({
-            title: 'Disponible',
+            title: `${moment(disp.FechaInicio).format('hh:mm A')}- ${moment(disp.FechaFin).format('hh:mm A')}`,
             startTime:new Date(moment(disp.FechaInicio).toISOString()),
             endTime: new Date(moment(disp.FechaFin).toISOString()),
             allDay: false,
@@ -113,6 +113,7 @@ export class DisponibilityPage {
     this.viewTitle = title;
     console.log(title);
     console.log('titulo cambiado');
+    if(this.calendar.mode=="month")
     this.loadEvents();
 
   }

@@ -163,6 +163,7 @@ export class LoginPage {
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
           this.backgroundColor = resp.CNX_BACK;
+          console.log(resp.CNX_BACK);
           resolve();
         }
         else {
@@ -177,6 +178,7 @@ export class LoginPage {
             })
             this.logo = this._dom.bypassSecurityTrustHtml(resp.CNX_LOGO);
             this.backgroundColor = resp.CNX_BACK;
+            console.log(resp.CNX_BACK);
 
           })
         }
@@ -235,8 +237,10 @@ export class LoginPage {
       })
   }
   async checkForGnDigfl() {
+  
     const digfl: any = <any>await this._companies.GetGnDigfl('SAE000001')
-    if (digfl.Retorno == 0) {
+    console.log(digfl);
+    if (digfl.ObjTransaction!=null &&  digfl.Retorno == 0) {
       let digFl: GnDigfl = digfl.ObjTransaction;
       if (digFl.dig_valo.toUpperCase() == "S")
         this.placeHolderLogin = "Número de identificación";

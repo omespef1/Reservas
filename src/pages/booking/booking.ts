@@ -58,7 +58,7 @@ export class BookingPage {
   GetBooking() {
     this._booking.GetBooking(this.user).then((resp: any) => {
       console.log(resp);
-      if (resp.ObjTransaction != null) {
+      if (resp != null) {
         this.bookings = resp.ObjTransaction;
         console.log(this.bookings);
         this.initializeItems();
@@ -77,8 +77,11 @@ export class BookingPage {
 
   doRefresh(refresher: Refresher) {
     this._booking.GetBooking(this.user).then((resp: any) => {
-      this.bookings = resp.ObjTransaction;
-      this.initializeItems();
+      if(resp!=null){
+        this.bookings = resp.ObjTransaction;
+        this.initializeItems();
+      }
+      
       refresher.complete();
       // this._general.showToastMessage('Reservas actualizadas!', 'bottom')
     }).catch(err => {

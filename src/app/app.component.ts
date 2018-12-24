@@ -32,6 +32,9 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.listenToLoginEvents();
+      platform.registerBackButtonAction(() => {
+        console.log("backPressed 1");
+      },1);
 
     });
   }
