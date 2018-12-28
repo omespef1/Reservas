@@ -8,6 +8,7 @@ import {HistoryPage} from '../history/history';
 import {PqrPage} from '../pqr/pqr';
 import {SettingsPage} from '../settings/settings';
 import {AgreementsPage} from '../agreements/agreements';
+import {EventsPage} from '../events/events';
 import {CarPage} from '../car/car';
 
 @Component({
@@ -19,7 +20,8 @@ export class TabsPage {
   tab2Root = HistoryPage;
   tab3Root = PqrPage;
   tab4Root = AgreementsPage;
-  tab5Root = SettingsPage;
+  tab5Root = EventsPage;
+  tab6Root = SettingsPage;
 
 
   constructor() {

@@ -63,6 +63,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import { PaymentProvider } from '../providers/payment/payment';
+import { EventsProvider } from '../providers/events/events';
+import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
 
 
  @NgModule({
@@ -160,6 +162,8 @@ import { PaymentProvider } from '../providers/payment/payment';
     CompaniesProvider,
     InAppBrowser,
     PaymentProvider,
+    EventsProvider,
+    MainTemplatesProvider,
 
   ]
 })
