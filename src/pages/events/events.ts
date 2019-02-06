@@ -6,6 +6,9 @@ import { EventsProvider } from '../../providers/events/events';
 import { user, transaction } from '../../class/Models/models';
 //class
 import { sessions } from '../../class/sessions/sessions'
+//pages
+import {NewEventPage} from '../new-event/new-event';
+
 
 /**
  * Generated class for the EventsPage page.
@@ -25,7 +28,7 @@ export class EventsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventsPage');
+    this.GetEvents();
   }
 
   async GetEvents() {
@@ -35,6 +38,9 @@ export class EventsPage {
     if (eventsTransaction != null && eventsTransaction.Retorno == 0) {
       this.events = eventsTransaction.ObjTransaction;
     }
+  }
+  NewEvent(){
+    this.navCtrl.push(NewEventPage);
   }
 
 }

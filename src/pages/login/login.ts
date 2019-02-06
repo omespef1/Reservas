@@ -47,6 +47,10 @@ export class LoginPage {
   backgroundColor: string;
   placeHolderLogin: string = "Nro. Acción"
   private codeConfirm: string = "";
+  private colorPri:string;
+  private colorSeg:string;
+  private colorTer:string;
+  private fonClar:string;
   private IsLastVersion = true;
 
   constructor(
@@ -163,7 +167,11 @@ export class LoginPage {
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
           this.backgroundColor = resp.CNX_BACK;
-          console.log(resp.CNX_BACK);
+          this.colorPri = resp.CNX_CPRI;
+          this.colorSeg = resp.CNX_CSEG;
+          this.colorTer = resp.CNX_CTER;
+          this.fonClar = resp.CNX_FCLA;
+          console.log(resp);
           resolve();
         }
         else {
@@ -176,8 +184,12 @@ export class LoginPage {
             this.GetEmpCodiSession().then(() => {
               resolve();
             })
-            this.logo = this._dom.bypassSecurityTrustHtml(resp.CNX_LOGO);
+            this.logo = resp.CNX_LOGO;
             this.backgroundColor = resp.CNX_BACK;
+            this.colorPri = resp.CNX_CPRI;
+            this.colorSeg = resp.CNX_CSEG;
+            this.colorTer = resp.CNX_CTER;
+            this.fonClar = resp.CNX_FCLA;
             console.log(resp.CNX_BACK);
 
           })

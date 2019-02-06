@@ -21,11 +21,16 @@
     </ion-item>
    <ion-item>
      <ion-label stacked >Hora inicial</ion-label>
-     <ion-datetime displayFormat="H" pickerFormat="H" [(ngModel)]="myDate"></ion-datetime>
+     <ion-datetime displayFormat="HH:MM" pickerFormat="HH:MM" [(ngModel)]="myDate"></ion-datetime>
    </ion-item>
+   <ion-item>
+    <ion-label stacked >Hora Final</ion-label>
+    <ion-datetime displayFormat="HH:MM" pickerFormat="HH:MM" [(ngModel)]="myDate"></ion-datetime>
+  </ion-item>
   </ion-list>
   <button ion-button block>
       <ion-icon name="check"></ion-icon>
+      &nbsp;Continuar
   </button>
 
 </ion-content>

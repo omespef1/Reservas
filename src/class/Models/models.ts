@@ -154,6 +154,10 @@ export interface GnConex {
   CNX_BACK: string;
   CNX_LOGO: string;
   CNX_LINK: string;
+  CNX_CPRI:string;
+  CNX_CSEG:string;
+  CNX_CTER:string;
+  CNX_FCLA:string;
 }
 export interface GnEmpre {
   Emp_Codi: number;

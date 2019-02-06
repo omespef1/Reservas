@@ -35,6 +35,8 @@ import {CompaniesPage} from '../pages/companies/companies';
 import {PartnerConnectionsPage} from '../pages/partner-connections/partner-connections';
 import {CarPage} from '../pages/car/car';
 import {ConfirmPaymentPage} from '../pages/confirm-payment/confirm-payment';
+import {EventsPage} from '../pages/events/events';
+import {NewEventPage} from '../pages/new-event/new-event';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -49,6 +51,7 @@ import { CompaniesProvider } from '../providers/companies/companies';
 import { AgreementsProvider } from '../providers/agreements/agreements';
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
+import {AccordionComponent} from '../components/accordion/accordion';
 //clases
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
@@ -95,7 +98,10 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     CompaniesPage,
     PartnerConnectionsPage,
     CarPage,
-    ConfirmPaymentPage
+    ConfirmPaymentPage,
+    EventsPage,
+    NewEventPage,
+    AccordionComponent
   ],
   imports: [
     FormsModule,
@@ -137,7 +143,10 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     CompaniesPage,
     PartnerConnectionsPage,
     CarPage,
-    ConfirmPaymentPage
+    ConfirmPaymentPage,
+    EventsPage,
+    NewEventPage,
+    AccordionComponent
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

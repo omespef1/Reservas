@@ -30,10 +30,10 @@ export class BookingProvider {
     return this._comunications.Post(booking, `reserva/cancelar`,'Cancelando reserva...');
   }
   GetDisponibility(booking:disponibilityRequest){
-    return this._comunications.Get(`Agenda?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}&year=${booking.year}&month=${booking.month+1}&esp_mdit=${booking.esp_mdit}&ter_codi=${booking.ter_codi}&Op_Disp=${booking.Op_Disp}`,true,'Verificando disponibilidad del mes, esto podría tardar unos minutos...')
+    return this._comunications.Get(`Agenda?Cla_cont=${booking.Cla_cont}&pro_cont=${booking.pro_cont}&year=${booking.year}&month=${booking.month+1}&esp_mdit=${booking.esp_mdit}&ter_codi=${booking.ter_codi}&Op_Disp=${booking.Op_Disp}`,true,'Verificando disponibilidad del mes, esto podría tardar unos segundos...')
   }
   SetBooking(booking:any){
-    return this._comunications.Post(booking,'reserva','Reservando...Esto podría tardar 1 minuto.');
+    return this._comunications.Post(booking,'reserva','Reservando...Esto podría tardar unos segundos...');
   }
 
 }

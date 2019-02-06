@@ -19,8 +19,8 @@ export class TabsPage {
   tab1Root = BookingPage;
   tab2Root = HistoryPage;
   tab3Root = PqrPage;
-  tab4Root = AgreementsPage;
-  tab5Root = EventsPage;
+  tab4Root = EventsPage;
+  tab5Root = AgreementsPage;
   tab6Root = SettingsPage;
 
 

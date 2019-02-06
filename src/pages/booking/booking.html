@@ -43,17 +43,9 @@
     <!-- <button id="cart-btn" ion-fab icon-only (click)="cart()">
         <ion-icon name="cart"></ion-icon>
         <ion-badge id="cart-badge">26</ion-badge> -->
-
  
-  <ion-card *ngFor="let booking of bookingsList;let i =index">
-    <ion-card-header>
-
-
-      #{{booking.Res_nume}} - {{booking.FechaInicio | date:'dd/MM/yyyy'}} : {{booking.FechaInicio | digitalDate }}
-      <ion-icon item-end name="arrow-dropdown"></ion-icon>
-    </ion-card-header>
-    <ion-card-content class="animate-in-primary">
-      <ion-item class="labelColorRed">
+ <accordion [num]="booking.Res_nume" [start]="booking.FechaInicio" *ngFor="let booking of bookingsList;let i =index">
+    <ion-item class="labelColorRed">
         <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">
         </ion-thumbnail>
@@ -110,7 +102,18 @@
           <ion-icon color="danger" range-right name="close-circle"></ion-icon>
         </ion-range>
       </ion-item>
+ </accordion>
+  <!-- <ion-card >
+
+    <ion-card-header>
+
+
+      #{{booking.Res_nume}} - {{booking.FechaInicio | date:'dd/MM/yyyy'}} : {{booking.FechaInicio | digitalDate }}
+      <ion-icon item-end name="arrow-dropdown"></ion-icon>
+    </ion-card-header>
+    <ion-card-content class="animate-in-primary">
+      
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
 </ion-content>

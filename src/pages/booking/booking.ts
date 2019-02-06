@@ -9,6 +9,7 @@ import { BookingProvider } from '../../providers/booking/booking';
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
 import { DigitalDatePipe } from '../../pipes/digital-date/digital-date';
+
 //models
 
 import { bookingInfo } from '../../class/Models/models';
