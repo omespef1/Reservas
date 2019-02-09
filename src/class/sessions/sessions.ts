@@ -76,7 +76,7 @@ export class sessions {
 
 
   GetClientUrl() {
-   // return this.clientUrl;
+    //return this.clientUrl;
    // return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
    return 'http://localhost/SevenReservas/api/';
   }
@@ -85,7 +85,7 @@ export class sessions {
   }
   GetClientEmpCodi() {
    return 102;
-   // return this.emp_codi;
+    //return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {
     this.emp_codi = value;
