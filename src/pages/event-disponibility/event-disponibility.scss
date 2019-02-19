@@ -1,3 +1,23 @@
 page-event-disponibility {
-
+    .currentDate{
+        width:25px;
+        height: 25px;
+        display: inline-block;
+        background-color: red;
+      }
+      .availableDay{
+        width:25px;
+        height: 25px;
+        display: inline-block;
+        background-color: gray;
+      }
+      .selectedDay{
+        width:25px;
+        height: 25px;
+        display: inline-block;
+        background-color: green;
+      }
+      .CalendarConvention{
+        display: inline-block;
+      }
 }

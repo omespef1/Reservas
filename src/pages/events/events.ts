@@ -34,7 +34,7 @@ export class EventsPage {
   async GetEvents() {
       //Carga los eventos del usuario según la fecha de ingreso al app
     const localUser: user = <user>await this._sesion.GetLoggedin();
-    let eventsTransaction: transaction = <transaction>await this._events.GetEvents(localUser.Soc_cont, localUser.Sbe_cont, localUser.Mac_nume, new Date());
+    let eventsTransaction: transaction = <transaction>await this._events.GetEvents(localUser.Soc_cont, localUser.Sbe_codi, localUser.Mac_nume1);
     if (eventsTransaction != null && eventsTransaction.Retorno == 0) {
       this.events = eventsTransaction.ObjTransaction;
     }

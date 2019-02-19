@@ -101,6 +101,25 @@ export interface booking {
   Cla_cont: number;
   Esp_mdit: string;
 }
+export class booking {
+  Emp_codi: number;
+  Res_fini: Date;
+  Res_fina: Date;
+  Soc_cont: number;
+  Mac_nume: string;
+  Sbe_cont: number;
+  Esp_cont: number;
+  Res_numd: number;
+  Ite_cont: number;
+  Ter_codi: number;
+  Res_tdoc: number;
+  Res_dinv: number;
+  Res_ninv: string;
+  Res_inac: string;
+  Productos: any[];
+  Cla_cont: number;
+  Esp_mdit: string;
+}
 export class disponibilityRequest {
   public Cla_cont: number = 0;
   public pro_cont: number = 0;
@@ -120,6 +139,24 @@ export class disponibilityRequest {
 
 
 }
+
+export class disponibilityRequestEvent { 
+  public dho_hori:string;
+  public dho_horf:string;
+  public esp_capa:number;
+  public dho_mesp:number;
+  public dhop_anop:number;
+  public emp_codi:number;
+
+}
+
+export class disponibilityResponseEvent{ 
+  public esp_cont:number;
+  public esp_nomb:string;
+  public dho_hori:string;
+
+}
+
 
 export class factory {
   public class: any;

@@ -5,6 +5,7 @@ import { ComunicationsProvider } from '../../providers/comunications/comunicatio
 import { ClassSpacesProvider } from '../class-spaces/class-spaces';
 //clases
 import {disponibilityRequest} from '../../class/models/models';
+import {disponibilityRequestEvent} from '../../class/models/models';
 
 
 
@@ -34,6 +35,9 @@ export class BookingProvider {
   }
   SetBooking(booking:any){
     return this._comunications.Post(booking,'reserva','Reservando...Esto podría tardar unos segundos...');
+  }
+  GetDisponibilityEvents(booking:disponibilityRequestEvent){
+    return this._comunications.Get(`Agenda/GetCotiz?dho_hori=${booking.dho_hori}&dho_horf=${booking.dho_horf}&dho_mesp=${booking.dho_mesp}&dho_anop=${booking.dhop_anop}&esp_capa=${booking.esp_capa}`,true,'Verificando disponibilidad del mes, esto podría tardar unos segundos...',true)
   }
 
 }

@@ -19,12 +19,18 @@
 
 <ion-content padding>
 
-   <ion-list >
-     <ion-item *ngFor="let item of events ">
-       <ion-icon item-start name="trash"></ion-icon>
-       <h2>{{item.eve_nomb}}</h2>
-       <p>{{item.eve_fein | date : 'dd/mm/yyyy hh:mm'}}</p>
-     </ion-item>
-   </ion-list>
+  <ion-list no-lines>
+    <ion-item-group no-border>
+      <ion-item-sliding #slidingItem  class="FlowRed"  *ngFor="let item of events">
+        <button ion-item (click)="seeDetails(item)">
+      <h3>Número {{item.cot_nume}}</h3>
+      <p>
+      {{item.cot_valo}}
+      </p>
+    </button>   
+      </ion-item-sliding>
+
+    </ion-item-group>
+</ion-list>
 
 </ion-content>

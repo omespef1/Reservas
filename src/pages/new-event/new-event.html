@@ -17,20 +17,21 @@
   <ion-list >  
     <ion-item>
       <ion-label stacked >Cantidad Asistentes</ion-label>
-      <ion-input type="number" ></ion-input>
+      <ion-input type="number" [(ngModel)]="myEvent.esp_capa"></ion-input>
+      
     </ion-item>
    <ion-item>
      <ion-label stacked >Hora inicial</ion-label>
-     <ion-datetime displayFormat="HH:MM" pickerFormat="HH:MM" [(ngModel)]="myDate"></ion-datetime>
+     <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"  [min]="minDate" [(ngModel)]="myEvent.dho_hori" [doneText]="doneText" minuteValues="0,15,30,45"></ion-datetime>
    </ion-item>
    <ion-item>
     <ion-label stacked >Hora Final</ion-label>
-    <ion-datetime displayFormat="HH:MM" pickerFormat="HH:MM" [(ngModel)]="myDate"></ion-datetime>
+    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [min]="myEvent.dho_hori" [(ngModel)]="myEvent.dho_horf" [doneText]="doneText" minuteValues="0,15,30,45"></ion-datetime>
   </ion-item>
   </ion-list>
-  <button ion-button block>
+  <button ion-button block (click)="goDisponibility()">
       <ion-icon name="check"></ion-icon>
-      &nbsp;Continuar
+      &nbsp;Ver disponibilidad
   </button>
 
 </ion-content>

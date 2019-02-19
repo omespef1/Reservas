@@ -1,3 +1,15 @@
 page-events {
 
+    .FlowGreen ion-label {
+        border-left: 2px solid green;
+        padding-left: 10px;
+    }
+    .FlowRed ion-label {
+          border-left: 2px solid red;
+          padding-left: 10px;
+      }
+      .FlowBlue ion-label {
+            border-left: 2px solid blue;
+            padding-left: 10px;
+        }
 }

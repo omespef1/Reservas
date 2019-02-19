@@ -30,7 +30,6 @@ import * as moment from 'moment';
 })
 export class DisponibilityPage {
   currentMonth:number;
-  previewMonth:number;
   newFactory: Ifactory;
   newBookingRequest = new disponibilityRequest();
   eventSource: any;
@@ -75,7 +74,7 @@ export class DisponibilityPage {
     var events = [];
     let eventsAvailable: DisponibilityTime[];
     this._booking.GetDisponibility(this.newBookingRequest).then((resp: transaction) => {
-      if (resp.ObjTransaction != null) {
+      if (resp != null && resp.ObjTransaction!=null) {
         console.log(resp.ObjTransaction);
         eventsAvailable = resp.ObjTransaction;
         if(ref)
@@ -100,12 +99,9 @@ export class DisponibilityPage {
           })
         }
         this.eventSource = events;
-
       }
     })
   }
-
-
   loadEvents() {
     this.GetDisponibility();
   }
@@ -147,6 +143,8 @@ export class DisponibilityPage {
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
     this.currentMonth = event.getMonth();
+    this.newBookingRequest.year = event.getFullYear();
+    this.newBookingRequest.month = event.getMonth();
   }
   onRangeChanged(ev) {
     console.log('rango cambiado');

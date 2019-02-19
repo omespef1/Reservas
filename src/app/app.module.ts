@@ -37,6 +37,8 @@ import {CarPage} from '../pages/car/car';
 import {ConfirmPaymentPage} from '../pages/confirm-payment/confirm-payment';
 import {EventsPage} from '../pages/events/events';
 import {NewEventPage} from '../pages/new-event/new-event';
+import {EventDisponibilityPage} from  '../pages/event-disponibility/event-disponibility';
+import {EventConfirmPage} from '../pages/event-confirm/event-confirm';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -101,7 +103,9 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     ConfirmPaymentPage,
     EventsPage,
     NewEventPage,
-    AccordionComponent
+    AccordionComponent,
+    EventDisponibilityPage,
+    EventConfirmPage
   ],
   imports: [
     FormsModule,
@@ -146,7 +150,9 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     ConfirmPaymentPage,
     EventsPage,
     NewEventPage,
-    AccordionComponent
+    AccordionComponent,
+    EventDisponibilityPage,
+    EventConfirmPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
