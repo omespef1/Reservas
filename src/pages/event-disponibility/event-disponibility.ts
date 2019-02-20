@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, UrlSerializer } from 'ionic-angular';
 //providers
 //
 //models
-import {disponibilityRequestEvent, transaction,disponibilityResponseEvent}  from '../../class/Models/models';
+import {disponibilityRequestEvent, transaction,disponibilityResponseEvent,booking, user}  from '../../class/Models/models';
 //providers
 import {BookingProvider}  from '../../providers/booking/booking';
 import { isRightSide } from 'ionic-angular/umd/util/util';
 import * as moment from 'moment';
+import {sessions} from '../../class/sessions/sessions';
 //pages
 import {EventConfirmPage} from '../event-confirm/event-confirm';
 
@@ -24,6 +25,7 @@ import {EventConfirmPage} from '../event-confirm/event-confirm';
   templateUrl: 'event-disponibility.html',
 })
 export class EventDisponibilityPage {
+  newBooking : booking = new booking();
   eventSource: any;
   formatWeekTitle: "MMMM yyyy, 'Semana' w'";
   noEventsLabel: string = "No hay disponibilidad para este día";
@@ -35,7 +37,7 @@ export class EventDisponibilityPage {
     locale: 'es-ES'
   };
   myEvent:disponibilityRequestEvent;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _booking:BookingProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _booking:BookingProvider,private _session:sessions) {
 
   }
 
@@ -57,6 +59,10 @@ export class EventDisponibilityPage {
             endTime: new Date(moment(new Date(disp.dho_hori).setHours(Number(this.myEvent.dho_horf.split(':')[0]),Number(this.myEvent.dho_horf.split(':')[1]))).toISOString()),
             allDay: false,  
             esp_cont: disp.esp_cont,   
+            esp_codi:disp.esp_codi,
+            cla_cont:disp.cla_cont,
+            cla_codi:disp.cla_codi,
+            arb_usuc:disp.arb_sucu,       
           })
         }
         this.eventSource = events;
@@ -74,12 +80,51 @@ export class EventDisponibilityPage {
   changeMode(mode) {
     this.calendar.mode = mode;
   }
-  onEventSelected(event) {
+   onEventSelected(event) {
     console.log('onEventSelected');
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);   
-
-    this.navCtrl.push(EventConfirmPage);
+    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title); 
+    this._session.GetLoggedin().then((resp:user)=>{
+      this.newBooking.Mac_nume = resp.Mac_nume;
+      this.newBooking.Sbe_cont = resp.Sbe_cont;
+      this.newBooking.Soc_cont = resp.Soc_cont;
+      this.newBooking.Ter_codi=0;
+      this.newBooking.Res_fini = event.startTime.toISOString();
+      this.newBooking.Res_fina =event.endTime.toISOString();
+      this.newBooking.Esp_cont = event.esp_cont;     
+      this.newBooking.Res_tdoc= 0,
+      this.newBooking.Res_dinv= 0,
+      this.newBooking.Res_ninv= "",
+      this.newBooking.Res_inac= "",
+      this.newBooking.Cla_cont= event.cla_cont;
+      this.newBooking.Esp_mdit= "N";
+      this.newBooking.arb_sucu= event.arb_sucu;               
+      this.navCtrl.push(EventConfirmPage,{'myBooking':this.newBooking,'event':event});
+    })
+ 
     
+  }
+
+  
+  EventSelected(event){
+    this._session.GetLoggedin().then((resp:user)=>{
+      this.newBooking.Mac_nume = resp.Mac_nume;
+      this.newBooking.Sbe_cont = resp.Sbe_cont;
+      this.newBooking.Soc_cont = resp.Soc_cont;
+      this.newBooking.Ter_codi=0;
+      this.newBooking.Res_fini = event.startTime.toISOString();
+      this.newBooking.Res_fina =event.endTime.toISOString();
+      this.newBooking.Esp_cont = event.esp_cont;     
+      this.newBooking.Res_tdoc= 0,
+      this.newBooking.Res_dinv= 0,
+      this.newBooking.Res_ninv= "",
+      this.newBooking.Res_inac= "",
+      this.newBooking.Cla_cont= event.cla_cont;
+      this.newBooking.Esp_mdit= "N";
+      this.newBooking.arb_sucu= event.arb_sucu;               
+      this.navCtrl.push(EventConfirmPage,{'myBooking':this.newBooking,'event':event});
+
+      
+    })
   }
   onCurrentDateChanged(event: Date) {
     console.log('onCurrentDateChanged');

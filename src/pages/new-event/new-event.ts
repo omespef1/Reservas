@@ -18,8 +18,9 @@ import * as moment from 'moment';
 })
 export class NewEventPage {
   myEvent: disponibilityRequestEvent = new  disponibilityRequestEvent();
-  minDate:any = moment(new Date()).format('DD-MM-YYYY HH:mm')
+  minDate:any = new Date().toISOString();
   doneText:string ="Hecho";
+  cancelText:string ="Cancelar"
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

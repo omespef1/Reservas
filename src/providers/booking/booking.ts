@@ -39,5 +39,8 @@ export class BookingProvider {
   GetDisponibilityEvents(booking:disponibilityRequestEvent){
     return this._comunications.Get(`Agenda/GetCotiz?dho_hori=${booking.dho_hori}&dho_horf=${booking.dho_horf}&dho_mesp=${booking.dho_mesp}&dho_anop=${booking.dhop_anop}&esp_capa=${booking.esp_capa}`,true,'Verificando disponibilidad del mes, esto podría tardar unos segundos...',true)
   }
+  GetProductBooking(esp_cont:number,res_fini:string,res_fina:string){
+    return this._comunications.Get(`Producto/GetProductosCotizacion?esp_cont=${esp_cont}&res_fini=${res_fini}&res_fina=${res_fina}`,true,'Cargando...',true);
+  }
 
 }

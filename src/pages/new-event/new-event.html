@@ -22,11 +22,11 @@
     </ion-item>
    <ion-item>
      <ion-label stacked >Hora inicial</ion-label>
-     <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"  [min]="minDate" [(ngModel)]="myEvent.dho_hori" [doneText]="doneText" minuteValues="0,15,30,45"></ion-datetime>
+     <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45"   [(ngModel)]="myEvent.dho_hori" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
    </ion-item>
    <ion-item>
     <ion-label stacked >Hora Final</ion-label>
-    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [min]="myEvent.dho_hori" [(ngModel)]="myEvent.dho_horf" [doneText]="doneText" minuteValues="0,15,30,45"></ion-datetime>
+    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45"  [(ngModel)]="myEvent.dho_horf" [doneText]="doneText" [cancelText]="cancelText"></ion-datetime>
   </ion-item>
   </ion-list>
   <button ion-button block (click)="goDisponibility()">

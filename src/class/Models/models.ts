@@ -100,6 +100,8 @@ export interface booking {
   Productos: any[];
   Cla_cont: number;
   Esp_mdit: string;
+  arb_sucu:number;
+  cotizacionExpress:boolean;
 }
 export class booking {
   Emp_codi: number;
@@ -154,7 +156,10 @@ export class disponibilityResponseEvent{
   public esp_cont:number;
   public esp_nomb:string;
   public dho_hori:string;
-
+  public esp_codi:string;
+  public cla_cont:number;
+  public cla_codi:string;
+  public arb_sucu:number;
 }
 
 

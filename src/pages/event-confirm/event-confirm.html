@@ -6,38 +6,28 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-icon name="" item-start></ion-icon>
-      <ion-label>Fecha y hora de ingreso</ion-label>
-      <ion-note></ion-note>
+      <ion-icon name="timer" item-start></ion-icon>
+      <ion-label>Ingreso</ion-label>
+      <ion-note item-end>{{MyEventBooking.Res_fini | date : 'dd-MM-yyyy HH:mm'}}</ion-note>
     </ion-item>
     <ion-item>
-      <ion-icon name="" item-start></ion-icon>
-      <ion-label>Fecha y hora de salida</ion-label>
-      <ion-note></ion-note>
-    </ion-item>
+      <ion-icon name="timer" item-start></ion-icon>
+      <ion-label>Salida</ion-label>
+      <ion-note item-end>{{MyEventBooking.Res_fina | date : 'dd-MM-yyyy HH:mm'}}</ion-note>
+    </ion-item>    
     <ion-item>
-      <ion-icon name="" item-start></ion-icon>
-      <ion-label>Socio/Beneficiario</ion-label>
-      <ion-note></ion-note>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="" item-start></ion-icon>
-      <ion-label>Sucursal</ion-label>
-      <ion-note></ion-note>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="" item-start></ion-icon>
+      <ion-icon name="albums" item-start></ion-icon>
       <ion-label>Espacio</ion-label>
-      <ion-note></ion-note>
-    </ion-item>
+      <ion-note item-end>{{mySelectedEvent.title}}</ion-note>
+    </ion-item>   
     <ion-item>
-      <ion-icon name="" item-start></ion-icon>
-      <ion-label>Medio de recepción</ion-label>
-      <ion-note></ion-note>
-    </ion-item>
+      <ion-icon name="cash" item-start></ion-icon>
+      <ion-label>Valor</ion-label>
+      <ion-note item-end>{{price | currency:'COP'}}</ion-note>
+    </ion-item>           
   </ion-list>
-  <button ion-button icon-left block>
-    <ion-icon name="trash"></ion-icon>
-    Reservar
+  <button class="element-animation" ion-button block large color="danger" tappable (click)="MakeBooking()">
+    <ion-icon name="checkmark-circle" item-start></ion-icon>
+   &nbsp; Realizar Reserva
   </button>
 </ion-content>

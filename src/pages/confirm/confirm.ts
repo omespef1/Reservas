@@ -70,6 +70,8 @@ export class ConfirmPage {
       Res_inac: "",
       Cla_cont: this.booking.class.Cla_cont,
       Esp_mdit: this.booking.product.esp_mdit,
+      arb_sucu:0,
+      cotizacionExpress:false,
       Productos: [
         {
           Pro_cont: this.booking.product.Pro_cont,
@@ -78,7 +80,6 @@ export class ConfirmPage {
 
         }
       ]
-
     }
      this._booking.SetBooking(newBooking).then((resp:any)=>{
        console.log(resp);
