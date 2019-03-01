@@ -83,29 +83,17 @@ export class EventDisponibilityPage {
    onEventSelected(event) {
     console.log('onEventSelected');
     console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title); 
-    this._session.GetLoggedin().then((resp:user)=>{
-      this.newBooking.Mac_nume = resp.Mac_nume;
-      this.newBooking.Sbe_cont = resp.Sbe_cont;
-      this.newBooking.Soc_cont = resp.Soc_cont;
-      this.newBooking.Ter_codi=0;
-      this.newBooking.Res_fini = event.startTime.toISOString();
-      this.newBooking.Res_fina =event.endTime.toISOString();
-      this.newBooking.Esp_cont = event.esp_cont;     
-      this.newBooking.Res_tdoc= 0,
-      this.newBooking.Res_dinv= 0,
-      this.newBooking.Res_ninv= "",
-      this.newBooking.Res_inac= "",
-      this.newBooking.Cla_cont= event.cla_cont;
-      this.newBooking.Esp_mdit= "N";
-      this.newBooking.arb_sucu= event.arb_sucu;               
-      this.navCtrl.push(EventConfirmPage,{'myBooking':this.newBooking,'event':event});
-    })
- 
+
+    this.buildBooking(event);
     
   }
 
-  
+
   EventSelected(event){
+  this.buildBooking(event);
+  }
+
+  buildBooking(event){
     this._session.GetLoggedin().then((resp:user)=>{
       this.newBooking.Mac_nume = resp.Mac_nume;
       this.newBooking.Sbe_cont = resp.Sbe_cont;
@@ -122,8 +110,6 @@ export class EventDisponibilityPage {
       this.newBooking.Esp_mdit= "N";
       this.newBooking.arb_sucu= event.arb_sucu;               
       this.navCtrl.push(EventConfirmPage,{'myBooking':this.newBooking,'event':event});
-
-      
     })
   }
   onCurrentDateChanged(event: Date) {
