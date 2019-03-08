@@ -240,6 +240,9 @@ export interface bookingInfo {
   cla_ppag: string;
   payment: paymentOut;
   esp_cont: number;
+  products:product[];
+  ecmcomp: ecmcomp[];
+  checked:boolean;
 
  
 }

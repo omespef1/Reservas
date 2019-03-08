@@ -51,6 +51,11 @@ export class BookingProvider {
 
 
   cancelBookings(booking: bookingInfo) {
+
+
+
+    let promise:Promise<any> = new Promise((resolve,reject)=>{
+
     //Se optiene la clase de espacio para verificar si ya se cumplió el tiempo de cancelación
     this._classSpaces.GetClassSpace(booking).then((resp: any) => {
       let fechaInicio = new Date(resp.FechaInicio);
@@ -67,19 +72,23 @@ export class BookingProvider {
             if (resp != null && resp != 0) {
               let cancel = { justification: resp, id: booking.Res_cont, emp_codi: this._sesion.GetClientEmpCodi() }
               //Se cancela la reserva según el motivo de selección del usuario
-              this.cancelBooking(cancel).then((resp: any) => {
+           return   this.cancelBooking(cancel).then((resp: any) => {
                 if (resp != null) {
-                  this._general.showToastMessage('La reserva se ha cancelado!', 'bottom');                 
+                  this._general.showToastMessage('La reserva se ha cancelado!', 'bottom'); 
+                  resolve();                
                 }            
               })
             }
           }).catch(err => {
-            
+            reject();
           })
         }
       })
 
     })
+    })
+    return promise;
+
   }
 
 }

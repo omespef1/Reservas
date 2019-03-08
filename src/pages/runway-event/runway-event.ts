@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 import {BookingProvider} from '../../providers/booking/booking';
 import {sessions} from '../../class/sessions/sessions';
 //models
@@ -28,12 +28,16 @@ import {general} from '../../class/general/general';
 export class RunwayEventPage {
 
   bookings: bookingInfo[];
-  products:product[];
+ 
   //plantillas seleccionadas
-  ecmcomp: ecmcomp[];
+
   user:user;
-  ec
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _booking:BookingProvider,private _session:sessions,private _general:general) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _booking:BookingProvider,
+    private _session:sessions,
+    private _general:general,
+    private _modal:ModalController) {
   }
 
   async ionViewDidLoad() {
@@ -44,8 +48,8 @@ export class RunwayEventPage {
 
   }
   public ionViewWillEnter() {
-    this.ecmcomp = this.navParams.get('ecmcomp')|| null;
-    this.products = this.navParams.get('products')|| null; 
+    // this.ecmcomp = this.navParams.get('ecmcomp')|| null;
+    // this.products = this.navParams.get('products')|| null; 
 }
 async GetUser(){
 this.user = <any> await this._session.GetLoggedin();
@@ -61,21 +65,41 @@ this.user = <any> await this._session.GetLoggedin();
     })
   }
 
-  GoMain(){
-    this.navCtrl.push(MainTemplatesPage);
+  GoMain(booking:bookingInfo){
+    // this.navCtrl.push(MainTemplatesPage);
+    let modal = this._modal.create({
+      MainTemplatesPage
+    });
+    modal.present();
+    modal.onDidDismiss((main:ecmcomp[])=>{
+      booking.ecmcomp = main;
+    })
   }
   GoProducts(booking:bookingInfo){
- this.navCtrl.push(EventProductsPage,{'booking':booking})
+//  this.navCtrl.push(EventProductsPage,{'booking':booking})
+  // this.navCtrl.push(MainTemplatesPage);
+  let modal = this._modal.create(EventProductsPage,{'booking':booking})
+  modal.present();
+  modal.onDidDismiss((products:product[])=>{
+    booking.products = products;
+  })
   }
   Cancel(booking: bookingInfo) {
   
       this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
 
-        this._booking.cancelBookings(booking);
+        this._booking.cancelBookings(booking).then(()=>{
+          this.ionViewDidLoad();
+        });
      
       })
   
  
+
+  }
+  save(){
+    //let modal:ModalController = this._modal.create({})
+    
 
   }
 }

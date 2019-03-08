@@ -42,6 +42,7 @@ import {EventConfirmPage} from '../pages/event-confirm/event-confirm';
 import{RunwayEventPage } from '../pages/runway-event/runway-event';
 import {MainTemplatesPage} from '../pages/main-templates/main-templates';
 import {EventProductsPage} from '../pages/event-products/event-products';
+import {RunwayConfirmPage} from '../pages/runway-confirm/runway-confirm';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -112,7 +113,8 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
     EventConfirmPage,
     RunwayEventPage,
     MainTemplatesPage,
-    EventProductsPage
+    EventProductsPage,
+    RunwayConfirmPage
   ],
   imports: [
     FormsModule,
@@ -162,7 +164,8 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
     EventConfirmPage,
     RunwayEventPage,
     MainTemplatesPage,
-    EventProductsPage
+    EventProductsPage,
+    RunwayConfirmPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

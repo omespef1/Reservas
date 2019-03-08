@@ -53,10 +53,8 @@
           <img src="data:image/jpeg;base64,{{booking.Esp_imag}}">
         </ion-avatar>
         <h2>No. {{booking.Res_nume}}</h2>
-        <p>{{booking.Cla_nomb}}- {{booking.Esp_nomb}}</p>
-        <ion-note item-end>
-          {{booking.FechaFin | date:'hh:mm:ss'}}
-        </ion-note>
+        <p>{{booking.Cla_nomb}}- {{booking.Esp_nomb}}</p>                
+        <ion-toggle [(ngModel)]="booking.checked" ></ion-toggle> 
       </ion-item>
 
       <ion-item-options>
@@ -75,7 +73,10 @@
       </ion-item-options>
   
     </ion-item-sliding>
+    <button ion-button block icon-start (click)="save()">
+        <ion-icon name="checkmark-circle"></ion-icon>&nbsp;Cotizar
+        <!-- <ion-spinner *ngIf="loading" name="ios-small" color="light"></ion-spinner> -->
+      </button>
 
-    {{ products |json }}
   </ion-list>
 </ion-content>
