@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angular';
+//providers
+import {BookingProvider} from  '../../providers/booking/booking';
+//models
+import {gntoper,transaction} from '../../class/Models/models';
 
 /**
  * Generated class for the EventGntoperPage page.
@@ -14,12 +18,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'event-gntoper.html',
 })
 export class EventGntoperPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  gntoper:gntoper[];
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _booking:BookingProvider,private _view:ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventGntoperPage');
+  }
+
+  async GetGnToper(){
+     let result  = <transaction> await  this._booking.GetGnToper();
+     if(result!=null){
+       this.gntoper = result.ObjTransaction;
+     }
+  }
+  
+  selectGnToper(gntoper:gntoper){
+      this._view.dismiss(gntoper);
   }
 
 }

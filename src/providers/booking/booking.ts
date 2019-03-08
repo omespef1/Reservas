@@ -48,7 +48,9 @@ export class BookingProvider {
   GetProductBooking(esp_cont:number,res_fini:string,res_fina:string){
     return this._comunications.Get(`Producto/GetProductosCotizacion?esp_cont=${esp_cont}&res_fini=${res_fini}&res_fina=${res_fina}`,true,'Cargando...',true);
   }
-
+  GetGnToper(){
+    return this._comunications.Get(`GnToper?emp_codi=${this._sesion.GetClientEmpCodi()}`)
+  }
 
   cancelBookings(booking: bookingInfo) {
 

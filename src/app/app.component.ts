@@ -9,6 +9,7 @@ import { sessions } from '../class/sessions/sessions';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PqrProvider } from '../providers/pqr/pqr';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 //plugins
 
 
@@ -25,7 +26,8 @@ export class MyApp {
     private events: Events,
     private _general: general,
     private _sessions: sessions,
-    private _pqr: PqrProvider) {
+    private _pqr: PqrProvider,
+    private _backgroundMode: BackgroundMode) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -45,6 +47,12 @@ export class MyApp {
       this._general.showToastMessage('Su sesión se ha cerrado!', 'bottom');
 
     });
+    this.events.subscribe('onBackground',()=>{
+      this._backgroundMode.enable();
+    })
+    this.events.subscribe('offBackground',()=>{
+      this._backgroundMode.disable();
+    })
     this.events.subscribe('user:login', (user: any) => {
       console.log(user);
       this._sessions.setLoggedIn(user);

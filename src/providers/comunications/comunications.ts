@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { appCentralizacionUrl } from '../../assets/config/config';
-import { LoadingController, ToastController } from 'ionic-angular';
+import { LoadingController, ToastController ,Events} from 'ionic-angular';
 //clases
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
@@ -19,12 +19,14 @@ export class ComunicationsProvider {
   constructor(public http: HttpClient,
     private load: LoadingController,
     private _general: general,
-    private _sesion: sessions) {
+    private _sesion: sessions,
+    private _events:Events) {
 
 
   }
-  x
-  Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {
+  
+  Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {    
+    this._events.publish('onBackground');
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
@@ -48,6 +50,7 @@ export class ComunicationsProvider {
           .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
       })
         .subscribe((resp: any) => {
+          this._events.publish('offBackground');
           console.log(stringUrl);
           console.log(resp);
           if (loading)
@@ -58,6 +61,7 @@ export class ComunicationsProvider {
           }
           resolve(resp);
         }, (err: HttpErrorResponse) => {
+          this._events.publish('offBackground');
           console.log(err);
           this.ErrMessage(err.error);
           if (loading)

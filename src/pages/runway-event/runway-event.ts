@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angul
 import {BookingProvider} from '../../providers/booking/booking';
 import {sessions} from '../../class/sessions/sessions';
 //models
-import {user,bookingInfo, ecmcomp, product} from '../../class/Models/models';
+import {user,bookingInfo, ecmcomp, product, gntoper} from '../../class/Models/models';
 //pages
 import {MainTemplatesPage} from '../main-templates/main-templates';
 import {EventProductsPage} from '../event-products/event-products';
@@ -107,6 +107,9 @@ this.user = <any> await this._session.GetLoggedin();
     .then(()=>{
           let modal = this._modal.create(EventGntoperPage,{'bookings':this.bookings});
           modal.present();
+          modal.onDidDismiss((gntoper:gntoper)=>{
+            
+          })
     }).catch(err=>{
       console.log(err);
     })

@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^4.4.7",
     "@angular/platform-browser-dynamic": "^4.4.7",
     "@ionic-native/app-availability": "^4.17.0",
+    "@ionic-native/background-mode": "^5.2.0",
     "@ionic-native/browser-tab": "^4.17.0",
     "@ionic-native/code-push": "^4.17.0",
     "@ionic-native/core": "4.7.0",
@@ -37,6 +38,7 @@
     "cordova-android": "^7.1.4",
     "cordova-browser": "^5.0.4",
     "cordova-ios": "4.5.5",
+    "cordova-plugin-background-mode": "0.7.2",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-file": "^4.3.3",
@@ -77,7 +79,8 @@
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-keychain-touch-id": {
         "FACEID_USAGE_DESCRIPTION": "For easy authentication"
-      }
+      },
+      "cordova-plugin-background-mode": {}
     },
     "platforms": [
       "browser",
