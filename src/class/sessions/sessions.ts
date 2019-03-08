@@ -7,7 +7,7 @@ import { TabsPage } from '../../pages/tabs/tabs';
 import { GnConex } from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //models
-import { bookingInfo } from '../Models/models';
+import { bookingInfo ,disponibilityRequestEvent} from '../Models/models';
 import { resolveDefinition } from '@angular/core/src/view/util';
 
 
@@ -96,6 +96,14 @@ export class sessions {
   GetCompanies() {
     return this.nativeStorage.get('companies');
   }
+
+  // SetEventPending(eventPending:disponibilityRequestEvent){
+  //   this.nativeStorage.set("eventPending",eventPending)
+  // }
+
+  // GetEventPending():Promise<disponibilityRequestEvent>{
+  //   return this.nativeStorage.get('eventPending');
+  // }
 
   //Añade items al carrito de compra
   async addShoppingList(newBooking: bookingInfo) {

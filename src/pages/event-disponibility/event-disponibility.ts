@@ -51,18 +51,22 @@ export class EventDisponibilityPage {
       if(transactionDisponibility!=null && transactionDisponibility.ObjTransaction!=null){
         var events = [];
         let eventsFilter: disponibilityResponseEvent[] =transactionDisponibility.ObjTransaction;
+        console.log(eventsFilter);
         for (let disp of eventsFilter) {
-          console.log(this.myEvent.dho_hori.split(':')[1]);
+          
           events.push({
             title: disp.esp_nomb,
-            startTime:new Date(moment(new Date(disp.dho_hori).setHours(Number(this.myEvent.dho_hori.split(':')[0]),Number(this.myEvent.dho_hori.split(':')[1]))).toISOString()),
-            endTime: new Date(moment(new Date(disp.dho_hori).setHours(Number(this.myEvent.dho_horf.split(':')[0]),Number(this.myEvent.dho_horf.split(':')[1]))).toISOString()),
+            startTime: new Date(disp.dho_hori),
+            endTime: new Date(disp.dho_horf),
             allDay: false,  
             esp_cont: disp.esp_cont,   
             esp_codi:disp.esp_codi,
             cla_cont:disp.cla_cont,
             cla_codi:disp.cla_codi,
-            arb_usuc:disp.arb_sucu,       
+            arb_sucu:disp.arb_sucu,
+            product:disp.product,    
+            dho_hori: disp.dho_hori, 
+            dho_horf:disp.dho_horf
           })
         }
         this.eventSource = events;
@@ -94,22 +98,29 @@ export class EventDisponibilityPage {
   }
 
   buildBooking(event){
-    this._session.GetLoggedin().then((resp:user)=>{
-      this.newBooking.Mac_nume = resp.Mac_nume;
-      this.newBooking.Sbe_cont = resp.Sbe_cont;
-      this.newBooking.Soc_cont = resp.Soc_cont;
-      this.newBooking.Ter_codi=0;
-      this.newBooking.Res_fini = event.startTime.toISOString();
-      this.newBooking.Res_fina =event.endTime.toISOString();
-      this.newBooking.Esp_cont = event.esp_cont;     
-      this.newBooking.Res_tdoc= 0,
-      this.newBooking.Res_dinv= 0,
-      this.newBooking.Res_ninv= "",
-      this.newBooking.Res_inac= "",
-      this.newBooking.Cla_cont= event.cla_cont;
-      this.newBooking.Esp_mdit= "N";
-      this.newBooking.arb_sucu= event.arb_sucu;               
-      this.navCtrl.push(EventConfirmPage,{'myBooking':this.newBooking,'event':event});
+    this._session.GetLoggedin().then((resp:user)=>{    
+      let newBooking: any = {
+        Emp_codi: this._session.GetClientEmpCodi(),
+        Res_fini: event.dho_hori,
+        Res_fina: event.dho_horf,
+        Soc_cont: resp.Soc_cont,
+        Mac_nume: resp.Mac_nume1,
+        Sbe_cont: resp.Sbe_cont,
+        Esp_cont:  event.esp_cont,
+        Res_numd: 0,
+        Ite_cont: 10207,
+        Ter_codi: 0,
+        Res_tdoc: 0,
+        Res_dinv: 0,
+        Res_ninv: "",
+        Res_inac: "",
+        Cla_cont: event.cla_cont,
+        Esp_mdit: "N",
+        arb_sucu:event.arb_sucu,
+        cotizacionExpress:true,   
+        Productos: [ event.product]   
+      }
+      this.navCtrl.push(EventConfirmPage,{'myBooking':newBooking,'event':event, 'eventDetails': this.myEvent});
     })
   }
   onCurrentDateChanged(event: Date) {

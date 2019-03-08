@@ -35,6 +35,7 @@ export class ComunicationsProvider {
       let stringUrl = `${this._sesion.GetClientUrl()}${UrlService}`;
       if (requiteEmpCodi)
         stringUrl += `&emp_codi=${this._sesion.GetClientEmpCodi()}`;
+        console.log(stringUrl);
       return this.http.get(stringUrl).retryWhen(error => {
         return error
           .flatMap((error: any) => {

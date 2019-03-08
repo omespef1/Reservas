@@ -16,6 +16,7 @@ import { bookingInfo } from '../../class/Models/models';
 //pages
 import {CarPage} from '../car/car';
 import {ConfirmPaymentPage} from  '../confirm-payment/confirm-payment';
+import {RunwayEventPage} from '../runway-event/runway-event';
 /**
  * Generated class for the BookingPage page.
  *
@@ -53,6 +54,8 @@ export class BookingPage {
     this.session.GetLoggedin().then(resp => {
       this.user = resp;
       this.GetBooking();
+      //Verificar si hay proceso de eventos pendiente
+      //this.verifyPendings();
     })
   }
 
@@ -69,6 +72,18 @@ export class BookingPage {
       }
     }), err => (console.log("problemas " + err));
   }
+
+  // verifyPendings(){
+  //    this.session.GetEventPending().then((resp:any)=>{
+  //         if(resp!=null && resp!=undefined)
+  //         this._general.showMessageOption('Proceso pendiente','Existe un proceso de creación de eventos pendiente, desea continuar?')
+  //         .then(()=>{            
+          
+  //               this.navCtrl.push(RunwayEventPage);
+            
+  //         })
+  //    })
+  // }
   newBooking() {
     this.navCtrl.push(ClassSpacesPage);
   }

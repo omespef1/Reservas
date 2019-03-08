@@ -100,8 +100,8 @@ export interface booking {
   Productos: any[];
   Cla_cont: number;
   Esp_mdit: string;
-  arb_sucu:number;
-  cotizacionExpress:boolean;
+  arb_sucu: number;
+  cotizacionExpress: boolean;
 }
 export class booking {
   Emp_codi: number;
@@ -142,24 +142,26 @@ export class disponibilityRequest {
 
 }
 
-export class disponibilityRequestEvent { 
-  public dho_hori:string;
-  public dho_horf:string;
-  public esp_capa:number;
-  public dho_mesp:number;
-  public dhop_anop:number;
-  public emp_codi:number;
+export class disponibilityRequestEvent {
+  public dho_hori: string;
+  public dho_horf: string;
+  public esp_capa: number;
+  public dho_mesp: number;
+  public dhop_anop: number;
+  public emp_codi: number;
 
 }
 
-export class disponibilityResponseEvent{ 
-  public esp_cont:number;
-  public esp_nomb:string;
-  public dho_hori:string;
-  public esp_codi:string;
-  public cla_cont:number;
-  public cla_codi:string;
-  public arb_sucu:number;
+export class disponibilityResponseEvent {
+  public esp_cont: number;
+  public esp_nomb: string;
+  public dho_hori: string;
+  public dho_horf: string;
+  public esp_codi: string;
+  public cla_cont: number;
+  public cla_codi: string;
+  public arb_sucu: number;
+  public product: any;
 }
 
 
@@ -196,10 +198,10 @@ export interface GnConex {
   CNX_BACK: string;
   CNX_LOGO: string;
   CNX_LINK: string;
-  CNX_CPRI:string;
-  CNX_CSEG:string;
-  CNX_CTER:string;
-  CNX_FCLA:string;
+  CNX_CPRI: string;
+  CNX_CSEG: string;
+  CNX_CTER: string;
+  CNX_FCLA: string;
 }
 export interface GnEmpre {
   Emp_Codi: number;
@@ -216,7 +218,7 @@ export interface GnDigfl {
   dig_nomb: string;
 }
 export interface bookingInfo {
-  Emp_Codi:number,
+  Emp_Codi: number,
   Cla_nomb: string;
   Cla_foto: string;
   Esp_imag: string;
@@ -236,8 +238,10 @@ export interface bookingInfo {
   res_valo: number;
   Ter_noco: string;
   cla_ppag: string;
-  payment:paymentOut;
+  payment: paymentOut;
+  esp_cont: number;
 
+ 
 }
 
 export interface payment {
@@ -251,11 +255,11 @@ export interface payment {
 }
 export interface paymentOut {
   pap_tkid:number;
-  pap_esta:string;
-  pap_proc:string;
-  sbe_codi:string;
-  pad_vpag:number;
-
+  pap_esta: string;
+  pap_proc: string;
+  sbe_codi: string;
+  pad_vpag: number;
+ 
 }
 export interface bankTransactDone {
   EntityCode: string,
@@ -275,12 +279,40 @@ export interface bankTransactDone {
   ReferenceArray: string[],
   AuthReferenceArray: string[],
   SrvCode :string
-}
+} 
 export interface agreement {
   Osa_Bmpr:string;
-  Osa_Link:string;
-  Osa_Nomb:string;
-  Osa_Lian:string;
-  Osa_Liap:string;
-
+  Osa_Link: string;
+  Osa_Nomb: string;
+  Osa_Lian: string;
+  Osa_Liap: string;
+ 
 }
+
+export class ecmcomp {
+  emp_codi:number;
+  mco_nomb: string;
+  mco_codi: string;
+  quantity: number;
+  checked:boolean=false;
+ detalles :ecdemco [];
+}
+
+export interface ecdemco {
+  pro_cont:number,
+  pro_nomb: string,
+  pro_codi: string,
+  dem_cant: number
+}
+
+export interface product {
+  pro_cont:number,
+  des_visu:string,
+  pro_nomb:string,
+  pro_dmin:number,
+  dli_valo:number,
+  checked:boolean
+
+} 
+
+

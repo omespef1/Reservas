@@ -19,4 +19,5 @@ GetClassSpaces(){
 GetClassSpace(booking:any){
    return  this._comunications.Get(`aeclase/GetAeClase?cla_cont=${booking.Cla_cont}`);
 }
+
 }

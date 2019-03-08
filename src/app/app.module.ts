@@ -39,6 +39,9 @@ import {EventsPage} from '../pages/events/events';
 import {NewEventPage} from '../pages/new-event/new-event';
 import {EventDisponibilityPage} from  '../pages/event-disponibility/event-disponibility';
 import {EventConfirmPage} from '../pages/event-confirm/event-confirm';
+import{RunwayEventPage } from '../pages/runway-event/runway-event';
+import {MainTemplatesPage} from '../pages/main-templates/main-templates';
+import {EventProductsPage} from '../pages/event-products/event-products';
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -70,6 +73,7 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import { PaymentProvider } from '../providers/payment/payment';
 import { EventsProvider } from '../providers/events/events';
 import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
+import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 
 
  @NgModule({
@@ -105,7 +109,10 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     NewEventPage,
     AccordionComponent,
     EventDisponibilityPage,
-    EventConfirmPage
+    EventConfirmPage,
+    RunwayEventPage,
+    MainTemplatesPage,
+    EventProductsPage
   ],
   imports: [
     FormsModule,
@@ -152,7 +159,10 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     NewEventPage,
     AccordionComponent,
     EventDisponibilityPage,
-    EventConfirmPage
+    EventConfirmPage,
+    RunwayEventPage,
+    MainTemplatesPage,
+    EventProductsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -179,6 +189,9 @@ import { MainTemplatesProvider } from '../providers/main-templates/main-template
     PaymentProvider,
     EventsProvider,
     MainTemplatesProvider,
+    AeEspacProvider,
+    AeEspacProvider,
+    AeEspacProvider,
 
   ]
 })

@@ -8,6 +8,10 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import * as moment from 'moment';
 import { stringify } from '@angular/core/src/util';
 import {general} from '../../class/general/general';
+//pages
+import {RunwayEventPage} from '../runway-event/runway-event';
+//clases
+import {sessions} from '../../class/sessions/sessions';
 
 /**
  * Generated class for the EventConfirmPage page.
@@ -25,33 +29,29 @@ export class EventConfirmPage {
 
    MyEventBooking :  booking = new booking();
    mySelectedEvent: disponibilityRequestEvent;
+   myEventDetails:disponibilityRequestEvent;
    price:string;
    
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private _booking:BookingProvider,
-    private _general:general) {
+    private _general:general,
+    private _sesion:sessions) {
     this.mySelectedEvent = navParams.get("event");
     this.MyEventBooking = navParams.get("myBooking");
+    this.myEventDetails = navParams.get("eventDetails");
     console.log(this.MyEventBooking);
   }
 
   ionViewDidLoad() {
- this.GetProduct();
+
   }
 
 
-  async GetProduct(){
 
-     let producto:transaction = <any> await  this._booking.GetProductBooking(this.MyEventBooking.Esp_cont,this.MyEventBooking.Res_fini.toString(),this.MyEventBooking.Res_fina.toString());
-     if(producto!=null && producto.ObjTransaction!=null){
-        this.price = producto.ObjTransaction.Dpr_valo;
-     }
-  }
 
   MakeBooking(){
     this.MyEventBooking.cotizacionExpress=true;
-    console.log(this.MyEventBooking.Res_fina);
     this._booking.SetBooking(this.MyEventBooking).then((resp:any)=>{
       console.log(resp);
       if(resp!=null){
@@ -60,6 +60,8 @@ export class EventConfirmPage {
            return;
          }
            this._general.ShowMessageAlert('Reserva realizada!', `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`);
+          //  this._sesion.SetEventPending(this.myEventDetails);
+           this.navCtrl.push(RunwayEventPage);
           
          }
     })

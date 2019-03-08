@@ -23,7 +23,7 @@
     <ion-item>
       <ion-icon name="cash" item-start></ion-icon>
       <ion-label>Valor</ion-label>
-      <ion-note item-end>{{price | currency:'COP'}}</ion-note>
+      <ion-note item-end>{{MyEventBooking.Productos[0].Dpr_valo | currency:'COP'}}</ion-note>
     </ion-item>           
   </ion-list>
   <button class="element-animation" ion-button block large color="danger" tappable (click)="MakeBooking()">

@@ -4,8 +4,11 @@ import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../../providers/comunications/comunications';
 import { ClassSpacesProvider } from '../class-spaces/class-spaces';
 //clases
-import {disponibilityRequest} from '../../class/models/models';
-import {disponibilityRequestEvent} from '../../class/models/models';
+import {disponibilityRequest,disponibilityRequestEvent, bookingInfo} from '../../class/models/models';
+import {general} from  '../../class/general/general';
+import {sessions} from  '../../class/sessions/sessions';
+
+
 
 
 
@@ -18,11 +21,14 @@ import {disponibilityRequestEvent} from '../../class/models/models';
 @Injectable()
 export class BookingProvider {
 
-  constructor(private _comunications: ComunicationsProvider, private _classSpaces: ClassSpacesProvider) {
+  constructor(private _comunications: ComunicationsProvider, private _classSpaces: ClassSpacesProvider,private _general:general,private _sesion:sessions) {
     console.log('Hello BookingProvider Provider');
   }
   GetBooking(partner: any) {
     return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}`,true,'Cargando información de reservas realizadas...');
+  }
+  GetBookinQuotation(partner: any) {
+    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}&quotationExpress=true`,true,'Cargando información de reservas realizadas...');
   }
   GetGnItems() {
     return this._comunications.Get(`GnItems?tit_cont=349`);
@@ -41,6 +47,39 @@ export class BookingProvider {
   }
   GetProductBooking(esp_cont:number,res_fini:string,res_fina:string){
     return this._comunications.Get(`Producto/GetProductosCotizacion?esp_cont=${esp_cont}&res_fini=${res_fini}&res_fina=${res_fina}`,true,'Cargando...',true);
+  }
+
+
+  cancelBookings(booking: bookingInfo) {
+    //Se optiene la clase de espacio para verificar si ya se cumplió el tiempo de cancelación
+    this._classSpaces.GetClassSpace(booking).then((resp: any) => {
+      let fechaInicio = new Date(resp.FechaInicio);
+      let fechaInicioPosible = this._general.addMinutes(resp.Cla_Tica);
+      if (fechaInicioPosible > fechaInicio) {
+        this._general.showToastMessage(`El plazo para cancelar la reserva  (${resp.Cla_Tica}) minuto(s) ha vencido.`, 'bottom')
+        return;
+      }
+      //Se obtienen los items para llenar los motivos de rechazo
+      this.GetGnItems().then((resp: any) => {
+        if (resp != null) {
+          let items = resp.ObjTransaction;
+          this._general.showConfirmMessage('Está seguro de que desea cancelar esta reserva?', 'Seleccione el motivo', items).then(resp => {
+            if (resp != null && resp != 0) {
+              let cancel = { justification: resp, id: booking.Res_cont, emp_codi: this._sesion.GetClientEmpCodi() }
+              //Se cancela la reserva según el motivo de selección del usuario
+              this.cancelBooking(cancel).then((resp: any) => {
+                if (resp != null) {
+                  this._general.showToastMessage('La reserva se ha cancelado!', 'bottom');                 
+                }            
+              })
+            }
+          }).catch(err => {
+            
+          })
+        }
+      })
+
+    })
   }
 
 }

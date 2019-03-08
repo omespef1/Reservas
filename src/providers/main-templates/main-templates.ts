@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //providders
 import {ComunicationsProvider} from '../../providers/comunications/comunications';
-
+//clases
+import {sessions} from '../../class/sessions/sessions';
+ 
 /*
   Generated class for the MainTemplatesProvider provider.
 
@@ -12,11 +14,11 @@ import {ComunicationsProvider} from '../../providers/comunications/comunications
 @Injectable()
 export class MainTemplatesProvider {
 
-  constructor(private _comu:ComunicationsProvider) {
+  constructor(private _comu:ComunicationsProvider,private _sesion:sessions) {
     console.log('Hello MainTemplatesProvider Provider');
   }
   GetEcMconmp(){
-    return this._comu.Get('EcMcomp');
+    return this._comu.Get(`EcMcomp?emp_codi= ${this._sesion.GetClientEmpCodi()}`,true,'Cargando menús',false);
   }
 
 }

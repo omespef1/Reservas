@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventDisponibilityPage } from '../event-disponibility/event-disponibility';
 import {disponibilityRequestEvent}  from '../../class/Models/models';
 import * as moment from 'moment';
+//pages
+import {RunwayEventPage} from '../../pages/runway-event/runway-event';
 /**
  * Generated class for the NewEventPage page.
  *
@@ -33,6 +35,9 @@ export class NewEventPage {
     this.myEvent.dhop_anop = now.getFullYear();
     console.log(this.myEvent);
     this.navCtrl.push(EventDisponibilityPage,{'myEvent': this.myEvent});
+  }
+  goReservas(){
+    this.navCtrl.push(RunwayEventPage);
   }
 
 }
