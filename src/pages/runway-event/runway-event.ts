@@ -7,6 +7,7 @@ import {user,bookingInfo, ecmcomp, product} from '../../class/Models/models';
 //pages
 import {MainTemplatesPage} from '../main-templates/main-templates';
 import {EventProductsPage} from '../event-products/event-products';
+import {EventGntoperPage} from '../event-gntoper/event-gntoper';
 //clases
 import {general} from '../../class/general/general';
 
@@ -27,7 +28,7 @@ import {general} from '../../class/general/general';
 })
 export class RunwayEventPage {
 
-  bookings: bookingInfo[];
+  bookings: bookingInfo[]=[];
  
   //plantillas seleccionadas
 
@@ -38,6 +39,8 @@ export class RunwayEventPage {
     private _session:sessions,
     private _general:general,
     private _modal:ModalController) {
+
+      this._general.ShowMessageAlert('Mensaje de sistema','Deslice las reservas hacia la izquierda para configurar menús y equipos.')
   }
 
   async ionViewDidLoad() {
@@ -67,9 +70,7 @@ this.user = <any> await this._session.GetLoggedin();
 
   GoMain(booking:bookingInfo){
     // this.navCtrl.push(MainTemplatesPage);
-    let modal = this._modal.create({
-      MainTemplatesPage
-    });
+    let modal = this._modal.create( MainTemplatesPage,{'booking':booking});
     modal.present();
     modal.onDidDismiss((main:ecmcomp[])=>{
       booking.ecmcomp = main;
@@ -88,18 +89,33 @@ this.user = <any> await this._session.GetLoggedin();
   
       this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
 
-        this._booking.cancelBookings(booking).then(()=>{
-          this.ionViewDidLoad();
+        this._booking.cancelBookings(booking).then((resp)=>{       
+          if (resp != null && resp != 0) {
+           this.ionViewDidLoad();
+          }
         });
      
+      }).catch(err => {
+       
       })
   
  
 
   }
   save(){
-    //let modal:ModalController = this._modal.create({})
+    this._general.showMessageOption('Se requiere su confirmación','Por favor verifique los productos y menú asociados.Si confirma no podrá cambiarlos, desea continuar?')
+    .then(()=>{
+          let modal = this._modal.create(EventGntoperPage,{'bookings':this.bookings});
+          modal.present();
+    }).catch(err=>{
+      console.log(err);
+    })
     
 
+  }
+
+  Valid():boolean{
+      if(this.bookings!=null && this.bookings.filter(b=>b.checked==true && (b.products!=undefined && b.products.length>0) &&(b.ecmcomp!=undefined && b.ecmcomp.length>0)).length>0)
+      return true;
   }
 }

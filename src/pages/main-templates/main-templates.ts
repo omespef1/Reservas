@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angular';
 //providers
 import {MainTemplatesProvider} from '../../providers/main-templates/main-templates';
 //models
-import { transaction ,ecmcomp,disponibilityRequestEvent} from '../../class/Models/models';
+import { transaction ,ecmcomp,disponibilityRequestEvent, bookingInfo} from '../../class/Models/models';
 //clases
 import {sessions } from '../../class/sessions/sessions';
 /**
@@ -24,11 +24,13 @@ export class MainTemplatesPage {
 
   max:number=0;
 
-  ecmcomp:ecmcomp[] = new Array();
-  
+  ecmcomp:ecmcomp[]=[];
+  booking:bookingInfo;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _main:MainTemplatesProvider,private sesion:sessions) {
-  
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _main:MainTemplatesProvider,private sesion:sessions,
+    private _view:ViewController) {
+       this.booking = navParams.get("booking");
+       this.ecmcomp = this.booking.ecmcomp|| null;
   }
 
   ionViewDidLoad() {
@@ -43,20 +45,26 @@ export class MainTemplatesPage {
   }
 
   async GetEcMcomp():Promise<void>{
+    if(this.ecmcomp==null){
        let transact : transaction =   <transaction> await  this._main.GetEcMconmp()
        if(transact!=null &&  transact.Retorno==0){        
           this.ecmcomp = transact.ObjTransaction;
        }
+      }
   }
 
   addremove(item:any){
     item.checked = !item.checked;
   }
 
-  save(){
-    
-    this.navCtrl.getPrevious().data.ecmcomp = this.ecmcomp.filter(v=>v.checked==true);
-   this.navCtrl.pop();
+  save(){    
+     this._view.dismiss(this.ecmcomp.filter(e=>e.checked==true && e.quantity>0) )   
+  }
+  close(){
+    this._view.dismiss();
+  }
+  valid(){
+    return this.ecmcomp !=null && this.ecmcomp.filter(e=>e.checked==true && e.quantity>0).length>0 
   }
 
 }

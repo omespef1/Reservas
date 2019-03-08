@@ -10,7 +10,7 @@
     <ion-title>Menú</ion-title>
     <ion-buttons end>
         <button ion-button icon-only (click)="close()" >
-          <ion-icon name="remove-circle"></ion-icon>
+          <ion-icon name="close-circle"></ion-icon>
         </button>
             </ion-buttons>
   </ion-navbar>
@@ -35,7 +35,7 @@
           <ion-item>
               <ion-icon name="beer" item-start color="secondary"></ion-icon>
               <ion-label> Cantidad</ion-label> 
-              <ion-input type="number"  [max]="max" placeholder="Cantidad del menú" [(ngModel)]="item.quantity"></ion-input>
+              <ion-input type="number"  min="1" placeholder="Cantidad del menú" [(ngModel)]="item.quantity"></ion-input>
             
           </ion-item>
           
@@ -62,7 +62,7 @@
 
   <!-- </accordion> -->
 
-  <button ion-button block icon-start (click)="save()">
+  <button ion-button block icon-start (click)="save()" [disabled]="!valid()">
     <ion-icon name="checkmark-circle"></ion-icon>&nbsp;Guardar y finalizar   
   </button>
  
