@@ -23,7 +23,7 @@ export class EventGntoperPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventGntoperPage');
+   this.GetGnToper();
   }
 
   async GetGnToper(){
@@ -32,7 +32,7 @@ export class EventGntoperPage {
        this.gntoper = result.ObjTransaction;
      }
   }
-  
+
   selectGnToper(gntoper:gntoper){
       this._view.dismiss(gntoper);
   }

@@ -70,6 +70,7 @@ import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import { PaymentProvider } from '../providers/payment/payment';
@@ -196,8 +197,7 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
     EventsProvider,
     MainTemplatesProvider,
     AeEspacProvider,
-    AeEspacProvider,
-    AeEspacProvider,
+    BackgroundMode
 
   ]
 })

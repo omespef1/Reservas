@@ -48,10 +48,10 @@ export class MyApp {
 
     });
     this.events.subscribe('onBackground',()=>{
-      this._backgroundMode.enable();
+   //   this._backgroundMode.enable();
     })
     this.events.subscribe('offBackground',()=>{
-      this._backgroundMode.disable();
+      //this._backgroundMode.disable();
     })
     this.events.subscribe('user:login', (user: any) => {
       console.log(user);

@@ -223,7 +223,9 @@ export interface bookingInfo {
   Cla_foto: string;
   Esp_imag: string;
   Esp_nomb: string;
+  esp_codi:string;
   Pro_nomb: string;
+  pro_cont:number;
   FechaInicio: Date;
   FechaFin: Date;
   Res_cont: number;
@@ -305,7 +307,10 @@ export interface ecdemco {
   pro_cont:number,
   pro_nomb: string,
   pro_codi: string,
-  dem_cant: number
+  dem_cant: number,
+  dsp_codi :string,
+  dli_valo:number,
+  tip_codi:number,
 }
 
 export interface product {
@@ -314,6 +319,8 @@ export interface product {
   pro_nomb:string,
   pro_dmin:number,
   dli_valo:number,
+  dsp_codi:string,
+  tip_codi:number,
   checked:boolean
 
 } 
@@ -323,6 +330,7 @@ export interface gntoper {
 
 }
 export class eccotiz {
+  emp_codi:number;
   top_codi	:number 		;	
   cot_fech 	:Date	;	
   cot_desc	:string 	;	
@@ -348,6 +356,9 @@ export class eccotiz {
   lip_cont	:number 		;	
   for_codi	:number 		;	
   cot_esta	:string 	;	
+  top_nomb:string;
+  reservas: bookingInfo[];
+  esp_codi:string;
 
 }
 

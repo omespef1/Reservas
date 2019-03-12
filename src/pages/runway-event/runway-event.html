@@ -42,13 +42,13 @@
 
 <ion-content class="outer-content">
 
-  <ion-list  class="runway-sliding-demo" *ngFor="let booking of bookings">
+  <ion-list  class="runway-sliding-demo" *ngFor="let booking of cotiz.reservas">
     <ion-list-header>
        <ion-label>Reserva No. {{booking.Res_nume}}</ion-label>  
         <ion-toggle button icon-only item-end clear [(ngModel)]="booking.checked">   </ion-toggle>  
     </ion-list-header>
     <ion-item-group>
-    <ion-item-sliding  #item>
+    <ion-item-sliding  #slidingItem>
         
       <ion-item>
         <ion-avatar item-start>
@@ -62,22 +62,25 @@
        
 
       <ion-item-options>
-        <button ion-button color="secondary" (click)="GoMain(booking)">
+        <button ion-button color="secondary" (click)="GoMain(booking,slidingItem)">
           <ion-icon name="restaurant"></ion-icon>
           Menús
         </button>
-        <button ion-button color="dark" (click)="GoProducts(booking)">
+        <button ion-button color="dark" (click)="GoProducts(booking,slidingItem)">
           <ion-icon name="pricetags"></ion-icon>
           Equipos
         </button>
-        <button ion-button color="danger" (click)="Cancel(booking)">
+        <button ion-button color="danger" (click)="Cancel(booking,slidingItem)">
           <ion-icon name="trash"></ion-icon>
           Cancelar
         </button>
       </ion-item-options>
       </ion-item-sliding>
       </ion-item-group>   
-    </ion-list>          
+    </ion-list>
+    
+    <div>    
+    </div>
     <button ion-button block icon-start (click)="save()" [disabled]="!Valid()">
         <ion-icon name="checkmark-circle"></ion-icon>&nbsp;Cotizar
         <!-- <ion-spinner *ngIf="loading" name="ios-small" color="light"></ion-spinner> -->
