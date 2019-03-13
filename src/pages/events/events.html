@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Eventos</ion-title>
+    <ion-title>Cotizaciones</ion-title>
     <ion-buttons end>
 <button ion-button icon-only (click)="NewEvent()" >
   <ion-icon name="add"></ion-icon>
@@ -17,20 +17,19 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="outer-content">
 
-  <ion-list no-lines>
-    <ion-item-group no-border>
-      <ion-item-sliding #slidingItem  class="FlowRed"  *ngFor="let item of events">
-        <button ion-item (click)="seeDetails(item)">
-      <h3>Número {{item.cot_nume}}</h3>
-      <p>
-      {{item.cot_valo}}
-      </p>
-    </button>   
-      </ion-item-sliding>
-
+  <ion-list>
+    <div *ngFor="let item of cotiz">
+    <ion-list-header>
+     Cotización No.{{ item.cot_nume  }}
+    </ion-list-header>
+    <ion-item-group>
+      <ion-item button    (click)="seeDetails(item)" detail-push>      
+        <ion-icon name="ion-printer"></ion-icon>
+        <ion-label>  {{ item.cot_desc }}</ion-label>   
+      </ion-item>
     </ion-item-group>
+  </div>
 </ion-list>
-
 </ion-content>

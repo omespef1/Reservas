@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
 //providers
 import { EventsProvider } from '../../providers/events/events';
 //models
-import { user, transaction } from '../../class/Models/models';
+import { user, transaction,eccotiz } from '../../class/Models/models';
 //class
 import { sessions } from '../../class/sessions/sessions'
 //pages
 import {NewEventPage} from '../new-event/new-event';
+import { EventCotizDetailPage } from '../event-cotiz-detail/event-cotiz-detail';
 
 
 /**
@@ -23,8 +24,12 @@ import {NewEventPage} from '../new-event/new-event';
   templateUrl: 'events.html',
 })
 export class EventsPage {
-  events: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _events: EventsProvider, private _sesion: sessions) {
+  cotiz: eccotiz;
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _events: EventsProvider, 
+    private _sesion: sessions,
+    private _modal:ModalController) {
   }
 
   ionViewDidLoad() {
@@ -36,11 +41,18 @@ export class EventsPage {
     const localUser: user = <user>await this._sesion.GetLoggedin();
     let eventsTransaction: transaction = <transaction>await this._events.GetEvents(localUser.Soc_cont, localUser.Sbe_codi, localUser.Mac_nume1);
     if (eventsTransaction != null && eventsTransaction.Retorno == 0) {
-      this.events = eventsTransaction.ObjTransaction;
+      this.cotiz = eventsTransaction.ObjTransaction;
     }
   }
   NewEvent(){
     this.navCtrl.push(NewEventPage);
+  }
+  seeDetails(cotiz:eccotiz){
+let modal = this._modal.create(EventCotizDetailPage,{'cotiz':cotiz});
+   modal.present();
+   modal.onDidDismiss(()=>{
+     this.ionViewDidLoad();
+   })
   }
 
 }

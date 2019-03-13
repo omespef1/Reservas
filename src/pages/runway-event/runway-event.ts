@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, ItemSliding } fro
 import { BookingProvider } from '../../providers/booking/booking';
 import { sessions } from '../../class/sessions/sessions';
 //models
-import { user, bookingInfo, ecmcomp, product, gntoper, eccotiz } from '../../class/Models/models';
+import { user, bookingInfo, ecmcomp, product, gntoper, eccotiz, transaction } from '../../class/Models/models';
 //pages
 import { MainTemplatesPage } from '../main-templates/main-templates';
 import { EventProductsPage } from '../event-products/event-products';
@@ -11,6 +11,7 @@ import { EventGntoperPage } from '../event-gntoper/event-gntoper';
 //clases
 import { general } from '../../class/general/general';
 import { EventsProvider } from '../../providers/events/events';
+import { EventsPage } from '../events/events';
 
 
 
@@ -124,7 +125,7 @@ export class RunwayEventPage {
         let modal = this._modal.create(EventGntoperPage, { 'bookings': this.cotiz.reservas });
         modal.present();
         modal.onDidDismiss((gntoper: gntoper) => {         
-          this.BuildCotiz(gntoper:any);
+          this.BuildCotiz(gntoper);
           this.SendCotization();
         })
       }).catch(err => {
@@ -135,13 +136,36 @@ export class RunwayEventPage {
   }
 
   BuildCotiz(toper:gntoper){
+    this.cotiz.top_codi = toper.top_codi;
+    this.cotiz.top_nomb = toper.top_nomb;
     this.cotiz.esp_codi = this.cotiz.reservas[0].esp_codi;
+    //terminar de filtrar la reservas de menos fecha inicial para fecha de ingreso y mayor fecha final para fecha de salida
+  let orderDates =   this.cotiz.reservas.sort(function(obj1, obj2) {
+      // Ascending: first age less than the previous
+      return Number(obj1.FechaInicio) - Number(new Date(obj2.FechaInicio));
+    
+    });
+    this.cotiz.cot_fing = orderDates[0].FechaInicio;
+    this.cotiz.cot_fsal = orderDates[orderDates.length-1].FechaFin;
+    // this.cotiz.cot_fech = new Date();
+    // this.cotiz.cot_fvec = orderDates[orderDates.length-1].FechaFin;
+    this.cotiz.soc_cont = this.user.Soc_cont;
+    this.cotiz.mac_nume = this.user.Mac_nume1;
+    this.cotiz.sbe_codi = this.user.Sbe_codi;
+    this.cotiz.sbe_cont = this.user.Sbe_cont;
+
+
   }
    
 
 //Envía la cotización
   SendCotization() {
-    this._events.SetEcCotiz(this.cotiz);
+    this._events.SetEcCotiz(this.cotiz).catch((resp:transaction)=>{
+      if(resp!=null && resp.Retorno==0){
+        this._general.showToastMessage('Se ha creado la cotización correctamente!','bottom');
+        this.navCtrl.setRoot(EventsPage);
+      }
+    });
   }
 
   Valid(): boolean {

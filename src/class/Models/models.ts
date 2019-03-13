@@ -255,7 +255,7 @@ export interface payment {
   sbe_ncar: string;
   emp_codi: number;
   soc_mail: string;
-  reservas: number[]
+  productos: number[]
 
 }
 export interface paymentOut {
@@ -332,33 +332,41 @@ export interface gntoper {
 export class eccotiz {
   emp_codi:number;
   top_codi	:number 		;	
-  cot_fech 	:Date	;	
-  cot_desc	:string 	;	
-  arb_sucu	:number 		;	
-  coc_codi	:number 		;	
-  cot_vata	:number 	;	
-  cot_fing 	:Date	;	
-  cot_fsal 	:Date	;	
-  soc_cont	:number 		;	
-  cot_fvec 	:Date	;	
-  cot_orga	:string 	;	
-  cot_coor	:string 	;	
-  ter_ejec	:number 		;	
-  ite_cont	:number 		;	
-  cot_mail	:string 	;	
-  cot_fpag	:string 	;	
-  cli_codi	:number 		;	
-  dcl_codd	:number 		;	
-  con_codi	:number 		;	
-  act_cont	:number 		;	
-  mon_codi	:number 		;	
-  cot_feta 	:Date	;	
-  lip_cont	:number 		;	
-  for_codi	:number 		;	
-  cot_esta	:string 	;	
-  top_nomb:string;
-  reservas: bookingInfo[];
-  esp_codi:string;
+   top_nomb:string;
+   esp_codi:string;
+   cot_nume:number;
+   cot_vato:number;
+   cot_cont:number;
+  // cot_fech 	:Date	;	
+   cot_desc	:string 	;	
+  // arb_sucu	:number 		;	
+  // coc_codi	:number 		;	
+  // cot_vata	:number 	;	
+   cot_fing 	:Date	;	
+   cot_fsal 	:Date	;	
+   soc_cont	:number 		;
+   sbe_codi:string;
+   mac_nume:string;
+   sbe_cont:number;
+  // cot_fvec 	:Date	;	
+  // cot_orga	:string 	;	
+  // cot_coor	:string 	;	
+  // ter_ejec	:number 		;	
+  // ite_cont	:number 		;	
+  // cot_mail	:string 	;	
+  // cot_fpag	:string 	;	
+  // cli_codi	:number 		;	
+  // dcl_codd	:number 		;	
+  // con_codi	:number 		;	
+  // act_cont	:number 		;	
+  // mon_codi	:number 		;	
+  // cot_feta 	:Date	;	
+  // lip_cont	:number 		;	
+  // for_codi	:number 		;	
+  // cot_esta	:string 	;	
+ 
+   reservas: bookingInfo[];
+
 
 }
 

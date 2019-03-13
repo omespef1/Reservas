@@ -45,7 +45,7 @@
   <ion-list  class="runway-sliding-demo" *ngFor="let booking of cotiz.reservas">
     <ion-list-header>
        <ion-label>Reserva No. {{booking.Res_nume}}</ion-label>  
-        <ion-toggle button icon-only item-end clear [(ngModel)]="booking.checked">   </ion-toggle>  
+        <ion-toggle  button icon-only item-end clear [(ngModel)]="booking.checked">   </ion-toggle>  
     </ion-list-header>
     <ion-item-group>
     <ion-item-sliding  #slidingItem>

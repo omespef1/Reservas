@@ -73,7 +73,7 @@ export class CarPage {
     let emp_codi: any = <any>await this._sesion.GetClientEmpCodi();
     let _pay: payment = {
       sbe_codi: user.Sbe_codi, emp_codi: emp_codi, sbe_ncar: user.Sbe_ncar, valor: this.total,
-      soc_mail: user.Sbe_mail, reservas: arrBookingNum
+      soc_mail: user.Sbe_mail, productos: arrBookingNum
     }
     this._payment.CreateTransactionPayment(_pay).then((resp: transaction) => {
       if (resp != null) {
@@ -86,7 +86,7 @@ export class CarPage {
               this.tickeyID = resp.ObjTransaction.TicketId;
               this._general.openBrowser(resp.ObjTransaction.eCollectUrl)
               this._platform.resume.subscribe(() => {
-                console.log('volviendo al app');
+              
                 if (this.tickeyID > 0) {
                   let paymentConfirm = { 'ticket': this.tickeyID, 'online': true }
                   let modal = this._modal.create(ConfirmPaymentPage, { 'payment': paymentConfirm });

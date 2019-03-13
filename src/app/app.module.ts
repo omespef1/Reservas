@@ -44,6 +44,8 @@ import {MainTemplatesPage} from '../pages/main-templates/main-templates';
 import {EventProductsPage} from '../pages/event-products/event-products';
 import {RunwayConfirmPage} from '../pages/runway-confirm/runway-confirm';
 import {EventGntoperPage}  from '../pages/event-gntoper/event-gntoper';
+import {EventCotizDetailPage  } from "../pages/event-cotiz-detail/event-cotiz-detail";;
+
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -77,6 +79,7 @@ import { PaymentProvider } from '../providers/payment/payment';
 import { EventsProvider } from '../providers/events/events';
 import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
 import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
+
 
 
  @NgModule({
@@ -117,7 +120,8 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
     MainTemplatesPage,
     EventProductsPage,
     RunwayConfirmPage,
-    EventGntoperPage
+    EventGntoperPage,
+    EventCotizDetailPage
   ],
   imports: [
     FormsModule,
@@ -169,7 +173,8 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
     MainTemplatesPage,
     EventProductsPage,
     RunwayConfirmPage,
-    EventGntoperPage
+    EventGntoperPage,
+    EventCotizDetailPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
