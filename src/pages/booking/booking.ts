@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Refresher, ModalController } from 'ionic-angular';
+import { Component } from '@angular/core';
 import { timer } from 'rxjs/observable/timer';
 //Providers
 import { ClassSpacesProvider } from '../../providers/class-spaces/class-spaces';

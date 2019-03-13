@@ -58,6 +58,10 @@ import { BookingProvider } from '../providers/booking/booking';
 import { ConnectionsProvider } from '../providers/connections/connections';
 import { CompaniesProvider } from '../providers/companies/companies';
 import { AgreementsProvider } from '../providers/agreements/agreements';
+import { PaymentProvider } from '../providers/payment/payment';
+import { EventsProvider } from '../providers/events/events';
+import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
+import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AccordionComponent} from '../components/accordion/accordion';
@@ -72,13 +76,9 @@ import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
-import { PaymentProvider } from '../providers/payment/payment';
-import { EventsProvider } from '../providers/events/events';
-import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
-import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
+
 
 
 
@@ -201,8 +201,7 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
     PaymentProvider,
     EventsProvider,
     MainTemplatesProvider,
-    AeEspacProvider,
-    BackgroundMode
+    AeEspacProvider
 
   ]
 })

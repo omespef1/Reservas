@@ -24,7 +24,7 @@ import { EventCotizDetailPage } from '../event-cotiz-detail/event-cotiz-detail';
   templateUrl: 'events.html',
 })
 export class EventsPage {
-  cotiz: eccotiz;
+  cotiz: eccotiz[];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private _events: EventsProvider, 

@@ -160,9 +160,10 @@ export class RunwayEventPage {
 
 //Envía la cotización
   SendCotization() {
-    this._events.SetEcCotiz(this.cotiz).catch((resp:transaction)=>{
+    this._events.SetEcCotiz(this.cotiz).then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){
-        this._general.showToastMessage('Se ha creado la cotización correctamente!','bottom');
+        let newCotiz:eccotiz = resp.ObjTransaction;
+        this._general.showToastMessage(`Se ha creado la cotización ${newCotiz.cot_nume} correctamente !`,'bottom');
         this.navCtrl.setRoot(EventsPage);
       }
     });
