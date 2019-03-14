@@ -8,17 +8,22 @@
 
   <ion-navbar>
     <ion-title>Cotizaciones</ion-title>
-    <ion-buttons end>
+    <!-- <ion-buttons end>
 <button ion-button icon-only (click)="NewEvent()" >
   <ion-icon name="add"></ion-icon>
 </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
 
 <ion-content class="outer-content">
-
+  <ion-fab top right edge>
+    <button ion-fab (click)="NewEvent()" class="element">
+        
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
   <ion-list>
     <div *ngFor="let item of cotiz">
     <ion-list-header>
@@ -26,7 +31,7 @@
     </ion-list-header>
     <ion-item-group>
       <ion-item button    (click)="seeDetails(item)" detail-push>      
-        <ion-icon name="ion-printer"></ion-icon>
+        <ion-icon item-start name="paper"></ion-icon>
         <ion-label>  {{ item.cot_desc }}</ion-label>   
       </ion-item>
     </ion-item-group>

@@ -97,13 +97,13 @@ export class sessions {
     return this.nativeStorage.get('companies');
   }
 
-  // SetEventPending(eventPending:disponibilityRequestEvent){
-  //   this.nativeStorage.set("eventPending",eventPending)
-  // }
+  SetEventQuantity(cant:Number){
+    this.nativeStorage.set("eventQuantity",cant)
+  }
 
-  // GetEventPending():Promise<disponibilityRequestEvent>{
-  //   return this.nativeStorage.get('eventPending');
-  // }
+  GetEventQuantity():Promise<number>{
+    return this.nativeStorage.get('eventQuantity');
+  }
 
   //Añade items al carrito de compra
   async addShoppingList(newBooking: bookingInfo) {

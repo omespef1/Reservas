@@ -28,7 +28,7 @@ import {sessions} from '../../class/sessions/sessions';
 export class EventConfirmPage {
 
    MyEventBooking :  booking = new booking();
-   mySelectedEvent: disponibilityRequestEvent;
+   mySelectedEvent: any;
    myEventDetails:disponibilityRequestEvent;
    price:string;
    
@@ -59,6 +59,7 @@ export class EventConfirmPage {
            this._general.ShowMessageAlert('Reserva no realizada', `${resp.TxtError}`);
            return;
          }
+         this._sesion.SetEventQuantity(this.myEventDetails.esp_capa);
            this._general.ShowMessageAlert('Reserva realizada!', `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`);
           //  this._sesion.SetEventPending(this.myEventDetails);
            this.navCtrl.push(RunwayEventPage);

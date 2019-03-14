@@ -14,7 +14,12 @@
       <ion-icon name="timer" item-start></ion-icon>
       <ion-label>Salida</ion-label>
       <ion-note item-end>{{MyEventBooking.Res_fina | date : 'dd-MM-yyyy HH:mm'}}</ion-note>
-    </ion-item>    
+    </ion-item> 
+    <ion-item>
+        <ion-icon name="timer" item-start></ion-icon>
+        <ion-label>Tiempo</ion-label>
+        <ion-note item-end>{{mySelectedEvent.hours}} horas, {{mySelectedEvent.minutes}} minutos</ion-note>
+      </ion-item>      
     <ion-item>
       <ion-icon name="albums" item-start></ion-icon>
       <ion-label>Espacio</ion-label>

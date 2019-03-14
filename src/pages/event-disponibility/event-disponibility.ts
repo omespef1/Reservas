@@ -66,7 +66,9 @@ export class EventDisponibilityPage {
             arb_sucu:disp.arb_sucu,
             product:disp.product,    
             dho_hori: disp.dho_hori, 
-            dho_horf:disp.dho_horf
+            dho_horf:disp.dho_horf,
+            hours: disp.hours,
+            minutes:disp.minutes
           })
         }
         this.eventSource = events;
@@ -96,7 +98,9 @@ export class EventDisponibilityPage {
   EventSelected(event){
   this.buildBooking(event);
   }
-
+  today() {
+    this.calendar.currentDate = new Date();
+  }
   buildBooking(event){
     this._session.GetLoggedin().then((resp:user)=>{    
       let newBooking: any = {

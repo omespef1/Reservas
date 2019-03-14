@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { appCentralizacionUrl } from '../../assets/config/config';
-import { LoadingController, ToastController ,Events} from 'ionic-angular';
+import { LoadingController, ToastController ,Events, Platform} from 'ionic-angular';
 //clases
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
@@ -20,7 +20,8 @@ export class ComunicationsProvider {
     private load: LoadingController,
     private _general: general,
     private _sesion: sessions,
-    private _events:Events) {
+    private _events:Events,
+    private platform:Platform) {
 
 
   }
@@ -30,6 +31,15 @@ export class ComunicationsProvider {
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
+    });
+    let subscription;
+    this.loading.willEnter.subscribe(() => {
+      subscription = this.platform.registerBackButtonAction(() => {
+        console.log('deshabilito el botón atrás si el loading está en pantalla');
+      }, 10);
+    });
+    this.loading.onDidDismiss(() => {
+      subscription();
     });
     let promise = new Promise((resolve, reject) => {
       if (loading)

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventDisponibilityPage } from '../event-disponibility/event-disponibility';
 import {disponibilityRequestEvent}  from '../../class/Models/models';
 import * as moment from 'moment';
+import { NgForm } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 //pages
 import {RunwayEventPage} from '../../pages/runway-event/runway-event';
 /**
@@ -38,6 +40,10 @@ export class NewEventPage {
   }
   goReservas(){
     this.navCtrl.push(RunwayEventPage);
+  }
+  change(value){    
+    console.log('entra');
+    this.myEvent.esp_capa = value.length > 3 ? '' : value;
   }
 
 }

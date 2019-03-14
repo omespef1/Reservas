@@ -73,7 +73,7 @@ export class CarPage {
     let emp_codi: any = <any>await this._sesion.GetClientEmpCodi();
     let _pay: payment = {
       sbe_codi: user.Sbe_codi, emp_codi: emp_codi, sbe_ncar: user.Sbe_ncar, valor: this.total,
-      soc_mail: user.Sbe_mail, productos: arrBookingNum
+      soc_mail: user.Sbe_mail, productos: arrBookingNum,dpa_tabla:'EC_COTIZ'
     }
     this._payment.CreateTransactionPayment(_pay).then((resp: transaction) => {
       if (resp != null) {

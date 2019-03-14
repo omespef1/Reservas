@@ -8,13 +8,28 @@
 
     <ion-navbar>
       <ion-title>Detalle</ion-title>
+     <ion-buttons end>
+<button large ion-button icon-only (click)="close()" >
+  <ion-icon name="close"></ion-icon>
+</button>
+    </ion-buttons>
     </ion-navbar>  
   </ion-header>    
   <ion-content class="outer-content">
     <ion-list no-border>
       <ion-list-header>
           Cotización No. {{cotiz.cot_nume}}
-      </ion-list-header>      
+      </ion-list-header>    
+      <ion-item class="animate-in-primary">
+          <ion-icon item-start name="person"></ion-icon>
+          Socio
+          <ion-note item-end>{{user.Soc_nomb}} {{user.Soc_apel}}</ion-note>
+        </ion-item>  
+        <ion-item class="animate-in-primary">
+            <ion-icon item-start name="card"></ion-icon>
+            Identificación
+            <ion-note item-end>{{user.Sbe_codi}}</ion-note>
+          </ion-item>  
       <ion-item class="animate-in-primary">
         <ion-icon item-start name="eye"></ion-icon>
         Descripción
@@ -23,16 +38,34 @@
     <ion-item class="animate-in-primary">
       <ion-icon name="cash" item-start></ion-icon>
         Total
-      <ion-note item-end>{{cotiz.cot_vato}}</ion-note>
-    </ion-item>    
+      <ion-note item-end>{{cotiz.cot_vato | currency :'COP'}}</ion-note>
+    </ion-item>  
+    <ion-item class="animate-in-primary">
+        <ion-icon name="clock" item-start></ion-icon>
+          Ingreso
+        <ion-note item-end>{{cotiz.cot_fing | date:'dd/MM/yyyy h:mm:ss a' }}</ion-note>
+      </ion-item>  
+      <ion-item class="animate-in-primary">
+          <ion-icon name="clock" item-start></ion-icon>
+            Salida
+          <ion-note item-end>{{cotiz.cot_fsal | date:'dd/MM/yyyy h:mm:ss a' }}</ion-note>
+        </ion-item> 
+        
+        <ion-item  *ngIf="cotiz.payment != undefined">
+            <ion-icon name="information-circle" item-start color="primary"></ion-icon>
+            <ion-label>Estado Pago</ion-label>
+            <button (click) ="seePay()" ion-button outline item-end>{{cotiz.payment.pap_esta}}</button>
+          </ion-item>
   </ion-list>
  <div text-center padding>
-    <button ion-button block icon-end color="danger">
+    <button ion-button block icon-end color="danger" *ngIf="cotiz.payment == undefined">
+        Pago en sitio
         <ion-icon name="cash"></ion-icon>
-       Pago en sitio
+      
       </button>
     
-      <button ion-button block icon-end color="danger" (click)="pay()">
+      <button ion-button block icon-end color="danger" (click)="pay()" *ngIf="cotiz.cla_ppag=='S' && cotiz.payment == undefined">
+         <!-- <ion-spinner  name="ios-small" color="light"></ion-spinner>  -->
         Pago en línea
         <ion-icon name="ios-card"></ion-icon>
       </button>

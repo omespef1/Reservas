@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 //provider
 import {ComunicationsProvider} from '../comunications/comunications';
-import { bookingInfo, transaction } from '../../class/models/models';
+import { bookingInfo } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
-import { Platform,ModalController, NavController } from 'ionic-angular';
-import { ConfirmPaymentPage } from '../../pages/confirm-payment/confirm-payment';
+
+
 
 /*
   Generated class for the PaymentProvider provider.
@@ -19,8 +18,7 @@ import { ConfirmPaymentPage } from '../../pages/confirm-payment/confirm-payment'
 export class PaymentProvider {
   tickeyID:number=0;
 
-  constructor(private _comu:ComunicationsProvider,private _sesion:sessions,private _general:general,private _platform:Platform,
-    private _modal:ModalController,private navCtrl:NavController) {
+  constructor(private _comu:ComunicationsProvider,private _sesion:sessions,private _general:general) {
     console.log('Hello PaymentProvider Provider');
   }
   CreateTransactionPayment(payment:any){

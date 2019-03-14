@@ -6,6 +6,7 @@ import {MainTemplatesProvider} from '../../providers/main-templates/main-templat
 import { transaction ,ecmcomp,disponibilityRequestEvent, bookingInfo} from '../../class/Models/models';
 //clases
 import {sessions } from '../../class/sessions/sessions';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 /**
  * Generated class for the MainTemplatesPage page.
  *
@@ -49,8 +50,11 @@ export class MainTemplatesPage {
        let transact : transaction =   <transaction> await  this._main.GetEcMconmp()
        if(transact!=null &&  transact.Retorno==0){        
           this.ecmcomp = transact.ObjTransaction;
+          console.log(this.ecmcomp);
        }
       }
+
+      this.max = <number> await this.sesion.GetEventQuantity();
   }
 
   addremove(item:any){
@@ -58,13 +62,17 @@ export class MainTemplatesPage {
   }
 
   save(){    
-     this._view.dismiss(this.ecmcomp.filter(e=>e.checked==true && e.quantity>0) )   
+    
+     this._view.dismiss(this.ecmcomp.filter(e=> Number(e.quantity)>0 && Number(e.quantity) <= this.max && e.checked==true));
   }
   close(){
     this._view.dismiss();
   }
   valid(){
-    return this.ecmcomp !=null && this.ecmcomp.filter(e=>e.checked==true && e.quantity>0).length>0 
+  
+    if(this.ecmcomp==null)
+    return false;       
+   return this.ecmcomp.filter(e=> Number(e.quantity)>0 && Number(e.quantity) <= this.max && e.checked==true).length>0;    
   }
 
 }

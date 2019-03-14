@@ -14,28 +14,32 @@
 
 
 <ion-content padding>
-  <ion-list >  
-    <ion-item>
-      <ion-label stacked >Cantidad Asistentes</ion-label>
-      <ion-input type="number" [(ngModel)]="myEvent.esp_capa"></ion-input>
-      
-    </ion-item>
-   <ion-item>
-     <ion-label stacked >Hora inicial</ion-label>
-     <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45"   [(ngModel)]="myEvent.dho_hori" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
-   </ion-item>
-   <ion-item>
-    <ion-label stacked >Hora Final</ion-label>
-    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,15,30,45"  [(ngModel)]="myEvent.dho_horf" [doneText]="doneText" [cancelText]="cancelText"></ion-datetime>
-  </ion-item>
-  </ion-list>
-  <button ion-button block (click)="goDisponibility()">
-      <ion-icon name="eye"></ion-icon>
-      &nbsp;Ver disponibilidad
-  </button>
-  <button ion-button block (click)="goReservas()">
-      <ion-icon name="check"></ion-icon>
-      &nbsp;Ver Reservas
-  </button>
+  <form #eventForm="ngForm" (ngSubmit)="goDisponibility()" >
+
+      <ion-list >  
+          <ion-item>
+            <ion-label stacked >Cantidad Asistentes</ion-label>
+            <ion-input type="number" (ionChange)="change($event.value)" name="esp_capa" [(ngModel)]="myEvent.esp_capa" required></ion-input>      
+          </ion-item>
+         <ion-item>
+           <ion-label stacked >Hora inicial</ion-label>
+           <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" minuteValues="0,15,30,45" required  name="dho_hori"  [(ngModel)]="myEvent.dho_hori" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
+         </ion-item>
+         <ion-item>
+          <ion-label stacked >Hora Final</ion-label>
+          <ion-datetime displayFormat="h:mm A" pickerFormat="h:mm A" minuteValues="0,15,30,45" required name="dho_horf"  [(ngModel)]="myEvent.dho_horf" [doneText]="doneText" [cancelText]="cancelText"></ion-datetime>
+        </ion-item>
+        </ion-list>
+        <button ion-button block [disabled] ="!eventForm.form.valid || myEvent.dho_hori > myEvent.dho_horf">
+            <ion-icon name="eye"></ion-icon>
+            &nbsp;Ver disponibilidad
+        </button>
+        <button type="button" ion-button block (click)="goReservas()">
+            <ion-icon name="check"></ion-icon>
+            &nbsp;Ver Reservas
+        </button>
+
+  </form>
+
 
 </ion-content>

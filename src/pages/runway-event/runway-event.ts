@@ -107,9 +107,7 @@ export class RunwayEventPage {
     this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
 
       this._booking.cancelBookings(booking).then((resp) => {
-        if (resp != null && resp != 0) {
           this.ionViewDidLoad();
-        }
       });
 
     }).catch(err => {
@@ -122,11 +120,10 @@ export class RunwayEventPage {
   save() {
     this._general.showMessageOption('Se requiere su confirmación', 'Por favor verifique los productos y menú asociados.Si confirma no podrá cambiarlos, desea continuar?')
       .then(() => {
-        let modal = this._modal.create(EventGntoperPage, { 'bookings': this.cotiz.reservas });
+        let modal = this._modal.create(EventGntoperPage);
         modal.present();
-        modal.onDidDismiss((gntoper: gntoper) => {         
-          this.BuildCotiz(gntoper);
-          this.SendCotization();
+        modal.onDidDismiss((gntoper: gntoper) => {                  
+          this.SendCotization(this.BuildCotiz(gntoper));
         })
       }).catch(err => {
         console.log(err);
@@ -135,32 +132,34 @@ export class RunwayEventPage {
 
   }
 
-  BuildCotiz(toper:gntoper){
-    this.cotiz.top_codi = toper.top_codi;
-    this.cotiz.top_nomb = toper.top_nomb;
-    this.cotiz.esp_codi = this.cotiz.reservas[0].esp_codi;
-    //terminar de filtrar la reservas de menos fecha inicial para fecha de ingreso y mayor fecha final para fecha de salida
-  let orderDates =   this.cotiz.reservas.sort(function(obj1, obj2) {
+  BuildCotiz(toper:gntoper):eccotiz{
+    //Clonamos el elemento original para no afectar la visualización en pantalla, filtramos las reservas checkeadas y enviamos a la bd
+    let cotizSave = this.cotiz;
+
+    cotizSave.top_codi = toper.top_codi;
+    cotizSave.top_nomb = toper.top_nomb;
+    cotizSave.reservas= cotizSave.reservas.filter(f=>f.checked==true);
+    cotizSave.esp_codi = cotizSave.reservas[0].esp_codi;
+
+    let orderDates =   cotizSave.reservas.sort(function(obj1, obj2) {
       // Ascending: first age less than the previous
       return Number(obj1.FechaInicio) - Number(new Date(obj2.FechaInicio));
     
     });
-    this.cotiz.cot_fing = orderDates[0].FechaInicio;
-    this.cotiz.cot_fsal = orderDates[orderDates.length-1].FechaFin;
-    // this.cotiz.cot_fech = new Date();
-    // this.cotiz.cot_fvec = orderDates[orderDates.length-1].FechaFin;
-    this.cotiz.soc_cont = this.user.Soc_cont;
-    this.cotiz.mac_nume = this.user.Mac_nume1;
-    this.cotiz.sbe_codi = this.user.Sbe_codi;
-    this.cotiz.sbe_cont = this.user.Sbe_cont;
-
+    cotizSave.cot_fing = orderDates[0].FechaInicio;
+    cotizSave.cot_fsal = orderDates[orderDates.length-1].FechaFin;
+    cotizSave.soc_cont = this.user.Soc_cont;
+    cotizSave.mac_nume = this.user.Mac_nume1;
+    cotizSave.sbe_codi = this.user.Sbe_codi;
+    cotizSave.sbe_cont = this.user.Sbe_cont;
+    return cotizSave;
 
   }
    
 
 //Envía la cotización
-  SendCotization() {
-    this._events.SetEcCotiz(this.cotiz).then((resp:transaction)=>{
+  SendCotization(cotizSave:eccotiz) {
+    this._events.SetEcCotiz(cotizSave).then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){
         let newCotiz:eccotiz = resp.ObjTransaction;
         this._general.showToastMessage(`Se ha creado la cotización ${newCotiz.cot_nume} correctamente !`,'bottom');

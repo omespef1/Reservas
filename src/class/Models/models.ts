@@ -48,7 +48,7 @@ export class pqr {
   }
 }
 
-export interface user {
+export class user {
   Soc_nomb: string;
   Soc_apel: string;
   Soc_tele: string;
@@ -69,6 +69,9 @@ export interface user {
   Emp_tele: string;
   Emp_nite: string;
   soc_ncar: string;
+  constructor(){
+
+  }
 }
 export interface transaction {
   Retorno: number;
@@ -162,6 +165,8 @@ export class disponibilityResponseEvent {
   public cla_codi: string;
   public arb_sucu: number;
   public product: any;
+  public hours:number;
+  public minutes:number;
 }
 
 
@@ -255,7 +260,8 @@ export interface payment {
   sbe_ncar: string;
   emp_codi: number;
   soc_mail: string;
-  productos: number[]
+  productos: number[];
+  dpa_tabla:string;
 
 }
 export interface paymentOut {
@@ -348,6 +354,7 @@ export class eccotiz {
    sbe_codi:string;
    mac_nume:string;
    sbe_cont:number;
+   cla_ppag:string;
   // cot_fvec 	:Date	;	
   // cot_orga	:string 	;	
   // cot_coor	:string 	;	
@@ -366,6 +373,7 @@ export class eccotiz {
   // cot_esta	:string 	;	
  
    reservas: bookingInfo[];
+   payment:any[];
 
 
 }
