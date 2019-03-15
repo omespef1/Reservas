@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angula
 //providers 
 import {AeEspacProvider} from '../../providers/ae-espac/ae-espac';
 //models
-import {product,bookingInfo, transaction} from '../../class/Models/models';
+import {product,bookingInfo, transaction} from '../../class/models/models';
 
 /**
  * Generated class for the EventProductsPage page.

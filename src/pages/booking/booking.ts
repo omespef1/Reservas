@@ -12,7 +12,7 @@ import { DigitalDatePipe } from '../../pipes/digital-date/digital-date';
 
 //models
 
-import { bookingInfo } from '../../class/Models/models';
+import { bookingInfo } from '../../class/models/models';
 //pages
 import {CarPage} from '../car/car';
 import {ConfirmPaymentPage} from  '../confirm-payment/confirm-payment';

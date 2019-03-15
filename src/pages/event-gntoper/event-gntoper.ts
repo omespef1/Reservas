@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angula
 //providers
 import {BookingProvider} from  '../../providers/booking/booking';
 //models
-import {gntoper,transaction} from '../../class/Models/models';
+import {gntoper,transaction} from '../../class/models/models';
 
 /**
  * Generated class for the EventGntoperPage page.

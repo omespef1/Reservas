@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angul
 //providers
 import { EventsProvider } from '../../providers/events/events';
 //models
-import { user, transaction,eccotiz } from '../../class/Models/models';
+import { user, transaction,eccotiz } from '../../class/models/models';
 //class
 import { sessions } from '../../class/sessions/sessions'
 //pages

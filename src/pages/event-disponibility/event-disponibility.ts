@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, UrlSerializer } from 'ionic-angula
 //providers
 //
 //models
-import {disponibilityRequestEvent, transaction,disponibilityResponseEvent,booking, user}  from '../../class/Models/models';
+import {disponibilityRequestEvent, transaction,disponibilityResponseEvent,booking, user}  from '../../class/models/models';
 //providers
 import {BookingProvider}  from '../../providers/booking/booking';
 import { isRightSide } from 'ionic-angular/umd/util/util';

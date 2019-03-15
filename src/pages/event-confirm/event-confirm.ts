@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //models
-import {booking,disponibilityRequestEvent, transaction} from '../../class/Models/models';
+import {booking,disponibilityRequestEvent, transaction} from '../../class/models/models';
 //providers
 import {BookingProvider} from '../../providers/booking/booking';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';

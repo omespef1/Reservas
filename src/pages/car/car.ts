@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform } from 'ionic-angular';
 //Models
-import { bookingInfo, payment, user, transaction, bankTransactDone } from '../../class/Models/models';
+import { bookingInfo, payment, user, transaction, bankTransactDone } from '../../class/models/models';
 //clases
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';

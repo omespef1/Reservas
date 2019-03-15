@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angula
 //providers
 import {MainTemplatesProvider} from '../../providers/main-templates/main-templates';
 //models
-import { transaction ,ecmcomp,disponibilityRequestEvent, bookingInfo} from '../../class/Models/models';
+import { transaction ,ecmcomp,disponibilityRequestEvent, bookingInfo} from '../../class/models/models';
 //clases
 import {sessions } from '../../class/sessions/sessions';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';

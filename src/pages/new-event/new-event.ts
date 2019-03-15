@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EventDisponibilityPage } from '../event-disponibility/event-disponibility';
-import {disponibilityRequestEvent}  from '../../class/Models/models';
+import {disponibilityRequestEvent}  from '../../class/models/models';
 import * as moment from 'moment';
 import { NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';

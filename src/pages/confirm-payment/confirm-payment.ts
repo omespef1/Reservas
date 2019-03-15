@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angula
 //pages
 import {BookingPage } from '../booking/booking';
 //models
-import {bookingInfo,transaction,user} from '../../class/Models/models';
+import {bookingInfo,transaction,user} from '../../class/models/models';
 //providers
 import {PaymentProvider} from '../../providers/payment/payment';
 //clases

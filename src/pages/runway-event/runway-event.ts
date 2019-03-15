@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, ItemSliding } fro
 import { BookingProvider } from '../../providers/booking/booking';
 import { sessions } from '../../class/sessions/sessions';
 //models
-import { user, bookingInfo, ecmcomp, product, gntoper, eccotiz, transaction } from '../../class/Models/models';
+import { user, bookingInfo, ecmcomp, product, gntoper, eccotiz, transaction } from '../../class/models/models';
 //pages
 import { MainTemplatesPage } from '../main-templates/main-templates';
 import { EventProductsPage } from '../event-products/event-products';
