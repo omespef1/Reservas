@@ -4,5 +4,5 @@
   <ion-tab [root]="tab3Root" tabTitle="Pqr" tabIcon="megaphone"></ion-tab>
   <ion-tab [root]="tab4Root" tabTitle="Eventos" tabIcon="star"></ion-tab>
   <ion-tab [root]="tab5Root" tabTitle="Convenios" tabIcon="ribbon"></ion-tab>
-  <ion-tab [root]="tab6Root" tabTitle="Perfil" tabIcon="person"></ion-tab>
+  <ion-tab [root]="tab6Root" tabTitle="Perfil" tabIcon="person" *ngIf="eventsVisible"></ion-tab>
 </ion-tabs>

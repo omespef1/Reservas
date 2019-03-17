@@ -10,6 +10,9 @@ import {SettingsPage} from '../settings/settings';
 import {AgreementsPage} from '../agreements/agreements';
 import {EventsPage} from '../events/events';
 import {CarPage} from '../car/car';
+import { EventsProvider } from '../../providers/events/events';
+import { transaction } from '../../class/models/models';
+import { of } from 'rxjs/observable/of';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -22,9 +25,22 @@ export class TabsPage {
   tab4Root = EventsPage;
   tab5Root = AgreementsPage;
   tab6Root = SettingsPage;
+  eventsVisible= true;
 
 
-  constructor() {
+  constructor(private _events:EventsProvider) {
 
+      this.GetConfigEvents();
+
+  }
+
+  GetConfigEvents(){
+   this._events.GetEcEvents().then((resp:transaction)=>{
+     if(resp!=null){
+       if(resp.Retorno==1){
+            this.eventsVisible=false;
+       }
+     }
+   })
   }
 }

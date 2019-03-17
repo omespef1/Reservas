@@ -133,8 +133,8 @@
     <plugin name="cordova-plugin-keychain-touch-id" spec="https://github.com/sjhoeksma/cordova-plugin-keychain-touch-id">
         <variable name="FACEID_USAGE_DESCRIPTION" value="For easy authentication" />
     </plugin>
-    <engine name="browser" spec="^5.0.4" />
     <engine name="android" spec="^7.1.4" />
     <engine name="ios" spec="4.5.5" />
     <plugin name="cordova-plugin-background-mode" spec="0.7.2" />
+    <engine name="browser" spec="~5.0.4" />
 </widget>
