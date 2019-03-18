@@ -44,7 +44,7 @@
 
   <ion-list  class="runway-sliding-demo" *ngFor="let booking of cotiz.reservas">
     <ion-list-header>
-       <ion-label>Reserva No. {{booking.Res_nume}}</ion-label>  
+       <ion-label>Reserva No. {{booking.Res_nume}} - {{booking.FechaInicio | date:'dd/MM/yyyy'}}</ion-label>  
         <ion-toggle  button icon-only item-end clear [(ngModel)]="booking.checked">   </ion-toggle>  
     </ion-list-header>
     <ion-item-group>
@@ -56,7 +56,7 @@
         </ion-avatar>
         <h2>{{booking.Cla_nomb}}- {{booking.Esp_nomb}}</h2>      
         <ion-note item-end>
-          {{booking.FechaFin | date:'dd/MM/yyyy'}}
+            {{booking.FechaInicio | date:'hh:mm:ss a'}}
         </ion-note>
       </ion-item>
        

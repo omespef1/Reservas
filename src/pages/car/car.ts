@@ -44,6 +44,7 @@ export class CarPage {
     if(this.bookingCar!=undefined)
     this.total = this.bookingCar.reduce((acc, pilot) => acc + pilot.res_valo, 0);
   }
+
   removeFromCar(booking: bookingInfo): void {
     this._sesion.removeFromShoppingList(booking).then(() => {
       this.getBookingsCar();
@@ -73,7 +74,7 @@ export class CarPage {
     let emp_codi: any = <any>await this._sesion.GetClientEmpCodi();
     let _pay: payment = {
       sbe_codi: user.Sbe_codi, emp_codi: emp_codi, sbe_ncar: user.Sbe_ncar, valor: this.total,
-      soc_mail: user.Sbe_mail, productos: arrBookingNum,dpa_tabla:'EC_COTIZ'
+      soc_mail: user.Sbe_mail, productos: arrBookingNum,dpa_tabla:'AE_RESER'
     }
     this._payment.CreateTransactionPayment(_pay).then((resp: transaction) => {
       if (resp != null) {

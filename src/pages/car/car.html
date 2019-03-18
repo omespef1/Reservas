@@ -30,7 +30,11 @@
         <p>{{booking.Cla_nomb}}</p>
         <h4>Espacio</h4>  
         <p>{{booking.Esp_nomb}}</p>
-        <h4>Precio</h4>
+        <h4>Subtotal</h4>
+          <p> $ {{booking.liquidation.subTotal | currency:'COP'}}</p>  
+        <h4>Total Impuestos</h4>
+        <p> $ {{booking.liquidation.totalImpuestos | currency:'COP'}}</p> 
+        <h4>Total</h4>
         <ion-badge color="danger"> $ {{booking.res_valo | currency:'COP'}}</ion-badge>             
         <!-- <h1>Precio: $ {{booking.res_valo}}</h1>    -->
       </ion-item>

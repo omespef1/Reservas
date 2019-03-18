@@ -6,10 +6,29 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>event-cotiz-products</ion-title>
+    <ion-title>Reservas</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="outer-content">
+    <ion-list>
+        <div *ngFor="let item of cotiz.espacios">
+        <ion-list-header>
+         Reserva No.{{ item.Res_nume  }}
+        </ion-list-header>
+        <ion-item-group>
+            <ion-item>      
+                <ion-icon item-start name="paper"></ion-icon>
+                <ion-label>Espacio</ion-label>   
+                <ion-note item-end>{{item.Esp_nomb}}</ion-note>
+              </ion-item>
+          <ion-item tappable button  (click)="seeChilds(item)" detail-push *ngIf="item.hijos.length>0">      
+            <ion-icon item-start name="restaurant"></ion-icon>
+            <ion-label> Productos</ion-label>   
+            <ion-note item-end>{{item.hijos.length}}</ion-note>
+          </ion-item>
+        </ion-item-group>
+      </div>
+    </ion-list>
 
 </ion-content>

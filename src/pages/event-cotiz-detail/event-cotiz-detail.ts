@@ -7,6 +7,7 @@ import { EventsPage } from '../events/events';
 import { general } from '../../class/general/general';
 import { ConfirmPaymentPage } from '../confirm-payment/confirm-payment';
 import { EventCotizProductsPage } from '../event-cotiz-products/event-cotiz-products';
+import { BookingPage } from '../booking/booking';
 
 /**
  * Generated class for the EventCotizDetailPage page.
@@ -88,7 +89,20 @@ export class EventCotizDetailPage {
     let payment = {'booking':this.cotiz,'online':true}
     this.navCtrl.push(ConfirmPaymentPage,{ 'payment' : payment});
   }
-  seeProducts(cotiz:eccotiz){
-    this.navCtrl.push(EventCotizProductsPage,{ 'products' : cotiz.reservas});
+ 
+
+  seeBookings(cotiz:eccotiz){
+    this.navCtrl.push(EventCotizProductsPage,{ 'cotiz' : cotiz});
+  }
+  paySite(){    
+
+
+   this._payment.CreateVoucherCotiz(this.cotiz).then((resp:transaction)=>{
+     if(resp!= null){
+      this._general.showToastMessage(`Se ha enviado un email a ${this.user.Sbe_mail} con la información.`,'bottom');
+      this.navCtrl.setRoot(BookingPage);
+     }
+     
+   });
   }
 }

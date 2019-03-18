@@ -46,6 +46,7 @@ import {RunwayConfirmPage} from '../pages/runway-confirm/runway-confirm';
 import {EventGntoperPage}  from '../pages/event-gntoper/event-gntoper';
 import {EventCotizDetailPage  } from "../pages/event-cotiz-detail/event-cotiz-detail";
 import {EventCotizProductsPage} from '../pages/event-cotiz-products/event-cotiz-products';
+import {EventCotizProductsChildsPage} from '../pages/event-cotiz-products-childs/event-cotiz-products-childs';
 
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
@@ -123,7 +124,8 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     RunwayConfirmPage,
     EventGntoperPage,
     EventCotizDetailPage,
-    EventCotizProductsPage
+    EventCotizProductsPage,
+    EventCotizProductsChildsPage
   ],
   imports: [
     FormsModule,
@@ -176,7 +178,9 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     EventProductsPage,
     RunwayConfirmPage,
     EventGntoperPage,
-    EventCotizDetailPage
+    EventCotizDetailPage,
+    EventCotizProductsChildsPage,
+    EventCotizProductsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

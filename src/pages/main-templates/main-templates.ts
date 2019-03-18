@@ -50,6 +50,7 @@ export class MainTemplatesPage {
        let transact : transaction =   <transaction> await  this._main.GetEcMconmp()
        if(transact!=null &&  transact.Retorno==0){        
           this.ecmcomp = transact.ObjTransaction;
+          this.ecmcomp = this.ecmcomp.filter(d=>d.detalles!=undefined)
           console.log(this.ecmcomp);
        }
       }

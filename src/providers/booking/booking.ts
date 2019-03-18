@@ -25,10 +25,12 @@ export class BookingProvider {
     console.log('Hello BookingProvider Provider');
   }
   GetBooking(partner: any) {
-    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}`,true,'Cargando información de reservas realizadas...');
+   console.log(partner);
+    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}&sbe_codi=${partner.Sbe_codi}`,true,'Cargando información de reservas realizadas...');
   }
   GetBookinQuotation(partner: any) {
-    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}&quotationExpress=true`,true,'Cargando información de reservas realizadas...');
+    console.log(partner);
+    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}&sbe_codi=${partner.Sbe_codi}&quotationExpress=true`,true,'Cargando información de reservas realizadas...');
   }
   GetGnItems() {
     return this._comunications.Get(`GnItems?tit_cont=349`);

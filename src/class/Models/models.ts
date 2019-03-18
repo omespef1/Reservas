@@ -245,13 +245,13 @@ export interface bookingInfo {
   res_valo: number;
   Ter_noco: string;
   cla_ppag: string;
+  tip_codi:number;
   payment: paymentOut;
   esp_cont: number;
   products:product[];
   ecmcomp: ecmcomp[];
   checked:boolean;
-
- 
+  liquidacion:liquidation; 
 }
 
 export interface payment {
@@ -343,39 +343,37 @@ export class eccotiz {
    cot_nume:number;
    cot_vato:number;
    cot_cont:number;
-  // cot_fech 	:Date	;	
    cot_desc	:string 	;	
-  // arb_sucu	:number 		;	
-  // coc_codi	:number 		;	
-  // cot_vata	:number 	;	
    cot_fing 	:Date	;	
    cot_fsal 	:Date	;	
    soc_cont	:number 		;
    sbe_codi:string;
    mac_nume:string;
    sbe_cont:number;
-   cla_ppag:string;
-  // cot_fvec 	:Date	;	
-  // cot_orga	:string 	;	
-  // cot_coor	:string 	;	
-  // ter_ejec	:number 		;	
-  // ite_cont	:number 		;	
-  // cot_mail	:string 	;	
-  // cot_fpag	:string 	;	
-  // cli_codi	:number 		;	
-  // dcl_codd	:number 		;	
-  // con_codi	:number 		;	
-  // act_cont	:number 		;	
-  // mon_codi	:number 		;	
-  // cot_feta 	:Date	;	
-  // lip_cont	:number 		;	
-  // for_codi	:number 		;	
-  // cot_esta	:string 	;	
- 
+   cla_ppag:string; 
    reservas: bookingInfo[];
    payment:any[];
-
+   espacios:EcDespa[];
 
 }
 
 
+export class EcDespa {
+  des_capa:number;
+  des_cont:number;
+  Esp_nomb:string;
+  Res_nume:string;
+  Res_cont:number;
+  hijos: EcDphij[];
+};
+export class EcDphij {
+  pro_codi:string;
+  pro_nomb:string;
+  dph_cant:number;
+
+};
+export class liquidation {
+  subTotal:number;
+  totalImpuestos:number;
+  valorTotal:number;
+};

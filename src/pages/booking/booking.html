@@ -59,7 +59,7 @@
         <h2>Espacio</h2>
         <p>{{booking.Esp_nomb}}</p>
       </ion-item>
-      <ion-item class="labelColorBlue">
+      <ion-item class="labelColorBlue" *ngIf="booking.Esp_mdit=='S'">
         <!-- <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{booking.Ter_foto}}">
         </ion-thumbnail> -->

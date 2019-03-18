@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 //provider
 import {ComunicationsProvider} from '../comunications/comunications';
-import { bookingInfo } from '../../class/models/models';
+import { bookingInfo, eccotiz } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
 
@@ -28,8 +28,11 @@ export class PaymentProvider {
     return this._comu.Get(`Pagos/${ticketId}`,true,'Consultando el estado de la transacción...',false);
   }
   CreateVoucher(bookings:bookingInfo[]){
-  return this._comu.Put(bookings,'Pagos','Generando voucher...');
+  return this._comu.Post(bookings,'Pagos/voucher','Generando voucher...');
   }
+  CreateVoucherCotiz(bookings:eccotiz){
+    return this._comu.Post(bookings,'Pagos/voucherCotiz','Generando voucher...');
+    }
 
   // InitPayment(_pay:any,targetPage:any){    
   //   this.CreateTransactionPayment(_pay).then((resp: transaction) => {
