@@ -29,6 +29,6 @@ export class EventsProvider {
    return this._comu.Post(cotiz,'EcCotiz')
  }
  GetEcEvents(){
-   return this._comu.Get(`EcCotiz?emp_codi=${this._sessions.GetClientEmpCodi()}`);
+   return this._comu.Get(`EcCotiz?emp_codi=${this._sessions.GetClientEmpCodi()}`,false,'',false);
  }
 }

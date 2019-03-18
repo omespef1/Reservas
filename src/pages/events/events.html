@@ -19,12 +19,12 @@
 
 <ion-content class="outer-content">
   <ion-fab top right edge>
-    <button ion-fab (click)="NewEvent()" class="element">
+    <button ion-fab (click)="NewEvent()" class="element" *ngIf="eventsVisible">
         
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-  <ion-list>
+  <ion-list *ngIf="eventsVisible">
     <div *ngFor="let item of cotiz">
     <ion-list-header>
      Cotización No.{{ item.cot_nume  }}

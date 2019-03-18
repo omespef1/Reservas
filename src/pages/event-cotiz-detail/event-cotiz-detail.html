@@ -56,6 +56,11 @@
             <ion-label>Estado Pago</ion-label>
             <button (click) ="seePay()" ion-button outline item-end>{{cotiz.payment.pap_esta}}</button>
           </ion-item>
+          <ion-item  *ngIf="cotiz.productos != undefined" detail-push>
+            <ion-icon name="irestaurant" item-start color="primary"></ion-icon>
+            <ion-label>Productos</ion-label>
+            <button (click) ="seeProducts()" ion-button outline item-end>{{cotiz.products.length}}</button>
+          </ion-item>
   </ion-list>
  <div text-center padding>
     <button ion-button block icon-end color="danger" *ngIf="cotiz.payment == undefined">

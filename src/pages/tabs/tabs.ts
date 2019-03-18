@@ -25,22 +25,16 @@ export class TabsPage {
   tab4Root = EventsPage;
   tab5Root = AgreementsPage;
   tab6Root = SettingsPage;
-  eventsVisible= true;
 
 
   constructor(private _events:EventsProvider) {
 
-      this.GetConfigEvents();
+     
 
   }
-
-  GetConfigEvents(){
-   this._events.GetEcEvents().then((resp:transaction)=>{
-     if(resp!=null){
-       if(resp.Retorno==1){
-            this.eventsVisible=false;
-       }
-     }
-   })
+  ionViewDidLoad(){
+  
   }
+
+
 }

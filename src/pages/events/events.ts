@@ -25,6 +25,7 @@ import { EventCotizDetailPage } from '../event-cotiz-detail/event-cotiz-detail';
 })
 export class EventsPage {
   cotiz: eccotiz[];
+  eventsVisible=true;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private _events: EventsProvider, 
@@ -33,6 +34,7 @@ export class EventsPage {
   }
 
   ionViewDidLoad() {
+    this.GetConfigEvents();
     this.GetEvents();
   }
 
@@ -54,5 +56,16 @@ let modal = this._modal.create(EventCotizDetailPage,{'cotiz':cotiz});
      this.ionViewDidLoad();
    })
   }
+
+  GetConfigEvents(){
+    return this._events.GetEcEvents().then((resp:transaction)=>{
+       console.log(resp);
+       if(resp==null){
+       console.log('pestaña desactivada');
+              this.eventsVisible=false;
+        
+       }
+     })
+    }
 
 }

@@ -6,6 +6,7 @@ import { PaymentProvider } from '../../providers/payment/payment';
 import { EventsPage } from '../events/events';
 import { general } from '../../class/general/general';
 import { ConfirmPaymentPage } from '../confirm-payment/confirm-payment';
+import { EventCotizProductsPage } from '../event-cotiz-products/event-cotiz-products';
 
 /**
  * Generated class for the EventCotizDetailPage page.
@@ -86,5 +87,8 @@ export class EventCotizDetailPage {
   seePay(){
     let payment = {'booking':this.cotiz,'online':true}
     this.navCtrl.push(ConfirmPaymentPage,{ 'payment' : payment});
+  }
+  seeProducts(cotiz:eccotiz){
+    this.navCtrl.push(EventCotizProductsPage,{ 'products' : cotiz.reservas});
   }
 }

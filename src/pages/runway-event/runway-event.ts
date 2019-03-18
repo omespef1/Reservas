@@ -169,7 +169,9 @@ export class RunwayEventPage {
   }
 
   Valid(): boolean {
-    if (this.cotiz.reservas != null && this.cotiz.reservas.filter(b => b.checked == true && (b.products != undefined && b.products.length > 0) && (b.ecmcomp != undefined && b.ecmcomp.length > 0)).length > 0)
-      return true;
+    //if (this.cotiz.reservas != null && this.cotiz.reservas.filter(b => b.checked == true && (b.products != undefined && b.products.length > 0) && (b.ecmcomp != undefined && b.ecmcomp.length > 0)).length > 0)
+      //return true;
+      return  this.cotiz.reservas != null && this.cotiz.reservas.filter(r=>r.checked==true).length>0
+    
   }
 }
