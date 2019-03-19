@@ -57,8 +57,8 @@ export class EventDisponibilityPage {
           
           events.push({
             title: disp.esp_nomb,
-            startTime: new Date(disp.dho_hori),
-            endTime: new Date(disp.dho_horf),
+            startTime: new Date(moment(disp.dho_hori).toISOString()),
+            endTime: new Date(moment(disp.dho_horf).toISOString()),
             allDay: false,  
             esp_cont: disp.esp_cont,   
             esp_codi:disp.esp_codi,
