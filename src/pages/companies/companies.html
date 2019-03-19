@@ -23,7 +23,7 @@
 <ion-content>
   <ion-list>
       <ion-item-group>
-        <ion-item (click)="closeLupa(client)" *ngFor="let client of businessList">
+        <ion-item (click)="closeLupa(client)" tappable *ngFor="let client of businessList">
           <ion-label>
           {{client.Emp_Nomb}} -   {{client.Emp_Codi}}
           </ion-label>

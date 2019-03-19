@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, Renderer, Input } from '@angular/core';
-import {} from '../'
+import {LongDatePipe} from '../../pipes/long-date/long-date';
 /**
  * Generated class for the AccordionComponent component.
  *

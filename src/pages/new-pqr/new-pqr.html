@@ -16,7 +16,7 @@
 <ion-content>
   <form (ngSubmit)="onSubmit(pqrForm);" #pqrForm="ngForm">
   <ion-list>
-    <ion-item detail-push (click)="openTypesPqr()">
+    <ion-item detail-push (click)="openTypesPqr()" tappable>
     <ion-icon name="paper" item-start></ion-icon>
       <ion-label>Tipo de PQR</ion-label>
       <ion-note class="note" item-end  required >
@@ -24,7 +24,7 @@
       </ion-note>
         <ion-input hidden [(ngModel)]="pqr.ite_tpqr" name="reason"  required></ion-input>
     </ion-item>
-    <ion-item detail-push (click)="openAmbients()">
+    <ion-item detail-push (click)="openAmbients()" tappable>
     <ion-icon name="clipboard" item-start></ion-icon>
       <ion-label>Ambiente</ion-label>
       <ion-note class="note" item-end>

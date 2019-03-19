@@ -80,7 +80,8 @@ import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
-
+import {LongDatePipe} from '../pipes/long-date/long-date';
+ 
 
 
 
@@ -109,6 +110,7 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     ThirdPartiesPage,
     PartnerConfirmPage,
     DigitalDatePipe,
+    LongDatePipe,
     CompaniesPage,
     PartnerConnectionsPage,
     CarPage,
@@ -201,6 +203,7 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
     ThirdPartiesProvider,
     KeychainTouchId,
     DigitalDatePipe,
+    LongDatePipe,
     ConnectionsProvider,
     CompaniesProvider,
     InAppBrowser,

@@ -24,7 +24,7 @@
 <ion-content>
   <ion-list #clientsList>
       <ion-item-group>
-        <ion-item (click)="closeLupa(conection)" *ngFor="let conection of connections">
+        <ion-item (click)="closeLupa(conection)" tappable *ngFor="let conection of connections">
           <ion-label>
           {{conection.CNX_NOMB}}
           </ion-label>

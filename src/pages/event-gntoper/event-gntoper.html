@@ -19,7 +19,7 @@
 
     </ion-list-header>
     <ion-item-group>
-      <ion-item *ngFor="let item  of gntoper" (click)="selectGnToper(item)">
+      <ion-item tappable *ngFor="let item  of gntoper" (click)="selectGnToper(item)">
         <ion-label>{{item.top_codi}} - {{ item.top_nomb}}</ion-label>
       </ion-item>
 

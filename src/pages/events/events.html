@@ -30,7 +30,7 @@
      Cotización No.{{ item.cot_nume  }}
     </ion-list-header>
     <ion-item-group>
-      <ion-item button    (click)="seeDetails(item)" detail-push>      
+      <ion-item button tappable   (click)="seeDetails(item)" detail-push>      
         <ion-icon item-start name="paper"></ion-icon>
         <ion-label>  {{ item.cot_desc }}</ion-label>   
       </ion-item>

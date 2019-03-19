@@ -43,12 +43,12 @@
     <ion-item class="animate-in-primary">
         <ion-icon name="clock" item-start></ion-icon>
           Ingreso
-        <ion-note item-end>{{cotiz.cot_fing | date:'dd/MM/yyyy h:mm:ss a' }}</ion-note>
+        <ion-note item-end>{{cotiz.cot_fing | longDate }}</ion-note>
       </ion-item>  
       <ion-item class="animate-in-primary">
           <ion-icon name="clock" item-start></ion-icon>
             Salida
-          <ion-note item-end>{{cotiz.cot_fsal | date:'dd/MM/yyyy h:mm:ss a' }}</ion-note>
+          <ion-note item-end>{{cotiz.cot_fsal |longDate }}</ion-note>
         </ion-item> 
         
         <ion-item  *ngIf="cotiz.payment != undefined">

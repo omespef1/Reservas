@@ -14,7 +14,7 @@ export class LongDatePipe implements PipeTransform {
    */
   transform(value: string, ...args) {
     let date = new Date(moment(value).toISOString())
-    value = moment(date).format("dd/MM/yyyy hh:mm a");
+    value = moment(date).format("DD/MM/YYYY hh:mm a");
     return value;
   }
 }
