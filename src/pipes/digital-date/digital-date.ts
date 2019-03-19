@@ -14,7 +14,7 @@ export class DigitalDatePipe implements PipeTransform {
    */
   transform(value: string, ...args) {
     let date = new Date(moment(value).toISOString())
-    value = moment(date).format("HH:mm");
+    value = moment(date).format("hh:mm a");
     return value;
   }
 }
