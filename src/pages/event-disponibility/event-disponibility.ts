@@ -11,6 +11,7 @@ import * as moment from 'moment';
 import {sessions} from '../../class/sessions/sessions';
 //pages
 import {EventConfirmPage} from '../event-confirm/event-confirm';
+import { DigitalDatePipe } from '../../pipes/digital-date/digital-date';
 
 /**
  * Generated class for the EventDisponibilityPage page.
