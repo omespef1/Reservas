@@ -1,0 +1,45 @@
+<!--
+  Generated template for the AccommodationSearchParamsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Alojamiento</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+    <form #searhParamsForm="ngForm" (ngSubmit)="ChooseRoms()" >
+  <ion-list >
+    <ion-list-header>
+      Parámetros de búsqueda
+    </ion-list-header>
+    <ion-item >
+        <ion-icon item-start color="primary" [name]="AccommodationBooking.Res_fini==undefined?'ios-calendar-outline': 'calendar'"></ion-icon>
+     <ion-label>Entrada</ion-label>   
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" required (ionChange)="setMinDateOut()"  required  name="Res_fini"  [(ngModel)]="AccommodationBooking.Res_fini" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
+    </ion-item>
+    <ion-item >
+        <ion-icon item-start color="primary" [name]="AccommodationBooking.Res_fina==undefined?'ios-calendar-outline': 'calendar'"></ion-icon>
+        <ion-label>Salida</ion-label>   
+        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" required  [min]="AccommodationBooking.Res_fini"  required  name="Res_fina"  [(ngModel)]="AccommodationBooking.Res_fina" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
+    </ion-item>
+
+    <!-- <ion-item >        
+        <ion-label>Habitaciones</ion-label>   
+       <button ion-button outline item-end >Seleccionar</button>
+       
+    </ion-item> -->
+  </ion-list>
+  <div padding>
+      <button [disabled] ="!searhParamsForm.form.valid || AccommodationBooking.Res_fini > AccommodationBooking.Res_fina "  icon-start ion-button block>
+        <ion-icon name="home"></ion-icon>
+         Habitaciones
+      </button>
+  </div>
+    </form>
+
+
+</ion-content>

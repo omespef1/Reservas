@@ -17,6 +17,7 @@ import { bookingInfo } from '../../class/models/models';
 import {CarPage} from '../car/car';
 import {ConfirmPaymentPage} from  '../confirm-payment/confirm-payment';
 import {RunwayEventPage} from '../runway-event/runway-event';
+import { SettingsPage } from '../settings/settings';
 /**
  * Generated class for the BookingPage page.
  *
@@ -212,5 +213,7 @@ export class BookingPage {
     }
   
   }
-
+  goProfile(){
+    this.navCtrl.push(SettingsPage);
+  }
 }

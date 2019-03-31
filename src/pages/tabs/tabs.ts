@@ -9,6 +9,7 @@ import {PqrPage} from '../pqr/pqr';
 import {SettingsPage} from '../settings/settings';
 import {AgreementsPage} from '../agreements/agreements';
 import {EventsPage} from '../events/events';
+import {AccommodationListPage} from '../accommodation-list/accommodation-list';
 import {CarPage} from '../car/car';
 import { EventsProvider } from '../../providers/events/events';
 import { transaction } from '../../class/models/models';
@@ -24,7 +25,8 @@ export class TabsPage {
   tab3Root = PqrPage;
   tab4Root = EventsPage;
   tab5Root = AgreementsPage;
-  tab6Root = SettingsPage;
+  tab6Root= AccommodationListPage;
+  // tab7Root = SettingsPage;
 
 
   constructor(private _events:EventsProvider) {

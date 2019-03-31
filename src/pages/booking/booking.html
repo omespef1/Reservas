@@ -10,14 +10,18 @@
     <ion-title>
       Mis Reservas
     </ion-title>
-    <ion-buttons end>
-        
+    <ion-buttons end>        
         <button  *ngIf="showCar" (click)="goCar()" id="notification-button"  ion-button clear class="elementCar">
             <ion-icon name="md-cart">
               <ion-badge id="notifications-badge" color="danger">{{carItemsCount}}</ion-badge>
             </ion-icon>              
         </button>
       </ion-buttons>
+      <ion-buttons start>
+          <button ion-button icon-only (click)="goProfile()">
+            <ion-icon name="contact"></ion-icon>
+          </button>
+        </ion-buttons>
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-searchbar (ionChange)="getItems($event.value)" [showCancelButton]="shouldShowCancel" placeholder="Buscar reserva">

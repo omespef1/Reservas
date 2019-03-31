@@ -106,7 +106,7 @@ export interface booking {
   arb_sucu: number;
   cotizacionExpress: boolean;
 }
-export class booking {
+export class booking {  
   Emp_codi: number;
   Res_fini: Date;
   Res_fina: Date;
@@ -124,6 +124,12 @@ export class booking {
   Productos: any[];
   Cla_cont: number;
   Esp_mdit: string;
+  rooms: room[] = [];
+ 
+}
+export class room {
+  type:string;
+  guests:number;
 }
 export class disponibilityRequest {
   public Cla_cont: number = 0;

@@ -47,6 +47,9 @@ import {EventGntoperPage}  from '../pages/event-gntoper/event-gntoper';
 import {EventCotizDetailPage  } from "../pages/event-cotiz-detail/event-cotiz-detail";
 import {EventCotizProductsPage} from '../pages/event-cotiz-products/event-cotiz-products';
 import {EventCotizProductsChildsPage} from '../pages/event-cotiz-products-childs/event-cotiz-products-childs';
+import {AccommodationListPage } from '../pages/accommodation-list/accommodation-list';
+import {AccommodationSearchParamsPage} from '../pages/accommodation-search-params/accommodation-search-params';
+import{AccommodationRoomsPage } from '../pages/accommodation-rooms/accommodation-rooms';
 
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
@@ -127,7 +130,10 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     EventGntoperPage,
     EventCotizDetailPage,
     EventCotizProductsPage,
-    EventCotizProductsChildsPage
+    EventCotizProductsChildsPage,
+    AccommodationListPage,
+    AccommodationSearchParamsPage,
+    AccommodationRoomsPage
   ],
   imports: [
     FormsModule,
@@ -136,6 +142,7 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     HttpClientModule,
     NgCalendarModule,
     IonicModule.forRoot(MyApp,{
+      mode: 'ios',
       autocomplete: 'off',
       backButtonText: 'Atrás',
        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo','junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre' ],
@@ -182,7 +189,10 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     EventGntoperPage,
     EventCotizDetailPage,
     EventCotizProductsChildsPage,
-    EventCotizProductsPage
+    EventCotizProductsPage,
+    AccommodationListPage,
+    AccommodationSearchParamsPage,
+    AccommodationRoomsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
