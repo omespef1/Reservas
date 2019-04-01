@@ -125,11 +125,21 @@ export class booking {
   Cla_cont: number;
   Esp_mdit: string;
   rooms: room[] = [];
+  spaces:space[]
  
 }
 export class room {
   type:string;
   guests:number;
+}
+
+export class space {
+  Esp_cont:number;
+  Esp_codi:number;
+  Esp_nomb:string;
+  Esp_desc:string;
+  esp_capa:number;
+  Esp_imag:any;
 }
 export class disponibilityRequest {
   public Cla_cont: number = 0;

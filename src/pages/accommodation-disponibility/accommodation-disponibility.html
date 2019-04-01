@@ -1,0 +1,32 @@
+<!--
+  Generated template for the AccommodationDisponibilityPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>accommodation-disponibility</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+    <ion-list  *ngFor="let space of AccomodationBooking.spaces;let i=index">
+      <ion-list-header>
+         Habitación {{i+1}}
+      </ion-list-header>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="data:image/jpeg;base64,{{space.Esp_imag}}">
+        </ion-thumbnail>
+        <h2>{{space.Esp_nomb}}</h2>
+        <p>Capacidad: {{space.esp_capa}}</p>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button  ion-button block icon-start >
+        <ion-icon name="ios-checkmark-circle"></ion-icon>
+        Continuar
+      </button>
+    </div>
+</ion-content>

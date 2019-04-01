@@ -35,7 +35,7 @@ export class AccommodationSearchParamsPage {
     console.log('ionViewDidLoad AccommodationSearchParamsPage');
   }
   ChooseRoms(){
-    this.navCtrl.push(AccommodationRoomsPage)
+    this.navCtrl.push(AccommodationRoomsPage,{'accommodation':this.AccommodationBooking})
   }
   setMinDateOut(){
     if(this.AccommodationBooking.Res_fini > this.AccommodationBooking.Res_fina)

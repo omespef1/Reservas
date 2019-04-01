@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { booking, room } from '../../class/models/models';
+import {AccommodationDisponibilityPage} from '../accommodation-disponibility/accommodation-disponibility';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 /**
  * Generated class for the AccommodationRoomsPage page.
@@ -24,15 +26,16 @@ export class AccommodationRoomsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.AccomodationBooking.rooms = [];
+    this.AccomodationBooking = navParams.get("accommodation");
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccommodationRoomsPage');
+ 
   }
  //Agregar habitación
   addRoom(){
     if(this.AccomodationBooking.rooms.length<this.maxRooms){
-      this.AccomodationBooking.rooms.unshift({guests:0,type:''})
+      this.AccomodationBooking.rooms.unshift({guests:1,type:''})
     }
    
   
@@ -56,7 +59,11 @@ export class AccommodationRoomsPage {
    
   }
  valid(){
-   return this.AccomodationBooking.rooms.filter(h=>h.type!='').length > 0;
+   return this.AccomodationBooking.rooms.filter(h=>h.type!='').length == this.AccomodationBooking.rooms.length;
+ }
+
+ goDisponibility(){
+   this.navCtrl.push(AccommodationDisponibilityPage,{'accommodation':this.AccomodationBooking});
  }
 
 }

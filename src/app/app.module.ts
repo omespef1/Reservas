@@ -50,6 +50,7 @@ import {EventCotizProductsChildsPage} from '../pages/event-cotiz-products-childs
 import {AccommodationListPage } from '../pages/accommodation-list/accommodation-list';
 import {AccommodationSearchParamsPage} from '../pages/accommodation-search-params/accommodation-search-params';
 import{AccommodationRoomsPage } from '../pages/accommodation-rooms/accommodation-rooms';
+import {AccommodationDisponibilityPage} from '../pages/accommodation-disponibility/accommodation-disponibility';
 
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
@@ -84,6 +85,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
+import { AccommodationDisponibilityProvider } from '../providers/accommodation-disponibility/accommodation-disponibility';
  
 
 
@@ -133,7 +135,8 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     EventCotizProductsChildsPage,
     AccommodationListPage,
     AccommodationSearchParamsPage,
-    AccommodationRoomsPage
+    AccommodationRoomsPage,
+    AccommodationDisponibilityPage
   ],
   imports: [
     FormsModule,
@@ -192,7 +195,8 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     EventCotizProductsPage,
     AccommodationListPage,
     AccommodationSearchParamsPage,
-    AccommodationRoomsPage
+    AccommodationRoomsPage,
+    AccommodationDisponibilityPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -220,7 +224,8 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     PaymentProvider,
     EventsProvider,
     MainTemplatesProvider,
-    AeEspacProvider
+    AeEspacProvider,
+    AccommodationDisponibilityProvider
 
   ]
 })
