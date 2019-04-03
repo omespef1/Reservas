@@ -19,6 +19,7 @@ export class AccommodationDisponibilityProvider {
   }
 
   GetDisponibility(booking:booking){
+    console.log(booking);
    return  this._comu.Post(booking,'agenda/GetDisponibilityAccommodation');
   }
 }

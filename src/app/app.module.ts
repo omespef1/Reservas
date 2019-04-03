@@ -51,6 +51,7 @@ import {AccommodationListPage } from '../pages/accommodation-list/accommodation-
 import {AccommodationSearchParamsPage} from '../pages/accommodation-search-params/accommodation-search-params';
 import{AccommodationRoomsPage } from '../pages/accommodation-rooms/accommodation-rooms';
 import {AccommodationDisponibilityPage} from '../pages/accommodation-disponibility/accommodation-disponibility';
+import {AccomodationConfirmationPage} from '../pages/accomodation-confirmation/accomodation-confirmation';
 
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
@@ -68,6 +69,8 @@ import { PaymentProvider } from '../providers/payment/payment';
 import { EventsProvider } from '../providers/events/events';
 import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
 import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
+import { AccommodationConfirmationProvider } from '../providers/accommodation-confirmation/accommodation-confirmation';
+
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AccordionComponent} from '../components/accordion/accordion';
@@ -86,6 +89,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
 import { AccommodationDisponibilityProvider } from '../providers/accommodation-disponibility/accommodation-disponibility';
+import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-payments';
+import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
+import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
+
  
 
 
@@ -136,7 +143,10 @@ import { AccommodationDisponibilityProvider } from '../providers/accommodation-d
     AccommodationListPage,
     AccommodationSearchParamsPage,
     AccommodationRoomsPage,
-    AccommodationDisponibilityPage
+    AccommodationDisponibilityPage,
+    AccomodationConfirmationPage,  
+      PartnerPaymentsPage,
+    PartnerPaymentsDetailsPage
   ],
   imports: [
     FormsModule,
@@ -196,7 +206,10 @@ import { AccommodationDisponibilityProvider } from '../providers/accommodation-d
     AccommodationListPage,
     AccommodationSearchParamsPage,
     AccommodationRoomsPage,
-    AccommodationDisponibilityPage
+    AccommodationDisponibilityPage,
+    AccomodationConfirmationPage,
+    PartnerPaymentsPage,
+    PartnerPaymentsDetailsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -225,7 +238,9 @@ import { AccommodationDisponibilityProvider } from '../providers/accommodation-d
     EventsProvider,
     MainTemplatesProvider,
     AeEspacProvider,
-    AccommodationDisponibilityProvider
+    AccommodationDisponibilityProvider,
+    PartnerPaymentsProvider,
+    AccommodationConfirmationProvider
 
   ]
 })

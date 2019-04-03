@@ -6,12 +6,12 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>accommodation-disponibility</ion-title>
+    <ion-title>Disponibilidad</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-    <ion-list  *ngFor="let space of AccomodationBooking.spaces;let i=index">
+    <ion-list  *ngFor="let space of AccomodationBooking.AccomodationSpaces;let i=index">
       <ion-list-header>
          Habitación {{i+1}}
       </ion-list-header>
@@ -19,12 +19,16 @@
         <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{space.Esp_imag}}">
         </ion-thumbnail>
-        <h2>{{space.Esp_nomb}}</h2>
-        <p>Capacidad: {{space.esp_capa}}</p>
+        <h2>{{space.Esp_nomb}}</h2>        
+        <h3>Capacidad: {{space.esp_capa}}</h3>
+        <p>{{space.Esp_desc}}</p>
+        <button ion-button outline item-end (click)="showDescription(space)" >
+          Descripción
+        </button>
       </ion-item>
     </ion-list>
     <div padding>
-      <button  ion-button block icon-start >
+      <button  ion-button block icon-start (click)="goConfirmation()" *ngIf="AccomodationBooking.AccomodationSpaces.length>0" >
         <ion-icon name="ios-checkmark-circle"></ion-icon>
         Continuar
       </button>

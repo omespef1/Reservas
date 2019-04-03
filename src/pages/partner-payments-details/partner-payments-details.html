@@ -1,0 +1,29 @@
+<!--
+  Generated template for the PartnerPaymentsDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalle transacción</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+    <ion-list *ngFor="let detail of payment.detail">
+      <ion-list-header>
+         
+         {{detail.dpa_tbla=='AE_RESER'?'Reserva':'Cotización' }} {{ detail.dpa_tbla=='AE_RESER'? detail.res_nume : detail.cot_nume}}
+      </ion-list-header>
+        <ion-item  >
+          <ion-icon name="briefcase" item-start></ion-icon>
+          <ion-label>Factura</ion-label>
+          <ion-note class="note" item-end>
+            {{detail.fac_nume}}
+          </ion-note>
+        </ion-item>
+        
+      </ion-list>
+
+</ion-content>

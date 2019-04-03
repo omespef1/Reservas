@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 //pages
 import {AccommodationRoomsPage} from '../accommodation-rooms/accommodation-rooms';
-import { booking } from '../../class/models/models';
+import { booking, user } from '../../class/models/models';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the AccommodationSearchParamsPage page.
@@ -21,20 +22,27 @@ export class AccommodationSearchParamsPage {
   doneText:string = "Hecho";
   cancelText:string="Cancelar";
   AccommodationBooking: booking= new booking();
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user:user;
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions) {
 
 
   }
 
-  loadInitParams(){
+  async loadInitParams(){
     this.AccommodationBooking.Res_fini = new Date();
     this.AccommodationBooking.Res_fina = new Date();
+    this.user = await<any> this._sesion.GetLoggedin();
+    this.AccommodationBooking.Mac_nume= this.user.Mac_nume1;
+    this.AccommodationBooking.Sbe_cont = this.user.Sbe_cont;
+    this.AccommodationBooking.Sbe_codi = this.user.Sbe_codi;  
+    this.AccommodationBooking.Soc_cont = this.user.Soc_cont; 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccommodationSearchParamsPage');
+    this.loadInitParams();
   }
   ChooseRoms(){
+    console.log(this.AccommodationBooking);
     this.navCtrl.push(AccommodationRoomsPage,{'accommodation':this.AccommodationBooking})
   }
   setMinDateOut(){

@@ -3,7 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //providers
 import {AccommodationDisponibilityProvider} from '../../providers/accommodation-disponibility/accommodation-disponibility';
   import { from } from 'rxjs/observable/from';
-import { transaction, booking } from '../../class/models/models';
+import { transaction, booking, space } from '../../class/models/models';
+//pages
+import {AccomodationConfirmationPage} from '../accomodation-confirmation/accomodation-confirmation';
+import { sessions } from '../../class/sessions/sessions';
 
 
 /**
@@ -20,20 +23,33 @@ import { transaction, booking } from '../../class/models/models';
 })
 export class AccommodationDisponibilityPage {
 AccomodationBooking:booking;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _accomodation:AccommodationDisponibilityProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _accomodation:AccommodationDisponibilityProvider,private _sesion:sessions) {
     this.AccomodationBooking = navParams.get("accommodation");
+    this.AccomodationBooking.Emp_codi = this._sesion.GetClientEmpCodi();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AccommodationDisponibilityPage');
+    this.GetDisponibility();
   }
+
+  // Carga de alojamiento disponible
 
   GetDisponibility(){
     this._accomodation.GetDisponibility(this.AccomodationBooking).then((resp:transaction)=>{
       if(resp!=null){
-        this.AccomodationBooking.spaces = resp.ObjTransaction;
+        this.AccomodationBooking.AccomodationSpaces = resp.ObjTransaction;
+      }
+      else {
+        this.AccomodationBooking.AccomodationSpaces=[];
       }
     })
+  }
+
+  goConfirmation(){
+    this.navCtrl.push(AccomodationConfirmationPage, {'accomodation':this.AccomodationBooking});
+  }
+  showDescription(space:space){
+
   }
 
 }

@@ -113,6 +113,7 @@ export class booking {
   Soc_cont: number;
   Mac_nume: string;
   Sbe_cont: number;
+  Sbe_codi: string;
   Esp_cont: number;
   Res_numd: number;
   Ite_cont: number;
@@ -125,7 +126,7 @@ export class booking {
   Cla_cont: number;
   Esp_mdit: string;
   rooms: room[] = [];
-  spaces:space[]
+  AccomodationSpaces:space[]=[];
  
 }
 export class room {
@@ -139,7 +140,11 @@ export class space {
   Esp_nomb:string;
   Esp_desc:string;
   esp_capa:number;
+  arb_sucu:Number;
   Esp_imag:any;
+  room:room;
+  priceSpace:number;
+  detailLiquidation:any[];
 }
 export class disponibilityRequest {
   public Cla_cont: number = 0;
@@ -393,3 +398,22 @@ export class liquidation {
   totalImpuestos:number;
   valorTotal:number;
 };
+
+export interface gn_papse {
+  pap_tkid:number,
+  pap_esta:string,
+  sbe_codi:number,
+  pad_vpag:number,
+  aud_ufac:Date,
+  detail: gn_dpaps[],
+}
+export interface gn_dpaps{
+  pap_tkid:number,
+  dpa_tcnt:number,
+  dpa_tbla:string,
+  fac_cont:number,
+  res_nume:number,
+  cot_nume:number,
+  fac_nume:number
+
+}

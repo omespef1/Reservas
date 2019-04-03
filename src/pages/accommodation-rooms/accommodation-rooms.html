@@ -23,7 +23,8 @@
     </ion-list-header>
     <div *ngFor="let room of AccomodationBooking.rooms;let i=index">
       <ion-item-divider>
-          Habitación {{i+1}}
+        <h2><strong>Habitación {{ i +1}}</strong></h2>
+          <!-- <ion-badge  item-start>Habitación {{ i +1}}</ion-badge>             -->
       </ion-item-divider>
       <ion-list >
         <ion-item>
@@ -52,7 +53,7 @@
   
   </ion-list>
   <div padding>
-    <button [disabled]= "!valid()" ion-button block icon-start >
+    <button [disabled]= "!valid()" ion-button block icon-start (click)="goDisponibility()">
       <ion-icon name="eye"></ion-icon>
       Ver disponibilidad
     </button>

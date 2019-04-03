@@ -4,6 +4,8 @@ import { sessions } from '../../class/sessions/sessions';
 //pages
 import { PartnerDetailPage } from '../partner-detail/partner-detail';
 import { AboutPage } from '../about/about';
+import { PartnerPaymentsPage } from '../partner-payments/partner-payments';
+
 
 /**
  * Generated class for the SettingsPage page.
@@ -41,5 +43,8 @@ export class SettingsPage {
   Errase() {
     this._sessions.erraseAlldata();
     this._events.publish('user:logout');
+  }
+  seePayments(){
+  this.navCtrl.push(PartnerPaymentsPage);
   }
 }
