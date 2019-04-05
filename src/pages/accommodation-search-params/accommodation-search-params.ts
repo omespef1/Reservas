@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import {AccommodationRoomsPage} from '../accommodation-rooms/accommodation-rooms';
 import { booking, user } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
+import { general } from '../../class/general/general';
 
 /**
  * Generated class for the AccommodationSearchParamsPage page.
@@ -21,21 +22,27 @@ import { sessions } from '../../class/sessions/sessions';
 export class AccommodationSearchParamsPage {
   doneText:string = "Hecho";
   cancelText:string="Cancelar";
+  minDate: string;
   AccommodationBooking: booking= new booking();
   user:user;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions ,private _general:general) {
 
 
   }
 
-  async loadInitParams(){
-    this.AccommodationBooking.Res_fini = new Date();
-    this.AccommodationBooking.Res_fina = new Date();
+  async loadInitParams(){    
     this.user = await<any> this._sesion.GetLoggedin();
+
     this.AccommodationBooking.Mac_nume= this.user.Mac_nume1;
     this.AccommodationBooking.Sbe_cont = this.user.Sbe_cont;
     this.AccommodationBooking.Sbe_codi = this.user.Sbe_codi;  
     this.AccommodationBooking.Soc_cont = this.user.Soc_cont; 
+    this.AccommodationBooking.Res_fini = new Date();
+    this.AccommodationBooking.Res_fina = new Date();
+    this.minDate=   this._general.addDays(new Date(),1).toISOString();
+    console.log(this.minDate);
+
+    
   }
 
   ionViewDidLoad() {
@@ -46,8 +53,16 @@ export class AccommodationSearchParamsPage {
     this.navCtrl.push(AccommodationRoomsPage,{'accommodation':this.AccommodationBooking})
   }
   setMinDateOut(){
-    if(this.AccommodationBooking.Res_fini > this.AccommodationBooking.Res_fina)
-    this.AccommodationBooking.Res_fina = this.AccommodationBooking.Res_fini;
+    if(this.AccommodationBooking.Res_fini >= this.AccommodationBooking.Res_fina)
+       this.AccommodationBooking.Res_fina =     this.AccommodationBooking.Res_fini
   }
+
+  
+
+ addDays(date: Date, days: number): Date {
+   let newDate = date;
+        newDate.setDate(newDate.getDate() + days);
+        return newDate;
+    }
 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ModalController, Refresher } from 'ionic-angular';
 //providers
 import { EventsProvider } from '../../providers/events/events';
 //models
@@ -65,6 +65,12 @@ let modal = this._modal.create(EventCotizDetailPage,{'cotiz':cotiz});
               this.eventsVisible=false;
         
        }
+     })
+    }
+
+    doRefresh(refresher: Refresher) {
+     this.GetEvents().then(()=>{
+       refresher.complete();
      })
     }
 

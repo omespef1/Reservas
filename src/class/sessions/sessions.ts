@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular'
 //pages
 import { TabsPage } from '../../pages/tabs/tabs';
 //config
-import { GnConex } from '../../class/models/models';
+import { GnConex, ae_param } from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //models
 import { bookingInfo ,disponibilityRequestEvent} from '../Models/models';
@@ -16,6 +16,8 @@ import { resolveDefinition } from '@angular/core/src/view/util';
 export class sessions {
   public clientUrl: string;
   public emp_codi: number;
+
+  public aeparam:ae_param;
   constructor(private nativeStorage: Storage, private _touch: KeychainTouchId) {
   }
   //Setea la sesión cuando se loguea un usuario
@@ -158,5 +160,14 @@ export class sessions {
   }
   getAvailableBiometric(){
     return  this._touch.isAvailable();
+  }
+
+  setAeParam(param:ae_param){
+    console.log(param);
+    this.aeparam = param;
+  }
+  getAeParam(){
+    console.log(this.aeparam);
+    return this.aeparam;
   }
 }

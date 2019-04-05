@@ -45,7 +45,7 @@
     
 
    
- <accordion [num]="booking.Res_nume" [start]="booking.FechaInicio" *ngFor="let booking of bookingsList;let i =index">
+ <accordion [num]="booking.Res_nume" [start]="booking.FechaInicio | longDate" *ngFor="let booking of bookingsList;let i =index">
     <ion-item class="labelColorRed">
         <ion-thumbnail item-start>
           <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">

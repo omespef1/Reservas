@@ -9,6 +9,8 @@ import { sessions } from '../class/sessions/sessions';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PqrProvider } from '../providers/pqr/pqr';
+import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
+import { transaction } from '../class/models/models';
 //plugins
 
 
@@ -25,7 +27,8 @@ export class MyApp {
     private events: Events,
     private _general: general,
     private _sessions: sessions,
-    private _pqr: PqrProvider) {
+    private _pqr: PqrProvider,
+    private _espac:AeEspacProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -65,6 +68,12 @@ export class MyApp {
         this._sessions.setAmbientPqr(resp.ObjTransaction);
         }
       })
+        this._espac.GetAeParam().then((resp:transaction)=>{
+            if(resp!=null){
+              this._sessions.setAeParam(resp.ObjTransaction);
+            }
+        })
+      
 
     })
   }

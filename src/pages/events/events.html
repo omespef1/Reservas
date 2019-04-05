@@ -18,6 +18,10 @@
 
 
 <ion-content class="outer-content">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+      </ion-refresher>
   <ion-fab top right edge>
     <button ion-fab (click)="NewEvent()" class="element" *ngIf="eventsVisible">
         

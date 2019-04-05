@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BrowserTab } from '@ionic-native/browser-tab';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-
+import * as moment from 'moment';
 
 
 @Injectable()
@@ -195,6 +195,16 @@ export class general {
    let browser =  this.InAppBrowser.create(url);
      return browser;
   }
+
+  addDays(date: Date, days: number): Date {
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
+setTimeInDate( date : Date,hours:number,minutes:number){
+  date.setHours(hours,minutes,0);
+  return date;
+}
 
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
   //   let app: string;

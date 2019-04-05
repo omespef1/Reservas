@@ -17,13 +17,28 @@
      </ion-list-header>         
      <ion-item>
         <ion-icon item-start name="ios-home-outline"></ion-icon>
-      <ion-label>Total habitaciones</ion-label>
+      <ion-label>Habitaciones totales</ion-label>
       <ion-note item-end>{{AccommodationBooking.AccomodationSpaces.length }} </ion-note>
+    </ion-item>
+    <!-- <ion-item>
+        <ion-icon item-start name="ios-cash-outline"></ion-icon>
+      <ion-label>Total App</ion-label>
+      <ion-note item-end>{{totalApp | currency : 'COP' }} </ion-note>
+    </ion-item> -->    
+    <ion-item>
+        <ion-icon item-start name="ios-cash-outline"></ion-icon>
+      <ion-label>Subtotal</ion-label>
+      <ion-note item-end>{{subTotal | currency : 'COP' }} </ion-note>
     </ion-item>
     <ion-item>
         <ion-icon item-start name="ios-cash-outline"></ion-icon>
-      <ion-label>Total sin impuestos</ion-label>
-      <ion-note item-end>{{GetTotal() | currency : 'COP' }} </ion-note>
+      <ion-label>Total Impuestos</ion-label>
+      <ion-note item-end>{{totalImpuestos | currency : 'COP' }} </ion-note>
+    </ion-item>
+    <ion-item>
+        <ion-icon item-start name="ios-cash-outline"></ion-icon>
+      <ion-label>Total Reserva</ion-label>
+      <ion-note item-end>{{total | currency : 'COP' }} </ion-note>
     </ion-item>
    </ion-list>
     <ion-list >
@@ -39,12 +54,12 @@
                 <ion-item>
                     <ion-icon item-start name="ios-calendar-outline"></ion-icon>
                   <ion-label>Entrada</ion-label>
-                  <ion-note item-end>{{ AccommodationBooking.Res_fini | longDate }} </ion-note>
+                  <ion-note item-end>{{ AccommodationBooking.Res_fini | date:'dd/MM/yyyy' }} </ion-note>
                 </ion-item>
                 <ion-item>
                     <ion-icon item-start name="ios-calendar-outline"></ion-icon>
                   <ion-label>Salida</ion-label>
-                  <ion-note item-end>{{ AccommodationBooking.Res_fina | longDate }} </ion-note>
+                  <ion-note item-end>{{ AccommodationBooking.Res_fina | date:'dd/MM/yyyy' }} </ion-note>
                 </ion-item>
                 <ion-item>
                     <ion-icon item-start name="md-calendar"></ion-icon>
@@ -73,9 +88,9 @@
     </ion-list>
 
     <div padding>
-        <button  ion-button block icon-start (click)="goDisponibility()">
+        <button color="danger" [disabled] = "objUpdateBookings != undefined && objUpdateBookings.Ids.length==0 "  ion-button block icon-start (click)="makeReservations()">
           <ion-icon name="ios-checkmark-circle"></ion-icon>
-          Continuar
+          Realizar reserva
         </button>
       </div>
 
