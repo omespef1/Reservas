@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { booking } from '../../class/models/models';
+import { booking, ToUpdatetMultiBooking } from '../../class/models/models';
 import { ComunicationsProvider } from '../comunications/comunications';
+import { sessions } from '../../class/sessions/sessions';
 
 
 /*
@@ -13,12 +14,16 @@ import { ComunicationsProvider } from '../comunications/comunications';
 @Injectable()
 export class AccommodationConfirmationProvider {
 
-  constructor(public http: HttpClient,private _comu:ComunicationsProvider) {
+  constructor(public http: HttpClient,private _comu:ComunicationsProvider,private _sesion:sessions) {
     console.log('Hello AccommodationConfirmationProvider Provider');
   }
 
 
   GetValuesSpaces(booking:booking){
-   return this._comu.Post(booking,'Pagos/GetValoresRseserva');
+   return this._comu.Post(booking,'Pagos/GetValoresRseserva','Verificando tarifas.Espere...');
+  }
+  updateBookingStates(objUdp:ToUpdatetMultiBooking){
+     objUdp.emp_codi = this._sesion.GetClientEmpCodi();
+    return this._comu.Post(objUdp,'reserva/actualizar');
   }
 }

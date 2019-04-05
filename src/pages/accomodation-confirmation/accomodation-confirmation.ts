@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AccommodationConfirmationProvider } from '../../providers/accommodation-confirmation/accommodation-confirmation';
-import { booking, transaction } from '../../class/models/models';
+import { booking, transaction, ToUpdatetMultiBooking } from '../../class/models/models';
 import * as moment from 'moment';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { general } from '../../class/general/general';
+import { AccommodationListPage } from '../accommodation-list/accommodation-list';
 
 
 /**
@@ -21,11 +23,15 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class AccomodationConfirmationPage {
 
 
-  total:number=0;
-  
+  totalApp: number = 0;
+  total: number = 0;
+  subTotal: number = 0;
+  totalImpuestos = 0;
+
   AccommodationBooking: booking;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _provider:AccommodationConfirmationProvider) {
-    this.AccommodationBooking = this.navParams.get('accomodation');  
+  objUpdateBookings: ToUpdatetMultiBooking= {Ids:[],emp_codi:0};
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _provider: AccommodationConfirmationProvider, private _general: general) {
+    this.AccommodationBooking = this.navParams.get('accomodation');
   }
 
 
@@ -34,25 +40,52 @@ export class AccomodationConfirmationPage {
     this.GetValueSpaces();
   }
 
-  GetValueSpaces(){
-      this._provider.GetValuesSpaces(this.AccommodationBooking).then((resp:transaction)=>{
-        if(resp!=null){
-          this.AccommodationBooking.AccomodationSpaces = resp.ObjTransaction;
+  GetValueSpaces() {
+    this._provider.GetValuesSpaces(this.AccommodationBooking).then((resp: transaction) => {
+      if (resp != null) {
+        console.log(resp);
+        this.AccommodationBooking.AccomodationSpaces = resp.ObjTransaction;
+        //Calcula el total de todos los espacios reservados
+        this.total = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.liquidation.valorTotal, 0);
+        //Calcula el total de la liquidación proveída por Seven, es decir este es el total real con impuestos
+        
+        //Calcula el subtotal de todos los espacios reservados
+        this.subTotal = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.liquidation.subTotal, 0);
+        //Calcula el total de impuestos de todos los espacios reservados
+        this.totalImpuestos = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.liquidation.totalImpuestos, 0);
+        //Calcula el total como lo calcula el api sin liquidación de seven
+        this.totalApp = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.priceSpace, 0);
+        //Crea el objeto que contendrá todos los RES_CONT de las reservas que se generaron en estado pendiente}
+        console.log(this.AccommodationBooking);        
+        let arrIds: any[]=[];
+        for (let spaceBooking of this.AccommodationBooking.AccomodationSpaces) {
+          arrIds.push(spaceBooking.res_cont);
         }
-      })
+        this.objUpdateBookings.Ids = arrIds;
+      }
+    })
   }
-
-  GetDifferenceInDays():number{
+//Función para calcula diferencia de días entre 2 fechas
+  GetDifferenceInDays(): number {
     let start = moment(this.AccommodationBooking.Res_fini, "YYYY-MM-DD");
     let end = moment(this.AccommodationBooking.Res_fina, "YYYY-MM-DD");
 
-//Difference in number of days
-   return moment.duration(end.diff(start)).asDays();
+    //Difference in number of days
+    return moment.duration(end.diff(start)).asDays();
 
   }
 
-  GetTotal(){
-    return this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.priceSpace, 0);
+
+  //Cambia el estado de las reservas desde Pendiente a reservado
+  makeReservations() {
+    this._provider.updateBookingStates(this.objUpdateBookings).then((resp: transaction) => {
+      if (resp != null) {
+        this._general.ShowMessageAlert('Listo!', 'Se han creado las reserva con éxito');
+        this.navCtrl.setRoot(AccommodationListPage);
+      }
+    })
   }
+
+
 
 }

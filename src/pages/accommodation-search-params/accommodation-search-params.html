@@ -19,12 +19,12 @@
     <ion-item >
         <ion-icon item-start color="primary" [name]="AccommodationBooking.Res_fini==undefined?'ios-calendar-outline': 'calendar'"></ion-icon>
      <ion-label>Entrada</ion-label>   
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" required (ionChange)="setMinDateOut()"  required  name="Res_fini"  [(ngModel)]="AccommodationBooking.Res_fini" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" [min]="minDate" pickerFormat="DD MM YYYY" required (ionChange)="setMinDateOut()"  required  name="Res_fini"  [(ngModel)]="AccommodationBooking.Res_fini" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
     </ion-item>
     <ion-item >
-        <ion-icon item-start color="primary" [name]="AccommodationBooking.Res_fina==undefined?'ios-calendar-outline': 'calendar'"></ion-icon>
+        <ion-icon item-start color="primary"  [name]="AccommodationBooking.Res_fina==undefined?'ios-calendar-outline': 'calendar'"></ion-icon>
         <ion-label>Salida</ion-label>   
-        <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" required  [min]="AccommodationBooking.Res_fini"  required  name="Res_fina"  [(ngModel)]="AccommodationBooking.Res_fina" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YYYY" [min]="minDate" pickerFormat="DD MM YYYY" required  [min]="AccommodationBooking.Res_fini"  required  name="Res_fina"  [(ngModel)]="AccommodationBooking.Res_fina" [doneText]="doneText" [cancelText]="cancelText" ></ion-datetime>
     </ion-item>
 
     <!-- <ion-item >        
@@ -40,6 +40,5 @@
       </button>
   </div>
     </form>
-
 
 </ion-content>

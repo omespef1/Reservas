@@ -1,21 +1,104 @@
 <!--
-  Generated template for the AccommodationListPage page.
+  Generated template for the BookingPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Reservas</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content class="outer-content">
-  <ion-fab top right edge>
-    <button ion-fab (click)="newAccomodationBooking()" class="element">        
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
+    <ion-navbar>
+      <ion-title>
+        Mis Reservas
+      </ion-title>
+      <ion-buttons end>        
+          <button  *ngIf="showCar" (click)="goCar()" id="notification-button"  ion-button clear class="elementCar">
+              <ion-icon name="md-cart">
+                <ion-badge id="notifications-badge" color="danger">{{carItemsCount}}</ion-badge>
+              </ion-icon>              
+          </button>
+        </ion-buttons>        
+    </ion-navbar>
+    <ion-toolbar no-border-top>
+      <ion-searchbar (ionChange)="getItems($event.value)" [showCancelButton]="shouldShowCancel" placeholder="Buscar reserva">
+      </ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
   
-
-</ion-content>
+  
+  <ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content>
+      </ion-refresher-content>
+    </ion-refresher>
+    <ion-fab top right>
+      <button ion-fab (click)="newAccomodationBooking()" class="element">
+          
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+    
+      
+  
+     
+   <accordion [num]="booking.Res_nume" [start]="booking.res_fini |  date:'dd/MM/yyyy'" *ngFor="let booking of bookingsList;let i =index">
+      <ion-item class="labelColorRed">
+          <ion-thumbnail item-start>
+            <img src="data:image/jpeg;base64,{{booking.Cla_foto}}">
+          </ion-thumbnail>
+          <h2>Tipo de servicio</h2>
+          <p>{{booking.Cla_nomb}}</p>
+        </ion-item>
+        <ion-item class="labelColorBlue">
+          <ion-thumbnail item-start>
+            <img src="data:image/jpeg;base64,{{booking.Esp_imag}}">
+          </ion-thumbnail>
+          <h2>Habitación</h2>
+          <p>{{booking.Esp_nomb}}</p>
+        </ion-item>
+        <ion-item class="labelColorBlue" *ngIf="booking.Esp_mdit=='S'">
+          <!-- <ion-thumbnail item-start>
+            <img src="data:image/jpeg;base64,{{booking.Ter_foto}}">
+          </ion-thumbnail> -->
+          <ion-icon  item-start name='person'></ion-icon>
+          <h2>Tercero</h2>
+          <p>{{booking.Ter_noco}}</p>
+        </ion-item>
+        <ion-item class="labelColorBlue">
+          <ion-icon  item-start name='clock'></ion-icon>
+          <h2>Termina el</h2>
+          <p>{{booking.res_fina | date :'dd/MM/yyyy'}}</p>        
+        </ion-item>   
+        <ion-item class="labelColorBlue">
+          <ion-icon name="logo-usd" item-start></ion-icon>
+          <h2>Valor</h2>
+          <ion-badge color="danger">
+            <strong>{{booking.res_valo  | currency:'COP'}}</strong> 
+          </ion-badge>
+        </ion-item>
+        <ion-item (click)="showDetailsPayment(booking)" tappable button detail-push *ngIf="booking.payment != undefined">
+          <ion-icon name="information-circle" color="primary" item-start></ion-icon>
+          <h2>Estado pago en línea</h2>
+          <ion-badge [color]="booking.payment.pap_esta=='APROBADO' ? 'secondary':'danger'">
+          <strong>{{booking.payment.pap_esta}}</strong> 
+          </ion-badge>
+        </ion-item>
+        <ion-item *ngIf="booking.cla_ppag =='S' && (booking.payment == undefined ||  statesToPay.indexOf(booking.payment.pap_esta) != -1)">
+          <button class="element-animation" ion-button block large color="danger" tappable (click)="AddCart(booking)">
+            <ion-icon name="cart" item-start></ion-icon>
+            Agregar al carrito
+          </button>
+        </ion-item>
+        <ion-list-header *ngIf="booking.Res_vige != 'N'">
+          Desliza para cancelar la reserva
+        </ion-list-header>
+        <ion-item *ngIf="booking.Res_vige != 'N'">
+          <ion-range min="20" max="80" step="2" color="danger" (ionChange)="CancelChange(booking,i)" debounce="200"
+            [(ngModel)]="cancelValue[i]">
+            <ion-icon color="primary" range-left name="checkmark-circle"></ion-icon>
+            <ion-icon color="danger" range-right name="close-circle"></ion-icon>
+          </ion-range>
+        </ion-item>
+   </accordion>
+    
+  
+  </ion-content>

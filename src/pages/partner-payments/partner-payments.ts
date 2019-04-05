@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { PartnerPaymentsDetailsPage } from '../partner-payments-details/partner-payments-details';
 import { PartnerPaymentsProvider } from '../../providers/partner-payments/partner-payments';
 import { transaction, gn_papse } from '../../class/models/models';
+import { ConfirmPaymentPage } from '../confirm-payment/confirm-payment';
 
 
 
@@ -20,7 +21,7 @@ import { transaction, gn_papse } from '../../class/models/models';
 })
 export class PartnerPaymentsPage {
   payments: gn_papse[]=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _payment:PartnerPaymentsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _payment:PartnerPaymentsProvider,private _modal:ModalController) {
   }
 
   ionViewDidLoad() {
@@ -36,6 +37,12 @@ export class PartnerPaymentsPage {
        this.payments = resp.ObjTransaction;
      }
     })
+  }
+
+  seeDetailsPayment(payment:gn_papse){
+    let paymentConfirm = { 'ticket': payment.pap_tkid, 'online': true }
+    let modal = this._modal.create(ConfirmPaymentPage, { 'payment': paymentConfirm });   
+    modal.present();
   }
 
 }

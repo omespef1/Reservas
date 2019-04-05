@@ -92,6 +92,7 @@ import { AccommodationDisponibilityProvider } from '../providers/accommodation-d
 import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-payments';
 import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
 import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
+import { AccommodationListProvider } from '../providers/accommodation-list/accommodation-list';
 
  
 
@@ -240,7 +241,8 @@ import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/pa
     AeEspacProvider,
     AccommodationDisponibilityProvider,
     PartnerPaymentsProvider,
-    AccommodationConfirmationProvider
+    AccommodationConfirmationProvider,
+    AccommodationListProvider
 
   ]
 })

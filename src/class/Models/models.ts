@@ -134,6 +134,11 @@ export class room {
   guests:number;
 }
 
+export class ToUpdatetMultiBooking {
+   Ids:any[]=[];
+   emp_codi:number;
+}
+
 export class space {
   Esp_cont:number;
   Esp_codi:number;
@@ -143,9 +148,19 @@ export class space {
   arb_sucu:Number;
   Esp_imag:any;
   room:room;
+  //Para cálculos de la aplicación sobre lo que vale el espacio en total
   priceSpace:number;
+  //Desglose de los productos para tarifa plena y tarifa adicional según fin de semana y entre semana
   detailLiquidation:any[];
+  //Liquidación que calcula seven sobre la reserva del espacio
+  liquidation:liquidation;
+  //Código interno de la reserva que se genera para el espacio
+  res_cont:number;
+  //Código externo para la reserva que se genera para el espacio
+  res_nume:number;
 }
+
+
 export class disponibilityRequest {
   public Cla_cont: number = 0;
   public pro_cont: number = 0;
@@ -415,5 +430,12 @@ export interface gn_dpaps{
   res_nume:number,
   cot_nume:number,
   fac_nume:number
+
+}
+
+export class ae_param {
+
+  cla_ceve:number;
+  cla_cont:number;
 
 }

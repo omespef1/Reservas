@@ -21,7 +21,7 @@ import {sessions} from  '../../class/sessions/sessions';
 @Injectable()
 export class BookingProvider {
 
-  constructor(private _comunications: ComunicationsProvider, private _classSpaces: ClassSpacesProvider,private _general:general,private _sesion:sessions) {
+  constructor(private _comunications: ComunicationsProvider, private _classSpaces: ClassSpacesProvider,private _general:general,private _sesion:sessions,private session:sessions) {
     console.log('Hello BookingProvider Provider');
   }
   GetBooking(partner: any) {
@@ -30,7 +30,7 @@ export class BookingProvider {
   }
   GetBookinQuotation(partner: any) {
     console.log(partner);
-    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}&sbe_codi=${partner.Sbe_codi}&quotationExpress=true`,true,'Cargando información de reservas realizadas...');
+    return this._comunications.Get(`reserva?soc_cont=${partner.Soc_cont}&sbe_cont=${partner.Sbe_cont}&sbe_codi=${partner.Sbe_codi}&cla_cont=${this.session.getAeParam().cla_ceve}`,true,'Cargando información de reservas realizadas...');
   }
   GetGnItems() {
     return this._comunications.Get(`GnItems?tit_cont=349`);
