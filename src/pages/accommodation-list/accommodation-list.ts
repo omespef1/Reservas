@@ -68,12 +68,15 @@ export class AccommodationListPage {
        console.log(resp);
        if (resp != null) {
          this.bookings = resp.ObjTransaction;
-         console.log(this.bookings);
-         this.initializeItems();
+         console.log(this.bookings);     
+        
        }
        else {
-         this._general.showToastMessage('No tiene reservas aún!', 'bottom');
-       }
+        this.bookings = null;
+      }
+      this.initializeItems()   
+      
+       
      }), err => (console.log("problemas " + err));
    }
  
@@ -83,12 +86,15 @@ export class AccommodationListPage {
    }
  
    doRefresh(refresher: Refresher) {
-     this._provider.GetBooking(this.user).then((resp: any) => {
-       if(resp!=null){
-         this.bookings = resp.ObjTransaction;
-         this.initializeItems();
+     this._provider.GetBooking(this.user).then((resp: any) => {   
+       if(resp!=null) {
+         this.bookings = resp.ObjTransaction;               
+     
        }
-       
+       else {
+         this.bookings = null;
+       }
+       this.initializeItems();
        refresher.complete();
        // this._general.showToastMessage('Reservas actualizadas!', 'bottom')
      }).catch(err => {
@@ -115,7 +121,7 @@ export class AccommodationListPage {
        this._general.showMessageOption('Cancelar reserva', '¿Está seguro de que desea cancelar esta reserva? Esta operación no puede deshacerse.').then(() => {
  
          this.cancelBooking(booking, i);
-         this.cancelValue = [];
+         this.cancelValue = [];  
        }).catch(() => {
          this.cancelValue[i] = 20;
        })
@@ -147,12 +153,12 @@ export class AccommodationListPage {
                //Se cancela la reserva según el motivo de selección del usuario
                this._bookingp.cancelBooking(cancel).then((resp: any) => {
                  if (resp != null) {
-                   this._general.showToastMessage('La reserva se ha cancelado!', 'bottom');
-                   this.ionViewDidLoad();
+                   this._general.showToastMessage('La reserva se ha cancelado!', 'bottom');                   
                  }
                  else {
                    this.cancelValue[i] = 20;
                  }
+                 this.GetBooking();
                })
              }
            }).catch(err => {

@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="outer-content">
   <ion-list *ngIf="online">
     <ion-item >
       <ion-icon name="briefcase" item-start></ion-icon>
@@ -99,7 +99,7 @@
       <ion-icon name='person' item-start></ion-icon>
       Socio
       <ion-note item-end>
-      {{user.Soc_nomb}}
+      {{user.Soc_nomb}}  {{user.Soc_apel}}
       </ion-note>
     </ion-item>
 
@@ -107,30 +107,36 @@
         <ion-icon name='card' item-start></ion-icon>
         Identificación
         <ion-note item-end>
-        {{item.Sbe_codi}}
+        {{user.Sbe_codi}}
         </ion-note>
       </ion-item>
     <ion-item>
       <ion-icon name='calendar' item-start></ion-icon>
       Inicio
-      <ion-note item-end>
-     {{item.FechaInicio}}
+      <ion-note item-end *ngIf="item.FechaInicio">
+        {{item.FechaInicio | longDate}}
+      </ion-note>
+      <ion-note item-end *ngIf="item.res_fini">
+        {{item.res_fini | date:'dd/MM/yyyy'}}
       </ion-note>
     </ion-item>
 
     <ion-item>
       <ion-icon name='calendar' item-start></ion-icon>
       Fin
-      <ion-note item-end>
-     {{item.FechaFin}}
+      <ion-note item-end *ngIf="item.FechaFin">
+     {{item.FechaFin | longDate}}
       </ion-note>
+      <ion-note item-end *ngIf="item.res_fina">
+        {{item.res_fina | date:'dd/MM/yyyy'}}
+         </ion-note>
     </ion-item>
 
     <ion-item>
         <ion-icon name='logo-usd' item-start></ion-icon>
         Valor
         <ion-note item-end>
-       {{item.res_valo}}
+       {{item.res_valo  | currency:'COP'}}
         </ion-note>
       </ion-item>
 

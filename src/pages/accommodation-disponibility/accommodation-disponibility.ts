@@ -7,6 +7,7 @@ import { transaction, booking, space } from '../../class/models/models';
 //pages
 import {AccomodationConfirmationPage} from '../accomodation-confirmation/accomodation-confirmation';
 import { sessions } from '../../class/sessions/sessions';
+import { general } from '../../class/general/general';
 
 
 /**
@@ -23,7 +24,7 @@ import { sessions } from '../../class/sessions/sessions';
 })
 export class AccommodationDisponibilityPage {
 AccomodationBooking:booking;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _accomodation:AccommodationDisponibilityProvider,private _sesion:sessions) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _accomodation:AccommodationDisponibilityProvider,private _sesion:sessions,private _general:general) {
     this.AccomodationBooking = navParams.get("accommodation");
     this.AccomodationBooking.Emp_codi = this._sesion.GetClientEmpCodi();
   }
@@ -49,7 +50,7 @@ AccomodationBooking:booking;
     this.navCtrl.push(AccomodationConfirmationPage, {'accomodation':this.AccomodationBooking});
   }
   showDescription(space:space){
-
+       this._general.ShowMessageAlert('Observaciones',space.Esp_desc);
   }
 
 }

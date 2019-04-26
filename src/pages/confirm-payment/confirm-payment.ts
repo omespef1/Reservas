@@ -50,6 +50,8 @@ export class ConfirmPaymentPage {
   async getOfflinePayment(){
     this.user  = <user>await this._sesion.GetLoggedin();
     this.offlineBookings = this.navParams.get('payment').bookings;
+    console.log(this.user);
+    console.log(this.offlineBookings);
      
   }
   async GetDetailTransaction(){
