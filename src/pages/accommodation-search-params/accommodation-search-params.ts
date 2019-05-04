@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 //pages
 import {AccommodationRoomsPage} from '../accommodation-rooms/accommodation-rooms';
 import { booking, user } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
+import * as moment from 'moment';
 
 /**
  * Generated class for the AccommodationSearchParamsPage page.
@@ -37,10 +38,10 @@ export class AccommodationSearchParamsPage {
     this.AccommodationBooking.Sbe_cont = this.user.Sbe_cont;
     this.AccommodationBooking.Sbe_codi = this.user.Sbe_codi;  
     this.AccommodationBooking.Soc_cont = this.user.Soc_cont; 
-    this.AccommodationBooking.Res_fini = new Date();
-    this.AccommodationBooking.Res_fina = new Date();
+    // this.AccommodationBooking.Res_fini = new Date();
+    // this.AccommodationBooking.Res_fina = new Date();
     this.minDate=   this._general.addDays(new Date(),1).toISOString();
-    console.log(this.minDate);
+   // console.log(this.minDate);
 
     
   }
@@ -53,8 +54,20 @@ export class AccommodationSearchParamsPage {
     this.navCtrl.push(AccommodationRoomsPage,{'accommodation':this.AccommodationBooking})
   }
   setMinDateOut(){
-    if(this.AccommodationBooking.Res_fini >= this.AccommodationBooking.Res_fina)
-       this.AccommodationBooking.Res_fina =     this.AccommodationBooking.Res_fini
+    if (this.AccommodationBooking.Res_fina ==undefined)
+    this.AccommodationBooking.Res_fina = this.AccommodationBooking.Res_fini;
+    if(this.AccommodationBooking.Res_fini>=  this.AccommodationBooking.Res_fina){
+      // this.AccommodationBooking.Res_fina =  this.AccommodationBooking.Res_fini;
+      // this.minDate = this.AccommodationBooking.Res_fina.toISOString() ;
+      this.AccommodationBooking.Res_fina =  this.AccommodationBooking.Res_fini;
+     // console.log(this.AccommodationBooking.Res_fina.toISOString());
+    //  console.log(this.AccommodationBooking.Res_fini);
+    //  this.AccommodationBooking.Res_fina = 
+    //  moment(this.AccommodationBooking.Res_fini).add(1,'days').toDate();
+    }
+    
+    
+   
   }
 
   

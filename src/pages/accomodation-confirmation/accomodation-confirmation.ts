@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AccommodationConfirmationProvider } from '../../providers/accommodation-confirmation/accommodation-confirmation';
-import { booking, transaction, ToUpdatetMultiBooking } from '../../class/models/models';
+import { booking, transaction, ToUpdatetMultiBooking, user, bookingInfo } from '../../class/models/models';
 import * as moment from 'moment';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { general } from '../../class/general/general';
 import { AccommodationListPage } from '../accommodation-list/accommodation-list';
+import { AccommodationListProvider } from '../../providers/accommodation-list/accommodation-list';
+import { sessions } from '../../class/sessions/sessions';
+import { CarPage } from '../car/car';
 
 
 /**
@@ -27,17 +30,24 @@ export class AccomodationConfirmationPage {
   total: number = 0;
   subTotal: number = 0;
   totalImpuestos = 0;
+  user:user;
 
   AccommodationBooking: booking;
   objUpdateBookings: ToUpdatetMultiBooking= {Ids:[],emp_codi:0};
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _provider: AccommodationConfirmationProvider, private _general: general) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private _provider: AccommodationConfirmationProvider,
+     private _general: general,
+     private _accomodationListProvider:AccommodationListProvider,
+     private _sesion:sessions) {
     this.AccommodationBooking = this.navParams.get('accomodation');
   }
 
 
 
-  ionViewDidLoad() {
+  async ionViewDidLoad() {
     this.GetValueSpaces();
+    this.user = <any> await this._sesion.GetLoggedin();
   }
 
   GetValueSpaces() {
@@ -77,15 +87,33 @@ export class AccomodationConfirmationPage {
 
 
   //Cambia el estado de las reservas desde Pendiente a reservado
-  makeReservations() {
-    this._provider.updateBookingStates(this.objUpdateBookings).then((resp: transaction) => {
-      if (resp != null) {
-        this._general.ShowMessageAlert('Listo!', 'Se han creado las reserva con éxito');
-        this.navCtrl.setRoot(AccommodationListPage);
-      }
-    })
+ async makeReservations() {
+    await this._provider.updateBookingStates(this.objUpdateBookings)
+    await this.GetBooking();
+    this.navCtrl.setRoot(CarPage);
+     // if (resp != null) {
+        // this._general.ShowMessageAlert('Listo!', 'Se han creado las reserva con éxito');
+        // this.navCtrl.setRoot(AccommodationListPage);
+      
+    //  }
+ 
   }
 
-
+   async GetBooking() {
+    await  this._sesion.removeCar();
+     let transactions:bookingInfo []= [];
+      let resp:transaction = <any> await this._accomodationListProvider.GetBooking(this.user);
+      console.log(resp);       
+      if (resp != null) {
+       transactions = resp.ObjTransaction;
+      for(let booking of transactions){     
+        console.log('encontró')    ;
+          if(this.objUpdateBookings.Ids.filter(b=>b == booking.Res_cont).length>0){
+           await  this._sesion.addShoppingList(booking);
+            console.log('agregó al carro') ;
+          }
+      }           
+      }    
+   }
 
 }

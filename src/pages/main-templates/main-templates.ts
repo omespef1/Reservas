@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angular';
+import { Component, ViewChild, Renderer } from '@angular/core';
+import { IonicPage, NavController, NavParams ,ViewController, ListHeader, ItemGroup} from 'ionic-angular';
 //providers
 import {MainTemplatesProvider} from '../../providers/main-templates/main-templates';
 //models
@@ -27,6 +27,7 @@ export class MainTemplatesPage {
 
   ecmcomp:ecmcomp[]=[];
   booking:bookingInfo;
+  accordionExapanded = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _main:MainTemplatesProvider,private sesion:sessions,
     private _view:ViewController) {
@@ -34,6 +35,10 @@ export class MainTemplatesPage {
        this.ecmcomp = this.booking.ecmcomp|| null;
   }
 
+  ngOnInit(): void {
+    
+    
+  }
   ionViewDidLoad() {
     this.GetEcMcomp();
     this.loadEventDetails();
@@ -74,6 +79,9 @@ export class MainTemplatesPage {
     if(this.ecmcomp==null)
     return false;       
    return this.ecmcomp.filter(e=> Number(e.quantity)>0 && Number(e.quantity) <= this.max && e.checked==true).length>0;    
+  }
+  toggleSection(i){
+      this.ecmcomp[i].open = !this.ecmcomp[i].open;
   }
 
 }

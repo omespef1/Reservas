@@ -34,7 +34,7 @@
     </ion-item> -->
   </ion-list>
   <div padding>
-      <button [disabled] ="!searhParamsForm.form.valid || AccommodationBooking.Res_fini > AccommodationBooking.Res_fina "  icon-start ion-button block>
+      <button [disabled] ="!searhParamsForm.form.valid || AccommodationBooking.Res_fini >= AccommodationBooking.Res_fina "  icon-start ion-button block>
         <ion-icon name="home"></ion-icon>
          Habitaciones
       </button>

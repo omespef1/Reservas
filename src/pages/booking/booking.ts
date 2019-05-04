@@ -90,7 +90,7 @@ export class BookingPage {
     this.navCtrl.push(ClassSpacesPage);
   }
   goCar(){
-    this.navCtrl.push(CarPage);
+    this.navCtrl.push(CarPage,{'option':'B'});
   }
 
   doRefresh(refresher: Refresher) {

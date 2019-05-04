@@ -22,12 +22,19 @@
 
   <!-- <accordion num="{{item.mco_codi}} - {{item.mco_nomb}}" > -->
       
-    <ion-list *ngFor="let item of ecmcomp;let i =index">
-        <ion-list-header>
-            <ion-label>{{item.mco_nomb}}</ion-label>   
-            <ion-toggle button icon-only item-end clear [(ngModel)]="item.checked">   </ion-toggle>                   
+    <ion-list *ngFor="let item of ecmcomp;let i =index" no-padding>
+       
+        <ion-list-header>    
+            <button (click)="toggleSection(i)" ion-button clear small icon-only item-left>
+                <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+              </button>                 
+            <ion-label> {{item.mco_nomb}}</ion-label>
+          <ion-toggle button icon-only item-end clear [(ngModel)]="item.checked">   </ion-toggle>                   
         </ion-list-header>
-        <ion-item-group>
+       
+      
+        <ion-item-group *ngIf="item.detalles && item.open">
           <ion-item *ngFor="let detalle of item.detalles">
               <ion-icon name="restaurant" item-start color="secondary"></ion-icon>
               <ion-label> {{detalle.pro_codi }} - {{detalle.pro_nomb}}</ion-label>            
@@ -42,6 +49,7 @@
         
         
         </ion-item-group>
+       
       <!-- <ion-item>
         <ion-range [(ngModel)]="detalle.dem_cant" [max]="max" color="primary" pin="true">
           <ion-icon range-left small name="arrow-dropup-circle"></ion-icon>

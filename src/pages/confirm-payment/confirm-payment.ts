@@ -86,7 +86,7 @@ export class ConfirmPaymentPage {
          
         }
        
-    this.goReservas();
+  
   }
 
 }

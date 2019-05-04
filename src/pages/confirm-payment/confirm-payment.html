@@ -47,7 +47,7 @@
       <ion-icon name="logo-usd" item-start></ion-icon>
       <ion-label>Valor</ion-label>
       <ion-note class="note" item-end>
-         {{transact.transValueField}}
+         {{transact.transValueField | currency:'COP'}}
       </ion-note>
     </ion-item>
     <ion-item>
@@ -61,7 +61,7 @@
       <ion-icon name="time" item-start></ion-icon>
       <ion-label>Fecha de proceso</ion-label>
       <ion-note class="calendar" item-end>
-         {{transact.bankProcessDateField  | date :'dd/MM/yyyy hh:mm:ss:a'}}
+         {{transact.bankProcessDateField  | date :'dd/MM/yyyy'}}
       </ion-note>
     </ion-item>
     <ion-item>

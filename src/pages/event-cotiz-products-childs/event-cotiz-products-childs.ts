@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {  EcDespa } from '../../class/models/models';
 
@@ -16,6 +16,8 @@ import {  EcDespa } from '../../class/models/models';
 })
 export class EventCotizProductsChildsPage {
 espacio:EcDespa;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.espacio = navParams.get("espacio");
   }

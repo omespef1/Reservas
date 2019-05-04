@@ -342,6 +342,7 @@ export class ecmcomp {
   mco_codi: string;
   quantity: number;
   checked:boolean=false;
+  open:boolean=false;
  detalles :ecdemco [];
 }
 

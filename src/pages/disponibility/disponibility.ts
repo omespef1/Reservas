@@ -159,8 +159,8 @@ export class DisponibilityPage {
     try {
       if(this.newFactory.class.Cla_Fchr!=null){
         let maxDate =new Date(this.newFactory.class.Cla_Fchr);
-        if(new Date(event.startTime) > maxDate)
-        throw Error(`Fecha Límite de reserva excedida ${this.newFactory.class.Cla_Fchr}:`)
+        // if(new Date(event.startTime) > maxDate)
+        // throw Error(`Fecha Límite de reserva excedida ${this.newFactory.class.Cla_Fchr}:`)
       }
       this.newFactory.agend = event;
             //Si ya majena disponibilidad significa que ya elegí el tercero

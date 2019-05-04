@@ -100,7 +100,7 @@ export class EventCotizDetailPage {
    this._payment.CreateVoucherCotiz(this.cotiz).then((resp:transaction)=>{
      if(resp!= null){
       this._general.showToastMessage(`Se ha enviado un email a ${this.user.Sbe_mail} con la información.`,'bottom');
-      this.navCtrl.setRoot(BookingPage);
+      this._view.dismiss();
      }
      
    });

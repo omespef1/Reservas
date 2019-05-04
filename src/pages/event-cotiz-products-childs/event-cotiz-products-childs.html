@@ -6,25 +6,29 @@
 -->
 <ion-header>
   <ion-navbar>
-   <ion-title>Productos</ion-title>
+    <ion-title>Productos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content">
-    <ion-list>
-       
-        <div *ngFor="let item of espacio.hijos">
-            <ion-list-header>
-               {{ item.pro_nomb }}
-               </ion-list-header>
-        <ion-item-group>         
-              <ion-item>      
-                  <ion-icon item-start name="add-circle"></ion-icon>
-                  <ion-label>Cantidad</ion-label>   
-                  <ion-note item-end>{{item.dph_cant}}</ion-note>
-                </ion-item>
+  <ion-list>
+
+    <div *ngFor="let item of espacio.hijos">
+     
+      <ion-list-header>
+        {{ item.pro_nomb }}
+      </ion-list-header>
+    
+     
+        <ion-item-group>
+          <ion-item>
+            <ion-icon item-start name="add-circle"></ion-icon>
+            <ion-label>Cantidad</ion-label>
+            <ion-note item-end>{{item.dph_cant}}</ion-note>
+          </ion-item>
         </ion-item-group>
-      </div>
-    </ion-list>
+    
+    </div>
+  </ion-list>
 
 </ion-content>
