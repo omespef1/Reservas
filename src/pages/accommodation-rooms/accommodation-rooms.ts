@@ -28,6 +28,7 @@ export class AccommodationRoomsPage {
     this.AccomodationBooking.rooms = [];
     this.AccomodationBooking = navParams.get("accommodation");
     console.log(this.AccomodationBooking);
+    this.addRoom();
   }
 
   ionViewDidLoad() {

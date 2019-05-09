@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ItemSliding } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ItemSliding, provideLocationStrategy } from 'ionic-angular';
 import { BookingProvider } from '../../providers/booking/booking';
 import { sessions } from '../../class/sessions/sessions';
 //models
@@ -33,7 +33,7 @@ export class RunwayEventPage {
   // bookings: bookingInfo[]=[];
   gntoper: gntoper;
   cotiz: eccotiz = new eccotiz();
-  //plantillas seleccionadas
+  
 
   user: user;
   constructor(public navCtrl: NavController,
@@ -174,4 +174,22 @@ export class RunwayEventPage {
       return  this.cotiz.reservas != null && this.cotiz.reservas.filter(r=>r.checked==true).length>0
     
   }
+
+  GetTotalMainTemplates(main:ecmcomp){
+    return  main.detalles.reduce((acc, pilot) => acc + pilot.dli_valo, 0)  * main.quantity ;
+  }
+  getTotalBooking(booking:bookingInfo){
+      let total = 0;
+
+      if(booking.ecmcomp){
+   for (let template of booking.ecmcomp  ){       
+      total += template.detalles.reduce((acc, pilot) => acc + pilot.dli_valo, 0)  * template.quantity ;
+   }
+  }
+  if(booking.products)
+    total += booking.products.reduce((acc, pilot) => acc + pilot.dli_valo, 0);
+    total += booking.res_valo;
+     return total;
+  }
+
 }

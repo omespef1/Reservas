@@ -44,23 +44,20 @@
 
   <ion-list  class="runway-sliding-demo" *ngFor="let booking of cotiz.reservas">
     <ion-list-header>
-       <ion-label>Reserva No. {{booking.Res_nume}} - {{booking.FechaInicio | date:'dd/MM/yyyy'}}</ion-label>  
+      <ion-label>  <h2><strong>Reserva No. {{booking.Res_nume}} - {{booking.FechaInicio | date:'dd/MM/yyyy'}}</strong></h2></ion-label>
         <ion-toggle  button icon-only item-end clear [(ngModel)]="booking.checked">   </ion-toggle>  
     </ion-list-header>
     <ion-item-group>
-    <ion-item-sliding  #slidingItem>
-        
+    <ion-item-sliding  #slidingItem>        
       <ion-item>
         <ion-avatar item-start>
           <img src="data:image/jpeg;base64,{{booking.Esp_imag}}">
         </ion-avatar>
-        <h2>{{booking.Cla_nomb}}- {{booking.Esp_nomb}}</h2>      
+       {{booking.Cla_nomb}}- {{booking.Esp_nomb}} 
         <ion-note item-end>
             {{booking.FechaInicio | digitalDate}}
         </ion-note>
-      </ion-item>
-       
-
+      </ion-item>       
       <ion-item-options>
         <button ion-button color="secondary" (click)="GoMain(booking,slidingItem)">
           <ion-icon name="restaurant"></ion-icon>
@@ -76,10 +73,58 @@
         </button>
       </ion-item-options>
       </ion-item-sliding>
-      </ion-item-group>   
-    </ion-list>
+      </ion-item-group>  
+      <ion-list-header text-right>
+       Producto principal
+      </ion-list-header> 
+      <ion-item-group>             
+      <ion-item>
+          <ion-icon item-start name="ios-information-circle-outline"></ion-icon>               
+          {{ booking.Pro_nomb }} 
+          <ion-note item-end>
+              {{ booking.res_valo  | currency:'COP' }}
+            </ion-note>
+      </ion-item>      
+    </ion-item-group>
+      <ion-list-header text-right *ngIf="booking.ecmcomp">
+        Menús
+      </ion-list-header>
+      <ion-item-group  *ngFor="let menu of booking.ecmcomp">
+          <ion-item>
+              <ion-icon item-start name="ios-information-circle-outline"></ion-icon>               
+              {{ menu.mco_nomb }} X {{menu.quantity}}
+              <ion-note item-end>
+                  {{ GetTotalMainTemplates(menu)  | currency:'COP'}}
+                </ion-note>
+          </ion-item>          
+      </ion-item-group>
+      <ion-list-header text-right *ngIf="booking.products">
+        Equipos
+      </ion-list-header>
+      <ion-item-group >
+      <ion-item *ngFor="let product of booking.products">
+          <ion-icon item-start name="information-circle"></ion-icon>
+          {{product.pro_nomb}}
+          <ion-note item-end>{{product.dli_valo | currency:'COP' }}</ion-note>
+      </ion-item>
+    </ion-item-group>
+
     
-    <div>    
+          <ion-list-header text-right >
+              Total reserva
+            </ion-list-header>
+          <ion-item-group>      
+            <ion-item text-right>
+                <ion-icon item-start name="logo-usd"></ion-icon>
+              <ion-badge > {{ getTotalBooking(booking) | currency:'COP'}}</ion-badge>   
+            </ion-item>
+          </ion-item-group>
+        
+    </ion-list>
+
+    
+    <div> 
+           
     </div>
     <button ion-button block icon-start (click)="save()" [disabled]="!Valid()">
         <ion-icon name="checkmark-circle"></ion-icon>&nbsp;Cotizar

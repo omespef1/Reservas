@@ -81,14 +81,14 @@ export class sessions {
     return this.clientUrl;
   // return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
   //return 'http://186.154.240.181/Nogalapi/api/';
-   // return 'http://localhost/SevenReservas/api/';
+  //return 'http://localhost/SevenReservas/api/';
    //return 'http://192.168.1.209/appnogal/api/';
   }
   SetClientUrl(value: string) {
     this.clientUrl = value;
   }
   GetClientEmpCodi() {
- // return 1;
+ //return 1;
   return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {

@@ -39,15 +39,20 @@ export class EventDisponibilityPage {
   };
   myEvent:disponibilityRequestEvent;
   constructor(public navCtrl: NavController, public navParams: NavParams,private _booking:BookingProvider,private _session:sessions) {
-
+    this.myEvent = this.navParams.get("myEvent");
+    let currentDate = new Date();  
+    this.myEvent.dho_anop = currentDate.getFullYear();   
+    this.myEvent.dho_mesp = currentDate.getMonth();
   }
 
   ionViewDidLoad() {
-   this.myEvent = this.navParams.get("myEvent");
+ 
    //this.showDisponibility();
   }
 
    showDisponibility(){
+     console.log('consulta');
+     console.log(this.myEvent.dho_mesp);
     this._booking.GetDisponibilityEvents(this.myEvent).then((transactionDisponibility:transaction)=>{      
       if(transactionDisponibility!=null && transactionDisponibility.ObjTransaction!=null){
         var events = [];
@@ -133,10 +138,10 @@ export class EventDisponibilityPage {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
-    this.isToday = today.getTime() === event.getTime();  
-    // this.myEvent.dho_mesp = event.getMonth();
-    // this.myEvent.dhop_anop = event.getFullYear();
-    
+    this.isToday = today.getTime() === event.getTime();
+    console.log('set fecha');
+      this.myEvent.dho_mesp = event.getMonth();
+      this.myEvent.dho_anop = event.getFullYear();        
   }
   onRangeChanged(ev) {
    

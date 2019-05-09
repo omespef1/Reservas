@@ -34,7 +34,7 @@ export class NewEventPage {
   goDisponibility(){   
     let now = new Date();
     this.myEvent.dho_mesp = now.getMonth() +1;
-    this.myEvent.dhop_anop = now.getFullYear();
+    this.myEvent.dho_anop = now.getFullYear();
     console.log(this.myEvent);
     this.navCtrl.push(EventDisponibilityPage,{'myEvent': this.myEvent});
   }

@@ -60,7 +60,7 @@ export class MainTemplatesPage {
        }
       }
 
-      this.max = <number> await this.sesion.GetEventQuantity();
+      this.max = this.booking.esp_capa;
   }
 
   addremove(item:any){
@@ -75,7 +75,7 @@ export class MainTemplatesPage {
     this._view.dismiss();
   }
   valid(){
-  
+   console.log(this.max);
     if(this.ecmcomp==null)
     return false;       
    return this.ecmcomp.filter(e=> Number(e.quantity)>0 && Number(e.quantity) <= this.max && e.checked==true).length>0;    

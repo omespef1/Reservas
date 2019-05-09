@@ -81,9 +81,9 @@ export class EventCotizDetailPage {
     })
   }
 
-  close() {
-    this._view.dismiss();
-  }
+  // close() {
+  //   this._view.dismiss();
+  // }
 
   seePay(){
     let payment = {'booking':this.cotiz,'online':true}

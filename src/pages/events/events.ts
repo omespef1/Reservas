@@ -50,11 +50,13 @@ export class EventsPage {
     this.navCtrl.push(NewEventPage);
   }
   seeDetails(cotiz:eccotiz){
-let modal = this._modal.create(EventCotizDetailPage,{'cotiz':cotiz});
-   modal.present();
-   modal.onDidDismiss(()=>{
-     this.ionViewDidLoad();
-   })
+// let modal = this._modal.create(EventCotizDetailPage,{'cotiz':cotiz});
+//    modal.present();
+//    modal.onDidDismiss(()=>{
+//      this.ionViewDidLoad();
+//    })
+
+   this.navCtrl.push(EventCotizDetailPage,{'cotiz':cotiz})
   }
 
   GetConfigEvents(){

@@ -186,7 +186,7 @@ export class disponibilityRequestEvent {
   public dho_horf: string;
   public esp_capa: number;
   public dho_mesp: number;
-  public dhop_anop: number;
+  public dho_anop: number;
   public emp_codi: number;
 
 }
@@ -288,6 +288,7 @@ export interface bookingInfo {
   ecmcomp: ecmcomp[];
   checked:boolean;
   liquidacion:liquidation; 
+  esp_capa:number;
 }
 
 export interface payment {
