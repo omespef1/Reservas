@@ -113,7 +113,7 @@ export class BookingPage {
   getItems(q: string) {
     //Reseteo los items a su estado original
     this.initializeItems();
-    //Si el valor es vacío ni filtra ndada
+    //Si el valor es vacío no filtra ndada
     if (!q || q.trim() === '') {
       return;
     }

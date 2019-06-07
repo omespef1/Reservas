@@ -21,8 +21,8 @@
               Parámetros de búsqueda
             </ion-list-header>
           <ion-item>
-              <ion-icon name="person"></ion-icon>
-            <ion-label  >Cantidad Asistentes</ion-label>
+              <ion-icon item-start name="person"  color="primary"></ion-icon>
+            <ion-label  > <b>Cantidad Asistentes</b></ion-label>
             <ion-input type="number" (ionChange)="change($event.value)" name="esp_capa" [(ngModel)]="myEvent.esp_capa" required></ion-input>      
           </ion-item>
          <ion-item>

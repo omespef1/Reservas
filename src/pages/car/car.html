@@ -52,8 +52,17 @@
 
   </ion-card>
   <div padding class="element-aparecer">
-  <button (click)="payOffline()" [disabled]="bookingCar==undefined || bookingCar.length==0" ion-button block large color="danger"> Pagar en sitio</button>
-  <button (click)="pay()" ion-button block large color="danger" [disabled]="bookingCar==undefined || bookingCar.length==0"> Pagar en línea $ {{total | currency:'COP'}}</button>
+  <button (click)="payOffline()" [disabled]="bookingCar==undefined || bookingCar.length==0" ion-button block large color="danger"> Pagar en sitio &nbsp; <ion-icon item-start name="logo-usd"></ion-icon>  &nbsp; {{total | currency:'COP'}}</button>
+  <button (click)="pay()" ion-button block large color="secondary" [disabled]="bookingCar==undefined || bookingCar.length==0"> 
+    
+
+     Pagar en línea  &nbsp; <ion-icon item-start name="logo-usd"></ion-icon>  &nbsp; {{total | currency:'COP'}}</button>
+  <button (click)="payOpc()" ion-button block large color="primary" [disabled]="bookingCar==undefined || bookingCar.length==0"> 
+    
+    Saldo a favor
+    &nbsp; <ion-icon item-start name="logo-usd"></ion-icon>  
+
+  </button>
 </div>
 
 </ion-content>

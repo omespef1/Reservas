@@ -26,7 +26,7 @@ export class EventsProvider {
   }
  SetEcCotiz(cotiz:eccotiz){
    cotiz.emp_codi = this._sessions.GetClientEmpCodi();
-   return this._comu.Post(cotiz,'EcCotiz')
+   return this._comu.Post(cotiz,'EcCotiz','Creando cotización...')
  }
  GetEcEvents(){
    return this._comu.Get(`EcCotiz?emp_codi=${this._sessions.GetClientEmpCodi()}`,false,'',false);

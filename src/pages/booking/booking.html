@@ -30,7 +30,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="outer-content">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content>
     </ion-refresher-content>
@@ -59,6 +59,11 @@
         </ion-thumbnail>
         <h2>Espacio</h2>
         <p>{{booking.Esp_nomb}}</p>
+      </ion-item>
+      <ion-item class="labelColorBlue">
+          <ion-icon item-start name="logo-dropbox"></ion-icon>
+          <h2>Producto</h2>
+          <p>{{booking.Pro_nomb}}</p>
       </ion-item>
       <ion-item class="labelColorBlue" *ngIf="booking.Esp_mdit=='S'">
         <!-- <ion-thumbnail item-start>
