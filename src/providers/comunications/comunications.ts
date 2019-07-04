@@ -27,7 +27,7 @@ export class ComunicationsProvider {
   }
   
   Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {    
-    this._events.publish('onBackground');
+   // this._events.publish('onBackground');
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
@@ -60,7 +60,7 @@ export class ComunicationsProvider {
           .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
       })
         .subscribe((resp: any) => {
-          this._events.publish('offBackground');
+         // this._events.publish('offBackground');
           console.log(stringUrl);
           console.log(resp);
           if (loading)
@@ -71,7 +71,7 @@ export class ComunicationsProvider {
           }
           resolve(resp);
         }, (err: HttpErrorResponse) => {
-          this._events.publish('offBackground');
+          // this._events.publish('offBackground');
           console.log(err);
           this.ErrMessage(err.error);
           if (loading)
