@@ -14,7 +14,7 @@ import { transaction } from '../class/models/models';
 //plugins
 
 
-
+declare var cordova:any;
 @Component({
   templateUrl: 'app.html'
 })
@@ -34,6 +34,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      cordova.plugins.certificates.trustUnsecureCerts(true);
       this.listenToLoginEvents();
       platform.registerBackButtonAction(() => {
         console.log("backPressed 1");
