@@ -130,6 +130,7 @@ export class ComunicationsProvider {
   }
 
   Post(params: any, urlService: string, content: string = "Cargando...") {
+    console.log('entra post...');
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
@@ -157,7 +158,9 @@ export class ComunicationsProvider {
         }
       ]
         //Important to set the data serializer or the request gets rejected
+        console.log('antes serialize');
         this.httpI.setDataSerializer('json');
+        console.log('después serialize');
         this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header).then((resp: any) => {
           console.log("respuesta POST OK");
           this.loading.dismiss();
