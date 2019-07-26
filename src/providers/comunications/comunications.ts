@@ -140,14 +140,25 @@ export class ComunicationsProvider {
       console.log(params);
       console.log("Realizando post...");
       if (this.platform.is("cordova")) {
+        console.log("Realizando post https...");
         this.httpI.setSSLCertMode('nocheck');
-        this.httpI.setHeader('*', 'Access-Control-Allow-Origin', '*');
-        this.httpI.setHeader('*', 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-        this.httpI.setHeader('*', 'Accept', 'application/json');
-        this.httpI.setHeader('*', 'content-type', 'application/json');
+        // this.httpI.setHeader('*', 'Access-Control-Allow-Origin', '*');
+        // this.httpI.setHeader('*', 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+        // this.httpI.setHeader('*', 'Accept', 'application/json');
+        // this.httpI.setHeader('*', 'content-type', 'application/json');
+
+      let header : any= [
+
+        {
+          'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Methods':'POST, GET, OPTIONS, PUT',
+          'Accept':'application/json',
+          'content-type':'application/json'
+        }
+      ]
         //Important to set the data serializer or the request gets rejected
         this.httpI.setDataSerializer('json');
-        this.httpI.post(this._sesion.GetClientUrl() + urlService, params, {}).then((resp: any) => {
+        this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header).then((resp: any) => {
           console.log("respuesta POST OK");
           this.loading.dismiss();
           console.log(resp)
@@ -160,7 +171,7 @@ export class ComunicationsProvider {
           console.log(err);
           this.ErrMessage(err.error);
           this.loading.dismiss();
-        })
+        }).catch(err=>console.log(err))
       }
       else {
 
