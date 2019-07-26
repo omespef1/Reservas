@@ -157,8 +157,10 @@ export class ComunicationsProvider {
           'content-type':'application/json'
         }
       
-        //Important to set the data serializer or the request gets rejected
+        //Important to set the data serializer or the request gets rejectedso
+        console.log("antes seriazal");
         this.httpI.setDataSerializer('json');
+        console.log("despues seriazal");
         this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header).then((resp: any) => {
           console.log("respuesta POST OK");
           this.loading.dismiss();

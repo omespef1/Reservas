@@ -132,8 +132,7 @@ export class DisponibilityPage {
   }
   onTimeSelected(ev) {
   
-      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-   
+      
 
   }
   onCurrentDateChanged(event: Date) {
