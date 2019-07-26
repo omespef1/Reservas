@@ -135,12 +135,14 @@ export class ComunicationsProvider {
       this.loading.present();
       console.log(this._sesion.GetClientUrl() + urlService);
       console.log(params);
+      console.log("Realizando post...");
       return this.http.post(this._sesion.GetClientUrl() + urlService, params).retryWhen(error => {
         return error
           .flatMap((error: any) => {
+            console.log(error);
             if (error.status === 503) {
               return Observable.of(error.status).delay(1000)
-            }
+            }         
             return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
           })
           .take(5)
@@ -148,6 +150,7 @@ export class ComunicationsProvider {
       })
 
         .subscribe((resp: any) => {
+          console.log("respuesta POST OK");
           this.loading.dismiss();
           console.log(resp)
           if (resp.Retorno == 1) {
