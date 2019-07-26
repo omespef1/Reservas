@@ -7,7 +7,6 @@ import { LoadingController, ToastController, Events, Platform } from 'ionic-angu
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
 import { HTTP } from '@ionic-native/http';
-import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
 
 /*
   Generated class for the ComunicationsProvider provider.
@@ -38,7 +37,7 @@ export class ComunicationsProvider {
     let subscription;
     this.loading.willEnter.subscribe(() => {
       subscription = this.platform.registerBackButtonAction(() => {
-        
+
       }, 10);
     });
     this.loading.onDidDismiss(() => {
@@ -139,40 +138,47 @@ export class ComunicationsProvider {
       this.loading.present();
       console.log(this._sesion.GetClientUrl() + urlService);
       console.log(params);
-      console.log("Realizando post...");
       if (this.platform.is("cordova")) {
         console.log("Realizando post https...");
         this.httpI.setSSLCertMode('nocheck');
-        // this.httpI.setHeader('*', 'Access-Control-Allow-Origin', '*');
-        // this.httpI.setHeader('*', 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-        // this.httpI.setHeader('*', 'Accept', 'application/json');
-        // this.httpI.setHeader('*', 'content-type', 'application/json');
-
-      let header : any= 
+        let header: any =
 
         {
-          'Access-Control-Allow-Origin':'*',
-          'Access-Control-Allow-Methods':'POST, GET, OPTIONS, PUT',
-          'Accept':'application/json',
-          'content-type':'application/json'
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+          'Accept': 'application/json',
+          'content-type': 'application/json'
         }
-      
+
         //Important to set the data serializer or the request gets rejected
         this.httpI.setDataSerializer('json');
-        this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header).then((resp: any) => {
-          console.log("respuesta POST OK");
-          this.loading.dismiss();
-          console.log(resp)
-          if (resp.Retorno == 1) {
-            this.ErrMessage(resp.TxtError);
-            resp = null;
-          }
-          resolve(resp);
-        }, (err: HttpErrorResponse) => {
-          console.log(err);
-          this.ErrMessage(err.error);
-          this.loading.dismiss();
-        }).catch(err=>console.log(err))
+
+        return Observable.fromPromise(
+          this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header)
+        ).retryWhen(error => {
+          return error
+            .flatMap((error: any) => {
+              if (error.status === 503) {
+                return Observable.of(error.status).delay(1000)
+              }
+              return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+            })
+            .take(5)
+            .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+        })
+          .subscribe((resp: any) => {
+            this.loading.dismiss();
+            console.log(resp)
+            if (resp.Retorno == 1) {
+              this.ErrMessage(resp.TxtError);
+              resp = null;
+            }
+            resolve(resp);
+          }, (err: HttpErrorResponse) => {
+            console.log(err);
+            this.ErrMessage(err.error);
+            this.loading.dismiss();
+          })
       }
       else {
 
