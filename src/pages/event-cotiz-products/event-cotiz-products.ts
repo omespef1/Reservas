@@ -19,11 +19,11 @@ export class EventCotizProductsPage {
 cotiz:eccotiz= new eccotiz();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.cotiz = navParams.get('cotiz');
-    console.log(this.cotiz);
+    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventCotizProductsPage');
+   
   }
 
 

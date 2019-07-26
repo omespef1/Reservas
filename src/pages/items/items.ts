@@ -25,13 +25,13 @@ export class ItemsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemsPage');
+    
   }
   close(item:item=null){
     this.viewCtrl.dismiss(item);
   }
   getItems(q: string) {
-    console.log(q);
+  
   //Reseteo los items a su estado original
   this.initializeItems();
 //Si el valor es vacío no filtra ndada

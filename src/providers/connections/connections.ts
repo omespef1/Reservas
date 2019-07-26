@@ -12,7 +12,7 @@ import {ComunicationsProvider} from '../comunications/comunications';
 
 export class ConnectionsProvider {
   constructor(private _communications:ComunicationsProvider) {
-    console.log('Hello ConnectionsProvider Provider');
+    
   }
   GetConnections(){
   return  this._communications.GetCentralizacion('GnConex/GetConnections?app_cont=1001');

@@ -11,7 +11,7 @@ import {ComunicationsProvider} from '../comunications/comunications'
 export class ClassSpacesProvider {
 
   constructor(public http: HttpClient,private _comunications:ComunicationsProvider) {
-    console.log('Hello ClassSpacesProvider Provider');
+    
   }
 GetClassSpaces(){
  return  this._comunications.Get('aeclase?');

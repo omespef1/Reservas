@@ -27,7 +27,7 @@ export class AccommodationRoomsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.AccomodationBooking.rooms = [];
     this.AccomodationBooking = navParams.get("accommodation");
-    console.log(this.AccomodationBooking);
+    
     this.addRoom();
   }
 

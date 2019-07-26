@@ -18,11 +18,11 @@ export class PartnerPaymentsDetailsPage {
   payment:gn_papse;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.payment = navParams.get('payment');
-    console.log(this.payment);
+   
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PartnerPaymentsDetailsPage');
+   
   }
 
 }

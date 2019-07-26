@@ -13,7 +13,7 @@ import {ComunicationsProvider} from '../../providers/comunications/comunications
 export class CompaniesProvider {
 
   constructor(private _comu:ComunicationsProvider) {
-    console.log('Hello CompaniesProvider Provider');
+    
   }
   GetGnEmpre(){
       return this._comu.Get(`GnEmpre/GetEmpresas`,true,'Consultando empresas..',false);

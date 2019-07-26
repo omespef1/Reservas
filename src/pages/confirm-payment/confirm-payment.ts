@@ -34,7 +34,7 @@ export class ConfirmPaymentPage {
   }
 
   ionViewWillEnter(){
-    console.log(this.navParams.get('payment'));
+    
     this.online = this.navParams.get('payment').online;
     if(this.online)
     this.GetOnLinePayment();
@@ -43,15 +43,15 @@ export class ConfirmPaymentPage {
   }
 
   GetOnLinePayment(){
-    console.log(this.navParams.get('payment').booking);
+   
     this.booking = this.navParams.get('payment').booking;           
     this.GetDetailTransaction();
   }
   async getOfflinePayment(){
     this.user  = <user>await this._sesion.GetLoggedin();
     this.offlineBookings = this.navParams.get('payment').bookings;
-    console.log(this.user);
-    console.log(this.offlineBookings);
+    
+   
      
   }
   async GetDetailTransaction(){
@@ -66,7 +66,7 @@ export class ConfirmPaymentPage {
 
     let TransactionResponse = <transaction> await this._payment.GetTransactionInformation(tickedId); 
     this.transact = TransactionResponse.ObjTransaction;
-    console.log(TransactionResponse);
+    
  
   }
   goReservas(){

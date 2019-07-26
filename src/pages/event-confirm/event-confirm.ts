@@ -40,7 +40,7 @@ export class EventConfirmPage {
     this.mySelectedEvent = navParams.get("event");
     this.MyEventBooking = navParams.get("myBooking");
     this.myEventDetails = navParams.get("eventDetails");
-    console.log(this.MyEventBooking);
+    
   }
 
   ionViewDidLoad() {
@@ -53,7 +53,7 @@ export class EventConfirmPage {
   MakeBooking(){
     this.MyEventBooking.cotizacionExpress=true;
     this._booking.SetBooking(this.MyEventBooking).then((resp:any)=>{
-      console.log(resp);
+     
       if(resp!=null){
          if(resp.InvoiceId==0){
            this._general.ShowMessageAlert('Reserva no realizada', `${resp.TxtError}`);

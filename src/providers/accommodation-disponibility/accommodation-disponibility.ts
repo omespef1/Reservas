@@ -15,11 +15,11 @@ import { booking } from '../../class/models/models';
 export class AccommodationDisponibilityProvider {
 
   constructor(public http: HttpClient,private _comu:ComunicationsProvider ) {
-    console.log('Hello AccommodationDisponibilityProvider Provider');
+   
   }
 
   GetDisponibility(booking:booking){
-    console.log(booking);
+    
    return  this._comu.Post(booking,'agenda/GetDisponibilityAccommodation');
   }
 }

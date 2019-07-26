@@ -15,7 +15,7 @@ import { sessions } from '../../class/sessions/sessions';
 export class AccommodationConfirmationProvider {
 
   constructor(public http: HttpClient,private _comu:ComunicationsProvider,private _sesion:sessions) {
-    console.log('Hello AccommodationConfirmationProvider Provider');
+   
   }
 
 

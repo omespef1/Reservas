@@ -29,20 +29,20 @@ export class NewEventPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewEventPage');
+    
   }
   goDisponibility(){   
     let now = new Date();
     this.myEvent.dho_mesp = now.getMonth() +1;
     this.myEvent.dho_anop = now.getFullYear();
-    console.log(this.myEvent);
+   
     this.navCtrl.push(EventDisponibilityPage,{'myEvent': this.myEvent});
   }
   goReservas(){
     this.navCtrl.push(RunwayEventPage);
   }
   change(value){    
-    console.log('entra');
+  
     this.myEvent.esp_capa = value.length > 3 ? '' : value;
   }
 

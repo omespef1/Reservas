@@ -14,7 +14,7 @@ import { ComunicationsProvider } from '../../providers/comunications/comunicatio
 export class PqrProvider {
 
   constructor(public http: HttpClient, private _comunications: ComunicationsProvider) {
-    console.log('Hello PqrProvider Provider');
+    
   }
   GetPqr(user: any) {
     return this._comunications.Get(`pqinpqr?soc_cont=${user.Soc_cont}&sbe_cont=${user.Sbe_cont}`)

@@ -44,7 +44,7 @@ export class PqrPage {
   GetPqrs() {
     this._pqr.GetPqr(this.user).then((response: any) => {
       if(response!=null){
-      console.log(response);
+     
       this.pqrs = response.ObjTransaction;
       this.initializeItems();
       }

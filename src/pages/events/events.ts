@@ -61,9 +61,9 @@ export class EventsPage {
 
   GetConfigEvents(){
     return this._events.GetEcEvents().then((resp:transaction)=>{
-       console.log(resp);
+      
        if(resp==null){
-       console.log('pestaña desactivada');
+       
               this.eventsVisible=false;
         
        }

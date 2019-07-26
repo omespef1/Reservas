@@ -14,7 +14,7 @@ import { sessions } from '../../class/sessions/sessions';
 export class AeEspacProvider {
 
   constructor(private _comu:ComunicationsProvider,private _sesion:sessions) {
-    console.log('Hello AeEspacProvider Provider');
+    
   }
 
   GetEspacProducts(booking:bookingInfo){

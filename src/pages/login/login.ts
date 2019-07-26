@@ -81,12 +81,12 @@ export class LoginPage {
   async loadUserData() {
     await this.GetPartnerConnections();
     const emp_codi = await <any>this.session.getEmpCodiSession();
-    console.log(emp_codi);
+    
     this.GetTouchId();
     await this.checkForGnDigfl();
-    console.log('digfl');
+   
     await this.CheckLastVersion();
-    console.log('version');
+    
     
 
   }
@@ -98,7 +98,7 @@ export class LoginPage {
     if (this.IsLastVersion) {
       this._partner.GetPartner(action, password).then((resp: any) => {
         if (resp != null) {
-          console.log(resp);
+          
           this.setTouchId()
           this.events.publish('user:login', resp.ObjTransaction);
         }
@@ -123,8 +123,8 @@ export class LoginPage {
     if (this._platform.is("cordova")) {
       this._touch.has("fingerprint").then(() => {
         this._touch.isAvailable().then((type: any) => {
-          console.log('validando tipo...');
-          console.log(type);
+          
+         
           if (type == 'face')
             this.faceID = true;
           else
@@ -141,8 +141,8 @@ export class LoginPage {
   setTouchId() {
     if (this._platform.is("cordova")) {
       this._touch.isAvailable().then((type: any) => {
-        console.log('validando tipo...');
-        console.log(type);
+       
+      
         if (type == 'face')
           this.faceID = true;
         else
@@ -161,7 +161,7 @@ export class LoginPage {
     //Llena la variable de url de conexion ya sea desde la sesión o desde la bd
     let promise = new Promise((resolve, reject) => {
       this.session.getPartnerConnections().then((resp: GnConex) => {
-        console.log(resp);
+       
         if (resp) {
           this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
@@ -171,14 +171,14 @@ export class LoginPage {
           this.colorSeg = resp.CNX_CSEG;
           this.colorTer = resp.CNX_CTER;
           this.fonClar = resp.CNX_FCLA;
-          console.log(resp);
+       
           resolve();
         }
         else {
           let modalClient = this.modalCrl.create(PartnerConnectionsPage);
           modalClient.present();
           modalClient.onDidDismiss((resp: GnConex) => {
-            console.log(resp);
+            
             this.session.setPartnerConnections(resp);
             this.session.SetClientUrl(resp.CNX_IPSR);
             this.GetEmpCodiSession().then(() => {
@@ -190,7 +190,7 @@ export class LoginPage {
             this.colorSeg = resp.CNX_CSEG;
             this.colorTer = resp.CNX_CTER;
             this.fonClar = resp.CNX_FCLA;
-            console.log(resp.CNX_BACK);
+          
 
           })
         }
@@ -221,7 +221,7 @@ export class LoginPage {
     return promise;
   }
   showKey(): void {
-    console.log('cambio');
+    
     //Controla el icono de visualizar contraseña
     this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
@@ -251,7 +251,7 @@ export class LoginPage {
   async checkForGnDigfl() {
   
     const digfl: any = <any>await this._companies.GetGnDigfl('SAE000001')
-    console.log(digfl);
+   
     if (digfl.ObjTransaction!=null &&  digfl.Retorno == 0) {
       let digFl: GnDigfl = digfl.ObjTransaction;
       if (digFl.dig_valo.toUpperCase() == "S")

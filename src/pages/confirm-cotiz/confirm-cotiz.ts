@@ -19,7 +19,7 @@ export class ConfirmCotizPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfirmCotizPage');
+    
   }
 
 }

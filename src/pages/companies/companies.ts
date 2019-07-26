@@ -46,7 +46,7 @@ private _sesion:sessions) {
   }
   ionViewDidLoad() {
     this.initializeItems();
-    console.log('ionViewDidLoad BusinessPage');
+    
   }
   initializeItems(): void {
    this.businessList = this.business;

@@ -13,7 +13,7 @@ import {ComunicationsProvider} from '../comunications/comunications';
 export class AgreementsProvider {
 
   constructor(private _comunications:ComunicationsProvider) {
-    console.log('Hello AgreementsProvider Provider');
+   
   }
  GetAgreements(){
    return this._comunications.Get('AeOsApp/GetAeOsApp?');

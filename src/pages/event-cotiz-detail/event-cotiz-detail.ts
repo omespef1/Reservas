@@ -53,7 +53,7 @@ export class EventCotizDetailPage {
           this._sesion.removeCar();
           this._general.ShowMessageAlertAction('Pasaralea de pago', 'Se abrirá una ventana de su navegador para realizar el pago, una vez finalice la transacción asegúrese de volver a la aplicación.')
             .then((touch) => {
-              console.log(resp);
+              
               this.tickeyID = resp.ObjTransaction.TicketId;
               this._general.openBrowser(resp.ObjTransaction.eCollectUrl)
               this._platform.resume.subscribe(() => {

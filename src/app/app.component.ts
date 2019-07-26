@@ -35,7 +35,7 @@ export class MyApp {
       splashScreen.hide();
       this.listenToLoginEvents();
       platform.registerBackButtonAction(() => {
-        console.log("backPressed 1");
+     
       },1);
 
     });
@@ -54,7 +54,7 @@ export class MyApp {
     //   //this._backgroundMode.disable();
     // })
     this.events.subscribe('user:login', (user: any) => {
-      console.log(user);
+     
       this._sessions.setLoggedIn(user);
       this.nav.setRoot(TabsPage);
       this._pqr.GetGnItems(327).then((resp: any) => {

@@ -75,7 +75,7 @@ export class DisponibilityPage {
     let eventsAvailable: DisponibilityTime[];
     this._booking.GetDisponibility(this.newBookingRequest).then((resp: transaction) => {
       if (resp != null && resp.ObjTransaction!=null) {
-        console.log(resp.ObjTransaction);
+        
         eventsAvailable = resp.ObjTransaction;
         if(ref)
         ref.complete();
@@ -107,21 +107,21 @@ export class DisponibilityPage {
   }
   onViewTitleChanged(title) {
     this.viewTitle = title;
-    console.log(title);
-    console.log('titulo cambiado');
+    
+   
     if(this.calendar.mode=="month")
     this.loadEvents();
 
   }
   onEventSelected(event) {
-    console.log('onEventSelected');
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+  
+  
     this.setBooking(event);
 
   }
   EventSelected(event) {
-    console.log('EventSelected');
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+   
+   
     this.setBooking(event);
   }
   changeMode(mode) {
@@ -131,13 +131,13 @@ export class DisponibilityPage {
     this.calendar.currentDate = new Date();
   }
   onTimeSelected(ev) {
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+  
       (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-    console.log('onTimeSelected');
+   
 
   }
   onCurrentDateChanged(event: Date) {
-    console.log('onCurrentDateChanged');
+  
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
@@ -147,8 +147,8 @@ export class DisponibilityPage {
     this.newBookingRequest.month = event.getMonth();
   }
   onRangeChanged(ev) {
-    console.log('rango cambiado');
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+   
+   
   }
   markDisabled = (date: Date) => {
     var current = new Date();

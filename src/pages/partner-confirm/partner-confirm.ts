@@ -34,7 +34,7 @@ export class PartnerConfirmPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PartnerConfirmPage');
+   
   }
 
   setPartner(r: NgForm) {

@@ -15,7 +15,7 @@ import {sessions} from '../../class/sessions/sessions';
 export class MainTemplatesProvider {
 
   constructor(private _comu:ComunicationsProvider,private _sesion:sessions) {
-    console.log('Hello MainTemplatesProvider Provider');
+    
   }
   GetEcMconmp(){
     return this._comu.Get(`EcMcomp?emp_codi= ${this._sesion.GetClientEmpCodi()}`,true,'Cargando menús',false);

@@ -27,7 +27,7 @@ connections;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConexPage');
+   
   }
 
   GetConnections(){

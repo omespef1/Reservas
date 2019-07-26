@@ -14,7 +14,7 @@ import { user } from '../../class/models/models';
 export class PartnerPaymentsProvider {
 
   constructor(private _comu:ComunicationsProvider, private _sesion:sessions) {
-    console.log('Hello PartnerPaymentsProvider Provider');
+   
   }
 
   GetPayments(){

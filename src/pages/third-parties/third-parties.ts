@@ -39,7 +39,7 @@ export class ThirdPartiesPage {
       this.newDisponibilityRequest.endTime = moment(this.newFactory.agend.endTime).format();
     }
     else {
-      console.log('Fechas nulas ya que la busqueda es por profesional')
+     
       this.newDisponibilityRequest.startTime = null;
       this.newDisponibilityRequest.endTime = null;
     }
@@ -48,7 +48,7 @@ export class ThirdPartiesPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ThirdPartiesPage');
+   
   }
   getThirdParties(){
         this._third.GetThirParties(this.newDisponibilityRequest).then((thirdparties:transaction)=>{

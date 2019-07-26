@@ -19,7 +19,7 @@ export class RunwayConfirmPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RunwayConfirmPage');
+    
   }
 
 }

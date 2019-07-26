@@ -65,10 +65,10 @@ export class RunwayEventPage {
 
   GetBookingsQuotation() {
     this._booking.GetBookinQuotation(this.user).then((resp: any) => {
-      console.log(resp);
+      
       if (resp != null) {
         this.cotiz.reservas = resp.ObjTransaction;
-        console.log(this.cotiz.reservas);
+      
       }
     })
   }

@@ -63,10 +63,10 @@ export class BookingPage {
   GetBooking() {
     
     this._booking.GetBooking(this.user).then((resp: any) => {
-      console.log(resp);
+     
       if (resp != null) {
         this.bookings = resp.ObjTransaction;
-        console.log(this.bookings);
+     
         this.initializeItems();
       }
       else {

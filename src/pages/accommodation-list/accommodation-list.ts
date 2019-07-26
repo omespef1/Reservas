@@ -65,10 +65,10 @@ export class AccommodationListPage {
    GetBooking() {
      
      this._provider.GetBooking(this.user).then((resp: any) => {
-       console.log(resp);
+      
        if (resp != null) {
          this.bookings = resp.ObjTransaction;
-         console.log(this.bookings);     
+         
         
        }
        else {

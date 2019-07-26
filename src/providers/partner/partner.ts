@@ -15,7 +15,7 @@ import {sessions} from '../../class/sessions/sessions';
 @Injectable()
 export class PartnerProvider {
   constructor(public http: Http,private _comunications:ComunicationsProvider,private _sesion:sessions) {
-    console.log('Hello PartnerProvider Provider');
+    
   }
   GetPartner(user:string,password:string){
     //Se realiza por post ya que el api creado solicita los datos de acceso mediente post

@@ -56,7 +56,7 @@ export class MainTemplatesPage {
        if(transact!=null &&  transact.Retorno==0){        
           this.ecmcomp = transact.ObjTransaction;
           this.ecmcomp = this.ecmcomp.filter(d=>d.detalles!=undefined)
-          console.log(this.ecmcomp);
+          
        }
       }
 
@@ -75,7 +75,7 @@ export class MainTemplatesPage {
     this._view.dismiss();
   }
   valid(){
-   console.log(this.max);
+  
     if(this.ecmcomp==null)
     return false;       
    return this.ecmcomp.filter(e=> Number(e.quantity)>0 && Number(e.quantity) <= this.max && e.checked==true).length>0;    

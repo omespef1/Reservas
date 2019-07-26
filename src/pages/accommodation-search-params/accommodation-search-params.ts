@@ -41,7 +41,7 @@ export class AccommodationSearchParamsPage {
     // this.AccommodationBooking.Res_fini = new Date();
     // this.AccommodationBooking.Res_fina = new Date();
     this.minDate=   this._general.addDays(new Date(),1).toISOString();
-   // console.log(this.minDate);
+  
 
     
   }
@@ -50,7 +50,7 @@ export class AccommodationSearchParamsPage {
     this.loadInitParams();
   }
   ChooseRoms(){
-    console.log(this.AccommodationBooking);
+    
     this.navCtrl.push(AccommodationRoomsPage,{'accommodation':this.AccommodationBooking})
   }
   setMinDateOut(){
@@ -60,10 +60,10 @@ export class AccommodationSearchParamsPage {
       // this.AccommodationBooking.Res_fina =  this.AccommodationBooking.Res_fini;
       // this.minDate = this.AccommodationBooking.Res_fina.toISOString() ;
       this.AccommodationBooking.Res_fina =  this.AccommodationBooking.Res_fini;
-     // console.log(this.AccommodationBooking.Res_fina.toISOString());
-    //  console.log(this.AccommodationBooking.Res_fini);
-    //  this.AccommodationBooking.Res_fina = 
-    //  moment(this.AccommodationBooking.Res_fini).add(1,'days').toDate();
+    
+    
+    
+    
     }
     
     

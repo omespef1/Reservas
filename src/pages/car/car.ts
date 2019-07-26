@@ -40,7 +40,7 @@ export class CarPage {
 
   async getBookingsCar() {
     this.bookingCar = <bookingInfo[]>await this._sesion.getShoppingList();
-    console.log(this.bookingCar);
+    
     if(this.bookingCar!=undefined)
     this.total = this.bookingCar.reduce((acc, pilot) => acc + pilot.res_valo, 0);
   }
@@ -61,7 +61,7 @@ export class CarPage {
 
   }
   async pay(): Promise<void> {
-    console.log('pagando...')
+    
     let arrBookingNum: number[] = [];
     //Suma el total de las reservas en el carrito
     this.total = this.bookingCar.reduce((acc, pilot) => acc + pilot.res_valo, 0);
@@ -83,7 +83,7 @@ export class CarPage {
           this._sesion.removeCar();
           this._general.ShowMessageAlertAction('Pasaralea de pago', 'Se abrirá una ventana de su navegador para realizar el pago, una vez finalice la transacción asegúrese de volver a la aplicación.')
             .then((touch) => {            
-              console.log(resp);
+            
               this.tickeyID = resp.ObjTransaction.TicketId;
               this._general.openBrowser(resp.ObjTransaction.eCollectUrl)
               this._platform.resume.subscribe(() => {

@@ -23,7 +23,7 @@ espacio:EcDespa;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EventCotizProductsChildsPage');
+    
   }
 
 }

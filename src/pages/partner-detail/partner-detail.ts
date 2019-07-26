@@ -17,11 +17,11 @@ export class PartnerDetailPage {
 user:any={};
   constructor(private viewCtrl:ViewController, nav:NavParams) {
     this.user = nav.get('user');
-    console.log(this.user);
+    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PartnerDetailPage');
+    
   }
 
   closePartner(){

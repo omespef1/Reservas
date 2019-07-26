@@ -51,13 +51,13 @@ export class EventDisponibilityPage {
   }
 
    showDisponibility(){
-     console.log('consulta');
-     console.log(this.myEvent.dho_mesp);
+     
+    
     this._booking.GetDisponibilityEvents(this.myEvent).then((transactionDisponibility:transaction)=>{      
       if(transactionDisponibility!=null && transactionDisponibility.ObjTransaction!=null){
         var events = [];
         let eventsFilter: disponibilityResponseEvent[] =transactionDisponibility.ObjTransaction;
-        console.log(eventsFilter);
+        
         for (let disp of eventsFilter) {
           
           events.push({
@@ -78,7 +78,7 @@ export class EventDisponibilityPage {
           })
         }
         this.eventSource = events;
-        console.log(this.eventSource);
+        
        }
     })
 
@@ -93,8 +93,8 @@ export class EventDisponibilityPage {
     this.calendar.mode = mode;
   }
    onEventSelected(event) {
-    console.log('onEventSelected');
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title); 
+    
+    
 
     this.buildBooking(event);
     
@@ -134,12 +134,12 @@ export class EventDisponibilityPage {
     })
   }
   onCurrentDateChanged(event: Date) {
-    console.log('onCurrentDateChanged');
+   
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
-    console.log('set fecha');
+    
       this.myEvent.dho_mesp = event.getMonth();
       this.myEvent.dho_anop = event.getFullYear();        
   }

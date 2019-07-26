@@ -30,10 +30,10 @@ export class HistoryPage {
   }
 
   GetHistory() {
-    console.log(this.myDate);
+   
     let history: any = {Soc_cont: this.user.Soc_cont,Sbe_cont:this.user.Sbe_cont,fac_mesp: this.myDate.split('-')[1],fac_anop:this.myDate.split('-')[0]}; //Se debe definir como se crea este objeto para ir a traer los Consumos
-    console.log(this.myDate.split('-')[0]);
-    console.log(this.myDate.split('-')[1]);
+   
+   
 
     this._history.GetHistory(history).then((resp: any) => {
       if (resp != null) {

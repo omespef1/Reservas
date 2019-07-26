@@ -22,7 +22,7 @@ export class sessions {
   }
   //Setea la sesión cuando se loguea un usuario
   setLoggedIn(user: any) {
-    console.log(user);
+ 
     this.nativeStorage.set('loggedUser', user);
   }
   GetLoggedin() {
@@ -115,7 +115,7 @@ export class sessions {
     let bookingList :bookingInfo[] = <bookingInfo[]> await this.nativeStorage.get('shoppingList');
       if (bookingList != null && bookingList != undefined && bookingList.length > 0) {
         if (bookingList.filter(b => b.Res_cont == newBooking.Res_cont).length == 0) {
-          console.log('agregada');
+        
           bookingList.push(newBooking);
          let ok  = await  this.nativeStorage.set('shoppingList', bookingList);
             return ok;
@@ -133,10 +133,10 @@ export class sessions {
   //Verifica si ya un item está en el carrito para no añadirlo 2 veces
   async verifyCarShopping(booking: bookingInfo) {
     const listaS: any[] = <any[]>await this.getShoppingList()
-    console.log('Verificando carrito de compra...')
+
     if (listaS != null && listaS != undefined && listaS.length > 0) {
       if (listaS.filter(b => b.Res_cont == booking.Res_cont).length > 0) {
-        console.log('deshabilitar')
+       
         return true;
       }
       return false;
@@ -166,11 +166,11 @@ export class sessions {
   }
 
   setAeParam(param:ae_param){
-    console.log(param);
+  
     this.aeparam = param;
   }
   getAeParam(){
-    console.log(this.aeparam);
+  
     return this.aeparam;
   }
 }

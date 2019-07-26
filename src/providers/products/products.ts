@@ -13,7 +13,7 @@ import {ComunicationsProvider} from '../comunications/comunications';
 export class ProductsProvider {
 
   constructor(public http: HttpClient,private _comunications:ComunicationsProvider) {
-    console.log('Hello ProductsProvider Provider');
+    
   }
 
 GetProducts(classSpace:any){

@@ -38,7 +38,7 @@ export class ComunicationsProvider {
     let subscription;
     this.loading.willEnter.subscribe(() => {
       subscription = this.platform.registerBackButtonAction(() => {
-        console.log('deshabilito el botón atrás si el loading está en pantalla');
+        
       }, 10);
     });
     this.loading.onDidDismiss(() => {

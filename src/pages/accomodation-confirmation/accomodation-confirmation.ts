@@ -53,7 +53,7 @@ export class AccomodationConfirmationPage {
   GetValueSpaces() {
     this._provider.GetValuesSpaces(this.AccommodationBooking).then((resp: transaction) => {
       if (resp != null) {
-        console.log(resp);
+       
         this.AccommodationBooking.AccomodationSpaces = resp.ObjTransaction;
         //Calcula el total de todos los espacios reservados
         this.total = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.liquidation.valorTotal, 0);
@@ -66,7 +66,7 @@ export class AccomodationConfirmationPage {
         //Calcula el total como lo calcula el api sin liquidación de seven
         this.totalApp = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.priceSpace, 0);
         //Crea el objeto que contendrá todos los RES_CONT de las reservas que se generaron en estado pendiente}
-        console.log(this.AccommodationBooking);        
+       
         let arrIds: any[]=[];
         for (let spaceBooking of this.AccommodationBooking.AccomodationSpaces) {
           arrIds.push(spaceBooking.res_cont);
@@ -103,14 +103,14 @@ export class AccomodationConfirmationPage {
     await  this._sesion.removeCar();
      let transactions:bookingInfo []= [];
       let resp:transaction = <any> await this._accomodationListProvider.GetBooking(this.user);
-      console.log(resp);       
+     
       if (resp != null) {
        transactions = resp.ObjTransaction;
       for(let booking of transactions){     
-        console.log('encontró')    ;
+     
           if(this.objUpdateBookings.Ids.filter(b=>b == booking.Res_cont).length>0){
            await  this._sesion.addShoppingList(booking);
-            console.log('agregó al carro') ;
+          
           }
       }           
       }    

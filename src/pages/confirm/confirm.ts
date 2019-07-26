@@ -33,8 +33,8 @@ export class ConfirmPage {
   booking: Ifactory;
   constructor(public navParams: NavParams, private _booking: BookingProvider, private _sesion: sessions,private _general:general, private _nav:NavController) {
     this.booking = navParams.get('booking');
-    console.log(this.booking);
-    console.log(this.booking);
+    
+    
     this._sesion.GetLoggedin().then((user: user) => {
       this.user = user;
     })
@@ -42,13 +42,13 @@ export class ConfirmPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfirmPage');
+   
   }
   SetBooking() {
     // this._general.showMessageOption('Está seguro de realizar esta reserva?','').then(()=>{
     //   this.SetBooking();
     // })
-    console.log(this.booking);
+   
    if(this.booking.thirdPartie==null)
    this.booking.thirdPartie = {
      Ter_codi:0
@@ -83,7 +83,7 @@ export class ConfirmPage {
     }
     console.log('Se va a realizar post...');
      this._booking.SetBooking(newBooking).then((resp:any)=>{
-       console.log(resp);
+      
        if(resp!=null){
           if(resp.InvoiceId==0){
             this._general.ShowMessageAlert('Reserva no realizada', `${resp.TxtError}`);
