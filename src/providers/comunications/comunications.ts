@@ -130,6 +130,7 @@ export class ComunicationsProvider {
   }
 
   Post(params: any, urlService: string, content: string = "Cargando...") {
+    console.log(`plataform a es ${this.platform.platforms}`)
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
@@ -147,7 +148,7 @@ export class ComunicationsProvider {
         // this.httpI.setHeader('*', 'Accept', 'application/json');
         // this.httpI.setHeader('*', 'content-type', 'application/json');
 
-      let header : any= [
+      let header : any= 
 
         {
           'Access-Control-Allow-Origin':'*',
@@ -155,7 +156,7 @@ export class ComunicationsProvider {
           'Accept':'application/json',
           'content-type':'application/json'
         }
-      ]
+      
         //Important to set the data serializer or the request gets rejected
         this.httpI.setDataSerializer('json');
         this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header).then((resp: any) => {
