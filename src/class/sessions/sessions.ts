@@ -83,7 +83,7 @@ export class sessions {
   //return 'http://186.154.240.181/Nogalapi/api/';
   //return 'http://localhost/SevenReservas/api/';
    //return 'http://192.168.1.209/appnogal/api/';
-   return 'http://erp.clubelnogal.com/appnogal/api/';
+   return 'https://erp.clubelnogal.com/appnogal/api/';
   }
   SetClientUrl(value: string) {
     this.clientUrl = value;

@@ -139,7 +139,7 @@ export class ComunicationsProvider {
       console.log(this._sesion.GetClientUrl() + urlService);
       console.log(params);
       console.log("Realizando post...");
-      if (this.platform.is("corsova")) {
+      if (this.platform.is("cordova")) {
         this.httpI.setSSLCertMode('nocheck');
         this.httpI.setHeader('*', 'Access-Control-Allow-Origin', '*');
         this.httpI.setHeader('*', 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
