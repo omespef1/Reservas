@@ -6,6 +6,8 @@ import { LoadingController, ToastController ,Events, Platform} from 'ionic-angul
 //clases
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
+import { HTTP } from '@ionic-native/http';
+import { HttpUploadProgressEvent } from '@angular/common/http/src/response';
 
 /*
   Generated class for the ComunicationsProvider provider.
@@ -21,7 +23,8 @@ export class ComunicationsProvider {
     private _general: general,
     private _sesion: sessions,
     private _events:Events,
-    private platform:Platform) {
+    private platform:Platform,
+    private httpI:HTTP) {
 
 
   }
@@ -136,21 +139,15 @@ export class ComunicationsProvider {
       console.log(this._sesion.GetClientUrl() + urlService);
       console.log(params);
       console.log("Realizando post...");
-      return this.http.post(this._sesion.GetClientUrl() + urlService, params).retryWhen(error => {
-        return error
-          .flatMap((error: any) => {
-            console.log(error);
-            if (error.status === 503) {
-              return Observable.of(error.status).delay(1000)
-            }         
-            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
-          })
-          .take(5)
-          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
-      })
-
-        .subscribe((resp: any) => {
-          console.log("respuesta POST OK");
+      this.httpI.setSSLCertMode('nocheck');
+      this.httpI.setHeader('*', 'Access-Control-Allow-Origin' , '*');
+      this.httpI.setHeader('*', 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+      this.httpI.setHeader('*', 'Accept','application/json');
+      this.httpI.setHeader('*', 'content-type','application/json');
+      //Important to set the data serializer or the request gets rejected
+      this.httpI.setDataSerializer('json');
+        this.httpI.post(this._sesion.GetClientUrl() + urlService, params,{}).then((resp:any)=>{
+             console.log("respuesta POST OK");
           this.loading.dismiss();
           console.log(resp)
           if (resp.Retorno == 1) {
@@ -163,6 +160,34 @@ export class ComunicationsProvider {
           this.ErrMessage(err.error);
           this.loading.dismiss();
         })
+    
+    //   return subscription.retryWhen(error => {
+    //     return error
+    //       .flatMap((error: any) => {
+    //         console.log(error);
+    //         if (error.status === 503) {
+    //           return Observable.of(error.status).delay(1000)
+    //         }         
+    //         return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+    //       })
+    //       .take(5)
+    //       .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+    //   })
+
+        // .subscribe((resp: any) => {
+        //   console.log("respuesta POST OK");
+        //   this.loading.dismiss();
+        //   console.log(resp)
+        //   if (resp.Retorno == 1) {
+        //     this.ErrMessage(resp.TxtError);
+        //     resp = null;
+        //   }
+        //   resolve(resp);
+        // }, (err: HttpErrorResponse) => {
+        //   console.log(err);
+        //   this.ErrMessage(err.error);
+        //   this.loading.dismiss();
+        // })
     });
     
     
