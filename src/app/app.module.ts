@@ -70,6 +70,7 @@ import { EventsProvider } from '../providers/events/events';
 import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
 import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 import { AccommodationConfirmationProvider } from '../providers/accommodation-confirmation/accommodation-confirmation';
+import { HTTP } from '@ionic-native/http';
 
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
@@ -242,7 +243,8 @@ import { AccommodationListProvider } from '../providers/accommodation-list/accom
     AccommodationDisponibilityProvider,
     PartnerPaymentsProvider,
     AccommodationConfirmationProvider,
-    AccommodationListProvider
+    AccommodationListProvider,
+    HTTP
 
   ]
 })
