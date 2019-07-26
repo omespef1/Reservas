@@ -81,6 +81,7 @@ export class ConfirmPage {
         }
       ]
     }
+    console.log('Se va a realizar post...');
      this._booking.SetBooking(newBooking).then((resp:any)=>{
        console.log(resp);
        if(resp!=null){
