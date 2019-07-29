@@ -169,7 +169,10 @@ export class general {
 
   openUrl(url: string) {
     if (url.indexOf('http') == -1 && url.indexOf('https') ==-1)        
-    url = `http://${url}`;   
+    url = `http://${url}`;  
+    if(!this.platform.is("cordova")) 
+    window.open(url,'_blank');
+    else
     this._browser.openUrl(url);
   }
   ShowActionSheetAlert(title: string, butttons: any[]) {

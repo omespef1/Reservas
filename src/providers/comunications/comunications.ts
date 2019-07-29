@@ -138,46 +138,46 @@ export class ComunicationsProvider {
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
       console.log(this._sesion.GetClientUrl() + urlService);
-      if (this.platform.is("cordova")) {
-        console.log("Realizando post https...");
-        this.httpI.setSSLCertMode('nocheck');
-        let header: any =
-        {
+      // if (this.platform.is("cordova")) {
+        // console.log("Realizando post https...");
+        // this.httpI.setSSLCertMode('nocheck');
+        // let header: any =
+        // {
         
-          'content-type': 'application/json'
-        }
+        //   'content-type': 'application/json'
+        // }
 
-        //Important to set the data serializer or the request gets rejected
-       // this.httpI.setDataSerializer('json');
+      
+        // this.httpI.setDataSerializer('json');
 
-        return Observable.fromPromise(
-          this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header)
-        ).retryWhen(error => {
-          return error
-            .flatMap((error: any) => {
-              if (error.status === 503) {
-                return Observable.of(error.status).delay(1000)
-              }
-              return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
-            })
-            .take(5)
-            .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
-        })
-          .subscribe((resp: any) => {
-            this.loading.dismiss();
-            //console.log(resp)
-            if (resp.Retorno == 1) {
-              this.ErrMessage(resp.TxtError);
-              resp = null;
-            }
-            resolve(resp);
-          }, (err: HttpErrorResponse) => {
-            console.log(err);
-            this.ErrMessage(err.error);
-            this.loading.dismiss();
-          })
-      }
-      else {
+        // return Observable.fromPromise(
+        //   this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header)
+        // ).retryWhen(error => {
+        //   return error
+        //     .flatMap((error: any) => {
+        //       if (error.status === 503) {
+        //         return Observable.of(error.status).delay(1000)
+        //       }
+        //       return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+        //     })
+        //     .take(5)
+        //     .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+        // })
+        //   .subscribe((resp: any) => {
+        //     this.loading.dismiss();
+        //     //console.log(resp)
+        //     if (resp.Retorno == 1) {
+        //       this.ErrMessage(resp.TxtError);
+        //       resp = null;
+        //     }
+        //     resolve(resp);
+        //   }, (err: HttpErrorResponse) => {
+        //     console.log(err);
+        //     this.ErrMessage(err.error);
+        //     this.loading.dismiss();
+        //   })
+      // }
+      // else {
 
         return this.http.post(this._sesion.GetClientUrl() + urlService, params).retryWhen(error => {
           return error
@@ -204,7 +204,7 @@ export class ComunicationsProvider {
             this.ErrMessage(err.error);
             this.loading.dismiss();
           })
-      }
+      // }
 
     });
 
