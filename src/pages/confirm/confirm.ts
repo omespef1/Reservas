@@ -45,14 +45,12 @@ export class ConfirmPage {
    
   }
   SetBooking() {
-    // this._general.showMessageOption('Está seguro de realizar esta reserva?','').then(()=>{
-    //   this.SetBooking();
-    // })
-   
+ console.log('ingreso a funcion principal reservar');
    if(this.booking.thirdPartie==null)
    this.booking.thirdPartie = {
      Ter_codi:0
    }
+   console.log('valida nulo de tercero');
     let newBooking: any = {
       Emp_codi: this._sesion.GetClientEmpCodi(),
       Res_fini: this.booking.agend.age_Fini,

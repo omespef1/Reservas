@@ -29,6 +29,7 @@ export class ComunicationsProvider {
   }
 
   Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {
+    console.log('haciendo Get...');
     // this._events.publish('onBackground');
     this.loading = this.load.create({
       content: content,
@@ -64,7 +65,7 @@ export class ComunicationsProvider {
         .subscribe((resp: any) => {
           // this._events.publish('offBackground');
           console.log(stringUrl);
-          console.log(resp);
+         // console.log(resp);
           if (loading)
             this.loading.dismiss();
           if (resp.Retorno == 1) {
@@ -84,7 +85,7 @@ export class ComunicationsProvider {
   }
 
   GetCentralizacion(target: string, contentText: string = "", loading: boolean = true) {
-
+    console.log('haciendo get a centralzación...');
     if (contentText == "")
       contentText = "Consultando información de clientes...";
     if (loading) {
@@ -129,7 +130,7 @@ export class ComunicationsProvider {
   }
 
   Post(params: any, urlService: string, content: string = "Cargando...") {
-    console.log(`plataform a es ${this.platform.platforms}`)
+    console.log('haciendo post...');
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
@@ -137,21 +138,17 @@ export class ComunicationsProvider {
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
       console.log(this._sesion.GetClientUrl() + urlService);
-      console.log(params);
       if (this.platform.is("cordova")) {
         console.log("Realizando post https...");
         this.httpI.setSSLCertMode('nocheck');
         let header: any =
-
         {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-          'Accept': 'application/json',
+        
           'content-type': 'application/json'
         }
 
         //Important to set the data serializer or the request gets rejected
-        this.httpI.setDataSerializer('json');
+       // this.httpI.setDataSerializer('json');
 
         return Observable.fromPromise(
           this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header)
@@ -168,7 +165,7 @@ export class ComunicationsProvider {
         })
           .subscribe((resp: any) => {
             this.loading.dismiss();
-            console.log(resp)
+            //console.log(resp)
             if (resp.Retorno == 1) {
               this.ErrMessage(resp.TxtError);
               resp = null;
@@ -196,7 +193,7 @@ export class ComunicationsProvider {
 
           .subscribe((resp: any) => {
             this.loading.dismiss();
-            console.log(resp)
+           // console.log(resp)
             if (resp.Retorno == 1) {
               this.ErrMessage(resp.TxtError);
               resp = null;
@@ -238,7 +235,7 @@ export class ComunicationsProvider {
 
         .subscribe((resp: any) => {
           this.loading.dismiss();
-          console.log(resp)
+          //console.log(resp)
           if (resp.Retorno == 1) {
             this.ErrMessage(resp.TxtError);
             resp = null;
