@@ -4,7 +4,8 @@
 //
 // //export const SERVICES_URL = 'http://132.147.157.88/Nogalapi/api/';
  //export const appCentralizacionUrl = "http://132.147.157.88/centralizacion/api/";
- export const appCentralizacionUrl = "http://consultoria.digitalware.co/seven_crm/centralizacion/api/";
+ //export const appCentralizacionUrl = "http://consultoria.digitalware.co/seven_crm/centralizacion/api/";
+ export const appCentralizacionUrl = "https://sac.digitalware.co:442/Seven_Crm/Centralizacion/api/";
 // const appCentralizacionUrl = "http://186.154.240.181/centralizacion/api/";
 export const appVersion:string = '19.0.7.4';
 export const appCopyright = 'SEVEN-ERP © 1992 - 2019';
