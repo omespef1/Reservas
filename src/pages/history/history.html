@@ -14,7 +14,7 @@
 </ion-list>
   <ion-card *ngFor="let history of histories">
     <ion-card-header>
-    <strong>Total Aprox</strong> {{history.Dvt_valo}}
+    <strong>Total Aprox</strong> {{total(history.lConsumos) | currency:'COP'}}
   <ion-icon item-end  name="arrow-dropdown"></ion-icon>
     </ion-card-header>
     <ion-card-content *ngFor="let buy of history.lConsumos " class="animate-in-primary">
@@ -26,7 +26,7 @@
       <ion-item class="labelColorBlue">
           <ion-icon name ="logo-usd" item-start></ion-icon>
         <h2>Valor</h2>
-        <p>{{buy.Dvt_valo | number}}</p>
+        <p>{{buy.Dvt_valo | currency:'COP'}}</p>
       </ion-item>
    <ion-item class="labelColorBlue">
        <ion-icon name ="calendar" item-start></ion-icon>

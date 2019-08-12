@@ -41,4 +41,8 @@ export class HistoryPage {
       }
     })
   }
+
+  total(histories:any[]){
+   return  histories.reduce((acc, pilot) => acc + pilot.Dvt_valo, 0);
+  }
 }
