@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-
 <widget id="com.digitalware.co.seven.reservas" version="19.8.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-
     <platform name="android">
         <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -158,16 +156,6 @@
     </plugin>
     <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <engine name="browser" spec="5.0.4" />
-<<<<<<< HEAD
-<<<<<<< HEAD
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.5" />
-=======
-    <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="7.1.4" />
->>>>>>> parent of f2c8a2d... cambio de iconos y  splash
-=======
-    <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="7.1.4" />
->>>>>>> parent of c6d246b... Merge branch 'nogal' into webView
 </widget>
