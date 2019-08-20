@@ -61,17 +61,9 @@
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@ionic/app-scripts": "^3.2.4",
-=======
-    "@ionic/app-scripts": "^3.2.3",
->>>>>>> parent of f2c8a2d... cambio de iconos y  splash
-=======
-    "@ionic/app-scripts": "^3.2.3",
->>>>>>> parent of c6d246b... Merge branch 'nogal' into webView
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project",
