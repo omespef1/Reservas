@@ -1,3 +1,5 @@
+
+
 export class TOSoRsoci {
   public Emp_codi: number;
   public Mac_nume: string;
@@ -440,4 +442,11 @@ export class ae_param {
   cla_ceve:number;
   cla_cont:number;
 
+}
+
+export interface pageApp {
+
+  urlIcon:string;
+  name:string;
+  page:any
 }

@@ -1,0 +1,45 @@
+page-menu {
+
+  //font-family: SourceSansPro;
+    ion-card {
+        position: relative;
+        text-align: center;       
+        background: transparent !important; 
+        box-shadow: none !important;
+      
+        
+      }
+
+      
+    
+      .card-title {
+        position: absolute;
+        top: 50%;
+        font-size: 1.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+      }
+    
+      .card-subtitle {
+        font-size: 1.2em;
+        position: absolute;
+       bottom: 0%;
+        width: 100%;
+        color: lightslategray;
+        font-family: SourceSansPro;
+        text-align: center
+      }
+
+      ion-col {
+        border-top: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+    &:nth-child(-n+2) {
+      border-top: none;
+    }
+    &:nth-child(odd) {
+      border-left: none;
+    }
+     // border: 1px solid darkgray;
+      }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 // import { AboutPage } from '../about/about';
 // import { ContactPage } from '../contact/contact';
@@ -14,11 +14,14 @@ import {CarPage} from '../car/car';
 import { EventsProvider } from '../../providers/events/events';
 import { transaction } from '../../class/models/models';
 import { of } from 'rxjs/observable/of';
+import { NavParams, Tabs } from 'ionic-angular';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
+
+
 
   tab1Root = BookingPage;
   tab2Root = HistoryPage;
@@ -27,15 +30,19 @@ export class TabsPage {
   tab5Root = AgreementsPage;
   tab6Root= AccommodationListPage;
   // tab7Root = SettingsPage;
+  indexTab:number;
+  @ViewChild('myTabs') tabRef: Tabs;
 
+ 
 
-  constructor(private _events:EventsProvider) {
-
-     
-
+  constructor(private _events:EventsProvider,private _nav:NavParams) {
+   this.indexTab = this._nav.get('tabSelected');
   }
   ionViewDidLoad(){
   
+  }
+  ionViewDidEnter(){
+    this.tabRef.select(this.indexTab);
   }
 
 

@@ -7,10 +7,11 @@ import { general } from '../class/general/general';
 import { sessions } from '../class/sessions/sessions';
 //pages
 import { LoginPage } from '../pages/login/login';
-import { TabsPage } from '../pages/tabs/tabs';
+ import { TabsPage } from '../pages/tabs/tabs';
 import { PqrProvider } from '../providers/pqr/pqr';
 import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 import { transaction } from '../class/models/models';
+import { MenuPage } from '../pages/menu/menu';
 //plugins
 
 
@@ -20,6 +21,7 @@ import { transaction } from '../class/models/models';
 export class MyApp {
   @ViewChild(Nav) nav: Nav
   rootPage: any = LoginPage;
+  logged:boolean = false;
   constructor(platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
@@ -54,9 +56,9 @@ export class MyApp {
     //   //this._backgroundMode.disable();
     // })
     this.events.subscribe('user:login', (user: any) => {
-     
+     this.logged=true;
       this._sessions.setLoggedIn(user);
-      this.nav.setRoot(TabsPage);
+      this.nav.setRoot(MenuPage);
       this._pqr.GetGnItems(327).then((resp: any) => {
         if(resp!=null){
         this._sessions.setReasonsPrq(resp.ObjTransaction);
@@ -76,5 +78,10 @@ export class MyApp {
 
     })
   }
+
+goHome(){
+  this.nav.setRoot(MenuPage);
+  console.log(this.nav.getActive().component.name);
+}
 
 }

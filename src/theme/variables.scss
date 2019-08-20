@@ -6,16 +6,16 @@
 $font-path: "../assets/fonts";
 
 
-// @font-face {
-//  font-family: 'SourceSansPro';
-//  src:url('../assets/fonts/MyriadPro-Regular.otf') format('truetype');
-//  font-weight: normal;
-//  font-style: normal;
-// }
-// $font-family-base: "SourceSansPro";
-// $font-family-ios-base: $font-family-base;
-// $font-family-md-base: $font-family-base;
-// $font-family-wp-base: $font-family-base;
+@font-face {
+ font-family: 'SourceSansPro';
+ src:url('../assets/fonts/MyriadPro-Regular.otf') format('truetype');
+ font-weight: normal;
+ font-style: normal;
+}
+ $font-family-base: "roboto";
+$font-family-ios-base: $font-family-base;
+$font-family-md-base: $font-family-base;
+$font-family-wp-base: $font-family-base;
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
@@ -55,7 +55,8 @@ $colors: (
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-$tabs-ios-tab-icon-size:40px;
+$tabs-ios-tab-icon-size:50px;
+$tabs-ios-tab-font-size:11px;
 // $item-ios-body-text-font-size:1em;
 // $item-ios-paragraph-font-size:1em;
 
