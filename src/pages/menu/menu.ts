@@ -6,8 +6,9 @@ import { PqrPage } from '../pqr/pqr';
 import { EventsPage } from '../events/events';
 import { AgreementsPage } from '../agreements/agreements';
 import { AccommodationListPage } from '../accommodation-list/accommodation-list';
-import { pageApp } from '../../class/models/models';
+import { pageApp, GnConex } from '../../class/models/models';
 import { TabsPage } from '../tabs/tabs';
+import {sessions} from '../../class/sessions/sessions';
 
 /**
  * Generated class for the MenuPage page.
@@ -28,7 +29,7 @@ export class MenuPage {
   tab4Root = EventsPage;
   tab5Root = AgreementsPage;
   tab6Root= AccommodationListPage;
-
+logo:string;
 
   pages: pageApp [] = [
     {
@@ -62,7 +63,7 @@ export class MenuPage {
     page:AccommodationListPage
   },
 ]
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions) {
   }
 
    
@@ -75,5 +76,11 @@ export class MenuPage {
   openTab(page:number){
     this.navCtrl.setRoot(TabsPage,{'tabSelected': page });
   }
+
+  loadLogo(){
+    this._sesion.getPartnerConnections().then((resp: GnConex) =>{
+   this.logo = resp.CNX_LOGO;
+    
+    })} 
 
 }

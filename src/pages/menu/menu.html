@@ -6,12 +6,17 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Menú Principal</ion-title>
+    <ion-title>Clubes y hoteles</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="card-background-page outer-content">
 <ion-grid>
+  <ion-row align-items-center>
+<ion-col text-center >
+    <img text-center [src]="logo" class="imgLogo">
+</ion-col>
+  </ion-row>
   <ion-row align-items-center>
       <ion-col col-6 col-md-6 col-xl-6 *ngFor="let page of pages;let i=index" >         
           <ion-card  button  (click) = "openTab(i)" padding tappable>
