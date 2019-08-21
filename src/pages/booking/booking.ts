@@ -12,7 +12,7 @@ import { DigitalDatePipe } from '../../pipes/digital-date/digital-date';
 
 //models
 
-import { bookingInfo } from '../../class/models/models';
+import { bookingInfo, GnConex } from '../../class/models/models';
 //pages
 import {CarPage} from '../car/car';
 import {ConfirmPaymentPage} from  '../confirm-payment/confirm-payment';
@@ -38,6 +38,7 @@ export class BookingPage {
   bookingsList: any[];
   cancelValue: number[] = [];
   statesToPay = ['NO AUTORIZADO', 'EXPIRADO', 'FALLIDO'];
+  logo: string;
   constructor(public navCtrl: NavController,
     private _booking: BookingProvider,
     private session: sessions,
@@ -58,6 +59,7 @@ export class BookingPage {
       //Verificar si hay proceso de eventos pendiente
       //this.verifyPendings();
     })
+    this.loadLogo();
   }
 
   GetBooking() {
@@ -216,4 +218,10 @@ export class BookingPage {
   goProfile(){
     this.navCtrl.push(SettingsPage);
   }
+
+  loadLogo(){
+    this.session.getPartnerConnections().then((resp: GnConex) =>{
+   this.logo = resp.CNX_LOGO;
+    
+    })} 
 }

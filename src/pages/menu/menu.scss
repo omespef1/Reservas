@@ -1,16 +1,161 @@
 page-menu {
 
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  .imgLogo{
+    max-width: 400px;
+    height: auto
+  }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .imgLogo{
+    max-width: 300px;
+    height: auto
+  }
+  .card_menu img {
+    max-width: 300px;
+    height: auto;
+  }
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+    font-size: 30px;
+  
+
+  .imgLogo{
+    max-width: 250px;
+    height: auto
+  }
+  
+  .card_menu img {
+    max-width: 250px;
+    height: auto;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  .imgLogo{
+    max-width: 200px;
+    height: auto
+  }
+  .card_menu img {
+    max-width: 200px;
+    height: auto;
+  }
+  
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .imgLogo{
+    max-width: 100px;
+    height: auto
+  }
+
+  .card_menu img {
+    max-width: 180px;
+    height: auto;
+  }
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 200px) and (max-width: 320px) {
+  
+  .imgLogo{
+    max-width: 70px;
+    height: auto
+  }
+
+  .card_menu img {
+    max-width: 65px;
+    height: auto;
+  }
+
+  
+}
+
+
+@media (min-width: 321px) and (max-width: 400px) {
+  
+  .imgLogo{
+    max-width: 90px;
+    height: auto
+  }
+
+  .card_menu img {
+    max-width: 70px;
+    height: auto;
+  }
+
+  
+}
+
+@media (min-width: 400px) and (max-width: 480px) {
+  
+  .imgLogo{
+    max-width: 100px;
+    height: auto
+  }
+
+  .card_menu img {
+    max-width: 100px;
+    height: auto;
+  }
+
+  
+}
+
+
+
   //font-family: SourceSansPro;
     ion-card {
         position: relative;
         text-align: center;       
         background: transparent !important; 
         box-shadow: none !important;
-      
+         img{
+           margin:auto;
+         }
         
       }
 
-      
     
       .card-title {
         position: absolute;

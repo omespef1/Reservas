@@ -34,6 +34,21 @@ ion-card-header {
   padding: 6px 4px 2px;
   opacity: 0.9;
 }
+.app_nogal{
+  width: 30px;
+  height: 30px;
+  padding: 5px 5px 5px 5px;
+  
+ 
+}
+
+.toolbar-ios {
+  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  min-height: 55px;
+}
+
 
 .ion-ios-app_notebook-outline,
 .ion-md-app_notebook-outline {
@@ -578,6 +593,22 @@ small {
   line-height: normal;
 }
 }
+#divFooterSeven{
+  bottom:0px;
+  position:absolute;
+  color:gray;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+#divFotterDigital{
+  position:absolute;
+  bottom:0px;
+  right: 0px;
+  color:gray;
+  margin-right: 2px;
+  font-weight: bold;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -591,5 +622,6 @@ small {
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
 
 

@@ -6,9 +6,12 @@
 -->
 <ion-header>
 
-  <!-- <ion-navbar>
-    <ion-title>pqr</ion-title>
-  </ion-navbar> -->
+  <ion-navbar>
+    <ion-title>
+      <img button ion-button icon-only src="assets/icon/icon.png" class="app_nogal">
+      <div><label>PQR</label></div>     
+    </ion-title>
+  </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-searchbar
     (ionChange)="getItems($event.value)"

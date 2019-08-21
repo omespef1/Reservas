@@ -7,8 +7,15 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>
+    <!-- <ion-title>
       Mis Reservas
+    </ion-title> -->
+
+    <ion-title>
+     
+        <!-- <ion-icon name="app_nogal"></ion-icon> -->
+        <img button ion-button icon-only src="assets/icon/icon.png" class="app_nogal">
+       <div>Mis reservas</div> 
     </ion-title>
     <ion-buttons end>        
         <button  *ngIf="showCar" (click)="goCar()" id="notification-button"  ion-button clear class="elementCar">
@@ -42,9 +49,7 @@
     </button>
   </ion-fab>
   
-    
 
-   
  <accordion [num]="booking.Res_nume" [start]="booking.FechaInicio | longDate" *ngFor="let booking of bookingsList;let i =index">
     <ion-item class="labelColorRed">
         <ion-thumbnail item-start>

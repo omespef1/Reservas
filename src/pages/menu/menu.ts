@@ -64,6 +64,7 @@ logo:string;
   },
 ]
   constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions) {
+
   }
 
    
@@ -77,10 +78,6 @@ logo:string;
     this.navCtrl.setRoot(TabsPage,{'tabSelected': page });
   }
 
-  loadLogo(){
-    this._sesion.getPartnerConnections().then((resp: GnConex) =>{
-   this.logo = resp.CNX_LOGO;
-    
-    })} 
+
 
 }
