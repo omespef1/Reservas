@@ -1,1 +1,7 @@
 <ion-nav [root]="rootPage"></ion-nav>
+<ion-fab middle right *ngIf="logged && nav.getActive().component.name!= 'MenuPage'">
+    <button   ion-fab (click)="goHome()" class="element">
+        
+        <ion-icon name="home"></ion-icon>
+      </button>
+  </ion-fab>

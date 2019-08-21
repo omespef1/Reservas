@@ -24,6 +24,116 @@ ion-card-header {
 .BigButton {
   font-size: 2.5rem;
 }
+//Iconos de los tabs
+
+.ion-ios-app_notebook,
+.ion-md-app_notebook {
+  content: url(../assets/imgs/notebook.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_notebook-outline,
+.ion-md-app_notebook-outline {
+  content: url(../assets/imgs/notebook.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
+
+.ion-ios-app_stopwatch,
+.ion-md-app_stopwatch {
+  content: url(../assets/imgs/stopwatch.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_stopwatch-outline,
+.ion-md-app_stopwatch-outline {
+  content: url(../assets/imgs/stopwatch.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+.ion-ios-app_questionary,
+.ion-md-app_questionary {
+  content: url(../assets/imgs/questionary.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_questionary-outline,
+.ion-md-app_questionary-outline {
+  content: url(../assets/imgs/questionary.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
+.ion-ios-app_calendar,
+.ion-md-app_calendar {
+  content: url(../assets/imgs/calendar.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_calendar-outline,
+.ion-md-app_calendar-outline {
+  content: url(../assets/imgs/calendar.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
+
+.ion-ios-app_handshake,
+.ion-md-app_handshake {
+  content: url(../assets/imgs/handshake.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_handshake-outline,
+.ion-md-app_handshake-outline {
+  content: url(../assets/imgs/handshake.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
+.ion-ios-app_hotel,
+.ion-md-app_hotel {
+  content: url(../assets/imgs/hotel.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_hotel-outline,
+.ion-md-app_hotel-outline {
+  content: url(../assets/imgs/hotel.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
 
 
 // Clases con animaciones

@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LOCALE_ID } from '@angular/core';
 //pages
+
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -94,6 +95,8 @@ import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-p
 import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
 import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
 import { AccommodationListProvider } from '../providers/accommodation-list/accommodation-list';
+import { MenuPage } from '../pages/menu/menu';
+
 
  
 
@@ -148,7 +151,8 @@ import { AccommodationListProvider } from '../providers/accommodation-list/accom
     AccommodationDisponibilityPage,
     AccomodationConfirmationPage,  
       PartnerPaymentsPage,
-    PartnerPaymentsDetailsPage
+    PartnerPaymentsDetailsPage,
+    MenuPage
   ],
   imports: [
     FormsModule,
@@ -211,7 +215,8 @@ import { AccommodationListProvider } from '../providers/accommodation-list/accom
     AccommodationDisponibilityPage,
     AccomodationConfirmationPage,
     PartnerPaymentsPage,
-    PartnerPaymentsDetailsPage
+    PartnerPaymentsDetailsPage,
+    MenuPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
