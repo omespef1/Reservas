@@ -9,6 +9,7 @@ import { AccommodationListPage } from '../accommodation-list/accommodation-list'
 import { pageApp, GnConex } from '../../class/models/models';
 import { TabsPage } from '../tabs/tabs';
 import {sessions} from '../../class/sessions/sessions';
+import { SettingsPage } from '../settings/settings';
 
 /**
  * Generated class for the MenuPage page.
@@ -77,7 +78,9 @@ logo:string;
   openTab(page:number){
     this.navCtrl.setRoot(TabsPage,{'tabSelected': page });
   }
-
+  goProfile(){
+    this.navCtrl.push(SettingsPage);
+  }
 
 
 }

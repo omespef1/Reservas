@@ -24,11 +24,7 @@
             </ion-icon>              
         </button>
       </ion-buttons>
-      <ion-buttons start>
-          <button ion-button icon-only (click)="goProfile()">
-            <ion-icon name="contact"></ion-icon>
-          </button>
-        </ion-buttons>
+     
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-searchbar (ionChange)="getItems($event.value)" [showCancelButton]="shouldShowCancel" placeholder="Buscar reserva">

@@ -215,9 +215,7 @@ export class BookingPage {
     }
   
   }
-  goProfile(){
-    this.navCtrl.push(SettingsPage);
-  }
+
 
   loadLogo(){
     this.session.getPartnerConnections().then((resp: GnConex) =>{
