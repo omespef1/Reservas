@@ -63,13 +63,13 @@
           </ion-item>
   </ion-list>
  <div text-center padding>
-    <button ion-button block icon-end color="danger" *ngIf="cotiz.payment == undefined" (click)="paySite()" >
+    <button ion-button block icon-end color="primary" *ngIf="cotiz.payment == undefined" (click)="paySite()" >
         Pago en sitio
         <ion-icon name="cash"></ion-icon>
       
       </button>
     
-      <button ion-button block icon-end color="danger" (click)="pay()" *ngIf="cotiz.cla_ppag=='S' && cotiz.payment == undefined">
+      <button ion-button block icon-end color="primary" (click)="pay()" *ngIf="cotiz.cla_ppag=='S' && cotiz.payment == undefined">
          <!-- <ion-spinner  name="ios-small" color="light"></ion-spinner>  -->
         Pago en línea
         <ion-icon name="ios-card"></ion-icon>

@@ -86,7 +86,7 @@
       <ion-item class="labelColorBlue">
         <ion-icon name="logo-usd" item-start></ion-icon>
         <h2>Valor</h2>
-        <ion-badge color="danger">
+        <ion-badge color="primary">
           <strong>{{booking.res_valo  | currency:'COP'}}</strong> 
         </ion-badge>
       </ion-item>
@@ -98,7 +98,7 @@
         </ion-badge>
       </ion-item>
       <ion-item *ngIf="booking.cla_ppag =='S' && (booking.payment == undefined ||  statesToPay.indexOf(booking.payment.pap_esta) != -1)">
-        <button class="element-animation" ion-button block large color="danger" tappable (click)="AddCart(booking)">
+        <button class="element-animation" ion-button block large color="primary" tappable (click)="AddCart(booking)">
           <ion-icon name="cart" item-start></ion-icon>
           Agregar al carrito
         </button>

@@ -38,7 +38,7 @@
         <h4>Total Impuestos</h4>
         <p> $ {{booking.liquidation.totalImpuestos | currency:'COP'}}</p> 
         <h4>Total</h4>
-        <ion-badge color="danger"> $ {{booking.res_valo | currency:'COP'}}</ion-badge>             
+        <ion-badge color="primary"> $ {{booking.res_valo | currency:'COP'}}</ion-badge>             
         <!-- <h1>Precio: $ {{booking.res_valo}}</h1>    -->
       </ion-item>
       <ion-item-options side="right">         
@@ -55,7 +55,7 @@
 
   </ion-card>
   <div padding class="element-aparecer">
-  <button (click)="payOffline()" [disabled]="bookingCar==undefined || bookingCar.length==0" ion-button block large color="danger"> Pagar en sitio &nbsp; <ion-icon item-start name="logo-usd"></ion-icon>  &nbsp; {{total | currency:'COP'}}</button>
+  <button (click)="payOffline()" [disabled]="bookingCar==undefined || bookingCar.length==0" ion-button block large color="primary"> Pagar en sitio &nbsp; <ion-icon item-start name="logo-usd"></ion-icon>  &nbsp; {{total | currency:'COP'}}</button>
   <button (click)="pay()" ion-button block large color="secondary" [disabled]="bookingCar==undefined || bookingCar.length==0"> 
     
 

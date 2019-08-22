@@ -243,17 +243,17 @@ ion-card-header {
 @keyframes stretch {
   0% {
     transform: scale(.8);
-    background-color: color($colors, primary);
+    background-color: color($colors, light);
     border-radius: 100%;
   }
 
   50% {
-    background-color: color($colors, danger);
+    background-color: color($colors, primary);
   }
 
   100% {
     transform: scale(1.1);
-    background-color: color($colors, danger);
+    background-color: color($colors, primary);
   }
 }
 @keyframes stretch2 {
@@ -598,7 +598,7 @@ small {
   bottom:0px;
   position:absolute;
   color:gray;
-  margin-left: 20px;
+  margin-left: 25px;
   font-weight: bold;
 }
 
@@ -607,7 +607,7 @@ small {
   bottom:0px;
   right: 0px;
   color:gray;
-  margin-right: 20px;
+  margin-right: 25px;
   font-weight: bold;
 }
 // App Global Sass
