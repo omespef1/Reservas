@@ -54,7 +54,7 @@ logo:string;
     page : EventsPage
   },
   {
-    name:'Convenios',
+    name:'Servicios',
     urlIcon:'assets/imgs/handshake.svg',
     page:AgreementsPage
   },
