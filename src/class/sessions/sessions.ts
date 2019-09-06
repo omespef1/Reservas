@@ -33,9 +33,9 @@ export class sessions {
     return this.nativeStorage.get('loggedUser');
   }
   removeSession() {
-    this.nativeStorage.remove('loggedUser');
-    this.nativeStorage.remove('reasonsPqr');
-    this.nativeStorage.remove('ambientPqr');
+    // this.nativeStorage.remove('loggedUser');
+    // this.nativeStorage.remove('reasonsPqr');
+    // this.nativeStorage.remove('ambientPqr');
   }
 
   erraseAlldata() {

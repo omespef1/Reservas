@@ -132,7 +132,15 @@ export class LoginPage {
         })
         this._touch.verify("fingerprint", 'Deslice su huella dactilar para ingresar').then(pass => {
           this.session.getUserFingerPrint().then(user => {
-            this.doLogin(user, pass);
+            //Ya no va usar la contraseña y el usuaro del usuario, ya que al cambiar
+            //la cotraseña el acceso biométrico falla, en su lugar accede directamente con los datos del usuario
+            //guardados en el storage
+           // this.doLogin(user, pass);
+           this.setTouchId();
+           this.session.GetLoggedin().then(user=>{
+            this.events.publish('user:login', user);
+           })
+          
           })
         })
       })
