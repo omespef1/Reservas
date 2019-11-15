@@ -7,7 +7,7 @@
  //export const appCentralizacionUrl = "http://consultoria.digitalware.co/seven_crm/centralizacion/api/";
  export const appCentralizacionUrl = "https://sac.digitalware.co:442/Seven_Crm/Centralizacion/api/";
 // const appCentralizacionUrl = "http://186.154.240.181/centralizacion/api/";
-export const appVersion:string = '19.0.11.0';
+export const appVersion:string = '19.0.11.1';
 export const appCopyright = 'SEVEN-ERP © 1992-2019';
 export const appGooglePlayUrl = "https://play.google.com/store/apps/details?id=com.digitalware.com.co.seven.reservas";
 export const appAppStoreUrl = "https://apps.apple.com/co/app/seven-reservas/id1426063835";
