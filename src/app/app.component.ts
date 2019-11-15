@@ -12,6 +12,8 @@ import { PqrProvider } from '../providers/pqr/pqr';
 import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 import { transaction } from '../class/models/models';
 import { MenuPage } from '../pages/menu/menu';
+import { GnConex } from '../class/Models/models';
+import { ConnectionsProvider } from "../providers/connections/connections";
 //plugins
 
 
@@ -29,13 +31,15 @@ export class MyApp {
     private _general: general,
     private _sessions: sessions,
     private _pqr: PqrProvider,
-    private _espac:AeEspacProvider) {
+    private _espac:AeEspacProvider,
+    private _conect:ConnectionsProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
       this.listenToLoginEvents();
+      this.CheckConnectionChanges()
       platform.registerBackButtonAction(() => {
      
       },1);
@@ -77,6 +81,23 @@ export class MyApp {
         })
       
 
+    })
+  }
+
+  CheckConnectionChanges(){
+  
+    this._sessions.getPartnerConnections().then((respBd:GnConex)=>{
+      if(respBd){
+        this._conect.GetConnectionsAsync().then((resp:any)=>{
+         if(resp!=null && resp.ObjResult.length>0){           
+          if(respBd.CNX_IPSR != resp.ObjResult.filter(p=>p.id == respBd	.id)[0].CNX_IPSR){
+            this._sessions.erraseAlldata();
+            this.events.publish('user:logout');  
+          }
+        }
+        })
+
+      }
     })
   }
 
