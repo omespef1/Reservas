@@ -24,5 +24,9 @@ export class ConnectionsProvider {
   return  this._communications.GetCentralizacion('GnAppDw')
   }
 
+  GetConnectionsAsync(){
+    return  this._communications.GetCentralizacion('GnConex/GetConnections?app_cont=1001','',false);
+    }
+
 
 }
