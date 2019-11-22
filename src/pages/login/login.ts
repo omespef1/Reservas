@@ -64,7 +64,8 @@ export class LoginPage {
     private _connections: ConnectionsProvider,
     private modalCrl: ModalController,
     private _companies: CompaniesProvider,
-    private _dom: DomSanitizer
+    private _dom: DomSanitizer,
+    private _conect:ConnectionsProvider
 
   ) {
     this.appVersion = appVersion;
@@ -79,6 +80,7 @@ export class LoginPage {
   }
 
   async loadUserData() {
+    await this.CheckConnectionChanges().then(()=> console.log('conex set'))
     await this.GetPartnerConnections();
     const emp_codi = await <any>this.session.getEmpCodiSession();       
     await this.checkForGnDigfl();   
@@ -167,7 +169,7 @@ export class LoginPage {
     //Llena la variable de url de conexion ya sea desde la sesión o desde la bd
     let promise = new Promise((resolve, reject) => {
       this.session.getPartnerConnections().then((resp: GnConex) => {
-       
+       console.log('conexion leida');
         if (resp) {
           this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
@@ -303,5 +305,63 @@ console.log(this.compareVersion(appVersion,AppLastVersion.App_Vers));
         if (v1[i] < v2[i]) return -1;        
     }
     return v1.length == v2.length ? 0: (v1.length < v2.length ? -1 : 1);
+}
+
+
+CheckConnectionChanges(){
+
+  let promise:Promise<any> = new Promise( (resolve,reject)=>{
+    this._conect.GetConnectionsAsync().then((resp:any)=>{
+      this.session.getPartnerConnections().then((respStorage:GnConex)=>{
+        if(resp!= null && resp.ObjResult!= null && respStorage){
+          let arrConex:GnConex[] = resp.ObjResult;
+          let NogalConex = arrConex.filter(n=>n.$id == 2)[0];
+          if(respStorage.CNX_IPSR != NogalConex.CNX_IPSR){
+              this.SetConexiones(NogalConex);
+              this._companies.GetGnEmpre().then((data:any)=>{
+                if(data!=null){
+                    let companies:any[] =  data.ObjTransaction;
+                    let NogalCompanie = companies[0];
+                    this.SetEmpCodi(NogalCompanie.Emp_Codi)
+                    resolve();
+                  }
+                })
+          }
+          else {
+            resolve();
+          }
+        }
+  
+        if(!respStorage){
+            if(resp!= null && resp.ObjResult!= null ){
+              let arrConex:GnConex[] = resp.ObjResult;
+              let NogalConex = arrConex.filter(n=>n.$id == 2)[0];
+              this.SetConexiones(NogalConex);
+              this._companies.GetGnEmpre().then((data:any)=>{
+                if(data!=null){
+                  let companies:any[] =  data.ObjTransaction;
+                  let NogalCompanie = companies[0];
+                  this.SetEmpCodi(NogalCompanie.Emp_Codi)
+                  resolve();
+                }
+              })
+            }
+        }
+      })
+    })
+
+
+  })
+return promise;
+
+}
+
+SetConexiones(conex:any){
+  this.session.setPartnerConnections(conex);
+  this.session.SetClientUrl(conex.CNX_IPSR);
+}
+SetEmpCodi(emp_codi:number){
+  this.session.SetClientEmpCodi(emp_codi);
+                  this.session.setEmpCodiSession(emp_codi);
 }
 }

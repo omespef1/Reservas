@@ -11,6 +11,8 @@ import { bookingInfo, disponibilityRequestEvent } from '../Models/models';
 import { resolveDefinition } from '@angular/core/src/view/util';
 import { platformBrowser } from '@angular/platform-browser';
 import { stringify } from '@angular/core/src/util';
+import { ConnectionsProvider } from '../../providers/connections/connections';
+import { CompaniesProvider } from '../../providers/companies/companies';
 
 
 //terminar de hacer la vconversion cuando es cordova https
@@ -69,6 +71,7 @@ export class sessions {
     return this.nativeStorage.get('partnerConnection');
   }
   setPartnerConnections(conex: GnConex) {
+    console.log('conexion guardada');
     this.nativeStorage.set('partnerConnection', conex);
     this.SetClientUrl(conex.CNX_IPSR);
   }
@@ -186,4 +189,9 @@ export class sessions {
 
     return this.aeparam;
   }
+
+
+
+
+
 }

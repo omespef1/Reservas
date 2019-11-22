@@ -237,7 +237,7 @@ export interface DisponibilityTime {
   Estado: string;
 }
 export interface GnConex {
-  id:number;
+  $id:number;
   CNX_IPSR: string;
   CNX_BACK: string;
   CNX_LOGO: string;
