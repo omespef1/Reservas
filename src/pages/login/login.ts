@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, Events, Platform, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, Events, Platform, ModalController, LoadingController } from 'ionic-angular';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 //clases
@@ -65,7 +65,8 @@ export class LoginPage {
     private modalCrl: ModalController,
     private _companies: CompaniesProvider,
     private _dom: DomSanitizer,
-    private _conect:ConnectionsProvider
+    private _conect:ConnectionsProvider,
+    private _loading:LoadingController
 
   ) {
     this.appVersion = appVersion;
@@ -80,12 +81,20 @@ export class LoginPage {
   }
 
   async loadUserData() {
-    await this.CheckConnectionChanges().then(()=> console.log('conex set'))
-    await this.GetPartnerConnections();
-    const emp_codi = await <any>this.session.getEmpCodiSession();       
+    let loadingModal = this._loading.create({
+      content:'Cargando configuración',       
+   });
+   loadingModal.present();
+   this.CheckConnectionChanges().then(async()=>{
+     this.GetPartnerConnections();
+    loadingModal.dismiss();
     await this.checkForGnDigfl();   
     await this.CheckLastVersion();
     this.GetTouchId();
+   },()=>{       loadingModal.dismiss();})
+    //await this.GetPartnerConnections();
+    //const emp_codi = await <any>this.session.getEmpCodiSession();       
+    
     
     
 
@@ -310,45 +319,40 @@ console.log(this.compareVersion(appVersion,AppLastVersion.App_Vers));
 
 CheckConnectionChanges(){
 
+
+   
+debugger;
   let promise:Promise<any> = new Promise( (resolve,reject)=>{
-    this._conect.GetConnectionsAsync().then((resp:any)=>{
-      this.session.getPartnerConnections().then((respStorage:GnConex)=>{
-        if(resp!= null && resp.ObjResult!= null && respStorage){
-          let arrConex:GnConex[] = resp.ObjResult;
-          let NogalConex = arrConex.filter(n=>n.$id == 2)[0];
-          if(respStorage.CNX_IPSR != NogalConex.CNX_IPSR){
-              this.SetConexiones(NogalConex);
-              this._companies.GetGnEmpre().then((data:any)=>{
-                if(data!=null){
-                    let companies:any[] =  data.ObjTransaction;
-                    let NogalCompanie = companies[0];
-                    this.SetEmpCodi(NogalCompanie.Emp_Codi)
-                    resolve();
-                  }
-                })
-          }
-          else {
-            resolve();
-          }
-        }
-  
-        if(!respStorage){
-            if(resp!= null && resp.ObjResult!= null ){
-              let arrConex:GnConex[] = resp.ObjResult;
-              let NogalConex = arrConex.filter(n=>n.$id == 2)[0];
-              this.SetConexiones(NogalConex);
-              this._companies.GetGnEmpre().then((data:any)=>{
-                if(data!=null){
-                  let companies:any[] =  data.ObjTransaction;
-                  let NogalCompanie = companies[0];
-                  this.SetEmpCodi(NogalCompanie.Emp_Codi)
+    try {
+      this._conect.GetConnectionsAsync().then((resp:any)=>{
+        this.session.getPartnerConnections().then((respStorage:GnConex)=>{
+          if(resp== null)
+            throw new Error('Error obteniendo conexiones');
+            let arrConex:GnConex[] = resp.ObjResult;
+            let NogalConex = arrConex.filter(n=>n.$id == 2)[0];
+                this.SetConexiones(NogalConex);
+                this.session.getEmpCodiSession().then((resp) => {
+                  if(resp!=null)
                   resolve();
-                }
-              })
-            }
-        }
+                    this._companies.GetGnEmpre().then((data:any)=>{
+                      if(data==null || data==undefined)
+                      throw new Error("No se encontraron empresas");
+                          let companies:any[] =  data.ObjTransaction;
+                          let NogalCompanie = companies[0];
+                          this.SetEmpCodi(NogalCompanie.Emp_Codi)
+                          resolve();
+                        
+                      })
+                  
+                })
+             
+        })
       })
-    })
+    } catch (error) {
+    this.general.showToastMessage(error,'bottom')
+    reject();
+    }
+
 
 
   })

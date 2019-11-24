@@ -16,7 +16,7 @@ export class CompaniesProvider {
     
   }
   GetGnEmpre(){
-      return this._comu.Get(`GnEmpre/GetEmpresas`,true,'Cargando configuración..',false);
+      return this._comu.Get(`GnEmpre/GetEmpresas`,false,'Cargando configuración..',false);
   }
  async  GetGnDigfl(dig_codi:string){
   return  this._comu.Get(`GnDigfl?dig_codi=${dig_codi}`,false);
