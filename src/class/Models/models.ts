@@ -337,6 +337,9 @@ export interface agreement {
   Osa_Nomb: string;
   Osa_Lian: string;
   Osa_Liap: string;
+  Osa_Fini:string;
+  Osa_Fina:string;
+  Osa_Tipo:string;
  
 }
 
