@@ -5,11 +5,12 @@
         <allow-intent href="market:*" />
         <preference name="AutoHideSplashScreen" value="false" />
         <preference name="loadUrlTimeoutValue" value="70000" />
+        <preference name="android-minSdkVersion" value="23" />
+        <preference name="android-targetSdkVersion" value="28" />
         <preference name="ShowSplashScreen" value="true" />
         <preference name="ShowSplashScreenSpinner" value="true" />
         <preference name="FadeSplashScreen" value="true" />
-        <preference name="android-minSdkVersion" value="23" />
-        <preference name="android-targetSdkVersion" value="28" />
+        
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
