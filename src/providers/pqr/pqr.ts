@@ -28,5 +28,8 @@ export class PqrProvider {
   GetGnArbol(tar_codi:number){
      return  this._comunications.Get('GnArbol?tar_codi=' + tar_codi,false)
   }
+  GetPqPccapp(){
+    return this._comunications.Get('PqCcapp',false,'',true);
+  }
 
 }

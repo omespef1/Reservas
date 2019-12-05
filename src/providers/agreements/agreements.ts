@@ -18,4 +18,7 @@ export class AgreementsProvider {
  GetAgreements(){
    return this._comunications.Get('AeOsApp/GetAeOsApp?');
  }
+ GetInstitutional(){
+  return this._comunications.Get('AeOsApp/GetAeOsAppInst?');
+}
 }
