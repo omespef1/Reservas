@@ -19,6 +19,9 @@ export class AgreementsProvider {
    return this._comunications.Get('AeOsApp/GetAeOsApp?');
  }
  GetInstitutional(){
-  return this._comunications.Get('AeOsApp/GetAeOsAppInst?');
+  return this._comunications.Get('AeOsApp/GetAeOsApp?osa_tipo=I',true,'Cargando...',true);
+}
+GetBanners(){
+  return this._comunications.Get('AeOsApp/GetAeOsApp?osa_tipo=B',false,'',true);
 }
 }

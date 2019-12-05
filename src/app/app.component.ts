@@ -71,11 +71,17 @@ export class MyApp {
       //   this._sessions.setAmbientPqr(resp.ObjTransaction);
       //   }
       // })
-      this._pqr.GetPqPccapp().then((resp: any) => {
-        if (resp != null) {
-          this._sessions.setAmbientPqr(resp.ObjTransaction)
-        }
-      });
+
+      this._sessions.getEmpCodiSession().then((emp_codi:number)=>{
+        console.log(emp_codi);
+        this._pqr.GetPqPccapp(emp_codi).then((resp: any) => {
+          console.log(resp);
+          if (resp != null) {
+            this._sessions.setAmbientPqr(resp.ObjTransaction)
+          }
+        });
+      })
+ 
       this._espac.GetAeParam().then((resp: transaction) => {
         if (resp != null) {
           this._sessions.setAeParam(resp.ObjTransaction);

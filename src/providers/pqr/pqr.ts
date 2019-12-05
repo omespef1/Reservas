@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //providers
 import { ComunicationsProvider } from '../../providers/comunications/comunications';
+import { sessions } from '../../class/sessions/sessions';
 
 
 /*
@@ -13,7 +14,7 @@ import { ComunicationsProvider } from '../../providers/comunications/comunicatio
 @Injectable()
 export class PqrProvider {
 
-  constructor(public http: HttpClient, private _comunications: ComunicationsProvider) {
+  constructor(public http: HttpClient, private _comunications: ComunicationsProvider,private _sesion:sessions) {
     
   }
   GetPqr(user: any) {
@@ -28,8 +29,8 @@ export class PqrProvider {
   GetGnArbol(tar_codi:number){
      return  this._comunications.Get('GnArbol?tar_codi=' + tar_codi,false)
   }
-  GetPqPccapp(){
-    return this._comunications.Get('PqCcapp',false,'',true);
+  GetPqPccapp(emp_codi:number){   
+      return this._comunications.Get(`PqCcapp?emp_codi=${emp_codi}`,false,'',true);      
   }
 
 }

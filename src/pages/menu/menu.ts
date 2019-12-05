@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { BookingPage } from '../booking/booking';
 import { HistoryPage } from '../history/history';
 import { PqrPage } from '../pqr/pqr';
@@ -10,6 +10,9 @@ import { pageApp, GnConex } from '../../class/models/models';
 import { TabsPage } from '../tabs/tabs';
 import {sessions} from '../../class/sessions/sessions';
 import { SettingsPage } from '../settings/settings';
+import { InstitutionalPage } from '../institutional/institutional';
+import { AgreementsProvider } from "../../providers/agreements/agreements";
+import { transaction, agreement } from '../../class/Models/models';
 
 /**
  * Generated class for the MenuPage page.
@@ -31,6 +34,7 @@ export class MenuPage {
   tab5Root = AgreementsPage;
   tab6Root= AccommodationListPage;
 logo:string;
+banners:agreement[]=[];
 
   pages: pageApp [] = [
     {
@@ -63,23 +67,31 @@ logo:string;
     urlIcon:'assets/imgs/hotel.svg',
     page:AccommodationListPage
   },
+  {
+    name:'Institucional',
+    urlIcon:'assets/imgs/hotel.svg',
+    page:InstitutionalPage
+  },
 ]
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions,private _agrrements:AgreementsProvider) {
 
-  }
-
-   
-   
-
-
+  }      
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuPage');
+    this.GetBanners();
   }
   openTab(page:number){
     this.navCtrl.setRoot(TabsPage,{'tabSelected': page });
   }
   goProfile(){
     this.navCtrl.push(SettingsPage);
+  }
+  GetBanners(){
+    this._agrrements.GetBanners().then((resp:transaction)=>{
+      if(resp.Retorno==0){
+        console.log(resp);
+        this.banners = resp.ObjTransaction;
+      }
+    })
   }
 
 

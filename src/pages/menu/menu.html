@@ -6,31 +6,40 @@
 -->
 <ion-header>
   <ion-navbar>
-      <ion-buttons start>
-          <button ion-button icon-only (click)="goProfile()">
-            <ion-icon name="contact"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="goProfile()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Clubes y hoteles</ion-title>
 
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="card-background-page outer-content">
-<ion-grid>
-  <ion-row no-padding align-items-center>
+  <div class="card-background-page">
+    <ion-slides autoplay="true" centeredSlides="true"  loop="true" zoom="true"  pager>
+      <ion-slide *ngFor="let item of banners">
+        <ion-card>
+          <img src="data:image/jpeg;base64,{{item.Osa_Bmpr}}">
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-grid>
+    <!-- <ion-row no-padding align-items-center>
 <ion-col text-center >
     <img style="border-radius: 15px;" text-center src="assets/imgs/nogal.png" class="imgLogo">
 </ion-col>
-  </ion-row>
-  <ion-row align-items-center>
-      <ion-col col-6 col-md-6 col-xl-6 *ngFor="let page of pages;let i=index" >         
-          <ion-card class="card_menu"  button  (click) = "openTab(i)" padding tappable>
-           <img [src]="page.urlIcon">            
-            </ion-card>
-            <div class="card-subtitle">{{page.name}}</div>
-         </ion-col>
-        
-  </ion-row> 
-</ion-grid>
+  </ion-row> -->
+    <ion-row align-items-center>
+      <ion-col col-6 col-md-6 col-xl-6 *ngFor="let page of pages;let i=index">
+        <ion-card class="card_menu" button (click)="openTab(i)" padding tappable>
+          <img [src]="page.urlIcon">
+        </ion-card>
+        <div class="card-subtitle">{{page.name}}</div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>
