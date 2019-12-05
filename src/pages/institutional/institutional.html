@@ -18,7 +18,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of institutional" detail-push (tap)="openUrl(item)">
+    <ion-item *ngFor="let item of source" detail-push (tap)="openUrl(item)">
       <ion-avatar item-start>
         <img *ngIf="item.Osa_Bmpr!=null" src="data:image/jpeg;base64,{{item.Osa_Bmpr}}">
           <img *ngIf="item.Osa_Bmpr==null" src="assets/imgs/Imagen-no-disponible.png">

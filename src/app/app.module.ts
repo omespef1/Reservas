@@ -53,6 +53,10 @@ import {AccommodationSearchParamsPage} from '../pages/accommodation-search-param
 import{AccommodationRoomsPage } from '../pages/accommodation-rooms/accommodation-rooms';
 import {AccommodationDisponibilityPage} from '../pages/accommodation-disponibility/accommodation-disponibility';
 import {AccomodationConfirmationPage} from '../pages/accomodation-confirmation/accomodation-confirmation';
+import { InstitutionalPage } from '../pages/institutional/institutional';
+import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
+import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
+import { MenuPage } from '../pages/menu/menu';
 
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
@@ -71,6 +75,9 @@ import { EventsProvider } from '../providers/events/events';
 import { MainTemplatesProvider } from '../providers/main-templates/main-templates';
 import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 import { AccommodationConfirmationProvider } from '../providers/accommodation-confirmation/accommodation-confirmation';
+import { AccommodationDisponibilityProvider } from '../providers/accommodation-disponibility/accommodation-disponibility';
+import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-payments';
+import { AccommodationListProvider } from '../providers/accommodation-list/accommodation-list';
 import { HTTP } from '@ionic-native/http';
 
 //Components
@@ -90,12 +97,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
-import { AccommodationDisponibilityProvider } from '../providers/accommodation-disponibility/accommodation-disponibility';
-import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-payments';
-import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
-import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
-import { AccommodationListProvider } from '../providers/accommodation-list/accommodation-list';
-import { MenuPage } from '../pages/menu/menu';
+
+
 
 
  
@@ -152,7 +155,8 @@ import { MenuPage } from '../pages/menu/menu';
     AccomodationConfirmationPage,  
       PartnerPaymentsPage,
     PartnerPaymentsDetailsPage,
-    MenuPage
+    MenuPage,
+    InstitutionalPage
   ],
   imports: [
     FormsModule,
@@ -216,7 +220,8 @@ import { MenuPage } from '../pages/menu/menu';
     AccomodationConfirmationPage,
     PartnerPaymentsPage,
     PartnerPaymentsDetailsPage,
-    MenuPage
+    MenuPage,
+    InstitutionalPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

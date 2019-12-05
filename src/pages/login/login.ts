@@ -321,7 +321,7 @@ CheckConnectionChanges(){
 
 
    
-debugger;
+
   let promise:Promise<any> = new Promise( (resolve,reject)=>{
     try {
       this._conect.GetConnectionsAsync().then((resp:any)=>{

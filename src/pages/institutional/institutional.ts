@@ -23,4 +23,6 @@ export class InstitutionalPage {
     console.log('ionViewDidLoad InstitutionalPage');
   }
 
+
+  
 }

@@ -610,6 +610,11 @@ small {
   margin-right: 25px;
   font-weight: bold;
 }
+
+
+ion-tabs {
+  overflow-x: scroll;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

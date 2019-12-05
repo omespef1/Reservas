@@ -15,6 +15,7 @@ import { EventsProvider } from '../../providers/events/events';
 import { transaction } from '../../class/models/models';
 import { of } from 'rxjs/observable/of';
 import { NavParams, Tabs } from 'ionic-angular';
+import { InstitutionalPage } from '../institutional/institutional';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -29,6 +30,7 @@ export class TabsPage {
   tab4Root = EventsPage;
   tab5Root = AgreementsPage;
   tab6Root= AccommodationListPage;
+  tab7Root= InstitutionalPage;
   // tab7Root = SettingsPage;
   indexTab:number;
   @ViewChild('myTabs') tabRef: Tabs;
