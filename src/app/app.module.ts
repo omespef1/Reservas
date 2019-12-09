@@ -94,9 +94,11 @@ import * as moment from 'moment';
 import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
+import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
 
 
 
@@ -254,7 +256,9 @@ import {LongDatePipe} from '../pipes/long-date/long-date';
     PartnerPaymentsProvider,
     AccommodationConfirmationProvider,
     AccommodationListProvider,
-    HTTP
+    HTTP,
+    OneSignal,
+    NotificationsPushProvider
 
   ]
 })
