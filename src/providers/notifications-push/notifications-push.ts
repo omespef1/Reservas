@@ -50,6 +50,8 @@ export class NotificationsPushProvider {
   // }
 
   open(noti:OSNotification){
+    console.log('la notificacion es ');
+    console.log(noti);
    let modal =  this._modal.create(NotificationsPage, { 'notification': noti });
    modal.present();
   }
