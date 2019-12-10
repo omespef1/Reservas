@@ -350,7 +350,7 @@ CheckConnectionChanges(){
                       if(data==null || data==undefined)
                       throw new Error("No se encontraron empresas");
                           let companies:any[] =  data.ObjTransaction;
-                          let NogalCompanie = companies[3];
+                          let NogalCompanie = companies[0];
                           this.SetEmpCodi(NogalCompanie.Emp_Codi)
                           resolve();
                         
