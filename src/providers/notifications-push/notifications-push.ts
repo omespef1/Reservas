@@ -20,6 +20,10 @@ export class NotificationsPushProvider {
   }
 
   init_notifications() {
+
+    if(this._platform.is("cordova")){
+
+    
     this.oneSignal.startInit(
       "6796a626-5bef-4c76-8148-9df8833fe6d0",
       "343787359895"
@@ -41,6 +45,7 @@ export class NotificationsPushProvider {
     });
 
     this.oneSignal.endInit();
+  }
   }
 
   notificacion_Recibida(noti: OSNotification) {
