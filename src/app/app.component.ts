@@ -41,9 +41,22 @@ export class MyApp {
       
       statusBar.styleDefault();
       splashScreen.hide();
-     
+       // OneSignal Code start:
+    // Enable to debug issues:
+    // window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+    var notificationOpenedCallback = function(jsonData) {
+      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    };
+
+    window["plugins"].OneSignal
+      .startInit("6796a626-5bef-4c76-8148-9df8833fe6d0", "343787359895")
+      .handleNotificationOpened(notificationOpenedCallback)
+      .endInit();
       this.listenToLoginEvents();
-      this._push.init_notifications();
+
+      
+      // this._push.init_notifications();
       platform.registerBackButtonAction(() => {
 
       }, 1);
