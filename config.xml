@@ -3,6 +3,8 @@
     <platform name="android">
         <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
         <allow-intent href="market:*" />
+        <allow-intent href="http://*/*" />
+        <allow-intent href="https://*/*" />
         <preference name="AutoHideSplashScreen" value="false" />
         <preference name="loadUrlTimeoutValue" value="70000" />
         <preference name="android-minSdkVersion" value="23" />
@@ -85,7 +87,7 @@
     <name>Reservas</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://digitalware.com.co/">DigitalWare Team</author>
-    <content original-src="index.html" src="http://localhost:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
