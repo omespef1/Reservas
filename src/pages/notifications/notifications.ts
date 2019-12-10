@@ -17,7 +17,7 @@ import { OSNotification } from '@ionic-native/onesignal/ngx';
 })
 export class NotificationsPage {
  notification:OSNotification
-  constructor(public navCtrl: NavController, public navParams: NavParams,public pushService:NotificationsPushProvider,private _view:ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController) {
 
     this.notification = navParams.get('notification');
   }

@@ -80,6 +80,7 @@ import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-p
 import { AccommodationListProvider } from '../providers/accommodation-list/accommodation-list';
 import { HTTP } from '@ionic-native/http';
 
+
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AccordionComponent} from '../components/accordion/accordion';
@@ -99,6 +100,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 
 
@@ -158,7 +160,8 @@ import { NotificationsPushProvider } from '../providers/notifications-push/notif
       PartnerPaymentsPage,
     PartnerPaymentsDetailsPage,
     MenuPage,
-    InstitutionalPage
+    InstitutionalPage,
+    NotificationsPage
   ],
   imports: [
     FormsModule,
@@ -223,7 +226,8 @@ import { NotificationsPushProvider } from '../providers/notifications-push/notif
     PartnerPaymentsPage,
     PartnerPaymentsDetailsPage,
     MenuPage,
-    InstitutionalPage
+    InstitutionalPage,
+    NotificationsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
