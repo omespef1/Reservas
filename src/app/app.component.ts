@@ -33,8 +33,7 @@ export class MyApp {
     private _general: general,
     private _sessions: sessions,
     private _pqr: PqrProvider,
-    private _espac: AeEspacProvider,
-    public  _push:NotificationsPushProvider) {
+    private _espac: AeEspacProvider) {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
