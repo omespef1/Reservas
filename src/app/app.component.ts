@@ -50,7 +50,7 @@ export class MyApp {
 
     });
   }
-  listenToLoginEvents() {
+   listenToLoginEvents() {
     this.events.subscribe('user:logout', () => {
       this._sessions.removeSession();
       this.logged = false;
@@ -68,36 +68,44 @@ export class MyApp {
       this.logged = true;
       this._sessions.setLoggedIn(user);
       this.nav.setRoot(MenuPage);
-      this._pqr.GetGnItems(327).then((resp: any) => {
-        if (resp != null) {
-          this._sessions.setReasonsPrq(resp.ObjTransaction);
-        }
-      })
+   
       // this._pqr.GetGnArbol(3).then((resp: any) => {
       //   if(resp!=null){
       //   this._sessions.setAmbientPqr(resp.ObjTransaction);
       //   }
       // })
 
-      this._sessions.getEmpCodiSession().then((emp_codi:number)=>{
-        console.log(emp_codi);
-        this._pqr.GetPqPccapp(emp_codi).then((resp: any) => {
-          console.log(resp);
-          if (resp != null) {
-            this._sessions.setAmbientPqr(resp.ObjTransaction)
-          }
-        });
-      })
- 
-      this._espac.GetAeParam().then((resp: transaction) => {
-        if (resp != null) {
-          this._sessions.setAeParam(resp.ObjTransaction);
-        }
-      })
+          
+    })
 
 
+    this.events.subscribe('user:gnempre',()=>{
+      console.log('carga de datos iniciales');
+       this.LoadInitialParams();
     })
   }
+
+ async LoadInitialParams(){
+  let emp_codi = await this._sessions.getEmpCodiSession();
+  this._pqr.GetPqPccapp(emp_codi).then((resp: any) => {
+    console.log(resp);
+    if (resp != null) {
+      this._sessions.setAmbientPqr(resp.ObjTransaction)
+    }
+  });
+  this._pqr.GetGnItems(327).then((resp: any) => {
+    if (resp != null) {
+      this._sessions.setReasonsPrq(resp.ObjTransaction);
+    }
+  })
+
+  this._espac.GetAeParam().then((resp: transaction) => {
+    if (resp != null) {
+      this._sessions.setAeParam(resp.ObjTransaction);
+    }
+  })
+ }
+
 
   goHome() {
     this.nav.setRoot(MenuPage);

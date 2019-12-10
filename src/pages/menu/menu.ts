@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { BookingPage } from '../booking/booking';
 import { HistoryPage } from '../history/history';
@@ -26,13 +26,14 @@ import { transaction, agreement } from '../../class/Models/models';
   selector: 'page-menu',
   templateUrl: 'menu.html',
 })
-export class MenuPage {
+export class MenuPage implements OnInit {
   tab1Root = BookingPage;
   tab2Root = HistoryPage;
   tab3Root = PqrPage;
   tab4Root = EventsPage;
   tab5Root = AgreementsPage;
   tab6Root= AccommodationListPage;
+  loadingBanner=false;
 logo:string;
 banners:agreement[]=[];
 
@@ -75,9 +76,17 @@ banners:agreement[]=[];
 ]
   constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions,private _agrrements:AgreementsProvider) {
 
-  }      
-  ionViewDidLoad() {
+  }    
+  
+  ngOnInit(): void {
     this.GetBanners();
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    
+  }
+  ionViewDidLoad() {
+   
+  
   }
   openTab(page:number){
     this.navCtrl.setRoot(TabsPage,{'tabSelected': page });
@@ -86,7 +95,9 @@ banners:agreement[]=[];
     this.navCtrl.push(SettingsPage);
   }
   GetBanners(){
+    this.loadingBanner=true;
     this._agrrements.GetBanners().then((resp:transaction)=>{
+      this.loadingBanner=false;
       if(resp.Retorno==0){
         console.log(resp);
         this.banners = resp.ObjTransaction;

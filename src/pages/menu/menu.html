@@ -18,9 +18,13 @@
 
 <ion-content padding class="card-background-page outer-content">
   <div class="card-background-page">
-    <ion-slides autoplay="true" centeredSlides="true"  loop="true" zoom="true"  pager>
-      <ion-slide *ngFor="let item of banners">
-        <ion-card>
+      <ion-card *ngIf="loadingBanner">
+          <ion-spinner ></ion-spinner>
+      </ion-card>
+    <ion-slides *ngIf="banners && banners.length" autoplay="5000" centeredSlides="true"  loop="true" zoom="true"  pager>
+      
+      <ion-slide *ngFor="let item of banners">        
+        <ion-card class="slide_card">           
           <img src="data:image/jpeg;base64,{{item.Osa_Bmpr}}">
         </ion-card>
       </ion-slide>

@@ -50,7 +50,7 @@ export class ComunicationsProvider {
       let stringUrl = `${this._sesion.GetClientUrl()}${UrlService}`;
       if (requiteEmpCodi)
         stringUrl += `&emp_codi=${this._sesion.GetClientEmpCodi()}`;
-      console.log(stringUrl);
+      
     
       const headerDict = {
         'Content-Type': 'application/json',

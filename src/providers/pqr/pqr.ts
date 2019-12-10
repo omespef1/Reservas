@@ -30,7 +30,7 @@ export class PqrProvider {
      return  this._comunications.Get('GnArbol?tar_codi=' + tar_codi,false)
   }
   GetPqPccapp(emp_codi:number){   
-      return this._comunications.Get(`PqCcapp?emp_codi=${emp_codi}`,false,'',true);      
+      return this._comunications.Get(`PqCcapp?emp_codi=${emp_codi}`,false,'',false);      
   }
 
 }

@@ -85,11 +85,14 @@ export class LoginPage {
       content:'Cargando configuración',       
    });
    loadingModal.present();
-   this.CheckConnectionChanges().then(async()=>{
-     this.GetPartnerConnections();
+    this.CheckConnectionChanges().then(async()=>{
+     console.log('empresa escogida');
+   await  this.GetPartnerConnections();    
     loadingModal.dismiss();
+    this.events.publish("user:gnempre");
     await this.checkForGnDigfl();   
     await this.CheckLastVersion();
+    
     this.GetTouchId();
    },()=>{       loadingModal.dismiss();})
     //await this.GetPartnerConnections();
@@ -180,15 +183,15 @@ export class LoginPage {
       this.session.getPartnerConnections().then((resp: GnConex) => {
        console.log('conexion leida');
         if (resp) {
-          this.session.SetClientUrl(resp.CNX_IPSR);
+          console.log('setea set client url porque ya la tiene');
+          this.session.SetClientUrl(resp.CNX_IPSR);       
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
           this.backgroundColor = resp.CNX_BACK;
           this.colorPri = resp.CNX_CPRI;
           this.colorSeg = resp.CNX_CSEG;
           this.colorTer = resp.CNX_CTER;
-          this.fonClar = resp.CNX_FCLA;
-       
+          this.fonClar = resp.CNX_FCLA;         
           resolve();
         }
         else {
@@ -215,12 +218,15 @@ export class LoginPage {
   GetEmpCodiSession() {
     let promise = new Promise((resolve, reject) => {
       this.session.getEmpCodiSession().then(resp => {
+        console.log('empresa por defecto es ');
+        console.log(resp);
         if (resp) {
           this.session.SetClientEmpCodi(resp);
           this.session.setEmpCodiSession(resp);
           resolve();
         }
         else {
+          console.log('abre modal');
           let modalCompanies = this.modalCrl.create(CompaniesPage);
           modalCompanies.present();
           modalCompanies.onDidDismiss((resp: GnEmpre) => {
@@ -332,13 +338,19 @@ CheckConnectionChanges(){
             let NogalConex = arrConex.filter(n=>n.$id == 2)[0];
                 this.SetConexiones(NogalConex);
                 this.session.getEmpCodiSession().then((resp) => {
-                  if(resp!=null)
-                  resolve();
+                  console.log('empresa que carga es');
+                  console.log(resp);
+                  if(resp!=null){
+                    console.log('resuelve')
+                    resolve();
+                  }
+                    
                     this._companies.GetGnEmpre().then((data:any)=>{
+                      console.log('carga empresas ok')
                       if(data==null || data==undefined)
                       throw new Error("No se encontraron empresas");
                           let companies:any[] =  data.ObjTransaction;
-                          let NogalCompanie = companies[0];
+                          let NogalCompanie = companies[3];
                           this.SetEmpCodi(NogalCompanie.Emp_Codi)
                           resolve();
                         
