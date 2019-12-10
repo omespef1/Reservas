@@ -1,7 +1,8 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Component } from '@angular/core';
 import { OneSignal, OSNotification, OSNotificationPayload } from "@ionic-native/onesignal/ngx";
-import { Platform } from "ionic-angular";
+import { Platform, NavController, ModalController } from 'ionic-angular';
 import { notifications } from "../../class/Models/notifications/notifications";
+import { NotificationsPage } from '../../pages/notifications/notifications';
 
 /*
   Generated class for the NotificationsPushProvider provider.
@@ -15,37 +16,42 @@ export class NotificationsPushProvider {
 
   ];
 
-  constructor(private oneSignal: OneSignal, private _platform: Platform) {
+  constructor(private _platform: Platform,private _modal:ModalController) {
     console.log("Hello NotificationsPushProvider Provider");
   }
 
-  init_notifications() {
+  // init_notifications() {
 
-    if(this._platform.is("cordova")){
+  //   if(this._platform.is("cordova")){
 
     
-    this.oneSignal.startInit(
-      "6796a626-5bef-4c76-8148-9df8833fe6d0",
-      "343787359895"
-    );
+  //   this.oneSignal.startInit(
+  //     "6796a626-5bef-4c76-8148-9df8833fe6d0",
+  //     "343787359895"
+  //   );
 
-    this.oneSignal.inFocusDisplaying(
-      this.oneSignal.OSInFocusDisplayOption.Notification
-    );
+  //   this.oneSignal.inFocusDisplaying(
+  //     this.oneSignal.OSInFocusDisplayOption.Notification
+  //   );
 
-    this.oneSignal.handleNotificationReceived().subscribe(noti => {
-      // do something when notification is received
-      console.log("notificación recibida");
-      this.notificacion_Recibida(noti);
-    });
+  //   this.oneSignal.handleNotificationReceived().subscribe(noti => {
+  //     // do something when notification is received
+  //     console.log("notificación recibida");
+  //     this.notificacion_Recibida(noti);
+  //   });
 
-    this.oneSignal.handleNotificationOpened().subscribe(() => {
-      // do something when a notification is opened
-      console.log("notificación recibida");
-    });
+  //   this.oneSignal.handleNotificationOpened().subscribe(() => {
+  //     // do something when a notification is opened
+  //     console.log("notificación recibida");
+  //   });
 
-    this.oneSignal.endInit();
-  }
+  //   this.oneSignal.endInit();
+  // }
+  // }
+
+  open(noti:OSNotification){
+   let modal =  this._modal.create(NotificationsPage, { 'notification': noti });
+   modal.present();
   }
 
   notificacion_Recibida(noti: OSNotification) {

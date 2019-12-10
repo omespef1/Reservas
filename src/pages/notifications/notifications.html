@@ -5,23 +5,29 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Notificaciones</ion-title>
-  </ion-navbar>
-</ion-header>
+
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="close()" >
+              <ion-icon name="close-circle"></ion-icon>
+            </button>
+                </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
 
 <ion-content>
   <ion-list>
     <ion-list-header>
-      <ion-label>Nuevas notificaciones</ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let push of pushService.mensajes">
       <ion-label>
-        <h3>{{push.title}}</h3>
-        <p>{{push.body}}</p>
-        <p>
-          {{push.additionalData  |json}}
-        </p>
+        <h3> {{notification.headings.es}}</h3>
+      </ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>
+        
+        <p>{{notification.contents.es}}</p>        
       </ion-label>
     </ion-item>
   </ion-list>

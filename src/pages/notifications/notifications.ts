@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { NotificationsPushProvider } from '../../providers/notifications-push/notifications-push';
+import { OSNotification } from '@ionic-native/onesignal/ngx';
 
 /**
  * Generated class for the NotificationsPage page.
@@ -15,12 +16,18 @@ import { NotificationsPushProvider } from '../../providers/notifications-push/no
   templateUrl: 'notifications.html',
 })
 export class NotificationsPage {
+ notification:OSNotification
+  constructor(public navCtrl: NavController, public navParams: NavParams,public pushService:NotificationsPushProvider,private _view:ViewController) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public pushService:NotificationsPushProvider) {
+    this.notification = navParams.get('notification');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotificationsPage');
+  }
+
+  close(){
+    this._view.dismiss()
   }
 
 }
