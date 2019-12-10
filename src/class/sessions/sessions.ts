@@ -88,7 +88,7 @@ export class sessions {
 
     // return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
     //return 'http://186.154.240.181/Nogalapi/api/';
-    //return 'http://localhost/SevenReservas/api/';
+    return 'http://132.147.157.140/SevenReservas/api/';
     //return 'http://192.168.1.209/appnogal/api/';
   //return 'https://erp.clubelnogal.com/appnogal/api/';
     //Le quita el https a la url configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
@@ -97,16 +97,16 @@ export class sessions {
     //   return urlUnsafe;
     // }
     // else
-    return this.clientUrl;
+   // return this.clientUrl;
   }
 
   SetClientUrl(value: string) {
     this.clientUrl = value;
   }
   GetClientEmpCodi() {
-   // return 102;
+    return 102;
     // console.log('obtiene el tercero guardado');
-     return this.emp_codi;
+   //  return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {
     this.emp_codi = value;
