@@ -70,7 +70,7 @@ banners:agreement[]=[];
   },
   {
     name:'Institucional',
-    urlIcon:'assets/imgs/hotel.svg',
+    urlIcon:'assets/icon/icon.png',
     page:InstitutionalPage
   },
 ]

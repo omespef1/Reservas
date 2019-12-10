@@ -105,6 +105,25 @@ ion-card-header {
   opacity: 0.9;
 }
 
+.ion-ios-app_nogal,
+.ion-md-app_nogal {
+  content: url(../assets/icon/icon.png);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_nogal-outline,
+.ion-md-app_nogal-outline {
+  content: url(../assets/icon/icon.png);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
+
 .ion-ios-app_calendar-outline,
 .ion-md-app_calendar-outline {
   content: url(../assets/imgs/calendar.svg);

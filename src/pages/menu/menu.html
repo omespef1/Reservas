@@ -16,18 +16,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="card-background-page outer-content">
-  <div class="card-background-page">
+<ion-content padding class="outer-content">
+  <div>
       <ion-card *ngIf="loadingBanner">
           <ion-spinner ></ion-spinner>
       </ion-card>
-    <ion-slides *ngIf="banners && banners.length" autoplay="5000" centeredSlides="true"  loop="true" zoom="true"  pager>
-      
-      <ion-slide *ngFor="let item of banners">        
-        <ion-card class="slide_card">           
-          <img src="data:image/jpeg;base64,{{item.Osa_Bmpr}}">
-        </ion-card>
-      </ion-slide>
+    <ion-slides  *ngIf="banners && banners.length" effect="coverflow"  autoplay="5000" centeredSlides="true"  loop="true" zoom="true"  pager>
+        <ion-slide *ngFor="let item of banners">        
+        <ion-card>
+            <img src="data:image/jpeg;base64,{{item.Osa_Bmpr}}">
+            <!-- <ion-card-content>
+              <ion-card-title>
+               {{ item.Osa_Nomb }}
+                </ion-card-title>             
+            </ion-card-content> -->
+          </ion-card>
+        </ion-slide>
     </ion-slides>
   </div>
   <ion-grid>
