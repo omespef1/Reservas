@@ -66,7 +66,7 @@ export class AccomodationConfirmationPage {
         //Calcula el total como lo calcula el api sin liquidación de seven
         this.totalApp = this.AccommodationBooking.AccomodationSpaces.reduce((acc, pilot) => acc + pilot.priceSpace, 0);
         //Crea el objeto que contendrá todos los RES_CONT de las reservas que se generaron en estado pendiente}
-       
+     debugger;
         let arrIds: any[]=[];
         for (let spaceBooking of this.AccommodationBooking.AccomodationSpaces) {
           arrIds.push(spaceBooking.res_cont);

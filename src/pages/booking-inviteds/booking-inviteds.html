@@ -1,0 +1,41 @@
+<!--
+  Generated template for the BookingInvitedsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <img button ion-button icon-only src="assets/icon/icon.png" class="app_nogal">
+      <div><label>Mis invitados</label></div> 
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="outer-content">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+      </ion-refresher>
+
+      <ion-fab top right>
+          <button ion-fab (click)="newInvited()" class="element">
+              
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-fab>
+  <ion-list inset>
+    <ion-item *ngFor="let invited of inviteds">
+      <ion-avatar item-start>
+        <img src="assets/imgs/usuario.svg">
+      </ion-avatar>
+      <h2>{{invited.Nombre}}</h2>
+    <h3>{{ invited.Apellido}}</h3>
+    <p>Ingreso a la(s){{ invited.Fecha | date : 'yyyy/MM/dd hh:mm a'}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

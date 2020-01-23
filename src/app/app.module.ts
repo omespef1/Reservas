@@ -58,6 +58,7 @@ import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments'
 import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
 import { MenuPage } from '../pages/menu/menu';
 
+
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -101,6 +102,9 @@ import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
 import { NotificationsPage } from '../pages/notifications/notifications';
+import { InvitedProvider } from '../providers/invited/invited';
+import { BookingInvitedsPage } from '../pages/booking-inviteds/booking-inviteds';
+import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-invited';
 
 
 
@@ -161,7 +165,9 @@ import { NotificationsPage } from '../pages/notifications/notifications';
     PartnerPaymentsDetailsPage,
     MenuPage,
     InstitutionalPage,
-    NotificationsPage
+    NotificationsPage,
+    BookingInvitedsPage,
+    BookingNewInvitedPage
   ],
   imports: [
     FormsModule,
@@ -227,7 +233,9 @@ import { NotificationsPage } from '../pages/notifications/notifications';
     PartnerPaymentsDetailsPage,
     MenuPage,
     InstitutionalPage,
-    NotificationsPage
+    NotificationsPage,
+    BookingInvitedsPage,
+    BookingNewInvitedPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -262,7 +270,8 @@ import { NotificationsPage } from '../pages/notifications/notifications';
     AccommodationListProvider,
     HTTP,
     OneSignal,
-    NotificationsPushProvider
+    NotificationsPushProvider,
+    InvitedProvider
 
   ]
 })

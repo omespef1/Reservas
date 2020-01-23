@@ -7,8 +7,8 @@
  //export const appCentralizacionUrl = "http://consultoria.digitalware.co/seven_crm/centralizacion/api/";
  export const appCentralizacionUrl = "https://sac.digitalware.co:442/Seven_Crm/Centralizacion/api/";
 // const appCentralizacionUrl = "http://186.154.240.181/centralizacion/api/";
-export const appVersion:string = '19.0.12.0';
-export const appCopyright = 'SEVEN-ERP © 1992-2019';
+export const appVersion:string = '20.0.1.0';
+export const appCopyright = 'SEVEN-ERP © 1992-2020';
 export const appGooglePlayUrl = "https://play.google.com/store/apps/details?id=com.digitalware.Clubes&hl=es";
 export const appAppStoreUrl = "https://apps.apple.com/co/app/nogal-reservas/id1089240574";
 export const developer = 'DigitalWare Team';

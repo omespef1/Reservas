@@ -13,6 +13,7 @@ import { SettingsPage } from '../settings/settings';
 import { InstitutionalPage } from '../institutional/institutional';
 import { AgreementsProvider } from "../../providers/agreements/agreements";
 import { transaction, agreement } from '../../class/Models/models';
+import { BookingInvitedsPage } from '../booking-inviteds/booking-inviteds';
 
 /**
  * Generated class for the MenuPage page.
@@ -70,8 +71,13 @@ banners:agreement[]=[];
   },
   {
     name:'Institucional',
-    urlIcon:'assets/icon/icon.png',
+    urlIcon:'assets/imgs/nogal.png',
     page:InstitutionalPage
+  },
+  {
+    name:'Invitados',
+    urlIcon:'assets/imgs/guest-post.svg',
+    page:BookingInvitedsPage
   },
 ]
   constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions,private _agrrements:AgreementsProvider) {

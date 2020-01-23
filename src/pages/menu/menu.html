@@ -11,12 +11,15 @@
         <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Clubes y hoteles</ion-title>
+    <ion-title>
+        <img button ion-button icon-only src="assets/icon/icon.png" class="app_nogal">
+        <div><label>Clubes y Hoteles</label></div>     
+      </ion-title>
 
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="outer-content">
+<ion-content padding>
   <div>
       <ion-card *ngIf="loadingBanner">
           <ion-spinner ></ion-spinner>

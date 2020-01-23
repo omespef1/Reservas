@@ -11,8 +11,6 @@ import { bookingInfo, disponibilityRequestEvent } from '../Models/models';
 import { resolveDefinition } from '@angular/core/src/view/util';
 import { platformBrowser } from '@angular/platform-browser';
 import { stringify } from '@angular/core/src/util';
-import { ConnectionsProvider } from '../../providers/connections/connections';
-import { CompaniesProvider } from '../../providers/companies/companies';
 
 
 //terminar de hacer la vconversion cuando es cordova https
@@ -71,7 +69,6 @@ export class sessions {
     return this.nativeStorage.get('partnerConnection');
   }
   setPartnerConnections(conex: GnConex) {
-    console.log('conexion guardada');
     this.nativeStorage.set('partnerConnection', conex);
     this.SetClientUrl(conex.CNX_IPSR);
   }
@@ -87,25 +84,25 @@ export class sessions {
   GetClientUrl() {
 
     // return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
-    //return 'http://186.154.240.181/Nogalapi/api/';
-    //return 'http://132.147.157.140/SevenReservas/api/';
-    //return 'http://192.168.1.209/appnogal/api/';
-  //return 'https://erp.clubelnogal.com/appnogal/api/';
-    //Le quita el https a la url configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
+    // return 'http://186.154.240.181/Nogalapi/api/';
+    //return 'http://localhost/SevenReservas/api/';
+  //   return 'http://192.168.1.209/appnogal/api/';
+  // return 'https://erp.clubelnogal.com/appnogal/api/';
+    // Le quita el https a la url configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
     // if (this._platform.is("cordova") && this.clientUrl.indexOf("https") > -1) {
     //   let urlUnsafe: string = this.clientUrl.replace("https", "http");
     //   return urlUnsafe;
     // }
     // else
-   return this.clientUrl;
+  return this.clientUrl;
   }
 
   SetClientUrl(value: string) {
     this.clientUrl = value;
   }
   GetClientEmpCodi() {
-    //return 102;
-    // console.log('obtiene el tercero guardado');
+    //return 1;
+    console.log('obtiene el tercero guardado');
     return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {
@@ -189,9 +186,4 @@ export class sessions {
 
     return this.aeparam;
   }
-
-
-
-
-
 }
