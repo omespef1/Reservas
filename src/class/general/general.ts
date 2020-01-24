@@ -4,6 +4,7 @@ import { BrowserTab } from '@ionic-native/browser-tab';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import * as moment from 'moment';
+import { retry } from "rxjs/operator/retry";
 
 
 @Injectable()
@@ -132,6 +133,28 @@ export class general {
     momentOfTime.setTime(momentOfTime.getTime() + myTimeSpan);
     return momentOfTime;
   }
+
+
+  //Retorna los ultimos X años a partir de la fecha enviada
+
+  GetLastYears(date:Date, years:number){
+   let arrYears:number[]=[];
+    let lastYears = date;
+    lastYears.setFullYear( lastYears.getFullYear() - years  );
+    let firstYear = lastYears.getFullYear();
+    let now = new Date();
+    let lastYear= now.getFullYear();
+    for(let i = firstYear;i<=lastYear;i++){
+        arrYears.push(i);
+    }
+    return arrYears;
+  }
+
+  // Obtiene el número de días de un mes
+
+  daysInMonth (month:number, year:number):number { 
+    return new Date(year, month, 0).getDate(); 
+} 
 
   showConfirmMessage(title: string, subTitle: string, data: any[] = null) {
     var promise = new Promise((resolve, reject) => {

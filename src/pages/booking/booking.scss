@@ -25,14 +25,16 @@ page-booking {
         border-radius: 100%;
         padding: 2px 6px;
     }
+
+    .item > ion-icon:first-child, .item-inner > ion-icon:first-child {
+        text-align: center;
+        min-width: 56px;
+    }
+    ion-icon {
+        min-height: 2.8rem;
+        font-size: 3.5rem;
+        line-height: 1;
+    }
+    
   
-}
-.item > ion-icon:first-child, .item-inner > ion-icon:first-child {
-    text-align: center;
-    min-width: 56px;
-}
-ion-icon {
-    min-height: 2.8rem;
-    font-size: 3.5rem;
-    line-height: 1;
 }

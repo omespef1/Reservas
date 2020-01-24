@@ -14,13 +14,62 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="outer-content">
-  <ion-list no-border>
-    <ion-item detail-push>
+  <ion-list inset>
+    <!-- <ion-item detail-push>
       <ion-label>Mes</ion-label>
       <ion-icon name="calendar" item-start></ion-icon>
       <ion-datetime displayFormat="MMMM/YYYY" (ionChange)="GetHistory()" [(ngModel)]="myDate"></ion-datetime>
-    </ion-item>
+    </ion-item> -->
+    <ion-item>
+        <ion-label>Año</ion-label>
+        <ion-select [(ngModel)]="year" interface="action-sheet" (ionChange)="cleanControls()">
+        <ion-option *ngFor="let year of lastYears">{{year}}</ion-option>              
+        </ion-select>
+      
+      </ion-item>
+      <ion-item>
+          <ion-label>Mes</ion-label>
+          <ion-select [(ngModel)]="month" interface="action-sheet" (ionChange)="loadDaysMonthI()">
+            <ion-option *ngFor="let month of months" [value]="month.monthValue">{{month.monthName}}</ion-option>                
+          </ion-select>  
+           
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Día inicial</ion-label>
+          <ion-select [(ngModel)]="dayI" (ionChange)="loadDaysMonthF()">
+              <ion-option [value]="day" *ngFor="let day of daysInMonthI" >{{day}}</ion-option>
+          </ion-select>
+         
+        </ion-item>
+        <ion-item>
+            <ion-label>Día final</ion-label>
+            <ion-select [(ngModel)]="dayF">
+                <ion-option [value]="day" *ngFor="let day of daysInMonthF" >{{day}}</ion-option>
+            </ion-select>
+          </ion-item>
+         
+        
+
+    
   </ion-list>
+  {{year |json}}
+  {{month | json}}    
+  {{dayI|json}} 
+  {{dayF|json}}
+  <div padding>
+      <button ion-button full icon-end color="danger" (click)="cleanAllControls()">
+          Limpiar
+          <ion-icon name="trash"></ion-icon>
+      </button>
+      <button ion-button full icon-end (click)="GetHistory()">
+          Consultar
+          <ion-icon name="eye"></ion-icon>
+         
+    
+      </button>
+  </div>
+
   <ion-card *ngFor="let history of histories">
     <ion-card-header>
       <strong>Total Aprox</strong> {{total(history.lConsumos) | currency:'COP'}}

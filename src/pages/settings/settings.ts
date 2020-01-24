@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Events, Platform } from 'ionic-angular';
 import { sessions } from '../../class/sessions/sessions';
 //pages
 import { PartnerDetailPage } from '../partner-detail/partner-detail';
@@ -24,7 +24,8 @@ export class SettingsPage {
   constructor(private _sessions: sessions,
     private _modalCtrl: ModalController,
     private _events: Events,
-    private navCtrl: NavController) {
+    private navCtrl: NavController,
+    private _platform:Platform) {
     this._sessions.GetLoggedin().then(user => {
       this.user = user;
     })
@@ -46,5 +47,11 @@ export class SettingsPage {
   }
   seePayments(){
   this.navCtrl.push(PartnerPaymentsPage);
+  }
+
+  ShowDeveloper(){
+    if(!this._platform.is('cordova')){
+        
+    }
   }
 }

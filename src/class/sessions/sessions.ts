@@ -186,4 +186,11 @@ export class sessions {
 
     return this.aeparam;
   }
+
+  // setDeveloperOptions(developerOptions:boolean){
+  //   this.nativeStorage.set("DeveloperOptions",developerOptions); 
+  // }
+  //  getDeveloperOptions(){
+  //    this.nativeStorage.get("DeveloperOptions");
+  //  }
 }

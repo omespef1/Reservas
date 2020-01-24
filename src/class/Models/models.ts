@@ -445,3 +445,8 @@ export class invited {
     this.Sbe_codi = "";
   }
 }
+
+export class month {
+  monthName:string;
+  monthValue:number;
+}
