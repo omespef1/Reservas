@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
 import { HistoryProvider } from '../../providers/history/history';
 //clase
 import {sessions} from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
 import { month } from '../../class/Models/models';
+import { NgForm } from '@angular/forms';
 
 /**
  * Generated class for the HistoryPage page.
@@ -96,12 +97,13 @@ export class HistoryPage {
 
   }
 
-  cleanControls(){
-    this.daysInMonthI=[];
-    this.daysInMonthF=[];     
-    this.month= undefined;
-    this.dayI=undefined;
-    this.dayF=undefined;
+  cleanControls(form:NgForm){
+    form.reset();
+    // this.daysInMonthI=[];
+    // this.daysInMonthF=[];     
+    // this.month= null;
+    // this.dayI=undefined;
+    // this.dayF=undefined;
   }
 
 
