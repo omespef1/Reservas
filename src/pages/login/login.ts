@@ -77,7 +77,7 @@ export class LoginPage {
 
 
   async ionViewWillEnter() {
-   // await this.loadUserData();
+    await this.loadUserData();
   }
 
   async loadUserData() {
