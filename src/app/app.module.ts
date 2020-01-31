@@ -59,6 +59,7 @@ import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/pa
 import { MenuPage } from '../pages/menu/menu';
 
 
+
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -105,6 +106,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { InvitedProvider } from '../providers/invited/invited';
 import { BookingInvitedsPage } from '../pages/booking-inviteds/booking-inviteds';
 import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-invited';
+import { HistoryDetailPage } from '../pages/history-detail/history-detail';
 
 
 
@@ -167,7 +169,8 @@ import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-
     InstitutionalPage,
     NotificationsPage,
     BookingInvitedsPage,
-    BookingNewInvitedPage
+    BookingNewInvitedPage,
+    HistoryDetailPage
   ],
   imports: [
     FormsModule,
@@ -235,7 +238,8 @@ import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-
     InstitutionalPage,
     NotificationsPage,
     BookingInvitedsPage,
-    BookingNewInvitedPage
+    BookingNewInvitedPage,
+    HistoryDetailPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

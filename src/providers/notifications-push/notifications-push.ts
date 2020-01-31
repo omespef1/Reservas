@@ -1,7 +1,6 @@
 import { Injectable, Component } from '@angular/core';
-import { OneSignal, OSNotification, OSNotificationPayload } from "@ionic-native/onesignal/ngx";
-import { Platform, NavController, ModalController } from 'ionic-angular';
-import { notifications } from "../../class/Models/notifications/notifications";
+import {  OSNotification, OSNotificationPayload } from "@ionic-native/onesignal/ngx";
+import { Platform, ModalController } from 'ionic-angular';
 import { NotificationsPage } from '../../pages/notifications/notifications';
 
 /*

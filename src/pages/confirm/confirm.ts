@@ -45,12 +45,12 @@ export class ConfirmPage {
    
   }
   SetBooking() {
- console.log('ingreso a funcion principal reservar');
+ 
    if(this.booking.thirdPartie==null)
    this.booking.thirdPartie = {
      Ter_codi:0
    }
-   console.log('valida nulo de tercero');
+   
     let newBooking: any = {
       Emp_codi: this._sesion.GetClientEmpCodi(),
       Res_fini: this.booking.agend.age_Fini,
@@ -79,7 +79,7 @@ export class ConfirmPage {
         }
       ]
     }
-    console.log('Se va a realizar post...');
+    
      this._booking.SetBooking(newBooking).then((resp:any)=>{
       
        if(resp!=null){

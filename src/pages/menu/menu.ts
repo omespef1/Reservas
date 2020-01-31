@@ -12,7 +12,7 @@ import {sessions} from '../../class/sessions/sessions';
 import { SettingsPage } from '../settings/settings';
 import { InstitutionalPage } from '../institutional/institutional';
 import { AgreementsProvider } from "../../providers/agreements/agreements";
-import { transaction, agreement } from '../../class/Models/models';
+import { transaction, agreement } from '../../class/models/models';
 import { BookingInvitedsPage } from '../booking-inviteds/booking-inviteds';
 
 /**

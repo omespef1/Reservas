@@ -46,7 +46,7 @@ export class MyApp {
     // window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
     var notificationOpenedCallback = function(jsonData) {
-      console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      // console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
     };
 if(platform.is("cordova")){
   window["plugins"].OneSignal
@@ -98,7 +98,7 @@ if(platform.is("cordova")){
 
 
     this.events.subscribe('user:gnempre',()=>{
-      console.log('carga de datos iniciales');
+      
        this.LoadInitialParams();
     })
   }
@@ -106,7 +106,7 @@ if(platform.is("cordova")){
  async LoadInitialParams(){
   let emp_codi = await this._sessions.getEmpCodiSession();
   this._pqr.GetPqPccapp(emp_codi).then((resp: any) => {
-    console.log(resp);
+    
     if (resp != null) {
       this._sessions.setAmbientPqr(resp.ObjTransaction)
     }

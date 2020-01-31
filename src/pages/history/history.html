@@ -24,81 +24,101 @@
       <ion-item>
         <ion-icon item-start name="calendar"></ion-icon>
         <ion-label>Año</ion-label>
-        <ion-select name="year" [(ngModel)]="year" interface="action-sheet" (ionChange)="cleanControls(invitedForm)">
+        <ion-select name="year" [(ngModel)]="year" interface="action-sheet" (ionChange)="GetAmbientes();loadDays()"
+          required>
           <ion-option *ngFor="let year of lastYears">{{year}}</ion-option>
         </ion-select>
 
       </ion-item>
       <ion-item>
-          <ion-icon item-start name="calendar"></ion-icon>
+        <ion-icon item-start name="calendar"></ion-icon>
         <ion-label>Mes</ion-label>
-        <ion-select name="month" [(ngModel)]="month" interface="action-sheet" (ionChange)="loadDaysMonthI()">
+        <ion-select name="month" [(ngModel)]="month" interface="action-sheet"
+          (ionChange)="loadDays();GetAmbientes()">
           <ion-option *ngFor="let month of months" [value]="month.monthValue">{{month.monthName}}</ion-option>
         </ion-select>
-
       </ion-item>
       <ion-item>
-          <ion-icon item-start name="clock"></ion-icon>
+        <ion-icon item-start name="clock"></ion-icon>
         <ion-label>Día inicial</ion-label>
-        <ion-select name="dayI" [(ngModel)]="dayI" (ionChange)="loadDaysMonthF()">
+        <ion-select [disabled]="ambientesSource==undefined || ambientesSource.length==0 || month==0" name="dayI" [(ngModel)]="dayI"
+          (ionChange)="loadDaysMonthF()">
           <ion-option [value]="day" *ngFor="let day of daysInMonthI">{{day}}</ion-option>
         </ion-select>
-
       </ion-item>
       <ion-item>
-          <ion-icon item-start name="clock"></ion-icon>
+        <ion-icon item-start name="clock"></ion-icon>
         <ion-label>Día final</ion-label>
-        <ion-select name ="dayF" [(ngModel)]="dayF">
+        <ion-select [disabled]="ambientesSource==undefined || ambientesSource.length==0 || dayI==0" name="dayF" [(ngModel)]="dayF">
           <ion-option [value]="day" *ngFor="let day of daysInMonthF">{{day}}</ion-option>
         </ion-select>
       </ion-item>
-
-
-
-
+      <ion-item>
+        <ion-icon item-start name="locate"></ion-icon>
+        <ion-label>Ambiente</ion-label>
+        <ion-select [disabled]="ambientesSource==undefined || ambientesSource.length==0" name="ambiente"
+          [(ngModel)]="ambienteS">
+          <ion-option *ngFor="let ambiente of ambientesSource" [value]="ambiente.bod_cont">{{ambiente.bod_nomb}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
     </ion-list>
-
     <div padding>
       <button type="button" ion-button full icon-end color="danger" (click)="cleanAllControls(invitedForm)">
         Limpiar
         <ion-icon name="trash"></ion-icon>
       </button>
-      <button type="submit" ion-button full icon-end>
+      <button type="submit" [disabled]="!invitedForm.form.valid" ion-button full icon-end>
         Consultar
         <ion-icon name="eye"></ion-icon>
 
 
       </button>
     </div>
-    {{year |json}}
-    {{month | json}}
-    {{dayI|json}}
-    {{dayF|json}}
+   
   </form>
 
 
 
-  <ion-card *ngFor="let history of histories">
-    <ion-card-header>
-      <strong>Total Aprox</strong> {{total(history.lConsumos) | currency:'COP'}}
-      <ion-icon item-end name="arrow-dropdown"></ion-icon>
-    </ion-card-header>
-    <ion-card-content *ngFor="let buy of history.lConsumos " class="animate-in-primary">
-      <ion-item class="labelColorBlue">
-        <ion-icon name="logo-apple" item-start></ion-icon>
-        <h2>Producto</h2>
-        <p>{{buy.Pro_nomb}}</p>
-      </ion-item>
-      <ion-item class="labelColorBlue">
+  <div *ngFor="let history of histories">
+    <!-- <ion-card-header> -->
+        <div padding>
+    
+      <ion-list-header color="secondary">                 
+              <ion-icon item-start name="information-circle"></ion-icon>
+            <ion-label>{{history.bod_nomb }}</ion-label>  
+                                        
+      </ion-list-header>
+ 
+      <ion-list inset>
+    <!-- </ion-card-header> -->
+    <!-- <ion-card-content  class="animate-in-primary"> -->
+        
+        <ion-item>
+            <ion-icon name="calendar" item-start></ion-icon>
+            <ion-label>Fecha</ion-label>>
+            <ion-note item-end>{{history.tra_fech | date:'dd/MM/yyyy'}}</ion-note>
+          </ion-item>
+      <ion-item>
         <ion-icon name="logo-usd" item-start></ion-icon>
-        <h2>Valor</h2>
-        <p>{{buy.Dvt_valo | currency:'COP'}}</p>
+        <ion-label>Propina</ion-label>
+        <ion-note item-end>{{history.tra_vpro |currency:'COP'}}</ion-note>
       </ion-item>
-      <ion-item class="labelColorBlue">
-        <ion-icon name="calendar" item-start></ion-icon>
-        <h2>Fecha</h2>
-        <p>{{buy.Con_fech | longDate}}</p>
+      <ion-item>
+        <ion-icon name="logo-usd" item-start></ion-icon>
+        <ion-label>Total</ion-label>
+      <ion-note item-end>{{history.fop_vpag | currency:'COP'}}</ion-note>
+      </ion-item>    
+      <ion-item>
+          <ion-icon name="card" item-start></ion-icon>
+          <ion-label>Forma pago</ion-label>
+        <ion-note item-end>{{history.detalle[0].fop_nomb}}</ion-note>
+        </ion-item>      
+      <ion-item detail-push color="primary" button (click)="ShowDetail(history.detalle)">
+        <ion-icon name="eye" item-start></ion-icon> Ver detalle
       </ion-item>
-    </ion-card-content>
-  </ion-card>
+    </ion-list>
+        </div>
+    <!-- </ion-card-content> -->
+  </div>
 </ion-content>

@@ -77,7 +77,7 @@ export class LoginPage {
 
 
   async ionViewWillEnter() {
-    await this.loadUserData();
+   // await this.loadUserData();
   }
 
   async loadUserData() {
@@ -95,8 +95,6 @@ export class LoginPage {
     
     this.GetTouchId();
    },()=>{       loadingModal.dismiss();})
-    //await this.GetPartnerConnections();
-    //const emp_codi = await <any>this.session.getEmpCodiSession();       
     
     
     

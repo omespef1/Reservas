@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InvitedProvider } from '../../providers/invited/invited';
-import { invited, user, transaction } from '../../class/Models/models';
+import { invited, user, transaction } from '../../class/models/models';
 import { sessions } from "../../class/sessions/sessions";
 import { general } from '../../class/general/general';
 import { BookingInvitedsPage } from '../booking-inviteds/booking-inviteds';

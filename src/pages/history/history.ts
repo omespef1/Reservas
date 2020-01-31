@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Form, ModalController } from 'ionic-angular';
 import { HistoryProvider } from '../../providers/history/history';
 //clase
 import {sessions} from '../../class/sessions/sessions';
 import { general } from '../../class/general/general';
-import { month } from '../../class/Models/models';
+import { month, user, transaction, ambiente, consumo, detalleConsumo } from '../../class/models/models';
 import { NgForm } from '@angular/forms';
+import { HistoryDetailPage } from '../history-detail/history-detail';
 
 /**
  * Generated class for the HistoryPage page.
@@ -23,22 +24,25 @@ import { NgForm } from '@angular/forms';
   templateUrl: 'history.html',
 })
 export class HistoryPage {
-  histories: any[];
-  user:any;
+  histories: consumo[];
+  user:user;
   myDate:string="";
   lastYears:number[]=[];
   year:number;
-  month:number;
-  dayI:number;
-  dayF:number;
+  month:number=0;
+   dayI:number=0;
+  dayF:number=0;
   daysInMonthI:number[]=[];
   daysInMonthF:number[]=[];
+  emp_codi:number;
  months:month[]=[];
+ ambientesSource:ambiente[];
+ ambienteS:number=0;
  
 
-  constructor(private _history: HistoryProvider,private session:sessions,public _general:general) {
+  constructor(private _history: HistoryProvider,private session:sessions,public _general:general,private _modal:ModalController) {
 
-
+  this.emp_codi = this.session.GetClientEmpCodi();
  
   }
   ionViewDidLoad() {
@@ -53,24 +57,27 @@ export class HistoryPage {
 
   GetHistory() {
    
-    let history: any = {Soc_cont: this.user.Soc_cont,Sbe_cont:this.user.Sbe_cont,fac_mesp: this.myDate.split('-')[1],fac_anop:this.myDate.split('-')[0]}; //Se debe definir como se crea este objeto para ir a traer los Consumos
+    // let history: any = {Soc_cont: this.user.Soc_cont,Sbe_cont:this.user.Sbe_cont,fac_mesp: this.myDate.split('-')[1],fac_anop:this.myDate.split('-')[0]}; //Se debe definir como se crea este objeto para ir a traer los Consumos
    
-   
-
-    this._history.GetHistory(history).then((resp: any) => {
+    
+    this._history.GetHistory(this.emp_codi,this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume,this.month,this.year,this.dayI,this.dayF,this.ambienteS).then((resp: any) => {
       if (resp != null) {
+        console.log(resp);
         this.histories = resp.ObjTransaction;
+      }
+      else{
+        this.histories=null;
       }
     })
   }
 
-  total(histories:any[]){
-   return  histories.reduce((acc, pilot) => acc + pilot.Dvt_valo, 0);
-  }
+  // total(histories:any[]){
+  //  return  histories.reduce((acc, pilot) => acc + pilot.Dvt_valo, 0);
+  // }
 
   loadDaysMonthI(){
-    this.dayI=undefined;
-    this.dayF=undefined;
+    // this.dayI=undefined;
+    // this.dayF=undefined;
     this.daysInMonthI =[];
     let totalDays =   this._general.daysInMonth(this.month,this.year);
     for(let i:number =1 ; i<= totalDays;i++){
@@ -78,8 +85,14 @@ export class HistoryPage {
     }
   }
 
-    loadDaysMonthF(){
-      this.dayF=undefined;
+  loadDays(){
+    if(this.year>0 && this.month>0){
+      this.loadDaysMonthI();
+      this.loadDaysMonthF();
+    }
+  }
+
+    loadDaysMonthF(){   
       this.daysInMonthF=[];
     let totalDays =   this._general.daysInMonth(this.month,this.year);
     for(let i:number =this.dayI ; i<= totalDays;i++){
@@ -87,18 +100,21 @@ export class HistoryPage {
     }
   }
 
-  cleanAllControls(){
-    this.year=undefined;
+  cleanAllControls(){    
     this.daysInMonthI=[];
-    this.daysInMonthF=[];     
-    this.month= undefined;
-    this.dayI=undefined;
-    this.dayF=undefined;
+    this.daysInMonthF=[];  
+    this.dayI=0;
+    this.dayF=0;
+    this.ambientesSource=[];   
+    this.months=[];
+    this.month=0;
+    this.loadMonths();
+   
 
   }
 
   cleanControls(form:NgForm){
-    form.reset();
+    // form.reset();
     // this.daysInMonthI=[];
     // this.daysInMonthF=[];     
     // this.month= null;
@@ -109,6 +125,7 @@ export class HistoryPage {
 
  loadMonths(){
   console.log('load months');
+  
   this.months = [
 
     {  monthName:'Enero',monthValue:1},
@@ -125,6 +142,31 @@ export class HistoryPage {
     {  monthName:'Diciembre',monthValue:12},  
       ]
  }
+
+
+ GetAmbientes(){
+   this._history.GetAmbientes(this.emp_codi,this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume,this.month,this.year).then((resp:transaction)=>{
+    if(resp!=null){
+        this.ambientesSource = resp.ObjTransaction;
+    }
+    else {
+      this.resetAmbients();
+    }
+   })
+ }
+
+ ShowDetail(detail:detalleConsumo){
+  let modal = this._modal.create(HistoryDetailPage,{'detalle': detail });
+  modal.present();
+ }
+
+ resetAmbients(){
+   this.ambientesSource=[];
+   this.ambienteS=0;
+ }
+
+
+ 
 
 
 }

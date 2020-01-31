@@ -450,3 +450,79 @@ export class month {
   monthName:string;
   monthValue:number;
 }
+
+export class ambiente {
+  bod_cont:number;
+  bod_nomb:string;
+}
+
+export class consumo {
+// fac_nume:string;
+// fac_fech:string;
+// tra_cont:string;
+// ptv_cont:string;
+// tra_vpro:string;
+// tra_ppro:string;
+// tra_vdom:string;
+// tra_vtot:string;
+// tra_vtic:string;
+// tra_tcli:string;
+// bod_nomb:string;
+// bod_codi:string;
+// soc_cont:string;
+// sbe_cont:string;
+// sbe_nomb:string;
+// sbe_apel:string;
+// fac_nech:string;
+// fop_vpag:string;
+// fop_biva:string;
+// fop_porp:string;
+// fop_coda:string;
+// fop_vpro:string;
+
+tra_vald:string;
+tra_ppro:string;
+tra_vpro:string;
+tra_vtot:string;
+tra_cont:string;
+fop_vpag:number;
+tra_fech:Date;
+bod_nomb:string;
+detalle:detalleConsumo[];
+}
+
+
+
+export class detalleConsumo {
+  dtr_cant:string;
+dtr_vuni:number;
+dtr_biva:number;
+dtr_piva:number;
+dtr_viva:number;
+dtr_pdes:number;
+dtr_vdes:number;
+dtr_vtot:number;
+fop_codi:string;
+fop_nomb:string;
+imp_codi:number;
+dtr_valo:number;
+dtr_fact:number;
+imp_nomb:string;
+pro_nomb:string;
+dtr_vimp:number;
+
+  // dtr_cant:number;
+  // dtr_vuni:number;
+  // dtr_biva:number;
+  // dtr_piva:number;
+  // dtr_viva:number;
+  // dtr_pdes:number;
+  // dtr_vdes:number;
+  // dtr_vtot:number;
+  // dtr_esta:string;
+  // dtr_vbru:number;
+  // dtr_cand:number;
+  // com_tipo:string;
+  // dtr_vbne:number;
+  // dtr_vtne:number;
+}

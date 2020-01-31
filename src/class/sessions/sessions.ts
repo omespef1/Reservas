@@ -7,7 +7,7 @@ import { TabsPage } from '../../pages/tabs/tabs';
 import { GnConex, ae_param } from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //models
-import { bookingInfo, disponibilityRequestEvent } from '../Models/models';
+import { bookingInfo, disponibilityRequestEvent } from '../models/models';
 import { resolveDefinition } from '@angular/core/src/view/util';
 import { platformBrowser } from '@angular/platform-browser';
 import { stringify } from '@angular/core/src/util';
@@ -85,8 +85,8 @@ export class sessions {
 
     // return 'http://186.154.240.180/APPS/Desarrollo/Reservas/api/';
     // return 'http://186.154.240.181/Nogalapi/api/';
-    //return 'http://localhost/SevenReservas/api/';
-  //   return 'http://192.168.1.209/appnogal/api/';
+    return 'http://localhost/SevenReservas/api/';
+     //return 'http://192.168.1.209/appnogal/api/';
   // return 'https://erp.clubelnogal.com/appnogal/api/';
     // Le quita el https a la url configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
     // if (this._platform.is("cordova") && this.clientUrl.indexOf("https") > -1) {
@@ -94,16 +94,16 @@ export class sessions {
     //   return urlUnsafe;
     // }
     // else
-  return this.clientUrl;
+  //return this.clientUrl;
   }
 
   SetClientUrl(value: string) {
     this.clientUrl = value;
   }
   GetClientEmpCodi() {
-    //return 1;
-    console.log('obtiene el tercero guardado');
-    return this.emp_codi;
+    return 1;
+    // console.log('obtiene el tercero guardado');
+    // return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {
     this.emp_codi = value;

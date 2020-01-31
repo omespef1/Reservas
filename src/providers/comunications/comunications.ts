@@ -62,6 +62,7 @@ export class ComunicationsProvider {
       let bodyRequest: any = {
         headers:  new HttpHeaders(headerDict),       
       }
+      console.log(stringUrl);
       return this.http.get(stringUrl,bodyRequest).retryWhen(error => {
         return error
           .flatMap((error: any) => {

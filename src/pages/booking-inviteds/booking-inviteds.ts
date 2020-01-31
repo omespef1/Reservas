@@ -9,7 +9,7 @@ import {
 import { invited, user } from "../../class/models/models";
 import { InvitedProvider } from "../../providers/invited/invited";
 import { sessions } from "../../class/sessions/sessions";
-import { transaction } from "../../class/Models/models";
+import { transaction } from "../../class/models/models";
 import { BookingNewInvitedPage } from "../booking-new-invited/booking-new-invited";
 
 /**
@@ -41,7 +41,7 @@ export class BookingInvitedsPage {
 
   async GetInviteds(refresher: Refresher = null) {
     this.user = <user>await this._sesion.GetLoggedin();
-    console.log(user);
+    // console.log(user);
     this._service
       .GetInviteds(this._sesion.GetClientEmpCodi(), this.user.Sbe_codi)
       .then((resp: transaction) => {
