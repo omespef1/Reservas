@@ -75,7 +75,7 @@ banners:agreement[]=[];
     page:InstitutionalPage
   },
   {
-    name:'Invitados',
+    name:'Libro de invitados',
     urlIcon:'assets/imgs/guest-post.svg',
     page:BookingInvitedsPage
   },
