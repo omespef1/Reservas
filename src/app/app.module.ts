@@ -107,6 +107,7 @@ import { InvitedProvider } from '../providers/invited/invited';
 import { BookingInvitedsPage } from '../pages/booking-inviteds/booking-inviteds';
 import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-invited';
 import { HistoryDetailPage } from '../pages/history-detail/history-detail';
+import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 
 
 
@@ -275,7 +276,8 @@ import { HistoryDetailPage } from '../pages/history-detail/history-detail';
     HTTP,
     OneSignal,
     NotificationsPushProvider,
-    InvitedProvider
+    InvitedProvider,
+    AeinappProvider
 
   ]
 })

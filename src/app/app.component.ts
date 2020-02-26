@@ -13,6 +13,7 @@ import { AeEspacProvider } from '../providers/ae-espac/ae-espac';
 import { transaction } from '../class/models/models';
 import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
+import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 
 
 
@@ -34,7 +35,8 @@ export class MyApp {
     private _sessions: sessions,
     private _pqr: PqrProvider,
     private _espac: AeEspacProvider,
-    private _noti:NotificationsPushProvider) {
+    private _noti:NotificationsPushProvider,
+    private _aeinapp:AeinappProvider) {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -85,7 +87,9 @@ if(platform.is("cordova")){
     this.events.subscribe('user:login', (user: any) => {
       this.logged = true;
       this._sessions.setLoggedIn(user);
+      this._aeinapp.SetAeInApp();
       this.nav.setRoot(MenuPage);
+     
    
       // this._pqr.GetGnArbol(3).then((resp: any) => {
       //   if(resp!=null){

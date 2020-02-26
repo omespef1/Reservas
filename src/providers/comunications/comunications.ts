@@ -152,54 +152,17 @@ export class ComunicationsProvider {
     return promise;
   }
 
-  Post(params: any, urlService: string, content: string = "Cargando...") {
+  Post(params: any, urlService: string, content: string = "Cargando...",showLoading=true) {
+    console.log(params);
     console.log('haciendo post...');
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
     });
     let promise = new Promise((resolve, reject) => {
+      if(showLoading)
       this.loading.present();
       console.log(this._sesion.GetClientUrl() + urlService);
-      // if (this.platform.is("cordova")) {
-      // console.log("Realizando post https...");
-      // this.httpI.setSSLCertMode('nocheck');
-      // let header: any =
-      // {
-      //   'content-type': 'application/json'
-      // }
-      // this.httpI.setDataSerializer('json');
-
-      // return Observable.fromPromise(
-      //   this.httpI.post(this._sesion.GetClientUrl() + urlService, params, header)
-      // ).retryWhen(error => {
-      //   return error
-      //     .flatMap((error: any) => {
-      //       if (error.status === 503) {
-      //         return Observable.of(error.status).delay(1000)
-      //       }
-      //       return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
-      //     })
-      //     .take(5)
-      //     .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
-      // })
-      //   .subscribe((resp: any) => {
-      //     this.loading.dismiss();
-      //     //console.log(resp)
-      //     if (resp.Retorno == 1) {
-      //       this.ErrMessage(resp.TxtError);
-      //       resp = null;
-      //     }
-      //     resolve(resp);
-      //   }, (err: HttpErrorResponse) => {
-      //     console.log(err);
-      //     this.ErrMessage(err.error);
-      //     this.loading.dismiss();
-      //   })
-      // }
-      // else {
-
-
         const headerDict = {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -225,6 +188,7 @@ export class ComunicationsProvider {
       })
 
         .subscribe((resp: any) => {
+          if(showLoading)
           this.loading.dismiss();
           // console.log(resp)
           if (resp.Retorno == 1) {
@@ -235,6 +199,7 @@ export class ComunicationsProvider {
         }, (err: HttpErrorResponse) => {
           console.log(err);
           this.ErrMessage(err.error);
+          if(showLoading)
           this.loading.dismiss();
         })
       // }

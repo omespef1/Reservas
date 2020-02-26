@@ -232,6 +232,21 @@ setTimeInDate( date : Date,hours:number,minutes:number){
   return date;
 }
 
+GetPlatform():string{
+
+  if(!this.platform.is("cordova"))
+     return "E"
+      if(this.platform.is("ios"))
+      return "I";
+      if(this.platform.is("android"))
+      return "A";
+
+  
+
+
+
+}
+
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
   //   let app: string;
   //   if (this.device.platform === 'iOS') {
