@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { ComunicationsProvider } from '../comunications/comunications';
 
 /*
   Generated class for the SopernwProvider provider.
@@ -10,8 +11,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SopernwProvider {
 
-  constructor() {
+  constructor(private _comu:ComunicationsProvider) {
     console.log('Hello SopernwProvider Provider');
   }
+
+
+  GetSoPernw(){
+    return this._comu.Get()
+  }
+  GetDisponibility(booking:booking){
+    
+    return  this._comu.Post(booking,'sopernw/GetDisponibilityAccommodation');
+   }
 
 }
