@@ -83,7 +83,7 @@ export class sessions {
 
   GetClientUrl() {
 
-     return 'http://132.147.157.140/SevenReservas/api/';
+    return 'http://localhost/SevenReservas/api/';
     // return 'http://186.154.240.181/Nogalapi/api/';
     //return 'http://localhost/SevenReservas/api/';
   //   return 'http://192.168.1.209/appnogal/api/';
@@ -101,9 +101,9 @@ export class sessions {
     this.clientUrl = value;
   }
   GetClientEmpCodi() {
-    return 102;
+   return 102;
     // console.log('obtiene el tercero guardado');
-    // return this.emp_codi;
+    //return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {
     this.emp_codi = value;

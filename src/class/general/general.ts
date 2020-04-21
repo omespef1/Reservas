@@ -193,10 +193,15 @@ export class general {
   openUrl(url: string) {
     if (url.indexOf('http') == -1 && url.indexOf('https') ==-1)        
     url = `http://${url}`;  
-    if(!this.platform.is("cordova")) 
-    window.open(url,'_blank');
-    else
-    this._browser.openUrl(url);
+    if(!this.platform.is("android") && !this.platform.is("ios") ) {
+      console.log('abriendo navegador web')
+      window.open(url,'_blank');
+    }    
+    else{
+      console.log('abriendo navegador movil')
+      this._browser.openUrl(url);
+    }
+  
   }
   ShowActionSheetAlert(title: string, butttons: any[]) {
     let action = this.actionCtrl.create({
