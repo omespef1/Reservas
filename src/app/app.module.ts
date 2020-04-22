@@ -108,6 +108,7 @@ import { BookingInvitedsPage } from '../pages/booking-inviteds/booking-inviteds'
 import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-invited';
 import { HistoryDetailPage } from '../pages/history-detail/history-detail';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
+import { SopernwProvider } from '../providers/sopernw/sopernw';
 
 
 
@@ -277,7 +278,8 @@ import { AeinappProvider } from '../providers/aeinapp/aeinapp';
     OneSignal,
     NotificationsPushProvider,
     InvitedProvider,
-    AeinappProvider
+    AeinappProvider,
+    SopernwProvider
 
   ]
 })
