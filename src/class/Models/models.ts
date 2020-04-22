@@ -9,7 +9,7 @@ export class TOSoRsoci {
   public Soc_cing: string;
   public Sbe_pass: string = "";
   public Soc_cfec: string;
-  constructor() {}
+  constructor() { }
 }
 export interface item {
   Ite_nomb: string;
@@ -40,7 +40,7 @@ export class pqr {
   public soc_cont: number;
   public sbe_cont: number;
   public mac_nume: string;
-  constructor() {}
+  constructor() { }
 }
 
 export class user {
@@ -64,7 +64,7 @@ export class user {
   Emp_tele: string;
   Emp_nite: string;
   soc_ncar: string;
-  constructor() {}
+  constructor() { }
 }
 export interface transaction {
   Retorno: number;
@@ -165,7 +165,7 @@ export class disponibilityRequest {
   public Pro_nomb: string = "";
   public startTime: string;
   public endTime: string;
-  constructor() {}
+  constructor() { }
 }
 
 export class disponibilityRequestEvent {
@@ -199,7 +199,7 @@ export class factory {
   public user: any;
   public thirdPartie: any = { Ter_codi: 0 };
   public optionDisp: any = { OpDisp: "" };
-  constructor() {}
+  constructor() { }
 }
 export interface Ifactory {
   class: any;
@@ -538,5 +538,39 @@ export class aeinapp {
   mac_nume: string;
   sbe_cont: number;
   pla_cont: number;
-  pla_codi:string;
+  pla_codi: string;
+}
+
+export class sopernw {
+
+  emp_codi: number;
+  per_cont: number;
+  soc_cont: number;
+  sbe_cont: number;
+  mac_nume: string;
+  ite_prof: number;
+  ite_seco: number;
+  per_aexp: number;
+  per_admi: string;
+  per_foto: BinaryType[];
+  per_tags: string;
+  per_esta: string;
+  cas_cont: number;
+  aud_ufac: Date
+  aud_usua: string;
+  aud_esta: string;
+  details:sodpern[];
+}
+export class sodpern {
+
+  emp_codi: number;
+  per_cont: number;
+  dpe_proy: number;
+  dpe_npro: string;
+  dpe_desc: string;
+  dpe_fpro: BinaryType[];
+  cas_cont: number;
+  aud_ufac: Date;
+  aud_usua: string;
+  aud_esta: string;
 }

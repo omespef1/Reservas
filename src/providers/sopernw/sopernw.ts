@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../comunications/comunications';
+import { sopernw } from '../../class/models/models';
 
 /*
   Generated class for the SopernwProvider provider.
@@ -16,12 +17,19 @@ export class SopernwProvider {
   }
 
 
-  GetSoPernw(){
-    return this._comu.Get()
+  GetSoPernw(emp_codi:number,sbe_cont:number,soc_cont:number,mac_nume:string){
+    return this._comu.Get(`SoPernw?emp_codi=${emp_codi}&sbe_cont=${sbe_cont}&soc_cont=${soc_cont}&mac_nume=${mac_nume}`)
   }
-  GetDisponibility(booking:booking){
-    
-    return  this._comu.Post(booking,'sopernw/GetDisponibilityAccommodation');
-   }
 
+SetSoPernw(profile:sopernw){
+  return this._comu.Post(profile,`SoPernw`);
+}
+
+UpdateSoPernw(profile:sopernw){
+  return this._comu.Post(profile,`SoPernw/update`);
+}
+
+DeleteSoPernw(emp_codi:number,per_cont:number){
+  return this._comu.Post({emp_codi:emp_codi,per_cont:per_cont},`sopernw/delete`)
+}
 }
