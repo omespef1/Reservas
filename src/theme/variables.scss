@@ -12,6 +12,18 @@ $font-path: "../assets/fonts";
  font-weight: normal;
  font-style: normal;
 }
+@font-face {
+  font-family: 'myriadPro';
+  src:url('../assets/fonts/MyriadPro-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+ }
+ @font-face {
+  font-family: 'raleway';
+  src:url('../assets/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+ }
  $font-family-base: "roboto";
 $font-family-ios-base: $font-family-base;
 $font-family-md-base: $font-family-base;

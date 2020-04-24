@@ -71,6 +71,11 @@ export interface transaction {
   TxtError: string;
   ObjTransaction: any;
 }
+export interface transactionNumber {
+  Retorno: number;
+  TxtError: string;
+  number: number;
+}
 
 export interface disponibility {
   title: string;
@@ -415,6 +420,7 @@ export interface gn_dpaps {
 export class ae_param {
   cla_ceve: number;
   cla_cont: number;
+  par_trdu:string;
 }
 
 export interface pageApp {
@@ -539,6 +545,8 @@ export class aeinapp {
   sbe_cont: number;
   pla_cont: number;
   pla_codi: string;
+  coa_tipo:string;
+  
 }
 
 export class sopernw {
@@ -552,7 +560,7 @@ export class sopernw {
   ite_seco: number;
   per_aexp: number;
   per_admi: string;
-  per_foto: BinaryType[];
+  per_foto: string[];
   per_tags: string;
   per_esta: string;
   cas_cont: number;
@@ -568,7 +576,7 @@ export class sodpern {
   dpe_proy: number;
   dpe_npro: string;
   dpe_desc: string;
-  dpe_fpro: BinaryType[];
+  dpe_fpro: string[];
   cas_cont: number;
   aud_ufac: Date;
   aud_usua: string;

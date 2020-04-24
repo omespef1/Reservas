@@ -79,6 +79,11 @@ banners:agreement[]=[];
     urlIcon:'assets/imgs/guest-post.svg',
     page:BookingInvitedsPage
   },
+  {
+    name:'Networking',
+    urlIcon:'assets/imgs/networking.svg',
+    page:BookingInvitedsPage
+  },
 ]
   constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions,private _agrrements:AgreementsProvider) {
 

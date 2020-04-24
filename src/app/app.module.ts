@@ -57,6 +57,7 @@ import { InstitutionalPage } from '../pages/institutional/institutional';
 import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
 import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
 import { MenuPage } from '../pages/menu/menu';
+import { ProfilePage} from '../pages/profile/profile';
 
 
 
@@ -86,6 +87,7 @@ import { HTTP } from '@ionic-native/http';
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AccordionComponent} from '../components/accordion/accordion';
+
 //clases
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
@@ -109,6 +111,8 @@ import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-
 import { HistoryDetailPage } from '../pages/history-detail/history-detail';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { SopernwProvider } from '../providers/sopernw/sopernw';
+import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
+import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
 
 
 
@@ -172,7 +176,10 @@ import { SopernwProvider } from '../providers/sopernw/sopernw';
     NotificationsPage,
     BookingInvitedsPage,
     BookingNewInvitedPage,
-    HistoryDetailPage
+    HistoryDetailPage,
+    ProfilePage,
+    SkeletonItemComponent,
+    NetworkingTermsPage
   ],
   imports: [
     FormsModule,
@@ -241,7 +248,10 @@ import { SopernwProvider } from '../providers/sopernw/sopernw';
     NotificationsPage,
     BookingInvitedsPage,
     BookingNewInvitedPage,
-    HistoryDetailPage
+    HistoryDetailPage,
+    ProfilePage,
+    SkeletonItemComponent,
+    NetworkingTermsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

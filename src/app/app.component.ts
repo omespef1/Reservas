@@ -14,6 +14,8 @@ import { transaction } from '../class/models/models';
 import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
+import {ProfilePage} from './../pages/profile/profile';
+import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
 
 
 
@@ -25,7 +27,7 @@ import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = LoginPage;
+  rootPage: any = NetworkingTermsPage;
   logged: boolean = false;
   constructor(platform: Platform,
     statusBar: StatusBar,
@@ -87,7 +89,7 @@ if(platform.is("cordova")){
     this.events.subscribe('user:login', (user: any) => {
       this.logged = true;
       this._sessions.setLoggedIn(user);
-      this._aeinapp.SetAeInApp();
+      this._aeinapp.SetAeInApp('I');
       this.nav.setRoot(MenuPage);
      
    

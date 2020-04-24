@@ -1,0 +1,50 @@
+page-networking-terms {
+   ion-content {
+    background-color: #331A2D !important;
+    border-bottom: 12px solid #E86243;
+   }
+      h1 {
+          color:white;
+          font-family:myriadPro;
+          font-size: 3rem;
+      }  
+h2{
+    color:#FFFFAA;
+    font-family: raleway;
+}
+
+    #divTerms {
+
+      height: 300px;
+      overflow-y: scroll;
+      color: white;
+      border:1px solid white;
+    }
+
+    #divLogo{
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+       
+    }
+
+    #btnAcepto {
+        padding: 0 6.6rem;
+    }
+
+    #btnAceptoRound{
+        border-radius: 64px;
+    height: 100%;
+    width: 43px;
+    background-color: #E86243;
+    right: 0px;
+    position: absolute;
+    }
+
+}
+
+#divFotterDigital{
+
+    color:white;
+}

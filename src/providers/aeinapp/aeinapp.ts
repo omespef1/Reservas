@@ -16,7 +16,7 @@ export class AeinappProvider {
   constructor(private _comu: ComunicationsProvider, private _sesion: sessions,private _general:general) {
     console.log("Hello AeinappProvider Provider");
   }
-  async SetAeInApp() {
+  async SetAeInApp(coa_tipo:string,coa_ater='') {
     let log = new aeinapp();
     let user: user = <user>await this._sesion.GetLoggedin();
     log = {
@@ -32,8 +32,14 @@ export class AeinappProvider {
       coa_fech: new Date(),
       coa_mesp: 0,
       pla_cont: 0,
-      pla_codi: this._general.GetPlatform()
+      pla_codi: this._general.GetPlatform(),
+      coa_tipo:coa_tipo,
     };
     return this._comu.Post(log, "aeinapp", "", false);
+  }
+
+
+  ExistsAeInapp(emp_codi:number,soc_cont:number,sbe_cont:number,mac_nume:string){
+    return this._comu.Get(`AeInapp?emp_codi=${emp_codi}&soc_cont=${soc_cont}&sbe_cont=${sbe_cont}&mac_nume=${mac_nume}`)
   }
 }
