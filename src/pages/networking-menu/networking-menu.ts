@@ -30,9 +30,9 @@ this._sesions.GetLoggedin().then((resp:user)=>{
   }
 
   ionViewDidLoad() {
-    if(!this.GetExistsTerms()){
+    // if(!this.GetExistsTerms()){
         
-    }
+    // }
   }
 
   showModalTerms(){

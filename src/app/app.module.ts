@@ -113,6 +113,8 @@ import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { SopernwProvider } from '../providers/sopernw/sopernw';
 import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
 import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
+import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+
 
 
 
@@ -179,7 +181,8 @@ import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms'
     HistoryDetailPage,
     ProfilePage,
     SkeletonItemComponent,
-    NetworkingTermsPage
+    NetworkingTermsPage,
+    NetworkingMenuPage
   ],
   imports: [
     FormsModule,
@@ -251,7 +254,8 @@ import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms'
     HistoryDetailPage,
     ProfilePage,
     SkeletonItemComponent,
-    NetworkingTermsPage
+    NetworkingTermsPage,
+    NetworkingMenuPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

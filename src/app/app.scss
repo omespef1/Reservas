@@ -122,7 +122,9 @@ ion-card-header {
   padding: 6px 4px 2px;
   opacity: 0.2;
 }
-
+.transparent{
+  background-color: transparent;
+}
 .ion-ios-app_invited,
 .ion-md-app_invited {
   content: url(../assets/imgs/guest-post.svg);
