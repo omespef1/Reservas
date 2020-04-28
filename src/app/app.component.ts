@@ -14,9 +14,8 @@ import { transaction } from '../class/models/models';
 import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
-import {ProfilePage} from './../pages/profile/profile';
-import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
-import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+import { NetworkingSearchPage } from '../pages/networking-search/networking-search';
+
 
 
 
@@ -29,7 +28,7 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingMenuPage;
+  rootPage: any = NetworkingSearchPage;
   logged: boolean = false;
   constructor(platform: Platform,
     statusBar: StatusBar,

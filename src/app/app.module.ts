@@ -58,6 +58,10 @@ import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments'
 import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
 import { MenuPage } from '../pages/menu/menu';
 import { ProfilePage} from '../pages/profile/profile';
+import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
+import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+import { NetworkingSearchPage } from '../pages/networking-search/networking-search';
+
 
 
 
@@ -112,8 +116,7 @@ import { HistoryDetailPage } from '../pages/history-detail/history-detail';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { SopernwProvider } from '../providers/sopernw/sopernw';
 import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
-import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
-import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+
 
 
 
@@ -182,7 +185,8 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
     ProfilePage,
     SkeletonItemComponent,
     NetworkingTermsPage,
-    NetworkingMenuPage
+    NetworkingMenuPage,
+    NetworkingSearchPage
   ],
   imports: [
     FormsModule,
@@ -255,7 +259,8 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
     ProfilePage,
     SkeletonItemComponent,
     NetworkingTermsPage,
-    NetworkingMenuPage
+    NetworkingMenuPage,
+    NetworkingSearchPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

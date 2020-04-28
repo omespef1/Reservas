@@ -1,4 +1,8 @@
 page-networking-menu {
+
+    .yellow {
+        color:#FFFF00;
+    }
   font-family: raleway;
     ion-content {
         background-color: #331A2D !important;
@@ -53,4 +57,24 @@ border:0px;
         @extend .btnBadge;
         left: 0px;
     }
+
+    .fab-message {
+
+    color: #FCFCFC;
+    background-color: #00A885;
+    }
+    .fab-ios.activated{
+        background-color:#E86243 ;
+    }
+    .notification-badge{
+        height: 12px;
+        width: 12px;
+        background-color: #7BBD53;
+        right: 10px;
+        top: 5px;
+        position: absolute;
+        border-radius: 12px;
+    }
+
+    
 }

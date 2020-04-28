@@ -4,6 +4,7 @@ import { transactionNumber, user, ae_param } from '../../class/models/models';
 import { AeinappProvider } from '../../providers/aeinapp/aeinapp';
 import { sessions } from '../../class/sessions/sessions';
 import { NetworkingTermsPage } from '../networking-terms/networking-terms';
+import { NetworkingSearchPage } from '../networking-search/networking-search';
 
 
 /**
@@ -42,6 +43,9 @@ this._sesions.GetLoggedin().then((resp:user)=>{
     modal.present();
   }
 
+  goNetworkingSearch(){
+    this.navCtrl.setRoot(NetworkingSearchPage);
+  }
 
   async GetExistsTerms():Promise<boolean>{
     let request:transactionNumber =   await<any>   this._aeinapp.ExistsAeInapp(this.user.Emp_codi,this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume)

@@ -6,7 +6,11 @@
 -->
 
 
-<ion-content padding>
+<ion-content padding class="element-aparecer">
+  <ion-fab right top>
+    <button ion-fab class="fab-message"> <ion-icon name="mail"></ion-icon></button>
+   
+  </ion-fab>
 <ion-grid padding>
   <ion-row>
     <ion-col>
@@ -31,9 +35,9 @@
         <ion-avatar class="profile-Menu" item-left>
           <img src="assets/imgs/user.svg">
         </ion-avatar>
-        <h2>JUAN PÉREZ EJEMPLO</h2>
+        <h2>JORGE CAMILO BERNAL</h2>
         <h4>Profesión</h4>
-        <p>Mi perfil</p>
+        <p>Ing Sistemas</p>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -41,7 +45,7 @@
   <ion-row>
     <ion-col text-center>
       <div>
-        <button class="btnMenu" ion-button color="light"  outline round block> Lo que busco
+        <button (click)="goNetworkingSearch()" class="btnMenu" ion-button color="light"  outline round block> Lo que busco
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-search.svg">
           </div>
@@ -57,6 +61,7 @@
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-clasificado.svg">
           </div>
+          <div class="notification-badge"></div>
         </button>
       </div>
     </ion-col>
@@ -71,6 +76,7 @@
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-news.svg">
           </div>
+          <div class="notification-badge"></div>
         </button>
       </div>
     </ion-col>
@@ -99,10 +105,19 @@
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-business.svg">
           </div>
+          <div class="notification-badge"></div>
         </button>
       </div>
     </ion-col>
   </ion-row>
+
+  
  
 </ion-grid>
+
+<div padding text-center>
+  <button ion-button class="yellow" clear>Ayúdanos a mejorar</button>
+</div>
+
+
 </ion-content>
