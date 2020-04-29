@@ -1,0 +1,89 @@
+page-networking-profile {
+
+font-family: Raleway;
+.orange{
+    background-color: #FB512C;
+}
+.yellow {
+    background-color: #9EDC39;
+}
+//toolbar 
+
+    .toolbar-title-ios {
+        
+        color: white;
+       
+    }
+
+    .toolbar-background-ios {
+        background: #2E0C1E;
+        color: white;
+    }
+
+    .bar-button-default-ios{
+        color: white;
+        background-color: #250C1B;
+        border-radius: 25px;
+        padding: 8px 8px 8px 9px;
+        height: 40px;
+        width: 40px;
+    }
+
+
+//Profile Avayar
+.profile {
+    padding: 5%;
+     h2 {
+         color:white;
+         font-weight: bold;
+         overflow-wrap: break-word;
+     }
+     h3 {
+         color:#3F1D62;
+         font-weight: bold;
+     }
+     p{
+        color:#3F1D62;
+     }
+     background-image: url("../../assets/imgs/background_profile.jpg");
+}
+
+ion-avatar.profile-avatar{
+   background-color: white;
+   border-radius: 50%;
+   width: 80px;
+   height: 80px;
+   
+}
+.item-ios ion-avatar img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: inherit;
+    height: inherit;
+    padding: 15px;
+}
+
+
+//Botones
+
+ .button-ios {
+    font-size: 1.2rem;
+ }
+ .button-ios.activated {
+     background-color:#3F1D62 ;
+ }
+
+ // informacion usuaerio 
+
+
+ .text-about {
+
+     h2{
+         font-size: 1.3rem;
+         font-weight: bold;
+     }
+     p{
+         font-size: 1.2rem;
+     }
+ }
+}

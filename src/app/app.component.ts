@@ -15,6 +15,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { NetworkingSearchPage } from '../pages/networking-search/networking-search';
+import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
 
 
 
@@ -28,7 +29,7 @@ import { NetworkingSearchPage } from '../pages/networking-search/networking-sear
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingSearchPage;
+  rootPage: any = NetworkingProfilePage;
   logged: boolean = false;
   constructor(platform: Platform,
     statusBar: StatusBar,

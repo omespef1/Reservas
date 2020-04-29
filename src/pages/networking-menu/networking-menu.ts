@@ -5,6 +5,7 @@ import { AeinappProvider } from '../../providers/aeinapp/aeinapp';
 import { sessions } from '../../class/sessions/sessions';
 import { NetworkingTermsPage } from '../networking-terms/networking-terms';
 import { NetworkingSearchPage } from '../networking-search/networking-search';
+import { NetworkingProfilePage } from '../networking-profile/networking-profile';
 
 
 /**
@@ -56,6 +57,10 @@ this._sesions.GetLoggedin().then((resp:user)=>{
      return true;
    }
 
+
+   goProfile(){
+     this.navCtrl.setRoot(NetworkingProfilePage);
+   }
 
   
 

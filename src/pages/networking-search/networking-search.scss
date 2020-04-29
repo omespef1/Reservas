@@ -1,20 +1,34 @@
 page-networking-search {
+
+//general
      .blue {
          color: #2F2260;
      }
-    font-family: Raleway;
-    .toolbar-background-ios {
-        background: #2F2260;
-        color: white;
+     h3 {
+        font-size: 1.3rem;
     }
+    font-family: Raleway;
+
+
+//toolbar
     .toolbar-title-ios {
         
         color: white;
        
     }
-    h3 {
-        font-size: 1.3rem;
+    .toolbar-background-ios {
+        background: #2F2260;
+        color: white;
     }
+    .bar-button-default-ios{
+        color: white;
+        background-color: #341F53;
+        border-radius: 25px;
+        padding: 8px 8px 8px 9px;
+        height: 40px;
+        width: 40px;
+    }
+//Items
     .item-ios {
         h2{
             font-size: 1.4rem;
@@ -26,16 +40,27 @@ page-networking-search {
        
         font-weight: normal;
     }
-    .bar-button-default-ios{
-        color: white;
-        background-color: #341F53;
-        border-radius: 25px;
-        padding: 8px 8px 8px 9px;
-        height: 40px;
-        width: 40px;
+
+    ion-item {
+        .select-ios {
+            padding: 5px;
+            border: 2px solid #2F2260;
+            border-radius: 25px;
+            color: #2F2260;
+        }
+    }
+
+    .item-ios ion-avatar img {
+    
+        width: 50px;
+        height: 50px;
+    }
+    
+    .item-ios.item-filter{
+        color:#2F2260;
     }
   
-
+// Barra de bùsqueda
    .searchbar-ios {
     padding: 0 8px;
     min-height: 44px;
@@ -56,58 +81,15 @@ page-networking-search {
     color:white !important;
 }
 
-.card {
-    padding: 15px;
-    border-left: 5px solid #371461;
-    background-color: #F1F2F2;
-    margin: 5px;
-}
-.card-text{
-    padding-left: 15%;
-    border-bottom: 2px solid #2F2260;
-    
-}
-.button-ios.btn-footer {
-
-background-color: transparent;
-padding: 0px;
-margin:0px;
-font-size: 1.3rem;
-color:#2F2260;
-    .icon-ios {
-        color: #896D4B;
-        font-size: 1.8em;
-    }
-
-}
-.item-ios ion-avatar img {
-    
-    width: 50px;
-    height: 50px;
-}
-.select-ios .select-icon .select-icon-inner {
- 
-    color: #2F2260;
-  
-}
-.item-ios.item-filter{
-    color:#2F2260;
-}
-.text-profile {
-    font-size: 1.2rem;
-}
-ion-item {
-    .select-ios {
-        padding: 5px;
-        border: 2px solid #2F2260;
-        border-radius: 25px;
-        color: #2F2260;
-    }
-}
-
 .searchbar .searchbar-search-icon {
     background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20512%20512'><path%20fill='%23ffffff'%20d='M337.509,305.372h-17.501l-6.571-5.486c20.791-25.232,33.922-57.054,33.922-93.257C347.358,127.632,283.896,64,205.135,64C127.452,64,64,127.632,64,206.629s63.452,142.628,142.225,142.628c35.011,0,67.831-13.167,92.991-34.008l6.561,5.487v17.551L415.18,448L448,415.086L337.509,305.372z%20M206.225,305.372c-54.702,0-98.463-43.887-98.463-98.743c0-54.858,43.761-98.742,98.463-98.742c54.7,0,98.462,43.884,98.462,98.742C304.687,261.485,260.925,305.372,206.225,305.372z'/></svg>");
+    background-size: 30px;
+    left: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
 }
+
 
 .searchbar-input-container{
     .searchbar-input{
@@ -128,5 +110,54 @@ ion-item {
       filter: invert(100);
     }
 }
+
+//Card
+
+.card {
+    padding: 15px;
+    border-left: 5px solid #371461;
+    background-color: #F1F2F2;
+    margin: 5px;
+}
+.card-text{
+    padding-left: 15%;
+    border-bottom: 2px solid #2F2260;
+    
+}
+.text-profile {
+    font-size: 1.2rem;
+}
+
+
+
+
+//Footer
+
+.button-ios.btn-footer {
+
+    background-color: transparent;
+    padding: 0px;
+    margin:0px;
+    font-size: 1.3rem;
+    color:#2F2260;
+        .icon-ios {
+            color: #896D4B;
+            font-size: 1.8em;
+        }
+    
+    }
+
+
+//Select
+.select-ios .select-icon .select-icon-inner {
+ 
+    color: #2F2260;
+  
+}
+
+
+
+
+
 
 }

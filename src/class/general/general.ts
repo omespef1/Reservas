@@ -252,6 +252,9 @@ GetPlatform():string{
 
 }
 
+
+
+
   // launchExternalApp(iosSchemaName: string, androidPackageName: string, appUrl: string, httpUrl: string, username: string) {
   //   let app: string;
   //   if (this.device.platform === 'iOS') {

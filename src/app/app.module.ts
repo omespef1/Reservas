@@ -12,8 +12,6 @@ import { LOCALE_ID } from '@angular/core';
 //pages
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {HistoryPage} from '../pages/history/history';
 import {BookingPage} from '../pages/booking/booking';
@@ -43,7 +41,6 @@ import {EventConfirmPage} from '../pages/event-confirm/event-confirm';
 import{RunwayEventPage } from '../pages/runway-event/runway-event';
 import {MainTemplatesPage} from '../pages/main-templates/main-templates';
 import {EventProductsPage} from '../pages/event-products/event-products';
-import {RunwayConfirmPage} from '../pages/runway-confirm/runway-confirm';
 import {EventGntoperPage}  from '../pages/event-gntoper/event-gntoper';
 import {EventCotizDetailPage  } from "../pages/event-cotiz-detail/event-cotiz-detail";
 import {EventCotizProductsPage} from '../pages/event-cotiz-products/event-cotiz-products';
@@ -57,7 +54,6 @@ import { InstitutionalPage } from '../pages/institutional/institutional';
 import { PartnerPaymentsPage } from '../pages/partner-payments/partner-payments';
 import { PartnerPaymentsDetailsPage } from '../pages/partner-payments-details/partner-payments-details';
 import { MenuPage } from '../pages/menu/menu';
-import { ProfilePage} from '../pages/profile/profile';
 import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
 import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 import { NetworkingSearchPage } from '../pages/networking-search/networking-search';
@@ -116,6 +112,7 @@ import { HistoryDetailPage } from '../pages/history-detail/history-detail';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { SopernwProvider } from '../providers/sopernw/sopernw';
 import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
+import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
 
 
 
@@ -130,8 +127,6 @@ import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
     HistoryPage,
     BookingPage,
@@ -164,7 +159,6 @@ import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item
     RunwayEventPage,
     MainTemplatesPage,
     EventProductsPage,
-    RunwayConfirmPage,
     EventGntoperPage,
     EventCotizDetailPage,
     EventCotizProductsPage,
@@ -182,11 +176,11 @@ import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item
     BookingInvitedsPage,
     BookingNewInvitedPage,
     HistoryDetailPage,
-    ProfilePage,
     SkeletonItemComponent,
     NetworkingTermsPage,
     NetworkingMenuPage,
-    NetworkingSearchPage
+    NetworkingSearchPage,
+    NetworkingProfilePage
   ],
   imports: [
     FormsModule,
@@ -206,8 +200,6 @@ import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
     HistoryPage,
     BookingPage,
@@ -238,7 +230,6 @@ import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item
     RunwayEventPage,
     MainTemplatesPage,
     EventProductsPage,
-    RunwayConfirmPage,
     EventGntoperPage,
     EventCotizDetailPage,
     EventCotizProductsChildsPage,
@@ -256,11 +247,11 @@ import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item
     BookingInvitedsPage,
     BookingNewInvitedPage,
     HistoryDetailPage,
-    ProfilePage,
     SkeletonItemComponent,
     NetworkingTermsPage,
     NetworkingMenuPage,
-    NetworkingSearchPage
+    NetworkingSearchPage,
+    NetworkingProfilePage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
