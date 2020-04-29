@@ -8,7 +8,8 @@
 
 <ion-content padding class="element-aparecer">
   <ion-fab right top>
-    <button ion-fab class="fab-message"> <ion-icon name="mail"></ion-icon></button>
+    <button ion-fab class="fab-message" (click)="goMessages()"> 
+      <ion-icon name="mail"></ion-icon></button>
    
   </ion-fab>
 <ion-grid padding>
@@ -56,7 +57,7 @@
   <ion-row>
     <ion-col text-center>
       <div>
-        <button class="btnMenu" ion-button color="light"  outline round block> Clasificados
+        <button class="btnMenu" ion-button color="light" (click)="goClassifieds()"  outline round block> Clasificados
          
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-clasificado.svg">

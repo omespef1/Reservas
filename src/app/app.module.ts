@@ -113,6 +113,14 @@ import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { SopernwProvider } from '../providers/sopernw/sopernw';
 import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
 import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
+import { NetworkingMessagesPage } from '../pages/networking-messages/networking-messages';
+import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/networking-classifieds';
+import { NetworkingClassifiedsTermsPage } from '../pages/networking-classifieds-terms/networking-classifieds-terms';
+import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking-edit-text';
+
+
+
+
 
 
 
@@ -180,7 +188,11 @@ import { NetworkingProfilePage } from '../pages/networking-profile/networking-pr
     NetworkingTermsPage,
     NetworkingMenuPage,
     NetworkingSearchPage,
-    NetworkingProfilePage
+    NetworkingProfilePage,
+    NetworkingMessagesPage,
+    NetworkingClassifiedsPage,
+    NetworkingClassifiedsTermsPage,
+    NetworkingEditTextPage
   ],
   imports: [
     FormsModule,
@@ -251,7 +263,11 @@ import { NetworkingProfilePage } from '../pages/networking-profile/networking-pr
     NetworkingTermsPage,
     NetworkingMenuPage,
     NetworkingSearchPage,
-    NetworkingProfilePage
+    NetworkingProfilePage,
+    NetworkingMessagesPage,
+    NetworkingClassifiedsPage,
+    NetworkingClassifiedsTermsPage,
+    NetworkingEditTextPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

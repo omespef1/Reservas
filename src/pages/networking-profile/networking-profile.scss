@@ -77,7 +77,17 @@ ion-avatar.profile-avatar{
 
 
  .text-about {
-
+      .button-ios {
+          padding: 0px;
+          color:#B97D68;
+          right: 0px;
+          position: absolute;
+      }
+      .button-ios.activated {
+       
+        color:#3F1D62;
+        background-color: transparent;
+    }
      h2{
          font-size: 1.3rem;
          font-weight: bold;

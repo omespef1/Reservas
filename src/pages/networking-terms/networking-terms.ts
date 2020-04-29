@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ae_param, user } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { AeinappProvider } from '../../providers/aeinapp/aeinapp';
+import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 
 /**
  * Generated class for the NetworkingTermsPage page.
@@ -21,7 +22,7 @@ export class NetworkingTermsPage {
 params:ae_param;
 user:user;
 hasAccepted=false;
-  constructor(private _sesions:sessions,private _aeinapp:AeinappProvider) {
+  constructor(private _sesions:sessions,private _aeinapp:AeinappProvider,private nav:NavController) {
 this.params = this._sesions.getAeParam();
 this._sesions.GetLoggedin().then((resp:user)=>{
   this.user = resp;
@@ -37,6 +38,10 @@ this._sesions.GetLoggedin().then((resp:user)=>{
   }
   reject(){
     this._aeinapp.SetAeInApp('T','S');
+  }
+
+  goMenu(){
+    this.nav.setRoot(NetworkingMenuPage);
   }
 
 

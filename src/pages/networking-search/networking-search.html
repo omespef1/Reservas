@@ -31,14 +31,14 @@
  </div>
 
  
-  <div class="card">
+  <div class="card" *ngFor="let item of [1,2,3,4,5,6]">
     <div class="card-profile">
       <ion-item no-lines no-padding class="item-filter transparent" >
       <ion-avatar class="profile-Menu" item-left>
         <img src="assets/imgs/user-profile.svg">
       </ion-avatar>
       <h2  class="blue"> <b>JORGE CAMILO BERNAL</b></h2>
-      <h3 class="blue">Profesión</h3>
+      <h3 class="blue">Ing Sistemas</h3>
     </ion-item>
 
     </div>
@@ -69,41 +69,5 @@
     
   </div>
 
-  <div class="card">
-    <div class="card-profile">
-      <ion-item no-lines no-padding class="item-filter transparent" >
-      <ion-avatar class="profile-Menu" item-left>
-        <img src="assets/imgs/user-profile.svg">
-      </ion-avatar>
-      <h2  class="blue"> <b>JORGE CAMILO BERNAL</b></h2>
-      <h3 class="blue">Profesión</h3>
-    </ion-item>
-
-    </div>
-    <div class="card-body">
-       <div class="card-text" text-left>
-        <p  class="text-profile">  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus ipsum natus laborum eos inventore recusandae. Accusamus dicta dolorem magni. Incidunt quas officiis corporis natus esse numquam ab provident culpa dolorum.</p>
-        <h3 class="blue">Sector económico</h3> 
-      </div>
-      
-    </div>
-    <div class="card-footer">
-
-       <ion-grid>
-         <ion-row>
-           <ion-col>
-            <button ion-button class="btn-footer"  >
-              <ion-icon name="ios-mail-outline"></ion-icon>
-             &nbsp; Enviar Mensaje </button>
-           </ion-col>
-           <ion-col >
-            <button ion-button class="btn-footer"  >
-              <ion-icon name="ios-mail-outline"></ion-icon>
-             &nbsp; Añadir a favoritos </button>
-           </ion-col>
-         </ion-row>
-       </ion-grid>
-    </div>
-    
-  </div>
+  
 </ion-content>

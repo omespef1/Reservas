@@ -6,6 +6,8 @@ import { sessions } from '../../class/sessions/sessions';
 import { NetworkingTermsPage } from '../networking-terms/networking-terms';
 import { NetworkingSearchPage } from '../networking-search/networking-search';
 import { NetworkingProfilePage } from '../networking-profile/networking-profile';
+import { NetworkingMessagesPage } from '../networking-messages/networking-messages';
+import { NetworkingClassifiedsPage } from '../networking-classifieds/networking-classifieds';
 
 
 /**
@@ -60,6 +62,13 @@ this._sesions.GetLoggedin().then((resp:user)=>{
 
    goProfile(){
      this.navCtrl.setRoot(NetworkingProfilePage);
+   }
+
+   goMessages(){
+     this.navCtrl.setRoot(NetworkingMessagesPage);
+   }
+   goClassifieds(){
+    this.navCtrl.setRoot(NetworkingClassifiedsPage);
    }
 
   

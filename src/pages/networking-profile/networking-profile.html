@@ -15,7 +15,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="element-aparecer">
   <div class="profile">
     <ion-item button no-lines no-padding class="transparent">
       <ion-avatar class="profile-avatar" item-start>
@@ -48,11 +48,17 @@
     <ion-row>
       <ion-col>
         <div class="text-about ">
-          <h2>
+          
+          <b>
             Acerca de mí
-          </h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis vero corrupti nostrum a nobis nemo unde,
-            neque pariatur quia, accusamus nulla repellendus animi rem distinctio? Hic sunt vel sit inventore.</p>
+          </b>
+          
+            <button ion-button clear (click)="goEditAbout()"> 
+              <ion-icon name="md-create"></ion-icon> &nbsp; Editar
+            </button>
+          
+          
+          <p>{{ myProfile.per_admi}}</p>
         </div>
       </ion-col>
     </ion-row>
@@ -60,14 +66,15 @@
     <ion-row>
       <ion-col>
         <div class="text-about">
-          <h2>
+          <b>
             Proyectos
-          </h2>
+          </b>
         </div>
+       
         
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngFor="let proyect of myProfile.details">
       <ion-col col-4>
           <div>
             <img src="assets/imgs/computer.svg" alt="proyecto">
@@ -76,29 +83,17 @@
       <ion-col col-8 >
         
         <div class="text-about">
+          <button ion-button clear (click)="goEditProyect(proyect)"> 
+            <ion-icon name="md-create"></ion-icon> &nbsp; Editar
+          </button>
           <div>
-            <h2>Poryecto1</h2>
+            <h2>{{  proyect.dpe_npro }}</h2>
          </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur doloribus, illo minima dolorum in modi facere sunt placeat ipsum possimus repellendus exercitationem commodi, eius odit distinctio unde ducimus ab ad.</p>
+         <p> {{proyect.dpe_desc}} </p>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-4>
-          <div>
-            <img src="assets/imgs/computer.svg" alt="proyecto">
-          </div>
-      </ion-col>
-      <ion-col col-8 >
-        
-        <div class="text-about">
-          <div>
-            <h2>Poryecto1</h2>
-         </div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur doloribus, illo minima dolorum in modi facere sunt placeat ipsum possimus repellendus exercitationem commodi, eius odit distinctio unde ducimus ab ad.</p>
-        </div>
-      </ion-col>
-    </ion-row>
+
   </ion-grid>
 
 </ion-content>
