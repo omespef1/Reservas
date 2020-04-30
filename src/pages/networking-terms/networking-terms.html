@@ -49,7 +49,7 @@
 
        <ion-row>
          <ion-col text-center >
-          <button id="btnAcepto" ion-button color="light" (click)="Ok()" outline round>Acepto
+          <button id="btnAcepto" [disabled]="accepting" ion-button color="light" (click)="Ok()" outline round>{{accepting?'Espera...':'Acepto...'}}
             <div id="btnAceptoRound">
               
               <img *ngIf="!accepting" src="assets/imgs/arrow.svg">
