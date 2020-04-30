@@ -40,6 +40,6 @@ export class AeinappProvider {
 
 
   ExistsAeInapp(emp_codi:number,soc_cont:number,sbe_cont:number,mac_nume:string){
-    return this._comu.Get(`AeInapp?emp_codi=${emp_codi}&soc_cont=${soc_cont}&sbe_cont=${sbe_cont}&mac_nume=${mac_nume}`)
+    return this._comu.Get(`AeInApp/GetAeInapp?emp_codi=${emp_codi}&soc_cont=${soc_cont}&sbe_cont=${sbe_cont}&mac_nume=${mac_nume}`)
   }
 }

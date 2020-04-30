@@ -58,8 +58,9 @@ export class NetworkingMenuPage {
   async VerifyTerms() {
     //revisamos si en sesión ya sabemos que el usuario aceptó términos
     //si no, vamos a la base de datos a ver si hay registro de aceptación de términos
-    let accepted: boolean = await (<any>this._sesions.getAcceptedTerms());
-    if (!accepted) {
+    let accepted: any = await (<any>this._sesions.getAcceptedTerms());
+    console.log(accepted)
+    if (accepted==null) {
       this._aeinapp
         .ExistsAeInapp(
           this.user.Emp_codi,
@@ -68,7 +69,7 @@ export class NetworkingMenuPage {
           this.user.Mac_nume
         )
         .then((request: transactionNumber) => {
-          if (request.Retorno == 0 && request.number == 1) {
+          if (request.Retorno == 0 && request.number == 0) {
             this.showModalTerms();
           }
         });

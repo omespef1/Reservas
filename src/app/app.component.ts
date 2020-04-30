@@ -30,7 +30,7 @@ import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingTermsPage
+  rootPage: any = LoginPage
   ;
   logged: boolean = false;
   constructor(platform: Platform,
