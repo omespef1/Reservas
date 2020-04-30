@@ -30,7 +30,7 @@
   </ion-item>
  </div>
 
- <div class="card" *ngFor="let item of  [0,1,2,3,4,5,6 ]">
+ <div class="card" (click)="goOtherProfile()" *ngFor="let item of  [0,1,2,3,4,5,6 ]">
   <div class="card-profile">
     <ion-item button no-lines no-padding class="item-filter transparent" >
     <ion-avatar class="profile-Menu" item-left>

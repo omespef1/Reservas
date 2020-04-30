@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ae_param, user } from '../../class/models/models';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { ae_param, user, transaction } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { AeinappProvider } from '../../providers/aeinapp/aeinapp';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
@@ -22,7 +22,9 @@ export class NetworkingTermsPage {
 params:ae_param;
 user:user;
 hasAccepted=false;
-  constructor(private _sesions:sessions,private _aeinapp:AeinappProvider,private nav:NavController) {
+accepting=false;
+  constructor(private _sesions:sessions,private _aeinapp:AeinappProvider,
+    private nav:NavController,private _view:ViewController) {
 this.params = this._sesions.getAeParam();
 this._sesions.GetLoggedin().then((resp:user)=>{
   this.user = resp;
@@ -34,15 +36,17 @@ this._sesions.GetLoggedin().then((resp:user)=>{
   }
 
   Ok(){
-    this._aeinapp.SetAeInApp('T','S');
-  }
-  reject(){
-    this._aeinapp.SetAeInApp('T','S');
+    this.accepting=true;
+    this._aeinapp.SetAeInApp('T').then((resp:transaction)=>{
+      if(resp!=null && resp.Retorno==0){
+        this.accepting=false;
+        this._sesions.setAcceptedTerms();
+        this._view.dismiss();
+      }
+    })
   }
 
-  goMenu(){
-    this.nav.setRoot(NetworkingMenuPage);
-  }
+
 
 
 

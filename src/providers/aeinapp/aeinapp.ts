@@ -16,7 +16,7 @@ export class AeinappProvider {
   constructor(private _comu: ComunicationsProvider, private _sesion: sessions,private _general:general) {
     console.log("Hello AeinappProvider Provider");
   }
-  async SetAeInApp(coa_tipo:string,coa_ater='') {
+  async SetAeInApp(coa_tipo:string) {
     let log = new aeinapp();
     let user: user = <user>await this._sesion.GetLoggedin();
     log = {

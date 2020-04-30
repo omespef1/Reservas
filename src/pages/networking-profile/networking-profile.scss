@@ -51,10 +51,14 @@ font-family: Raleway;
 ion-avatar.profile-avatar{
    background-color: white;
    border-radius: 50%;
-   width: 80px;
-   height: 80px;
+   width: 100px;
+   height: 100px;
    
 }
+ion-avatar.profile-avatar.center{
+    margin: auto;
+    
+ }
 .item-ios ion-avatar img {
     border-radius: 50%;
     overflow: hidden;

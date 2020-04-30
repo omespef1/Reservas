@@ -187,6 +187,13 @@ export class sessions {
     return this.aeparam;
   }
 
+
+  setAcceptedTerms(){
+    this.nativeStorage.set('hasAceptedTermsUse', true);
+  }
+  getAcceptedTerms():Promise<boolean>{
+    return this.nativeStorage.get("hasAceptedTermsUse");
+  }
   // setDeveloperOptions(developerOptions:boolean){
   //   this.nativeStorage.set("DeveloperOptions",developerOptions); 
   // }

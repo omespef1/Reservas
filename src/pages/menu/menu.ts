@@ -14,6 +14,7 @@ import { InstitutionalPage } from '../institutional/institutional';
 import { AgreementsProvider } from "../../providers/agreements/agreements";
 import { transaction, agreement } from '../../class/models/models';
 import { BookingInvitedsPage } from '../booking-inviteds/booking-inviteds';
+import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 
 /**
  * Generated class for the MenuPage page.
@@ -82,7 +83,7 @@ banners:agreement[]=[];
   {
     name:'Networking',
     urlIcon:'assets/imgs/networking.svg',
-    page:BookingInvitedsPage
+    page:NetworkingMenuPage
   },
 ]
   constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions,private _agrrements:AgreementsProvider) {

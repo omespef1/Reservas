@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
+import { NetworkingProfilePage } from '../networking-profile/networking-profile';
 
 /**
  * Generated class for the NetworkingSearchPage page.
@@ -29,6 +30,9 @@ export class NetworkingSearchPage {
 
   goHome(){
     this.navCtrl.setRoot(NetworkingMenuPage);
+  }
+  goOtherProfile(){
+    this.navCtrl.push(NetworkingProfilePage,{'myProfile':false})
   }
 
 }

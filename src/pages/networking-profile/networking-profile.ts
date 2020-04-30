@@ -20,6 +20,7 @@ import { NetworkingEditTextPage } from '../networking-edit-text/networking-edit-
   templateUrl: 'networking-profile.html',
 })
 export class NetworkingProfilePage {
+  myProfileMode= true;
   myProfile: sopernw = {
     emp_codi: 102,
     per_cont: 1,
@@ -72,14 +73,16 @@ export class NetworkingProfilePage {
      private _sessions: sessions,
      private _modal:ModalController) {
 
-
       this._sessions.GetLoggedin().then((user)=>{
         this.user = user;
       })
   }
 
   ionViewDidLoad() {
+    console.log(this.navParams.get('myProfile'));
+  this.myProfileMode = this.navParams.get('myProfile')==undefined?true:false;
     console.log('ionViewDidLoad NetworkingProfilePage');
+    console.log(this.navParams.get('myProfile'));
   }
 
   GetSoPernw() {
