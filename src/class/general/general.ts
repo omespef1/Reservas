@@ -5,6 +5,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import * as moment from 'moment';
 import { retry } from "rxjs/operator/retry";
+import { radio } from '../models/models';
 
 
 @Injectable()
@@ -250,6 +251,24 @@ GetPlatform():string{
 
 
 
+}
+
+showRadio(title:string,options:radio[],action:(value:any)=>void) {
+  console.log(options);
+  let alert = this.alert.create();
+  
+  alert.setTitle(title);
+for(let option of options){
+  alert.addInput(option);
+}
+ 
+  alert.addButton('Cancelar');
+  alert.addButton({
+    text: 'OK',
+    handler: action
+  });
+  alert.present();
+}
 }
 
 

@@ -582,3 +582,11 @@ export class sodpern {
   aud_usua: string;
   aud_esta: string;
 }
+
+
+export class radio {
+  type:string;
+  label:string;
+  value:string;
+  checked:boolean
+}

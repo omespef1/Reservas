@@ -49,6 +49,18 @@ export class sessions {
   setReasonsPrq(reasons: any) {
     this.nativeStorage.set('reasonsPqr', reasons);
   }
+  setProfessions(reasons: any) {
+    this.nativeStorage.set('networking-professions', reasons);
+  }
+  setEconomicSector(reasons: any) {
+    this.nativeStorage.set('networking-sectors', reasons);
+  }
+  getEconomicSector() {
+    return this.nativeStorage.get('networking-sectors');
+  }
+  getProfessions() {
+    return this.nativeStorage.get('networking-professions');
+  }
   setUserFingerPrint(user: string) {
     this.nativeStorage.set('secureUser', user);
   }

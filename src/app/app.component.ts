@@ -16,6 +16,8 @@ import { NotificationsPushProvider } from '../providers/notifications-push/notif
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 
 import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
+import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
+import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
 
 
 
@@ -30,7 +32,7 @@ import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = LoginPage
+  rootPage: any = NetworkingProfilePage
   ;
   logged: boolean = false;
   constructor(platform: Platform,
@@ -126,6 +128,19 @@ if(platform.is("cordova")){
       this._sessions.setReasonsPrq(resp.ObjTransaction);
     }
   })
+
+  this._pqr.GetGnItems(548).then((resp: any) => {
+    if (resp != null) {
+      this._sessions.setProfessions(resp.ObjTransaction);
+    }
+  })
+  this._pqr.GetGnItems(549).then((resp: any) => {
+    if (resp != null) {
+      this._sessions.setEconomicSector(resp.ObjTransaction);
+    }
+  })
+
+
 
   this._espac.GetAeParam().then((resp: transaction) => {
     if (resp != null) {

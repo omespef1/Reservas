@@ -117,6 +117,7 @@ import { NetworkingMessagesPage } from '../pages/networking-messages/networking-
 import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/networking-classifieds';
 import { NetworkingClassifiedsTermsPage } from '../pages/networking-classifieds-terms/networking-classifieds-terms';
 import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking-edit-text';
+import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
 
 
 
@@ -192,7 +193,8 @@ import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking
     NetworkingMessagesPage,
     NetworkingClassifiedsPage,
     NetworkingClassifiedsTermsPage,
-    NetworkingEditTextPage
+    NetworkingEditTextPage,
+    NetworkingNewProyectPage
   ],
   imports: [
     FormsModule,
@@ -267,7 +269,8 @@ import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking
     NetworkingMessagesPage,
     NetworkingClassifiedsPage,
     NetworkingClassifiedsTermsPage,
-    NetworkingEditTextPage
+    NetworkingEditTextPage,
+    NetworkingNewProyectPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
