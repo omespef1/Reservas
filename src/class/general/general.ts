@@ -269,7 +269,30 @@ for(let option of options){
   });
   alert.present();
 }
+
+
+showCustomAlert(title:string,message:string,action: (value:any)=>void,cssClass?:string,enableBackdropDismiss?:boolean,
+subTitle?:string,
+  ){
+
+  let alert = this.alert.create({
+    title: title,
+    subTitle: subTitle,
+    message: message,
+    cssClass: cssClass,
+    enableBackdropDismiss:enableBackdropDismiss
+  })
+
+  alert.addButton({
+    text: 'OK',
+    handler: action
+  });
+
+  alert.present();
 }
+
+}
+
 
 
 
@@ -306,4 +329,4 @@ for(let option of options){
   // openFacebook(username: string) {
   //   this.launchExternalApp('fb://', 'com.facebook.katana', 'fb://profile/', 'https://www.facebook.com/', username);
   // }
-}
+

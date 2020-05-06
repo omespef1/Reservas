@@ -421,6 +421,7 @@ export class ae_param {
   cla_ceve: number;
   cla_cont: number;
   par_trdu:string;
+  par_rsdc:string;
 }
 
 export interface pageApp {

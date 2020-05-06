@@ -595,6 +595,45 @@ ion-card-header {
 ion-tabs {
   overflow-x: scroll;
 }
+
+//css para los modales nuevos de networking,la clase se inscrusta cuando se crea el modal
+
+  .alert-ios.alert-nogal {
+    font-family: raleway;
+    .alert-wrapper{
+
+     
+      background-color: #f2f2f2;
+      
+    }
+    .alert-title {
+      margin-top: 8px;
+      font-size: 17px;
+      font-weight: 600;
+    color:#2F2260;
+  }
+  .alert-sub-title{
+
+    color:#2F2260;
+  }
+
+  .alert-button-group {
+   
+    background-color:#FB512C;
+   
+}
+.alert-button{
+
+  color:white;
+}
+.alert-button.activated {
+  background-color: #2F2260;
+
+}
+
+
+
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

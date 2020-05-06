@@ -118,6 +118,9 @@ import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/netwo
 import { NetworkingClassifiedsTermsPage } from '../pages/networking-classifieds-terms/networking-classifieds-terms';
 import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking-edit-text';
 import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
+import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
+import { SoclanwProvider } from '../providers/soclanw/soclanw';
+
 
 
 
@@ -194,7 +197,8 @@ import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networ
     NetworkingClassifiedsPage,
     NetworkingClassifiedsTermsPage,
     NetworkingEditTextPage,
-    NetworkingNewProyectPage
+    NetworkingNewProyectPage,
+    NetworkingClassifiedsNewPage
   ],
   imports: [
     FormsModule,
@@ -270,7 +274,8 @@ import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networ
     NetworkingClassifiedsPage,
     NetworkingClassifiedsTermsPage,
     NetworkingEditTextPage,
-    NetworkingNewProyectPage
+    NetworkingNewProyectPage,
+    NetworkingClassifiedsNewPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -308,7 +313,8 @@ import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networ
     NotificationsPushProvider,
     InvitedProvider,
     AeinappProvider,
-    SopernwProvider
+    SopernwProvider,
+    SoclanwProvider
 
   ]
 })

@@ -1,0 +1,103 @@
+page-networking-classifieds-new {
+
+    ion-content {
+        background-color: #F1F2F2 !important;
+    }
+    //general
+    .blue {
+        color:#2F2260;
+    }
+    h3 {
+       font-size: 1.3rem;
+    }
+    .orange{
+    background-color: #FB512C;
+    }
+    .yellow {
+        background-color: #9EDC39;
+    }
+    font-family: Raleway;
+    
+    //toolbar
+    .toolbar-title-ios {
+        
+    color: white;
+    
+    }
+    .toolbar-ios{
+        ion-title{
+            padding: 0 60px 1px;
+        }
+    }
+    .toolbar-background-ios {
+    background: #2F2260;
+    color: white;
+    }
+    .bar-button-default-ios{
+    color: white;
+    background-color:#2F2260;
+    border-radius: 25px;
+    padding: 8px 8px 8px 9px;
+    height: 40px;
+    width: 40px;
+    }
+    
+    
+    //header 
+    
+    ion-header{
+        border-bottom: 10px solid #FB512C;
+    }
+    .label-ios[stacked]{
+        color: #2F2260;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+.item-ios {
+    background-color: transparent !important;
+}
+    //textarea
+ ion-input {
+    background-color: white;
+    border-radius: 0px 5px 5px 0px;
+    border-left:5px solid #2F2260;
+    padding: 0px 20px 0px 20px;
+ }
+    ion-textarea {
+       @extend ion-input;
+       min-height: 200px;
+      
+    
+    }
+
+    ion-icon.input-icon{
+        position: absolute;
+        font-size: 2rem;
+    right: 10px;
+    top: 38px;
+    color:#2F2260;
+
+    }
+
+    .font-icon {
+        font-size: 35px;
+        /* min-height: 100%; */
+        padding: 4px;
+    }
+
+    .alert-ios .alert-title {
+        margin-top: 8px;
+        font-size: 17px;
+        font-weight: 600;
+        color:#2F2260;
+    }
+
+    .alert-ios .alert-wrapper {
+        border-radius: 13px;
+        overflow: hidden;
+        max-width: 270px;
+        background-color: #f2f2f2;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}

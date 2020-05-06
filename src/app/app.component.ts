@@ -18,6 +18,8 @@ import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
 import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
 import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
+import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
+import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 
 
 
@@ -32,7 +34,7 @@ import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networ
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingProfilePage
+  rootPage: any = NetworkingMenuPage
   ;
   logged: boolean = false;
   constructor(platform: Platform,

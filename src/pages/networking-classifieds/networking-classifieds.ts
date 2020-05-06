@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { NetworkingClassifiedsTermsPage } from '../networking-classifieds-terms/networking-classifieds-terms';
+import { ThirdPartiesPageModule } from '../third-parties/third-parties.module';
+import { NetworkingClassifiedsNewPage } from '../networking-classifieds-new/networking-classifieds-new';
 
 /**
  * Generated class for the NetworkingClassifiedsPage page.
@@ -17,7 +19,7 @@ import { NetworkingClassifiedsTermsPage } from '../networking-classifieds-terms/
 })
 export class NetworkingClassifiedsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _modal:ModalController) {
   }
 
   ionViewDidLoad() {
@@ -30,5 +32,12 @@ export class NetworkingClassifiedsPage {
   
   goTerms(){
     this.navCtrl.setRoot(NetworkingClassifiedsTermsPage)
+  }
+
+  goNewClassified(){
+    
+   let modal= this._modal.create(NetworkingClassifiedsNewPage);
+   modal.present();
+    
   }
 }
