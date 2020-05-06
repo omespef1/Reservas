@@ -17,7 +17,7 @@ export class SoclanwProvider {
   }
 
   SetSoClanw(classified:soclanw){
-  return this._comu.Post(classified,`soclanw`);
+  return this._comu.Post(classified,`soclanw`,'',false);
 
   }
 

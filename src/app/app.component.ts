@@ -34,7 +34,7 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingMenuPage
+  rootPage: any = LoginPage
   ;
   logged: boolean = false;
   constructor(platform: Platform,
