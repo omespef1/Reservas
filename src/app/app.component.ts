@@ -32,7 +32,7 @@ import { NetworkingProfilePage } from '../pages/networking-profile/networking-pr
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingProfilePage
+  rootPage: any = LoginPage
 
   ;
   logged: boolean = false;
