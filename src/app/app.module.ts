@@ -120,6 +120,7 @@ import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking
 import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
 import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
 import { SoclanwProvider } from '../providers/soclanw/soclanw';
+import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 
 
 
@@ -198,7 +199,8 @@ import { SoclanwProvider } from '../providers/soclanw/soclanw';
     NetworkingClassifiedsTermsPage,
     NetworkingEditTextPage,
     NetworkingNewProyectPage,
-    NetworkingClassifiedsNewPage
+    NetworkingClassifiedsNewPage,
+    NetworkingNewsPage
   ],
   imports: [
     FormsModule,
@@ -275,7 +277,8 @@ import { SoclanwProvider } from '../providers/soclanw/soclanw';
     NetworkingClassifiedsTermsPage,
     NetworkingEditTextPage,
     NetworkingNewProyectPage,
-    NetworkingClassifiedsNewPage
+    NetworkingClassifiedsNewPage,
+    NetworkingNewsPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

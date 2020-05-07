@@ -4,6 +4,10 @@ import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { NetworkingClassifiedsTermsPage } from '../networking-classifieds-terms/networking-classifieds-terms';
 import { ThirdPartiesPageModule } from '../third-parties/third-parties.module';
 import { NetworkingClassifiedsNewPage } from '../networking-classifieds-new/networking-classifieds-new';
+import { SoclanwProvider } from '../../providers/soclanw/soclanw';
+import { user, transaction } from '../../class/models/models';
+import { sessions } from '../../class/sessions/sessions';
+import { soclanw } from '../../class/models/soclanw/soclanw';
 
 /**
  * Generated class for the NetworkingClassifiedsPage page.
@@ -18,8 +22,18 @@ import { NetworkingClassifiedsNewPage } from '../networking-classifieds-new/netw
   templateUrl: 'networking-classifieds.html',
 })
 export class NetworkingClassifiedsPage {
+  getting=false;
+  user:user;
+  classifieds:soclanw[];
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _modal:ModalController,
+    private _soclanw:SoclanwProvider,private _sessions:sessions) {
+    
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _modal:ModalController) {
+      this._sessions.GetLoggedin().then((resp:user)=>{
+        this.user = resp;
+      })
+
+
   }
 
   ionViewDidLoad() {
@@ -39,5 +53,17 @@ export class NetworkingClassifiedsPage {
    let modal= this._modal.create(NetworkingClassifiedsNewPage);
    modal.present();
     
+  }
+
+  GetSoClanws(){
+   this.getting=true;
+   this._soclanw.GetSoClanw(this.user.Emp_codi).then((resp:transaction)=>{
+    this.getting=false;
+     if(resp!=null && resp.Retorno==0){
+        
+
+
+     }
+   })
   }
 }

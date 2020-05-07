@@ -13,6 +13,7 @@ import { NetworkingSearchPage } from "../networking-search/networking-search";
 import { NetworkingProfilePage } from "../networking-profile/networking-profile";
 import { NetworkingMessagesPage } from "../networking-messages/networking-messages";
 import { NetworkingClassifiedsPage } from "../networking-classifieds/networking-classifieds";
+import { NetworkingNewsPage } from "../networking-news/networking-news";
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -85,5 +86,8 @@ export class NetworkingMenuPage {
   }
   goClassifieds() {
     this.navCtrl.setRoot(NetworkingClassifiedsPage);
+  }
+  goNews(){
+    this.navCtrl.setRoot(NetworkingNewsPage);
   }
 }

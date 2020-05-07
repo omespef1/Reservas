@@ -14,12 +14,10 @@ import { transaction } from '../class/models/models';
 import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
+import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 
-import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
-import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
-import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
-import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
-import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+
+
 
 
 
@@ -34,7 +32,7 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingMenuPage
+  rootPage: any = NetworkingNewsPage
   ;
   logged: boolean = false;
   constructor(platform: Platform,

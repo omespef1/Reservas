@@ -15,10 +15,15 @@ export class SoclanwProvider {
   constructor(private _comu:ComunicationsProvider) {
     console.log('Hello SoclanwProvider Provider');
   }
-
+GetSoClanw(emp_codi:number){
+  return this._comu.Get(`soclanw?emp_codi=${emp_codi}`);
+}
   SetSoClanw(classified:soclanw){
   return this._comu.Post(classified,`soclanw`);
+  }
 
+  UpdateSoClanw(classified:soclanw){
+    return this._comu.Post(classified,`soclanw/update`);
   }
 
 }

@@ -1,0 +1,38 @@
+page-networking-news {
+//general
+.blue {
+    color: #2F2260;
+}
+h3 {
+   font-size: 1.3rem;
+}
+.orange{
+background-color: #FB512C;
+}
+.yellow {
+    background-color: #9EDC39;
+}
+font-family: Raleway;
+
+//toolbar
+.toolbar-title-ios {
+    
+color: white;
+
+}
+.toolbar-background-ios {
+background: #2F2260;
+color: white;
+}
+.bar-button-default-ios{
+color: white;
+background-color: #341F53;
+border-radius: 25px;
+padding: 8px 8px 8px 9px;
+height: 40px;
+width: 40px;
+}
+ion-header{
+    border-bottom: 10px solid #FB512C;
+}
+}

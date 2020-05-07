@@ -11,6 +11,12 @@
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+    
     <ion-title>Clasificados</ion-title>
 
   </ion-navbar>
@@ -49,10 +55,10 @@
     </ion-row>
   </ion-grid>
 
-  <div class="card" *ngFor="let item of [1,2,3,4,5]">
+  <div class="card" *ngFor="let item of classifieds">
     <div class="card-header">
-      <h2><b>Título</b></h2>
-      <h2>Fecha</h2>
+      <h2><b>{{item.cla_titu}}</b></h2>
+      <h2>{{item.aud_ufac}}</h2>
 
     </div>
 
@@ -60,8 +66,7 @@
       <div class="card-img">
         <img src="assets/imgs/computer.svg" alt="proyecto">
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem nulla atque, possimus magni nihil non?
-        Ipsam doloribus veniam earum laboriosam quis labore inventore ipsum, accusamus nam sit? Provident, fugit alias.
+      <p>{{item.cla_desc}}
       </p>
     </div>
 
@@ -70,10 +75,10 @@
     <div class="card-footer">
 
       <div>
-        <b>Nombre:</b> Camilo Bernal
+        <b>Nombre:</b> {{item.cla_nomb}}
       </div>
       <div>
-        <b>Teléfono:</b> 2343242342
+        <b>Teléfono:</b> {{item.cla_tele}}
       </div>
 
     </div>
