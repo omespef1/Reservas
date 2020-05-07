@@ -122,6 +122,9 @@ import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-ne
 import { SoclanwProvider } from '../providers/soclanw/soclanw';
 import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 
+import { AeosappProvider } from '../providers/aeosapp/aeosapp';
+import { NetworkingNewsViewerPage } from '../pages/networking-news-viewer/networking-news-viewer';
+
 
 
 
@@ -200,7 +203,8 @@ import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
     NetworkingEditTextPage,
     NetworkingNewProyectPage,
     NetworkingClassifiedsNewPage,
-    NetworkingNewsPage
+    NetworkingNewsPage,
+    NetworkingNewsViewerPage
   ],
   imports: [
     FormsModule,
@@ -278,7 +282,8 @@ import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
     NetworkingEditTextPage,
     NetworkingNewProyectPage,
     NetworkingClassifiedsNewPage,
-    NetworkingNewsPage
+    NetworkingNewsPage,
+    NetworkingNewsViewerPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -317,7 +322,8 @@ import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
     InvitedProvider,
     AeinappProvider,
     SopernwProvider,
-    SoclanwProvider
+    SoclanwProvider,
+    AeosappProvider
 
   ]
 })

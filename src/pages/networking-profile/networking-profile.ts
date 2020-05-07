@@ -36,6 +36,7 @@ export class NetworkingProfilePage {
   hasEdited = false;
   economicSectors: item[] = [];
   professions: item[] = [];
+  saving = false;
 
   myProfile: sopernw = {
     emp_codi: 102,
@@ -104,10 +105,11 @@ export class NetworkingProfilePage {
   }
 
   LoadInitialData() {
+    this.GetSoPernw();
     console.log(this.navParams.get("myProfile"));
     this.myProfileMode =
       this.navParams.get("myProfile") == undefined ? true : false;
-     if (this.myProfileMode) {
+    if (this.myProfileMode) {
       this.GetProfessions();
       this.GetSectors();
     }
@@ -123,6 +125,10 @@ export class NetworkingProfilePage {
       )
       .then((resp: transaction) => {
         this.loadingProfile = false;
+
+        if (resp != null && resp.Retorno == 0) {
+          this.myProfile = resp.ObjTransaction;
+        }
       });
   }
 
@@ -162,15 +168,18 @@ export class NetworkingProfilePage {
 
   GetProfessions() {
     this.professions = [
-      { Ite_codi: "0", Ite_cont: 14567, Ite_nomb: "Presidente y CEO", Tit_cont: 0 },
+      {
+        Ite_codi: "0",
+        Ite_cont: 14567,
+        Ite_nomb: "Presidente y CEO",
+        Tit_cont: 0,
+      },
       { Ite_codi: "1", Ite_cont: 14568, Ite_nomb: "Arquiteecto", Tit_cont: 0 },
     ];
     this._sessions.getProfessions().then((resp: item[]) => {
       if (resp) {
         this.professions = resp;
       }
-
-     
     });
   }
 
@@ -182,16 +191,14 @@ export class NetworkingProfilePage {
     this._sessions.getEconomicSector().then((resp: item[]) => {
       if (resp) {
         // this.economicSectors = resp;
-  
       }
       //codigo de testeo
-     
     });
   }
 
   setSector() {
     let options: radio[] = [];
-   
+
     for (let item of this.economicSectors) {
       options.push({
         type: "radio",
@@ -207,16 +214,16 @@ export class NetworkingProfilePage {
     });
   }
 
-  getSectorName(){
-
-    let data = this.economicSectors.filter(t=>t.Ite_cont==this.myProfile.ite_seco)[0];
-    return data==undefined?'':data.Ite_nomb;
-
+  getSectorName() {
+    let data = this.economicSectors.filter(
+      (t) => t.Ite_cont == this.myProfile.ite_seco
+    )[0];
+    return data == undefined ? "" : data.Ite_nomb;
   }
 
   setProfession() {
     let options: radio[] = [];
-   
+
     for (let item of this.professions) {
       options.push({
         type: "radio",
@@ -232,9 +239,43 @@ export class NetworkingProfilePage {
     });
   }
 
-  getProfession(){
-   let data = this.professions.filter(t=>t.Ite_cont==this.myProfile.ite_prof)[0];
-   return data==undefined?'':data.Ite_nomb;
+  getProfession() {
+    let data = this.professions.filter(
+      (t) => t.Ite_cont == this.myProfile.ite_prof
+    )[0];
+    return data == undefined ? "" : data.Ite_nomb;
+  }
 
+  saveChanges() {
+    this.saving = true;
+    if (this.myProfile.per_cont == 0) {
+      this._sopernw.SetSoPernw(this.myProfile).then((resp: transaction) => {
+        this.saving = false;
+        if (resp != null && resp.Retorno == 0) {
+          this.ShowMessageDone();
+        }
+      }     
+    ),err=>{
+      this.saving=false;
+    };
+    } else {
+      this._sopernw.UpdateSoPernw(this.myProfile).then((resp: transaction) => {
+        this.saving = false;
+        if (resp != null && resp.Retorno == 0) {
+          this.ShowMessageDone();
+        }
+      });
+    }
+  }
+
+  ShowMessageDone() {
+    this._general.showCustomAlert(
+      "Hecho!",
+      "",
+      () => {},
+      "alert-nogal",
+      false,
+      "Cambios guardados!"
+    );
   }
 }

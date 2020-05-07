@@ -323,6 +323,18 @@ export interface agreement {
   Osa_Fini: string;
   Osa_Fina: string;
   Osa_Tipo: string;
+  osa_msge:string;
+}
+export class aeosapp {
+  Osa_Bmpr: string;
+  Osa_Link: string;
+  Osa_Nomb: string;
+  Osa_Lian: string;
+  Osa_Liap: string;
+  Osa_Fini: string;
+  Osa_Fina: string;
+  osa_msge:string;
+  Osa_Cont:number;
 }
 
 export class ecmcomp {

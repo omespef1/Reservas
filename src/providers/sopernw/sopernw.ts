@@ -22,11 +22,11 @@ export class SopernwProvider {
   }
 
 SetSoPernw(profile:sopernw){
-  return this._comu.Post(profile,`SoPernw`);
+  return this._comu.Post(profile,`SoPernw`,'',false);
 }
 
 UpdateSoPernw(profile:sopernw){
-  return this._comu.Post(profile,`SoPernw/update`);
+  return this._comu.Post(profile,`SoPernw/update`,'',false);
 }
 
 DeleteSoPernw(emp_codi:number,per_cont:number){

@@ -16,6 +16,86 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="element-aparecer">
+  <div class="search-container">
+    <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
+  </div>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-item no-lines class="item-filter">
+            <ion-label>Organizar Por</ion-label>
+            <ion-select>
+              <ion-option value="A">Más recientes</ion-option>
+
+            </ion-select>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<div *ngIf="!getting" >
+  <div class="card" *ngFor="let item of news">
+    <div class="card-header">
+      <h2><b>{{item.Osa_Nomb}}</b></h2>
+      <h2>{{item.Osa_Fini | date: 'dd/MM/yyyy'}}</h2>
+
+    </div>
+
+    <div class="card-body">
+      <div class="card-img">
+        <img src="assets/imgs/computer.svg" alt="proyecto">
+      </div>
+      
+      <div class="card-text">
+        <p>{{item.osa_msge}}
+        </p>
+      </div>
+    </div>
+    <div text-right>
+      <button (click)="openNew(item)" ion-button class="yellow" round>
+        <ion-icon  name="eye"></ion-icon>&nbsp;Ver
+      </button>
+    </div>
+
+
+
+
+  </div>
+</div>
+
+<div *ngIf="getting">
+  <div class="card" *ngFor="let item of [1,2,3]">
+    <div class="card-header">
+      <skeleton-item width="100%"></skeleton-item>
+      <skeleton-item width="50px"></skeleton-item>
+
+    </div>
+
+    <div class="card-body">
+      <div class="card-img">
+        <skeleton-item width="100%" height="200px"></skeleton-item>
+      </div>
+      
+      <div class="card-text">
+        <skeleton-item width="100%"></skeleton-item>
+        <div text-right>
+          <skeleton-item width="80px" rounded></skeleton-item>
+        </div>
+        
+       
+      </div>
+      
+    </div>
+    
+
+
+
+
+  </div>
+</div>
+
 
 </ion-content>

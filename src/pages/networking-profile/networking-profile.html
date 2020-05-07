@@ -11,6 +11,14 @@
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons end>
+      <button [disabled]="saving" (click)="saveChanges()" ion-button round>
+        <div class="font-icon">
+          <i  class="" [class]="saving?'fa fa-refresh fa-spin':'fa fa-floppy-o'" aria-hidden="true"></i>
+        </div> 
+        <!-- <ion-icon name="md-checkmark-circle"></ion-icon> -->     
+      </button>
+    </ion-buttons>
     <ion-title>{{myProfileMode?'Mi Perfil':'Perfil'}}</ion-title>
   </ion-navbar>
 </ion-header>
