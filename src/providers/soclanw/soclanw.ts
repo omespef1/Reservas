@@ -19,9 +19,8 @@ GetSoClanw(emp_codi:number){
   return this._comu.Get(`soclanw?emp_codi=${emp_codi}`);
 }
   SetSoClanw(classified:soclanw){
-  return this._comu.Post(classified,`soclanw`);
+  return this._comu.Post(classified,`soclanw`,'',false);
   }
-
   UpdateSoClanw(classified:soclanw){
     return this._comu.Post(classified,`soclanw/update`);
   }

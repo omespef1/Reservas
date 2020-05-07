@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from "ionic-angul
 import { general } from "../../class/general/general";
 import { SoclanwProvider } from "../../providers/soclanw/soclanw";
 import { soclanw } from "../../class/models/soclanw/soclanw";
-import { transaction } from "../../class/models/models";
+import { transaction, user } from '../../class/models/models';
 import { sessions } from "../../class/sessions/sessions";
 
 /**
@@ -21,6 +21,7 @@ import { sessions } from "../../class/sessions/sessions";
 export class NetworkingClassifiedsNewPage {
   sending = false;
   termsreceived="";
+  user:user= new user();
   classified:soclanw= new soclanw();
   constructor(
     public navCtrl: NavController,
@@ -30,7 +31,10 @@ export class NetworkingClassifiedsNewPage {
     private _sesion:sessions,
     private _view:ViewController
   ) {
-       
+  this._sesion.GetLoggedin().then((resp:user)=>{
+    this.user = resp;
+      }) 
+      
   }
 
   ionViewDidLoad() {
@@ -44,7 +48,8 @@ export class NetworkingClassifiedsNewPage {
 
   SetClassified() {
     this.sending = true;
-
+     
+this.classified.emp_codi = this.user.Emp_codi;
 
     this._soclanw.SetSoClanw(this.classified).then((resp:transaction)=>{
       this.sending = false;
@@ -55,7 +60,7 @@ export class NetworkingClassifiedsNewPage {
           "¡Hemos recibido la solicitud de su clasificado!",
           this._sesion.getAeParam().par_rsdc,
           (resp) => {
-            console.log("cerrando modal");
+           this._view.dismiss();
           },
           "alert-nogal",
           false,
