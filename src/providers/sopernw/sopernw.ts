@@ -18,7 +18,7 @@ export class SopernwProvider {
 
 
   GetSoPernw(emp_codi:number,sbe_cont:number,soc_cont:number,mac_nume:string){
-    return this._comu.Get(`SoPernw?emp_codi=${emp_codi}&sbe_cont=${sbe_cont}&soc_cont=${soc_cont}&mac_nume=${mac_nume}`)
+    return this._comu.Get(`SoPernw?emp_codi=${emp_codi}&sbe_cont=${sbe_cont}&soc_cont=${soc_cont}&mac_nume=${mac_nume}`,false,'',false)
   }
 
 SetSoPernw(profile:sopernw){
