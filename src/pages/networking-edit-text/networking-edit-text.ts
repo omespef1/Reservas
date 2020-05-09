@@ -29,7 +29,7 @@ export class NetworkingEditTextPage {
     console.log('ionViewDidLoad NetworkingEditTextPage');
   }
 
-  close(){
+  closeModal(){
     this._view.dismiss();
   }
 

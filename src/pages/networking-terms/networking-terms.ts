@@ -32,6 +32,7 @@ this._sesions.GetLoggedin().then((resp:user)=>{
   }
 
   ionViewDidLoad() {
+    console.log(this.params);
     console.log('ionViewDidLoad TermsPage');
   }
 

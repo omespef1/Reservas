@@ -117,13 +117,14 @@ import { NetworkingMessagesPage } from '../pages/networking-messages/networking-
 import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/networking-classifieds';
 import { NetworkingClassifiedsTermsPage } from '../pages/networking-classifieds-terms/networking-classifieds-terms';
 import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking-edit-text';
-import { NetworkingNewProyectPage } from '../pages/networking-new-proyect/networking-new-proyect';
 import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
 import { SoclanwProvider } from '../providers/soclanw/soclanw';
 import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 
 import { AeosappProvider } from '../providers/aeosapp/aeosapp';
 import { NetworkingNewsViewerPage } from '../pages/networking-news-viewer/networking-news-viewer';
+import { NetworkingProfileProyectPage } from '../pages/networking-profile-proyect/networking-profile-proyect';
+
 
 
 
@@ -201,10 +202,10 @@ import { NetworkingNewsViewerPage } from '../pages/networking-news-viewer/networ
     NetworkingClassifiedsPage,
     NetworkingClassifiedsTermsPage,
     NetworkingEditTextPage,
-    NetworkingNewProyectPage,
     NetworkingClassifiedsNewPage,
     NetworkingNewsPage,
-    NetworkingNewsViewerPage
+    NetworkingNewsViewerPage,
+    NetworkingProfileProyectPage
   ],
   imports: [
     FormsModule,
@@ -280,10 +281,10 @@ import { NetworkingNewsViewerPage } from '../pages/networking-news-viewer/networ
     NetworkingClassifiedsPage,
     NetworkingClassifiedsTermsPage,
     NetworkingEditTextPage,
-    NetworkingNewProyectPage,
     NetworkingClassifiedsNewPage,
     NetworkingNewsPage,
-    NetworkingNewsViewerPage
+    NetworkingNewsViewerPage,
+    NetworkingProfileProyectPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

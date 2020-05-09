@@ -42,13 +42,15 @@ export class NetworkingNewsPage {
     private _aeosapp: AeosappProvider,
     private _sessions: sessions
   ) {
-    this._sessions.GetLoggedin().then((resp: user) => {
-      this.user = resp;
-    });
+   
   }
 
   ionViewDidLoad() {
-    this.GetNews();
+    this._sessions.GetLoggedin().then((resp: user) => {
+      this.user = resp;
+      this.GetNews();
+    });
+   
   }
   goHome() {
     this.navCtrl.setRoot(NetworkingMenuPage);
@@ -56,15 +58,15 @@ export class NetworkingNewsPage {
 
   GetNews() {
     this.getting = true;
-    // this._aeosapp.GetNews(this.user.Emp_codi).then((resp:transaction)=>{
-    //   this.getting=false;
-    // if(resp!=null && resp.Retorno==0){
-    //   this.news = resp.ObjTransaction;
-    // }
-    // })
-    setTimeout(() => {
-      this.getting = false;
-    }, 4000);
+    this._aeosapp.GetNews(this._sessions.GetClientEmpCodi()).then((resp:transaction)=>{
+      this.getting=false;
+    if(resp!=null && resp.Retorno==0){
+      this.news = resp.ObjTransaction;
+    }
+    })
+    // setTimeout(() => {
+    //   this.getting = false;
+    // }, 4000);
   }
 
   openNew(myNew:aeosapp) {

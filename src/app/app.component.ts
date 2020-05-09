@@ -16,6 +16,8 @@ import { NotificationsPushProvider } from '../providers/notifications-push/notif
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
+import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+
 
 
 
@@ -32,7 +34,7 @@ import { NetworkingProfilePage } from '../pages/networking-profile/networking-pr
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = LoginPage
+  rootPage: any = LoginPage;
 
   ;
   logged: boolean = false;
@@ -145,6 +147,7 @@ if(platform.is("cordova")){
 
   this._espac.GetAeParam().then((resp: transaction) => {
     if (resp != null) {
+      console.log(resp);
       this._sessions.setAeParam(resp.ObjTransaction);
     }
   })

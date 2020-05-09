@@ -4,6 +4,9 @@ font-family: Raleway;
 .orange{
     background-color: #FB512C;
 }
+.color-orange{
+    color: #B97D68;
+}
 .yellow {
     background-color: #9EDC39;
 }
@@ -36,15 +39,15 @@ font-family: Raleway;
 
 //Profile Avayar
 .profile {
-    padding: 5%;
+   
      h2 {
          color:white;
-         font-weight: bold;
+        //  font-weight: bold;
          overflow-wrap: break-word;
      }
-     h3 {
-         color:#3F1D62;
-         font-weight: bold;
+     h1 {
+        color:white;
+          font-weight: bold;
      }
      p{
         color:#3F1D62;
@@ -90,6 +93,7 @@ ion-avatar.profile-avatar.center{
           color:#B97D68;
           right: 0px;
           position: absolute;
+          font-size: 1.9rem;
       }
       .button-ios.activated {
        
@@ -105,11 +109,26 @@ ion-avatar.profile-avatar.center{
      }
  }
 
- .edit-profile {
-     .button-clear-ios {
+ 
+     
+     .button-edit {
        
         color: white;
         
     }
- }
+
+
+
+    .item-ios .item-button {
+        padding: 0 0.5em;
+        height: 24px;
+        font-size: 1.9rem;
+    }
+
+  ion-list-header{
+      ion-label{
+          color:#3F1D62;
+      }
+  }
+
 }

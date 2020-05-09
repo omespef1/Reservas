@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NetworkingClassifiedsPage } from '../networking-classifieds/networking-classifieds';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
+import { sessions } from '../../class/sessions/sessions';
 
 
 /**
@@ -18,7 +19,7 @@ import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 })
 export class NetworkingClassifiedsTermsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,private _sessions:sessions) {
   }
 
   ionViewDidLoad() {

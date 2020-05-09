@@ -29,14 +29,17 @@ export class NetworkingClassifiedsPage {
     private _soclanw:SoclanwProvider,private _sessions:sessions) {
     
 
-      this._sessions.GetLoggedin().then((resp:user)=>{
-        this.user = resp;
-      })
+     
 
 
   }
 
   ionViewDidLoad() {
+    this._sessions.GetLoggedin().then((resp:user)=>{
+      this.user = resp;
+      this.GetSoClanws();
+    })
+   
     console.log('ionViewDidLoad NetworkingClassifiedsPage');
   }
 
@@ -57,11 +60,11 @@ export class NetworkingClassifiedsPage {
 
   GetSoClanws(){
    this.getting=true;
-   this._soclanw.GetSoClanw(this.user.Emp_codi).then((resp:transaction)=>{
+   this._soclanw.GetSoClanw(this._sessions.GetClientEmpCodi()).then((resp:transaction)=>{
     this.getting=false;
      if(resp!=null && resp.Retorno==0){
         
-
+      this.classifieds= resp.ObjTransaction;
 
      }
    })

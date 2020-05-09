@@ -72,6 +72,7 @@ export class ComunicationsProvider {
             return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
           })
           .take(5)
+          .retry(10)
           .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
       })
         .subscribe((resp: any) => {

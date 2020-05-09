@@ -16,7 +16,7 @@ export class SoclanwProvider {
     console.log('Hello SoclanwProvider Provider');
   }
 GetSoClanw(emp_codi:number){
-  return this._comu.Get(`soclanw?emp_codi=${emp_codi}`);
+  return this._comu.Get(`soclanw?emp_codi=${emp_codi}`,false,'',false);
 }
   SetSoClanw(classified:soclanw){
   return this._comu.Post(classified,`soclanw`,'',false);

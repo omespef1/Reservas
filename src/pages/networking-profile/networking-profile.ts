@@ -4,6 +4,7 @@ import {
   NavController,
   NavParams,
   ModalController,
+  Modal,
 } from "ionic-angular";
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { sessions } from "../../class/sessions/sessions";
@@ -18,6 +19,8 @@ import {
 import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { NetworkingEditTextPage } from "../networking-edit-text/networking-edit-text";
 import { general } from "../../class/general/general";
+import { NetworkingProfileProyectPage } from "../networking-profile-proyect/networking-profile-proyect";
+import { PartnerProvider } from "../../providers/partner/partner";
 
 /**
  * Generated class for the NetworkingProfilePage page.
@@ -37,6 +40,7 @@ export class NetworkingProfilePage {
   economicSectors: item[] = [];
   professions: item[] = [];
   saving = false;
+  foto:string="";
   myProfile = new sopernw();
   // myProfile: sopernw = {
   //   emp_codi: 102,
@@ -93,7 +97,8 @@ export class NetworkingProfilePage {
     private _sopernw: SopernwProvider,
     private _sessions: sessions,
     private _modal: ModalController,
-    private _general: general
+    private _general: general,
+    private _sosocio:PartnerProvider
   ) {
    
   }
@@ -111,7 +116,17 @@ export class NetworkingProfilePage {
       this.GetProfessions();
       this.GetSectors();
       this.GetSoPernw();
+      this.GetSocPhoto();
     }
+  }
+
+  GetSocPhoto(){
+    this._sosocio.GetSoSocioPhoto(this._sessions.GetClientEmpCodi(),
+    this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume1).then((resp:transaction)=>{
+      if(resp!=null && resp.Retorno==0){
+           this.foto = resp.ObjTransaction;
+      }
+    })
   }
 
   GetSoPernw() {
@@ -145,15 +160,35 @@ export class NetworkingProfilePage {
     });
   }
 
-  goEditProyect(proyect: sodpern) {
-    this.showModalEdit(proyect.dpe_npro, proyect.dpe_desc, (data: any) => {
-      if (data) {
-        //Variable para saber si el usuario cambió información
-        this.hasEdited = true;
-        proyect.dpe_desc = data.editText;
+  addOrEditProyect(proyect?: sodpern) {
+    // this.showModalEdit(proyect.dpe_npro, proyect.dpe_desc, (data: any) => {
+    //   if (data) {
+    //     //Variable para saber si el usuario cambió información
+    //     this.hasEdited = true;
+    //     proyect.dpe_desc = data.editText;
+    //   }
+    // });
+    let modal:Modal;
+   if(proyect==undefined){
+     let newProyect = new sodpern();
+   
+     newProyect.emp_codi= this._sessions.GetClientEmpCodi();
+     newProyect.per_cont = this.myProfile.per_cont;
+    modal = this._modal.create(NetworkingProfileProyectPage,{'proyect':newProyect});
+   }
+   else 
+    modal = this._modal.create(NetworkingProfileProyectPage,{'proyect':proyect});
+    modal.present();
+    modal.onDidDismiss((proyectEdit:sodpern)=>{
+      if(proyect==undefined && proyectEdit)
+        this.myProfile.details.push(proyectEdit)
+      else {
+        proyect = proyectEdit;
       }
-    });
+    })
   }
+
+
 
   showModalEdit(
     title: string,
@@ -167,15 +202,15 @@ export class NetworkingProfilePage {
   }
 
   GetProfessions() {
-    this.professions = [
-      {
-        Ite_codi: "0",
-        Ite_cont: 14567,
-        Ite_nomb: "Presidente y CEO",
-        Tit_cont: 0,
-      },
-      { Ite_codi: "1", Ite_cont: 14568, Ite_nomb: "Arquiteecto", Tit_cont: 0 },
-    ];
+    // this.professions = [
+    //   {
+    //     Ite_codi: "0",
+    //     Ite_cont: 14567,
+    //     Ite_nomb: "Presidente y CEO",
+    //     Tit_cont: 0,
+    //   },
+    //   { Ite_codi: "1", Ite_cont: 14568, Ite_nomb: "Arquiteecto", Tit_cont: 0 },
+    // ];
     this._sessions.getProfessions().then((resp: item[]) => {
       if (resp) {
         this.professions = resp;
@@ -184,13 +219,13 @@ export class NetworkingProfilePage {
   }
 
   GetSectors() {
-    this.economicSectors = [
-      { Ite_codi: "0", Ite_cont: 14978, Ite_nomb: "Software", Tit_cont: 0 },
-      { Ite_codi: "1", Ite_cont: 14979, Ite_nomb: "Automotri", Tit_cont: 0 },
-    ];
+    // this.economicSectors = [
+    //   { Ite_codi: "0", Ite_cont: 14978, Ite_nomb: "Software", Tit_cont: 0 },
+    //   { Ite_codi: "1", Ite_cont: 14979, Ite_nomb: "Automotri", Tit_cont: 0 },
+    // ];
     this._sessions.getEconomicSector().then((resp: item[]) => {
       if (resp) {
-        // this.economicSectors = resp;
+        this.economicSectors = resp;
       }
       //codigo de testeo
     });
@@ -218,7 +253,7 @@ export class NetworkingProfilePage {
     let data = this.economicSectors.filter(
       (t) => t.Ite_cont == this.myProfile.ite_seco
     )[0];
-    return data == undefined ? "" : data.Ite_nomb;
+    return data == undefined ? "Sin definir" : data.Ite_nomb;
   }
 
   setProfession() {
@@ -243,7 +278,7 @@ export class NetworkingProfilePage {
     let data = this.professions.filter(
       (t) => t.Ite_cont == this.myProfile.ite_prof
     )[0];
-    return data == undefined ? "" : data.Ite_nomb;
+    return data == undefined ? "Sin Definir" : data.Ite_nomb;
   }
 
   saveChanges() {
@@ -275,7 +310,7 @@ export class NetworkingProfilePage {
       () => {},
       "alert-nogal",
       false,
-      "Cambios guardados!"
+      "Cambios guardados! Los cambios que hayas hecho serán visibles para los demás socios cuando tu perfil sea aprobado."
     );
   }
 }

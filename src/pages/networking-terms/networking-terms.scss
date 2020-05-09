@@ -1,5 +1,12 @@
 page-networking-terms {
 
+    //ocultar las tabs 
+    .tabs-ios .tabbar {
+        display: none !important;
+    }
+
+
+
     font-family: raleway;
    ion-content {
     background-color: #331A2D !important;

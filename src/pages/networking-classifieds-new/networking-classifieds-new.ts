@@ -49,7 +49,7 @@ export class NetworkingClassifiedsNewPage {
   SetClassified() {
     this.sending = true;
      
-this.classified.emp_codi = this.user.Emp_codi;
+this.classified.emp_codi = this._sesion.GetClientEmpCodi();
 
     this._soclanw.SetSoClanw(this.classified).then((resp:transaction)=>{
       this.sending = false;
@@ -58,7 +58,7 @@ this.classified.emp_codi = this.user.Emp_codi;
 
         this._general.showCustomAlert(
           "¡Hemos recibido la solicitud de su clasificado!",
-          this._sesion.getAeParam().par_rsdc,
+          this._sesion.getAeParam().par_rsdc==undefined?'Mensaje sin definir':this._sesion.getAeParam().par_rsdc,
           (resp) => {
            this._view.dismiss();
           },

@@ -34,11 +34,13 @@
     <ion-col>
       <ion-item button (click)="goProfile()" no-lines no-padding class="transparent" >
         <ion-avatar class="profile-Menu" item-left>
-          <img src="assets/imgs/user.svg">
+          <img *ngIf="foto!=''" src="data:image/jpeg;base64,{{foto}}">
+          <img *ngIf="foto==''" src="assets/imgs/user.svg">
         </ion-avatar>
-        <h2>JORGE CAMILO BERNAL</h2>
+        <h2>{{user.Soc_nomb}} {{user.Soc_apel}} </h2>
         <h4>Profesión</h4>
-        <p>Ing Sistemas</p>
+        <skeleton-item *ngIf="loading"  width="60px" rounded></skeleton-item>
+        <p *ngIf="!loading"> {{FindProfession()}}</p>
       </ion-item>
     </ion-col>
   </ion-row>

@@ -6,25 +6,33 @@
 -->
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <button  ion-button round>
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons end>
-      <button (click)="close()" ion-button round>
+      <button (click)="closeModal()"  ion-button round>
         <ion-icon name="close-circle"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title>{{title}}</ion-title>
+
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <div class="content-edit">
-      <ion-item>
-        <ion-textarea   max="300" [(ngModel)]="editText" placeholder="Ingrese la información aquí"></ion-textarea>
-     </ion-item>
-  </div>
-  <div class="content-info">
-    <h3> {{editText.length}} / 300 </h3>
+  <ion-item no-lines>
+    <ion-label stacked  >Descripción</ion-label>
+    <ion-textarea [(ngModel)]="editText"  placeholder="Descripción"></ion-textarea>
+    <ion-icon class="input-icon" item-end name="md-albums"></ion-icon>
+  </ion-item>
+  <div  text-center>
+    <button  (click)="ok()" block  class="orange" ion-button round>
+      <div class="font-icon">
+        <i  class="fa fa-cloud-upload" aria-hidden="true"></i>
+      </div>
+        &nbsp;Hecho
+    </button>
    </div>
-
-  <button (click)="ok()" class="blue" ion-button round outline block>
-    <ion-icon name="ios-checkmark-circle-outline"></ion-icon>
-  </button>
+ 
 </ion-content>

@@ -5,7 +5,7 @@ import {
   NavParams,
   ModalController,
 } from "ionic-angular";
-import { transactionNumber, user, ae_param } from "../../class/models/models";
+import { transactionNumber, user, ae_param, transaction, sopernw, item } from "../../class/models/models";
 import { AeinappProvider } from "../../providers/aeinapp/aeinapp";
 import { sessions } from "../../class/sessions/sessions";
 import { NetworkingTermsPage } from "../networking-terms/networking-terms";
@@ -14,6 +14,8 @@ import { NetworkingProfilePage } from "../networking-profile/networking-profile"
 import { NetworkingMessagesPage } from "../networking-messages/networking-messages";
 import { NetworkingClassifiedsPage } from "../networking-classifieds/networking-classifieds";
 import { NetworkingNewsPage } from "../networking-news/networking-news";
+import { SopernwProvider } from "../../providers/sopernw/sopernw";
+import { PartnerProvider } from "../../providers/partner/partner";
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -28,23 +30,34 @@ import { NetworkingNewsPage } from "../networking-news/networking-news";
   templateUrl: "networking-menu.html",
 })
 export class NetworkingMenuPage {
-  user: user;
+  user: user= new user();
   params: ae_param;
+  myProfile:sopernw = new sopernw();
+  loading=true;
+  professions: item[] = [];
+  foto:string="";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private _aeinapp: AeinappProvider,
     private _sesions: sessions,
-    private _modal: ModalController
+    private _modal: ModalController,
+    private _sopernw:SopernwProvider,
+    private _sessions:sessions,
+    private _sosocio:PartnerProvider
   ) {
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
       this.user = resp;
+      this.GetProfessions();
+      this.GetSoPernw();
+      this.GetSocPhoto();
     });
   }
 
   ionViewDidLoad() {
     this.VerifyTerms();
+   
   }
 
   showModalTerms() {
@@ -89,5 +102,56 @@ export class NetworkingMenuPage {
   }
   goNews(){
     this.navCtrl.setRoot(NetworkingNewsPage);
+  }
+
+  GetSoPernw() {
+    console.log(this.user);
+    this._sopernw
+      .GetSoPernw(
+        this._sessions.GetClientEmpCodi(),
+        this.user.Sbe_cont,
+        this.user.Soc_cont,
+        this.user.Mac_nume1
+      )
+      .then((resp: transaction) => {
+        this.loading = false;
+
+        if (resp != null && resp.Retorno == 0) {
+          this.myProfile = resp.ObjTransaction;
+        }
+      });
+  }
+
+  GetSocPhoto(){
+    this._sosocio.GetSoSocioPhoto(this._sessions.GetClientEmpCodi(),
+    this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume1).then((resp:transaction)=>{
+      if(resp!=null && resp.Retorno==0){
+           this.foto = resp.ObjTransaction;
+      }
+    })
+  }
+
+  GetProfessions() {
+    // this.professions = [
+    //   {
+    //     Ite_codi: "0",
+    //     Ite_cont: 14567,
+    //     Ite_nomb: "Presidente y CEO",
+    //     Tit_cont: 0,
+    //   },
+    //   { Ite_codi: "1", Ite_cont: 14568, Ite_nomb: "Arquiteecto", Tit_cont: 0 },
+    // ];
+    this._sessions.getProfessions().then((resp: item[]) => {
+      if (resp) {
+        this.professions = resp;
+      }
+    });
+  }
+
+  FindProfession() {
+    let data = this.professions.filter(
+      (t) => t.Ite_cont == this.myProfile.ite_prof
+    )[0];
+    return data == undefined ? "Sin Definir" : data.Ite_nomb;
   }
 }

@@ -15,7 +15,7 @@ export class AeosappProvider {
     console.log('Hello AeosappProvider Provider');
   }
 GetNews(emp_codi:number){
-  return this._comunications.Get(`AeOsApp/GetAeOsAppByType?emp_codi=${emp_codi}osa_tipo=T&osa_mapp=A`,false,'',true);
+  return this._comunications.Get(`AeOsApp/GetAeOsAppByType?emp_codi=${emp_codi}&osa_tipo=T&osa_mapp=A`,false,'',false);
 }
 
 }

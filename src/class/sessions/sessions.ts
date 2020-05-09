@@ -97,7 +97,7 @@ export class sessions {
 
      //return 'http://132.147.157.140/SevenReservas/api/';
     // return 'http://186.154.240.181/Nogalapi/api/';
-    return 'http://localhost/SevenReservas/api/';
+    return 'http://186.154.240.181//NogalApi/api/';
   //   return 'http://192.168.1.209/appnogal/api/';
   // return 'https://erp.clubelnogal.com/appnogal/api/';
     // Le quita el https a la url configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps

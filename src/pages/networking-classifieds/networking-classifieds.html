@@ -25,7 +25,7 @@
   <div class="search-container">
     <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
   </div>
-  <ion-grid padding>
+  <ion-grid>
     <ion-row>
       <ion-col>
         <button (click)="goNewClassified()" block class="orange" ion-button round>
@@ -54,7 +54,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+<div *ngIf="!getting">
   <div class="card" *ngFor="let item of classifieds">
     <div class="card-header">
       <h2><b>{{item.cla_titu}}</b></h2>
@@ -81,6 +81,39 @@
         <b>Teléfono:</b> {{item.cla_tele}}
       </div>
 
+    </div>
+  </div>
+</div>
+
+
+  <div *ngIf="getting">
+    <div class="card" *ngFor="let item of [1,2,3]">
+      <div class="card-header">
+        <skeleton-item width="100%"></skeleton-item>
+        <skeleton-item width="50px"></skeleton-item>
+  
+      </div>
+  
+      <div class="card-body">
+        <div class="card-img">
+          <skeleton-item width="100%" height="200px"></skeleton-item>
+        </div>
+        
+        <div class="card-text">
+          <skeleton-item width="100%"></skeleton-item>
+          <div text-right>
+            <skeleton-item width="80px" rounded></skeleton-item>
+          </div>
+          
+         
+        </div>
+        
+      </div>
+      
+  
+  
+  
+  
     </div>
   </div>
 
