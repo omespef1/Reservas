@@ -202,15 +202,7 @@ export class NetworkingProfilePage {
   }
 
   GetProfessions() {
-    // this.professions = [
-    //   {
-    //     Ite_codi: "0",
-    //     Ite_cont: 14567,
-    //     Ite_nomb: "Presidente y CEO",
-    //     Tit_cont: 0,
-    //   },
-    //   { Ite_codi: "1", Ite_cont: 14568, Ite_nomb: "Arquiteecto", Tit_cont: 0 },
-    // ];
+
     this._sessions.getProfessions().then((resp: item[]) => {
       if (resp) {
         this.professions = resp;
@@ -219,10 +211,7 @@ export class NetworkingProfilePage {
   }
 
   GetSectors() {
-    // this.economicSectors = [
-    //   { Ite_codi: "0", Ite_cont: 14978, Ite_nomb: "Software", Tit_cont: 0 },
-    //   { Ite_codi: "1", Ite_cont: 14979, Ite_nomb: "Automotri", Tit_cont: 0 },
-    // ];
+  
     this._sessions.getEconomicSector().then((resp: item[]) => {
       if (resp) {
         this.economicSectors = resp;
