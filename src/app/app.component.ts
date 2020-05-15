@@ -34,7 +34,7 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = LoginPage;
+  rootPage: any = NetworkingProfilePage;
 
   ;
   logged: boolean = false;
@@ -95,9 +95,9 @@ if(platform.is("cordova")){
     // this.events.subscribe('offBackground',()=>{
     //   //this._backgroundMode.disable();
     // })
-    this.events.subscribe('user:login', (user: any) => {
+    this.events.subscribe('user:login', async (user: any) => {
       this.logged = true;
-      this._sessions.setLoggedIn(user);
+       await  this._sessions.setLoggedIn(user);
       this._aeinapp.SetAeInApp('I');
       this.nav.setRoot(MenuPage);
      

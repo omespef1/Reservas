@@ -11,7 +11,9 @@ font-family: Raleway;
     background-color: #9EDC39;
 }
 //toolbar 
-
+.home-button {
+    left: 35px;
+}
     .toolbar-title-ios {
         
         color: white;
@@ -39,7 +41,8 @@ font-family: Raleway;
 
 //Profile Avayar
 .profile {
-   
+   padding-left: 16px;
+   padding-right: 16px;
      h2 {
          color:white;
         //  font-weight: bold;
@@ -48,6 +51,7 @@ font-family: Raleway;
      h1 {
         color:white;
           font-weight: bold;
+          font-size: 1.5rem;
      }
      p{
         color:#3F1D62;
@@ -56,23 +60,30 @@ font-family: Raleway;
 }
 
 ion-avatar.profile-avatar{
+    img {
+        border-radius: 50%;
+        overflow: hidden;
+        width: inherit;
+        height: inherit;
+        border: 3px solid white;
+    }
    background-color: white;
    border-radius: 50%;
-   width: 100px;
-   height: 100px;
+   width: 80px;
+   height: 80px;
    
 }
+ion-avatar.profile-body{
+    background-color: white;
+    border-radius: 50%;
+    max-width: 30%;
+    height: auto;
+    
+ }
 ion-avatar.profile-avatar.center{
     margin: auto;
     
  }
-.item-ios ion-avatar img {
-    border-radius: 50%;
-    overflow: hidden;
-    width: inherit;
-    height: inherit;
-    padding: 15px;
-}
 
 
 //Botones
@@ -101,23 +112,36 @@ ion-avatar.profile-avatar.center{
         background-color: transparent;
     }
      h2{
-         font-size: 1.3rem;
+         font-size: 1.0rem;
          font-weight: bold;
      }
-     p{
-         font-size: 1.2rem;
-     }
+    
  }
 
  
-     
+ p{
+    font-size: 1.2rem;
+    text-transform: lowercase;
+}  
      .button-edit {
        
         color: white;
         
     }
 
+    .parragraph {
+        width: 100%;
+    }
 
+.item-edit.item-ios {
+  h2 {
+    font-size: 1.3rem;
+  }
+  p{
+      font-size: 1.1rem;
+  }
+ 
+}
 
     .item-ios .item-button {
         padding: 0 0.5em;

@@ -50,7 +50,7 @@
     </ion-list>
   </div>
   <div *ngIf="!loading">
-    <div (click)="goOtherProfile()" class="card" *ngFor="let profile of profiles">
+    <div (click)="goOtherProfile(profile)" class="card" *ngFor="let profile of profiles">
       <div class="card-profile">
         <ion-item no-lines no-padding class="item-filter transparent">
           <ion-avatar class="profile-Menu" item-left>

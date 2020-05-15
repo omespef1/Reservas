@@ -253,9 +253,13 @@ GetPlatform():string{
 
 }
 
-showRadio(title:string,options:radio[],action:(value:any)=>void) {
+showCustomAlertInputs(title:string,options:radio[],action:(value:any)=>void,cssclass?:string,subTitle?:string,message?:string) {
   console.log(options);
-  let alert = this.alert.create();
+  let alert = this.alert.create({
+    title: title,
+    subTitle: subTitle,
+    message: message,
+    cssClass:cssclass});
   
   alert.setTitle(title);
 for(let option of options){

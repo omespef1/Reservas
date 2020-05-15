@@ -7,11 +7,11 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
-      <button (click)="goHome()" ion-button round>
+      <button class="home-button" (click)="goHome()" ion-button round>
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="myProfileMode">
       <button [disabled]="saving" (click)="saveChanges()" ion-button round>
         <div class="font-icon">
           <i class="" [class]="saving?'fa fa-refresh fa-spin':'fa fa-floppy-o'" aria-hidden="true"></i>
@@ -19,100 +19,84 @@
         <!-- <ion-icon name="md-checkmark-circle"></ion-icon> -->
       </button>
     </ion-buttons>
-    <ion-title>{{myProfileMode?'Mi Perfil':'Perfil'}}</ion-title>
+    <ion-title>{{myProfileMode? user.Soc_nomb + " " + user.Soc_apel : myProfile.soc_nomb + " " + myProfile.soc_apel  }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="element-aparecer">
 
-  <div *ngIf="loadingProfile" >
+  <div *ngIf="loadingProfile">
     <skeleton-item height="320px" no-animated></skeleton-item>
-  <div padding>
-    <skeleton-item height="24px"></skeleton-item>
-    <skeleton-item height="24px" width="67%" style="margin-bottom: 12px"></skeleton-item>
-    <skeleton-item height="14px"></skeleton-item>
-    <skeleton-item height="14px"></skeleton-item>
-    <skeleton-item width="67%"></skeleton-item>
-  </div>
-  <div padding>
-    <skeleton-item height="52px" radius="8px"></skeleton-item>
-  </div>
+    <div padding>
+      <skeleton-item height="24px"></skeleton-item>
+      <skeleton-item height="24px" width="67%" style="margin-bottom: 12px"></skeleton-item>
+      <skeleton-item height="14px"></skeleton-item>
+      <skeleton-item height="14px"></skeleton-item>
+      <skeleton-item width="67%"></skeleton-item>
+    </div>
+    <div padding>
+      <skeleton-item height="52px" radius="8px"></skeleton-item>
+    </div>
 
-  <ion-item no-lines>
-    <ion-avatar item-start>
-      <skeleton-item height="36px" width="36px" rounded></skeleton-item>
-    </ion-avatar>
-    <skeleton-item height="16px" width="67%"></skeleton-item>
-  </ion-item>
+    <ion-item no-lines>
+      <ion-avatar item-start>
+        <skeleton-item height="36px" width="36px" rounded></skeleton-item>
+      </ion-avatar>
+      <skeleton-item height="16px" width="67%"></skeleton-item>
+    </ion-item>
   </div>
   <div *ngIf="!loadingProfile">
-    <div *ngIf="!myProfileMode" class="profile">
+    <!-- <div *ngIf="!myProfileMode" class="profile">
       <ion-item button no-lines no-padding class="transparent">
         <ion-avatar class="profile-avatar" item-start>
-         
+
           <img *ngIf="foto!=''" src="data:image/jpeg;base64,{{foto}}">
           <img *ngIf="foto==''" src="assets/imgs/profile-gray.svg">
         </ion-avatar>
         <div>
           <h2>JORGE CAMILO BERNAL MARTINE</h2>
         </div>
-  
+
         <h3>Profesión</h3>
         <p>Sector económico</p>
-  
-      </ion-item>
-    </div>
-    <div *ngIf="myProfileMode" class="profile">
-  
-   
-      <ion-item button no-lines no-padding class="transparent">
-        <ion-avatar text-center class="profile-avatar center">
-          <img class="profileMode" src="assets/imgs/upload.svg">
-        </ion-avatar>
-        <div text-center>
-          <div>
-            <h1>{{user.Soc_nomb}} {{user.Soc_apel}} </h1>
-  
-  
-          </div>
-  
-  
-  
-  
-          <ion-item class="transparent item-edit">
-            <h2>Profesión</h2>
-            <p> <b>{{getProfession()}}</b></p>
-            <button class="button-edit" item-end ion-button clear (click)="setProfession()">
-              <ion-icon name="md-create"></ion-icon>
-            </button>
-          </ion-item>
-  
-          <ion-item class="transparent">
-            <h2>Sector económico</h2>
-            <p><b>{{getSectorName()}}</b></p>
-            <button   class="button-edit" item-end ion-button clear (click)="setSector()">
-              <ion-icon name="md-create"></ion-icon>
-            </button>
-          </ion-item>
 
-          <ion-item class="transparent">
-            <h2>Años de experiencia</h2>
-            <p><b>{{ myProfile.per_aexp}}</b></p>
-            <button   class="button-edit" item-end ion-button clear (click)="setSector()">
-              <ion-icon name="md-create"></ion-icon>
-            </button>
-          </ion-item>
-          <div class="edit-profile">
-  
-          </div>
-  
-  
-        </div>
-  
-  
       </ion-item>
+    </div> -->
+    <div  class="profile">
+
+
+      <ion-item button no-lines no-padding class="transparent">
+        <ion-avatar item-start text-center class="profile-avatar center">
+          <img class="profileMode" src="data:image/jpeg;base64,{{foto}}">        
+        </ion-avatar>
+        <ion-item no-lines class="transparent item-edit">
+          <h2>Profesión</h2>
+          <p> <b>{{getProfession()}}</b></p>
+          <button *ngIf="myProfileMode" class="button-edit" item-end ion-button clear (click)="setProfession()">
+            <ion-icon name="md-create"></ion-icon>
+          </button>
+        </ion-item>
+
+        <ion-item no-lines class="transparent item-edit">
+          <h2>Sector económico</h2>
+          <p><b>{{getSectorName()}}</b></p>
+          <button *ngIf="myProfileMode" class="button-edit" item-end ion-button clear (click)="setSector()">
+            <ion-icon name="md-create"></ion-icon>
+          </button>
+        </ion-item>
+        <ion-item no-lines class="transparent item-edit">
+          <h2>Estado</h2>
+          <p><b>{{myProfile.per_esta=='A'?'Aprobado':myProfile.per_esta=='P'?'Pendiente':'Sin definir'}}</b></p>
+          <button *ngIf="myProfileMode" class="button-edit" item-end ion-button clear (click)="setSector()">
+            <ion-icon name="md-create"></ion-icon>
+          </button>
+        </ion-item>
+
+
+      </ion-item>
+     
     </div>
-  
+
     <ion-grid padding>
       <ion-row *ngIf="!myProfileMode">
         <ion-col>
@@ -128,49 +112,113 @@
           </button>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>
-          <div>
-  
-            <ion-list-header>
+      
+
+    </ion-grid>
+    <div padding>
+
+        <ion-list-header>
+          <ion-label>
+            Acerca de mi
+          </ion-label>
+          <button class="color-orange" item-end *ngIf="myProfileMode" ion-button clear (click)="goEditAbout()">
+            <ion-icon name="md-create"></ion-icon>
+          </button>
+        </ion-list-header>
+
+        <ion-item no-lines class="transparent item-edit">
+          <p>{{ myProfile.per_admi}}</p>
+          <button class="button-edit" item-end ion-button clear>
+            <ion-icon name="md-create"></ion-icon>
+          </button>
+        </ion-item>
+ 
+        <ion-list-header>
+            <ion-label>
+              Años de experiencia
+            </ion-label>
+            <button class="color-orange" item-end *ngIf="myProfileMode" ion-button clear (click)="SetPerAexp()">
+              <ion-icon name="md-create"></ion-icon>
+            </button>
+          </ion-list-header>
+          <ion-item no-lines class="transparent item-edit">
+            <p>{{ myProfile.per_aexp}}</p>
+            <button class="button-edit" item-end ion-button clear>
+              <ion-icon name="md-create"></ion-icon>
+            </button>
+          </ion-item>
+      
+          <ion-list-header>
               <ion-label>
-                Acerca de mi
+                Palabras clave
               </ion-label>
-              <button class="color-orange" item-end *ngIf="myProfileMode" ion-button clear (click)="goEditAbout()">
-                <ion-icon name="md-create"></ion-icon> 
+              <button class="color-orange" item-end *ngIf="myProfileMode" ion-button clear (click)="goEditTags()">
+                <ion-icon name="md-create"></ion-icon>
               </button>
             </ion-list-header>
-  
-           
-              <div padding>
-                <p>{{ myProfile.per_admi}}</p>
-              </div>
-  
-            
-          </div>
-        </ion-col>
-      </ion-row>
-  
-      <ion-row>
-        <ion-col>
-          <div>
-  
-            <ion-list-header>
-              <ion-label>
-                Proyectos
-              </ion-label>
-              <button (click)="addOrEditProyect()" item-end ion-button clear rounded class="color-orange">
-                <ion-icon  name="add-circle"></ion-icon>
+            <ion-item no-lines class="transparent item-edit">
+              <p> {{ myProfile.per_tags}}</p>
+              <button *ngIf="myProfileMode" class="button-edit" item-end ion-button clear>
+                <ion-icon name="md-create"></ion-icon>
               </button>
-            </ion-list-header>
-            
-          </div>
-         
-  
-        </ion-col>
-      </ion-row>
-      <ion-row *ngFor="let proyect of myProfile.details">
-        <ion-col col-4>
+            </ion-item>
+
+            <ion-list-header>
+                <ion-label>
+                  Proyectos
+                </ion-label>
+                <button *ngIf="myProfileMode" (click)="addOrEditProyect()" item-end ion-button clear rounded class="color-orange">
+                  <ion-icon name="add-circle"></ion-icon>
+                </button>
+              </ion-list-header>
+        
+          
+        
+        
+        
+        <div *ngIf="myProfile.details!=undefined">
+          <ion-item *ngFor="let proyect of myProfile.details">
+            <ion-avatar class="profile-body" item-start>
+              <img src="assets/imgs/computer.svg" alt="proyecto">
+            </ion-avatar>
+      
+            <!-- <ion-avatar text-center class="profile-avatar center">
+                      <img class="profileMode" src="assets/imgs/upload.svg">
+                    </ion-avatar> -->
+            <h2>{{  proyect.dpe_npro }}</h2>
+      
+            <p> {{proyect.dpe_desc}} </p>
+            <button class="color-orange" *ngIf="myProfileMode" item-end ion-button clear (click)="addOrEditProyect(proyect)">
+              <ion-icon name="md-create"></ion-icon>
+            </button>
+          </ion-item>
+        </div>
+     
+        
+
+
+      </div>
+    
+
+
+    <!-- <ion-item class="transparent item-edit">
+            <h2>Años de experiencia</h2>
+            <p><b>{{ myProfile.per_aexp}}</b></p>
+            <button   class="button-edit" item-end ion-button clear (click)="SetPerAexp()">
+              <ion-icon name="md-create"></ion-icon>
+            </button>
+          </ion-item> -->
+
+
+
+
+
+
+
+
+    
+
+    <!-- <ion-col col-4>
           <div>
             <img src="assets/imgs/computer.svg" alt="proyecto">
           </div>
@@ -186,12 +234,12 @@
             </div>
             <p> {{proyect.dpe_desc}} </p>
           </div>
-        </ion-col>
-      </ion-row>
-  
-    </ion-grid>
+        </ion-col> -->
+
+
+
   </div>
- 
+
 
 
 </ion-content>

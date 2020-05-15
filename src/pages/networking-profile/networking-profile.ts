@@ -4,7 +4,7 @@ import {
   NavController,
   NavParams,
   ModalController,
-  Modal,
+  Modal
 } from "ionic-angular";
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { sessions } from "../../class/sessions/sessions";
@@ -14,7 +14,7 @@ import {
   transaction,
   sodpern,
   item,
-  radio,
+  radio
 } from "../../class/models/models";
 import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { NetworkingEditTextPage } from "../networking-edit-text/networking-edit-text";
@@ -32,7 +32,7 @@ import { PartnerProvider } from "../../providers/partner/partner";
 @IonicPage()
 @Component({
   selector: "page-networking-profile",
-  templateUrl: "networking-profile.html",
+  templateUrl: "networking-profile.html"
 })
 export class NetworkingProfilePage {
   myProfileMode = true;
@@ -40,57 +40,10 @@ export class NetworkingProfilePage {
   economicSectors: item[] = [];
   professions: item[] = [];
   saving = false;
-  foto:string="";
-  myProfile = new sopernw();
-  // myProfile: sopernw = {
-  //   emp_codi: 102,
-  //   per_cont: 1,
-  //   soc_cont: 39,
-  //   sbe_cont: 1,
-  //   mac_nume: "3023",
-  //   ite_prof: 14567,
-  //   ite_seco: 14978,
-  //   per_aexp: 0,
-  //   per_admi:
-  //     "soy ingenero de sistemas con mas de 20 años de experiencia en proyectos informaticos",
-  //   per_foto: ["string"],
-  //   per_tags: "string",
-  //   per_esta: "A",
-  //   cas_cont: 0,
-  //   aud_ufac: new Date(),
-  //   aud_usua: "string",
-  //   aud_esta: "string",
-  //   details: [
-  //     {
-  //       emp_codi: 0,
-  //       per_cont: 0,
-  //       dpe_proy: 0,
-  //       dpe_npro: "Digitalware S.A",
-  //       dpe_desc:
-  //         "Empresa del sector de tecnología especializada en Software ERP, Software de Nómina y Gestión Humana y Software para IPS y Clínicas, con más de 25 años en el mercado, líder en diseño e implantación de soluciones empresariales en las áreas de RRHH, Finanzas, Logística, Manufactura, Seguridad, Petróleos, Energía, Cajas de Compensación, Gobierno, Educación y Salud.",
-  //       dpe_fpro: ["string"],
-  //       cas_cont: 0,
-  //       aud_ufac: new Date(),
-  //       aud_usua: "string",
-  //       aud_esta: "string",
-  //     },
-  //     {
-  //       emp_codi: 0,
-  //       per_cont: 0,
-  //       dpe_proy: 0,
-  //       dpe_npro: "Facebook",
-  //       dpe_desc:
-  //         "compañía estadounidense que ofrece servicios de redes sociales y medios sociales en línea con sede en Menlo Park, California. Su sitio web fue lanzado el 4 de febrero de 2004 por Mark Zuckerberg, junto con otros estudiantes de la Universidad de Harvard y compañeros de habitación, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz y Chris Hughes. Está disponible en español desde febrero de 2008.4​ Facebook es una plataforma que funciona sobre una infraestructura de computación basada principal y totalmente en sistemas GNU/Linux, usando el conjunto de tecnologías LAMP, entre otras.",
-  //       dpe_fpro: ["string"],
-  //       cas_cont: 0,
-  //       aud_ufac: new Date(),
-  //       aud_usua: "string",
-  //       aud_esta: "string",
-  //     },
-  //   ],
-  // };
+  foto: string = "";
+  myProfile:any= {};
   loadingProfile = true;
-  user: user= new user();
+  user: user = new user();
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -98,36 +51,69 @@ export class NetworkingProfilePage {
     private _sessions: sessions,
     private _modal: ModalController,
     private _general: general,
-    private _sosocio:PartnerProvider
-  ) {
-   
-  }
+    private _sosocio: PartnerProvider
+  ) {}
 
   ionViewDidLoad() {
     this.LoadInitialData();
   }
 
   async LoadInitialData() {
-  this.user =     await<any>  this._sessions.GetLoggedin();
-    console.log(user);
-    this.myProfileMode =
-      this.navParams.get("myProfile") == undefined ? true : false;
-    if (this.myProfileMode) {
+    this.myProfileMode =this.navParams.get("myProfile") == undefined ? true : false;
+    if(this.myProfileMode)
+    this.user = await (<any>this._sessions.GetLoggedin());
+    else {
+
+     this.myProfile = this.navParams.get('profile');
+    }
+  
+    console.log(this.myProfile);
       this.GetProfessions();
       this.GetSectors();
-      this.GetSoPernw();
-      this.GetSocPhoto();
-    }
+      if(this.myProfileMode){
+        this.GetSoPernw();
+        this.GetSocPhoto();
+      }
+    
+      if(!this.myProfileMode){
+        this.GetSoPernwOtherProfile();
+          this.GetSocPhotoOtherProfile();
+      }
+      
+    
+    
   }
 
-  GetSocPhoto(){
-    this._sosocio.GetSoSocioPhoto(this._sessions.GetClientEmpCodi(),
-    this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume1).then((resp:transaction)=>{
-      if(resp!=null && resp.Retorno==0){
-           this.foto = resp.ObjTransaction;
-      }
-    })
+  GetSocPhoto() {
+    this._sosocio
+      .GetSoSocioPhoto(
+        this._sessions.GetClientEmpCodi(),
+        this.user.Soc_cont,
+        this.user.Sbe_cont,
+        this.user.Mac_nume1
+      )
+      .then((resp: transaction) => {
+        if (resp != null && resp.Retorno == 0) {
+          this.foto = resp.ObjTransaction;
+        }
+      });
   }
+
+  GetSocPhotoOtherProfile() {
+    this._sosocio
+      .GetSoSocioPhoto(
+        this._sessions.GetClientEmpCodi(),
+        this.myProfile.soc_cont,
+        this.myProfile.sbe_cont,
+        this.myProfile.mac_nume
+      )
+      .then((resp: transaction) => {
+        if (resp != null && resp.Retorno == 0) {
+          this.foto = resp.ObjTransaction;
+        }
+      });
+  }
+
 
   GetSoPernw() {
     console.log(this.user);
@@ -137,6 +123,25 @@ export class NetworkingProfilePage {
         this.user.Sbe_cont,
         this.user.Soc_cont,
         this.user.Mac_nume1
+      )
+      .then((resp: transaction) => {
+        this.loadingProfile = false;
+
+        if (resp != null && resp.Retorno == 0) {
+          this.myProfile = resp.ObjTransaction;
+        }
+      });
+  }
+
+
+  GetSoPernwOtherProfile() {
+    console.log(this.myProfile);
+    this._sopernw
+      .GetSoPernw(
+        this._sessions.GetClientEmpCodi(),
+        this.myProfile.sbe_cont,
+        this.myProfile.soc_cont,
+        this.myProfile.mac_nume
       )
       .then((resp: transaction) => {
         this.loadingProfile = false;
@@ -160,6 +165,38 @@ export class NetworkingProfilePage {
     });
   }
 
+  goEditTags() {
+    // this.showModalEdit("Palabras clave", this.myProfile.per_tags, (data: any) => {
+    //   if (data) {
+    //     //Variable para saber si el usuario cambió información
+    //     this.hasEdited = true;
+    //     this.myProfile.per_tags = data.editText;
+    //   }
+    // });
+    let options: any[] = [];
+
+    options.push({
+      type: "input",
+      label: "Palabras clave",
+      value: this.myProfile.per_tags,
+      placeholder: "Palabras clave",
+      min: 0,
+      max: 100
+    });
+    this._general.showCustomAlertInputs(
+      "Años de experiencia",
+      options,
+      (resp: any) => {
+        console.log(resp);
+
+        this.myProfile.per_tags = resp[0];
+      },
+      "alert-nogal",
+      "",
+      'Con estas palabras los otros socios podrás encontrarte en la sección "Lo que busco". Usa palabras separadas por una coma.'
+    );
+  }
+
   addOrEditProyect(proyect?: sodpern) {
     // this.showModalEdit(proyect.dpe_npro, proyect.dpe_desc, (data: any) => {
     //   if (data) {
@@ -168,27 +205,28 @@ export class NetworkingProfilePage {
     //     proyect.dpe_desc = data.editText;
     //   }
     // });
-    let modal:Modal;
-   if(proyect==undefined){
-     let newProyect = new sodpern();
-   
-     newProyect.emp_codi= this._sessions.GetClientEmpCodi();
-     newProyect.per_cont = this.myProfile.per_cont;
-    modal = this._modal.create(NetworkingProfileProyectPage,{'proyect':newProyect});
-   }
-   else 
-    modal = this._modal.create(NetworkingProfileProyectPage,{'proyect':proyect});
+    let modal: Modal;
+    if (proyect == undefined) {
+      let newProyect = new sodpern();
+
+      newProyect.emp_codi = this._sessions.GetClientEmpCodi();
+      newProyect.per_cont = this.myProfile.per_cont;
+      modal = this._modal.create(NetworkingProfileProyectPage, {
+        proyect: newProyect
+      });
+    } else
+      modal = this._modal.create(NetworkingProfileProyectPage, {
+        proyect: proyect
+      });
     modal.present();
-    modal.onDidDismiss((proyectEdit:sodpern)=>{
-      if(proyect==undefined && proyectEdit)
-        this.myProfile.details.push(proyectEdit)
+    modal.onDidDismiss((proyectEdit: sodpern) => {
+      if (proyect == undefined && proyectEdit)
+        this.myProfile.details.push(proyectEdit);
       else {
         proyect = proyectEdit;
       }
-    })
+    });
   }
-
-
 
   showModalEdit(
     title: string,
@@ -202,7 +240,6 @@ export class NetworkingProfilePage {
   }
 
   GetProfessions() {
-
     this._sessions.getProfessions().then((resp: item[]) => {
       if (resp) {
         this.professions = resp;
@@ -211,7 +248,6 @@ export class NetworkingProfilePage {
   }
 
   GetSectors() {
-  
     this._sessions.getEconomicSector().then((resp: item[]) => {
       if (resp) {
         this.economicSectors = resp;
@@ -228,19 +264,24 @@ export class NetworkingProfilePage {
         type: "radio",
         label: item.Ite_nomb,
         value: item.Ite_cont.toString(),
-        checked: false,
+        checked: false
       });
     }
-    this._general.showRadio("Sector económico", options, (resp: any) => {
-      console.log(resp);
+    this._general.showCustomAlertInputs(
+      "Sector económico",
+      options,
+      (resp: any) => {
+        console.log(resp);
 
-      this.myProfile.ite_seco = resp;
-    });
+        this.myProfile.ite_seco = resp;
+      },
+      "alert-nogal"
+    );
   }
 
   getSectorName() {
     let data = this.economicSectors.filter(
-      (t) => t.Ite_cont == this.myProfile.ite_seco
+      t => t.Ite_cont == this.myProfile.ite_seco
     )[0];
     return data == undefined ? "Sin definir" : data.Ite_nomb;
   }
@@ -253,19 +294,24 @@ export class NetworkingProfilePage {
         type: "radio",
         label: item.Ite_nomb,
         value: item.Ite_cont.toString(),
-        checked: false,
+        checked: false
       });
     }
-    this._general.showRadio("Profesión", options, (resp: any) => {
-      console.log(resp);
+    this._general.showCustomAlertInputs(
+      "Profesión",
+      options,
+      (resp: any) => {
+        console.log(resp);
 
-      this.myProfile.ite_prof = resp;
-    });
+        this.myProfile.ite_prof = resp;
+      },
+      "alert-nogal"
+    );
   }
 
   getProfession() {
     let data = this.professions.filter(
-      (t) => t.Ite_cont == this.myProfile.ite_prof
+      t => t.Ite_cont == this.myProfile.ite_prof
     )[0];
     return data == undefined ? "Sin Definir" : data.Ite_nomb;
   }
@@ -278,10 +324,10 @@ export class NetworkingProfilePage {
         if (resp != null && resp.Retorno == 0) {
           this.ShowMessageDone();
         }
-      }     
-    ),err=>{
-      this.saving=false;
-    };
+      }),
+        err => {
+          this.saving = false;
+        };
     } else {
       this._sopernw.UpdateSoPernw(this.myProfile).then((resp: transaction) => {
         this.saving = false;
@@ -300,6 +346,29 @@ export class NetworkingProfilePage {
       "alert-nogal",
       false,
       "Cambios guardados! Los cambios que hayas hecho serán visibles para los demás socios cuando tu perfil sea aprobado."
+    );
+  }
+
+  SetPerAexp() {
+    let options: any[] = [];
+
+    options.push({
+      type: "input",
+      label: "Años de experiencia",
+      value: this.myProfile.per_aexp.toString(),
+      placeholder: "Años de experiencia",
+      min: 0,
+      max: 2
+    });
+    this._general.showCustomAlertInputs(
+      "Años de experiencia",
+      options,
+      (resp: any) => {
+        console.log(resp);
+
+        this.myProfile.per_aexp = resp[0];
+      },
+      "alert-nogal"
     );
   }
 }

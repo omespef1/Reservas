@@ -40,8 +40,8 @@ export class NetworkingSearchPage {
   goHome(){
     this.navCtrl.setRoot(NetworkingMenuPage);
   }
-  goOtherProfile(){
-    this.navCtrl.push(NetworkingProfilePage,{'myProfile':false})
+  goOtherProfile(profile:any){
+    this.navCtrl.push(NetworkingProfilePage,{'myProfile':false,'profile': profile})
   }
 
   GetSoPernw(){
