@@ -135,12 +135,11 @@ import { EerevetProvider } from '../providers/eerevet/eerevet';
 import { SodpernProvider } from '../providers/sodpern/sodpern';
 import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
 
-import { AngularFireModule } from 'angularfire2';
+
 
 
 import { firebaseConfig } from '../environment';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 
  
