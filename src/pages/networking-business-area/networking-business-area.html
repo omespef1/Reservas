@@ -11,14 +11,14 @@
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Noticias</ion-title>
+    <ion-title>Zona Empresarial</ion-title>
 
   </ion-navbar>
 </ion-header>
 
 <ion-content class="element-aparecer">
   <div class="search-container">
-    <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar" ></ion-searchbar>
   </div>
   <ion-grid>
 
@@ -27,48 +27,49 @@
         <div>
           <ion-item no-lines class="item-filter">
             <ion-label>Organizar Por</ion-label>
-            <ion-select interface="alert" cancelText="Cancelar" (ionChange)="setFilter($event)" okText="Ok" [selectOptions]="optionsSheet" [(ngModel)]="filter" onchange="">
-              <ion-option *ngFor="let option of options" [value]="option.value">{{option.text}}</ion-option>        
+            <ion-select>
+              <ion-option value="A">Más recientes</ion-option>
+
             </ion-select>
           </ion-item>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-<div *ngIf="!getting" >
-  <div class="card" *ngFor="let item of news">
+<div *ngIf="!loading" >
+  <div class="card" *ngFor="let event of events">
     <div class="card-header">
-      <h2><b>{{item.osa_nomb}}</b></h2>
-      <h2>{{item.osa_fini | date: 'dd/MM/yyyy'}}</h2>
-
+      <h2><b>{{event.rev_desc}}</b></h2>      
     </div>
 
-    <div class="card-body">
+    <div>
       <div class="card-img">
-        <img *ngIf="item.osa_bmpr != null" src="{{item.osa_bmpr}}" alt="proyecto">             
-        <div text-center *ngIf="item.osa_bmpr == null" class="classified-img-loading">
-          <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
-        </div>
+        
+        <img *ngIf="event.rev_foto!=null" src="{{event.rev_foto }}" alt="proyecto">
+       
+         <div *ngIf="event.rev_foto==null" class="img-loading" text-center>
+          <div text-center *ngIf="event.rev_foto == null" class="classified-img-loading">
+            <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+          </div>
+          <!-- <div class="loading-spin">
+            <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+          </div> -->
+        
+         </div>
+        
       </div>
       
       <div class="card-text">
-
-        <a href="{{item.osa_link}}">Haga clic aquí</a>
+        <p>{{event.rev_obse}}
+        </p>
       </div>
     </div>
-    <div text-right>
-      <button (click)="openNew(item)" ion-button class="yellow" round>
-        <ion-icon  name="eye"></ion-icon>&nbsp;Ver
-      </button>
-    </div>
-
-
-
+ 
 
   </div>
 </div>
 
-<div *ngIf="getting">
+<div *ngIf="loading">
   <div class="card" *ngFor="let item of [1,2,3]">
     <div class="card-header">
       <skeleton-item width="100%"></skeleton-item>

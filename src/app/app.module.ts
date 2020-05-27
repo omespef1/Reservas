@@ -47,6 +47,9 @@ import {EventCotizProductsPage} from '../pages/event-cotiz-products/event-cotiz-
 import {EventCotizProductsChildsPage} from '../pages/event-cotiz-products-childs/event-cotiz-products-childs';
 import {AccommodationListPage } from '../pages/accommodation-list/accommodation-list';
 import {AccommodationSearchParamsPage} from '../pages/accommodation-search-params/accommodation-search-params';
+import { BookingInvitedsPage } from '../pages/booking-inviteds/booking-inviteds';
+import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-invited';
+import { HistoryDetailPage } from '../pages/history-detail/history-detail';
 import{AccommodationRoomsPage } from '../pages/accommodation-rooms/accommodation-rooms';
 import {AccommodationDisponibilityPage} from '../pages/accommodation-disponibility/accommodation-disponibility';
 import {AccomodationConfirmationPage} from '../pages/accomodation-confirmation/accomodation-confirmation';
@@ -57,6 +60,19 @@ import { MenuPage } from '../pages/menu/menu';
 import { NetworkingTermsPage } from '../pages/networking-terms/networking-terms';
 import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 import { NetworkingSearchPage } from '../pages/networking-search/networking-search';
+import { NetworkingNewsViewerPage } from '../pages/networking-news-viewer/networking-news-viewer';
+import { NetworkingProfileProyectPage } from '../pages/networking-profile-proyect/networking-profile-proyect';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
+import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking-edit-text';
+import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
+import { NetworkingMessagesPage } from '../pages/networking-messages/networking-messages';
+import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/networking-classifieds';
+import { NetworkingClassifiedsTermsPage } from '../pages/networking-classifieds-terms/networking-classifieds-terms';
+import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
+import { NetworkingFavoritesPage } from '../pages/networking-favorites/networking-favorites';
+import { NetworkingBusinessAreaPage } from '../pages/networking-business-area/networking-business-area';
+
 
 
 
@@ -81,13 +97,17 @@ import { AccommodationConfirmationProvider } from '../providers/accommodation-co
 import { AccommodationDisponibilityProvider } from '../providers/accommodation-disponibility/accommodation-disponibility';
 import { PartnerPaymentsProvider } from '../providers/partner-payments/partner-payments';
 import { AccommodationListProvider } from '../providers/accommodation-list/accommodation-list';
+import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
 import { HTTP } from '@ionic-native/http';
+import { SoclanwProvider } from '../providers/soclanw/soclanw';
+import { AeosappProvider } from '../providers/aeosapp/aeosapp';
+import { SofanetProvider } from '../providers/sofanet/sofanet';
 
 
 //Components
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AccordionComponent} from '../components/accordion/accordion';
-
+import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
 //clases
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
@@ -96,7 +116,7 @@ import {sessions} from '../class/sessions/sessions';
 //plugins
 import { BrowserTab } from '@ionic-native/browser-tab';
 import * as moment from 'moment';
-import { ThirdPartiesProvider } from '../providers/third-parties/third-parties';
+
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
@@ -104,26 +124,16 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
-import { NotificationsPage } from '../pages/notifications/notifications';
+
 import { InvitedProvider } from '../providers/invited/invited';
-import { BookingInvitedsPage } from '../pages/booking-inviteds/booking-inviteds';
-import { BookingNewInvitedPage } from '../pages/booking-new-invited/booking-new-invited';
-import { HistoryDetailPage } from '../pages/history-detail/history-detail';
+
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { SopernwProvider } from '../providers/sopernw/sopernw';
-import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
-import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
-import { NetworkingMessagesPage } from '../pages/networking-messages/networking-messages';
-import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/networking-classifieds';
-import { NetworkingClassifiedsTermsPage } from '../pages/networking-classifieds-terms/networking-classifieds-terms';
-import { NetworkingEditTextPage } from '../pages/networking-edit-text/networking-edit-text';
-import { NetworkingClassifiedsNewPage } from '../pages/networking-classifieds-new/networking-classifieds-new';
-import { SoclanwProvider } from '../providers/soclanw/soclanw';
-import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 
-import { AeosappProvider } from '../providers/aeosapp/aeosapp';
-import { NetworkingNewsViewerPage } from '../pages/networking-news-viewer/networking-news-viewer';
-import { NetworkingProfileProyectPage } from '../pages/networking-profile-proyect/networking-profile-proyect';
+
+import { EerevetProvider } from '../providers/eerevet/eerevet';
+import { SodpernProvider } from '../providers/sodpern/sodpern';
+import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
 
 
 
@@ -205,7 +215,10 @@ import { NetworkingProfileProyectPage } from '../pages/networking-profile-proyec
     NetworkingClassifiedsNewPage,
     NetworkingNewsPage,
     NetworkingNewsViewerPage,
-    NetworkingProfileProyectPage
+    NetworkingProfileProyectPage,
+    NetworkingFavoritesPage,
+    NetworkingBusinessAreaPage,
+    NetworkingChatPage
   ],
   imports: [
     FormsModule,
@@ -284,7 +297,10 @@ import { NetworkingProfileProyectPage } from '../pages/networking-profile-proyec
     NetworkingClassifiedsNewPage,
     NetworkingNewsPage,
     NetworkingNewsViewerPage,
-    NetworkingProfileProyectPage
+    NetworkingProfileProyectPage,
+    NetworkingFavoritesPage,
+    NetworkingBusinessAreaPage,
+    NetworkingChatPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -324,7 +340,11 @@ import { NetworkingProfileProyectPage } from '../pages/networking-profile-proyec
     AeinappProvider,
     SopernwProvider,
     SoclanwProvider,
-    AeosappProvider
+    AeosappProvider,
+    SofanetProvider,
+    EerevetProvider,
+    EerevetProvider,
+    SodpernProvider
 
   ]
 })

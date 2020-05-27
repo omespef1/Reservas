@@ -4,13 +4,14 @@ import { NavController, Platform } from 'ionic-angular'
 //pages
 import { TabsPage } from '../../pages/tabs/tabs';
 //config
-import { GnConex, ae_param } from '../../class/models/models';
+import { GnConex, ae_param, item } from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //models
 import { bookingInfo, disponibilityRequestEvent } from '../models/models';
 import { resolveDefinition } from '@angular/core/src/view/util';
 import { platformBrowser } from '@angular/platform-browser';
 import { stringify } from '@angular/core/src/util';
+import { sopernw } from '../Models/models';
 
 
 //terminar de hacer la vconversion cuando es cordova https
@@ -58,7 +59,7 @@ export class sessions {
   getEconomicSector() {
     return this.nativeStorage.get('networking-sectors');
   }
-  getProfessions() {
+  getProfessions():Promise<item[]> {
     return this.nativeStorage.get('networking-professions');
   }
   setUserFingerPrint(user: string) {
@@ -205,6 +206,13 @@ export class sessions {
   }
   getAcceptedTerms():Promise<boolean>{
     return this.nativeStorage.get("hasAceptedTermsUse");
+  }
+
+  GetNetworkingUser():Promise<sopernw>{
+    return this.nativeStorage.get('networking-user');
+  }
+  SetNetworkingUser(user:sopernw){
+    return this.nativeStorage.set('networking-user',user);
   }
   // setDeveloperOptions(developerOptions:boolean){
   //   this.nativeStorage.set("DeveloperOptions",developerOptions); 

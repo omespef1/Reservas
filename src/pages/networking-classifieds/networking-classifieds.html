@@ -45,9 +45,8 @@
         <div>
           <ion-item no-lines class="item-filter">
             <ion-label>Organizar Por</ion-label>
-            <ion-select>
-              <ion-option value="A">Más recientes</ion-option>
-
+            <ion-select [(ngModel)]="filter" (ionChange)="setFilter($event)" interface="alert" cancelText="Cancelar" okText="Ok" [selectOptions]="optionsSheet"  onchange="" >
+              <ion-option *ngFor="let option of options" [value]="options.value">{{option.text}}</ion-option>
             </ion-select>
           </ion-item>
         </div>
@@ -55,33 +54,70 @@
     </ion-row>
   </ion-grid>
 <div *ngIf="!getting">
-  <div class="card" *ngFor="let item of classifieds">
-    <div class="card-header">
-      <h2><b>{{item.cla_titu}}</b></h2>
-      <h2>{{item.aud_ufac}}</h2>
-
-    </div>
-
-    <div class="card-body">
-      <div class="card-img">
-        <img src="assets/imgs/computer.svg" alt="proyecto">
-      </div>
-      <p>{{item.cla_desc}}
-      </p>
-    </div>
-
-
-
-    <div class="card-footer">
-
+ 
+  <div  *ngFor="let item of classifieds">
+    <div padding *ngIf="item.cla_esta=='A' || itsMine(item)" class="card">
+      <ion-item no-padding no-lines class="transparent">     
+      
+        <button class="color-orange"  *ngIf="itsMine(item) && item.cla_esta!='A'" item-end ion-button clear (click)="editClassified(item)">
+          <ion-icon name="md-create"></ion-icon>
+        </button>
+        <ion-label>
+          <h2><b>{{item.cla_titu}}</b></h2>
+          <h2>{{item.cla_fech | date : 'dd/MM/yyyy'}}</h2>
+          <ion-badge  *ngIf="itsMine(item) && item.cla_esta!='A'" class="badge-classified orange"  >{{item.cla_esta=='A'?'Aprobado':item.cla_esta=='S'?'Solicitado':'Rechazado'}}</ion-badge>
+        </ion-label>                      
+      </ion-item>
+      <ion-item no-padding no-lines class="transparent">     
+     
+        <img *ngIf="item.cla_foto != null" src="{{item.cla_foto}}" alt="proyecto">             
+        <div text-center *ngIf="item.cla_foto == null" class="classified-img-loading">
+          <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+        </div>
+      </ion-item>
+     
       <div>
-        <b>Nombre:</b> {{item.cla_nomb}}
+        <p>{{item.cla_desc}}</p>
+        <h2><b>Nombre: </b>{{item.cla_nomb}}</h2> 
+        <h2><b>Teléfono: </b>{{item.cla_tele}}</h2> 
+       
       </div>
-      <div>
-        <b>Teléfono:</b> {{item.cla_tele}}
-      </div>
+  
+    
 
     </div>
+    <!-- <div *ngIf="item.cla_esta=='A' || itsMine(item)" class="card">
+      <div class="buttons-edit">
+        <button  *ngIf="itsMine(item) && item.cla_esta!='A'" (click)="editClassified(item)" ion-button clear  class="orange">
+          <ion-icon name="add-circle">Editar</ion-icon>
+        </button>
+      </div>
+      <div class="card-header">
+        <h2><b>{{item.cla_titu}}</b></h2>
+        <h2>{{item.cla_fech | date : 'dd/MM/yyyy'}}</h2>
+       
+  
+      </div>
+  
+      <div class="card-body">
+        <div class="card-img">
+          <img src="assets/imgs/computer.svg" alt="proyecto">
+        </div>
+        <p>{{item.cla_desc}}
+        </p>
+      </div>      
+      <div class="card-footer">
+  
+        <div>
+          <b>Nombre:</b> {{item.cla_nomb}}
+        </div>
+        <div>
+          <b>Teléfono:</b> {{item.cla_tele}}
+        </div>
+  
+      </div>
+    </div> -->
+ 
   </div>
 </div>
 

@@ -14,13 +14,17 @@ import {
   transaction,
   sodpern,
   item,
-  radio
+  radio,sofanet
 } from "../../class/models/models";
 import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { NetworkingEditTextPage } from "../networking-edit-text/networking-edit-text";
 import { general } from "../../class/general/general";
 import { NetworkingProfileProyectPage } from "../networking-profile-proyect/networking-profile-proyect";
 import { PartnerProvider } from "../../providers/partner/partner";
+import { SofanetProvider } from '../../providers/sofanet/sofanet';
+import { SodpernProvider } from '../../providers/sodpern/sodpern';
+
+
 
 /**
  * Generated class for the NetworkingProfilePage page.
@@ -51,7 +55,9 @@ export class NetworkingProfilePage {
     private _sessions: sessions,
     private _modal: ModalController,
     private _general: general,
-    private _sosocio: PartnerProvider
+    private _sosocio: PartnerProvider,
+    private _sofanet:SofanetProvider,
+    private _sodpern:SodpernProvider
   ) {}
 
   ionViewDidLoad() {
@@ -365,10 +371,46 @@ export class NetworkingProfilePage {
       options,
       (resp: any) => {
         console.log(resp);
-
+      if(this.myProfile.per_aexp = resp[0]<0){
+        this._general.showToastMessage('Años de experiencia no puede ser un valor negativo','bottom');
+        this.myProfile.per_aexp=0;
+      }
+      else
         this.myProfile.per_aexp = resp[0];
       },
       "alert-nogal"
     );
+  }
+
+
+  async addToFavorites(){
+      let favorite :sofanet = { emp_codi: this._sessions.GetClientEmpCodi(), emp_codf:this._sessions.GetClientEmpCodi(), 
+        per_cont :  (await this._sessions.GetNetworkingUser()).per_cont,per_conf : this.myProfile.per_cont,fan_cont:0,aud_esta:"A",aud_ufac:new Date(),aud_usua:"" }
+     this._sofanet.SetSoFanet(favorite).then((resp:transaction)=>{
+       if(resp!=undefined && resp.Retorno==0){
+           this._general.showCustomAlert("Hecho!",'',()=>{},'alert-nogal',false,'Favorito guardado!');
+       }
+     })
+  }
+
+
+deleteProyect(proyect:sodpern){
+
+    this._general.showCustomAlert('Borrar proyecto?','¿Estás seguro?, esta operación no puede deshacerse',()=>{
+
+    
+      this._sodpern.deleteSoDpern(this._sessions.GetClientEmpCodi(),proyect.dpe_proy).then((resp:transaction)=>{
+        if(resp!=null && resp.Retorno==0){
+          let proyects:sodpern[] = this.myProfile.details;
+          const index = proyects.indexOf(proyect);
+          proyects.splice(index,1);
+          // this.myProfile.details= proyects;
+          this._general.showToastMessage('Proyecto borrado!','bottom')
+        }
+        
+      })
+    },'alert-nogal',false)
+
+   
   }
 }

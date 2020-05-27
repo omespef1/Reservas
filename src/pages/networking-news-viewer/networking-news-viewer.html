@@ -6,11 +6,11 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-buttons start>
+    <!-- <ion-buttons start>
       <button class="home-button" (click)="goHome()" ion-button round>
         <ion-icon name="home"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>Noticias</ion-title>
 
   </ion-navbar>
@@ -20,16 +20,15 @@
   
     <div class="card">
       <div class="card-header">
-        <h2><b>{{new.Osa_Nomb}}</b></h2>
-        <h2>{{new.Osa_Fini | date: 'dd/MM/yyyy'}}</h2>
+        <h2><b>{{notice.osa_nomb}}</b></h2>
+        <h2>{{notice.osa_fini | date: 'dd/MM/yyyy'}}</h2>
       </div>
       <div class="card-body">
         <div class="card-img">
-          <img src="assets/imgs/computer.svg" alt="proyecto">
+          <img src="{{notice.osa_bmpr}}" alt="proyecto">
         </div>
         <div class="card-text">
-          <p>{{new.osa_msge}}
-          </p>
+          <a href="{{notice.osa_link}}">Haga clic aquí</a>
         </div>
       </div>
     </div>

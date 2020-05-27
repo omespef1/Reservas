@@ -15,7 +15,11 @@ export class AeosappProvider {
     console.log('Hello AeosappProvider Provider');
   }
 GetNews(emp_codi:number){
-  return this._comunications.Get(`AeOsApp/GetAeOsAppByType?emp_codi=${emp_codi}&osa_tipo=T&osa_mapp=A`,false,'',false);
+  return this._comunications.Get(`AeOsApp/GetAeOsAppByType?emp_codi=${emp_codi}&osa_tipo=T&osa_mapp=S`,false,'',false);
+}
+
+GetPhoto(emp_codi:number,osa_cont:number){
+  return this._comunications.Get(`AeOsApp/GetPhoto?emp_codi=${emp_codi}&osa_cont=${osa_cont}`,false,'',false);
 }
 
 }

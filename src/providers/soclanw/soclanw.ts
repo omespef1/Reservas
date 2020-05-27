@@ -25,4 +25,8 @@ GetSoClanw(emp_codi:number){
     return this._comu.Post(classified,`soclanw/update`);
   }
 
+  GetPhoto(emp_codi:number,cla_cont:number){
+    return this._comu.Get(`SoClanw/GetPhoto?emp_codi=${emp_codi}&cla_cont=${cla_cont}`,false,'',false);
+  }
+
 }

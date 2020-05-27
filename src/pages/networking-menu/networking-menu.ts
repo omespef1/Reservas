@@ -5,7 +5,7 @@ import {
   NavParams,
   ModalController,
 } from "ionic-angular";
-import { transactionNumber, user, ae_param, transaction, sopernw, item } from "../../class/models/models";
+import { transactionNumber, user, ae_param, transaction, sopernw, item, agreement } from "../../class/models/models";
 import { AeinappProvider } from "../../providers/aeinapp/aeinapp";
 import { sessions } from "../../class/sessions/sessions";
 import { NetworkingTermsPage } from "../networking-terms/networking-terms";
@@ -16,6 +16,11 @@ import { NetworkingClassifiedsPage } from "../networking-classifieds/networking-
 import { NetworkingNewsPage } from "../networking-news/networking-news";
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { PartnerProvider } from "../../providers/partner/partner";
+import { NetworkingFavoritesPage } from "../networking-favorites/networking-favorites";
+import { NetworkingBusinessAreaPage } from '../networking-business-area/networking-business-area';
+import { PqrPage } from '../pqr/pqr';
+import { AeosappProvider } from '../../providers/aeosapp/aeosapp';
+import { AgreementsProvider } from '../../providers/agreements/agreements';
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -36,6 +41,8 @@ export class NetworkingMenuPage {
   loading=true;
   professions: item[] = [];
   foto:string="";
+  loadingBanner=false;
+  banners:agreement[]=[];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -44,7 +51,9 @@ export class NetworkingMenuPage {
     private _modal: ModalController,
     private _sopernw:SopernwProvider,
     private _sessions:sessions,
-    private _sosocio:PartnerProvider
+    private _sosocio:PartnerProvider,
+    private _aeosapp:AeosappProvider,
+    private _agrrements:AgreementsProvider
   ) {
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
@@ -52,6 +61,7 @@ export class NetworkingMenuPage {
       this.GetProfessions();
       this.GetSoPernw();
       this.GetSocPhoto();
+      this.GetBanners();
     });
   }
 
@@ -118,6 +128,7 @@ export class NetworkingMenuPage {
 
         if (resp != null && resp.Retorno == 0) {
           this.myProfile = resp.ObjTransaction;
+          this._sesions.SetNetworkingUser(this.myProfile);
         }
       });
   }
@@ -154,4 +165,39 @@ export class NetworkingMenuPage {
     )[0];
     return data == undefined ? "Sin Definir" : data.Ite_nomb;
   }
+
+  goFavorites(){
+    this.navCtrl.push(NetworkingFavoritesPage);
+  }
+
+  goBusinessArea(){
+    this.navCtrl.push(NetworkingBusinessAreaPage);
+  }
+
+  goPqr(){
+    this.navCtrl.setRoot(PqrPage);
+  }
+
+
+  GetBanners(){
+    this.loadingBanner=true;
+    this._agrrements.GetBanners().then((resp:transaction)=>{
+      this.loadingBanner=false;
+      if(resp!=null && resp.Retorno==0){
+        console.log(resp);
+        this.banners = resp.ObjTransaction;
+      }
+    })
+  }
+
+  // GetBanners(){
+  //   this.loadingBanner=true;
+  //   this._agrrements.GetBanners().then((resp:transaction)=>{
+  //     this.loadingBanner=false;
+  //     if(resp.Retorno==0){
+  //       console.log(resp);
+  //       this.banners = resp.ObjTransaction;
+  //     }
+  //   })
+  // }
 }

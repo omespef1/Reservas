@@ -24,6 +24,12 @@ font-family: Raleway;
         background: #2E0C1E;
         color: white;
     }
+    .toolbar-ios {
+        padding: 4px;
+        padding-left: 20px;
+        padding-right: 4px;
+        padding-bottom: 4px;
+    }
 
     .bar-button-default-ios{
         color: white;
@@ -73,13 +79,14 @@ ion-avatar.profile-avatar{
    height: 80px;
    
 }
-ion-avatar.profile-body{
-    background-color: white;
-    border-radius: 50%;
-    max-width: 30%;
-    height: auto;
-    
- }
+.item-ios ion-avatar.profile-body  {
+    min-width: 100px;
+    min-height: 100px;
+    img{
+        width: 100px;
+        height: 100px;
+    }
+}
 ion-avatar.profile-avatar.center{
     margin: auto;
     

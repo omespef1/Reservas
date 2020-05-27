@@ -1,4 +1,4 @@
-page-networking-news {
+page-networking-business-area {
 //general
 .blue {
     color: #2F2260;
@@ -153,12 +153,17 @@ ion-item {
     overflow: hidden;
 }
 
+
+.img-loading{
+    opacity: 0.3;
+ 
+}
+
+
 .classified-img-loading{
     opacity: 0.4;
     i {
         font-size: 3rem;
     }
 }
-
-
 }

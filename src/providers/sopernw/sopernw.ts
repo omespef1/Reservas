@@ -37,4 +37,6 @@ GeSoPernw(emp_codi:number, per_tags:string){
   return this._comu.Get(`sopernw/GetSoPernw?emp_codi=${emp_codi}&per_tags=${per_tags}`,false,'',false)
   
 }
+
+
 }

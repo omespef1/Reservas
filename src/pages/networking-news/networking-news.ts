@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, AlertOptions } from "ionic-angular";
 import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { AeosappProvider } from "../../providers/aeosapp/aeosapp";
 import { transaction, aeosapp, user } from "../../class/models/models";
@@ -21,20 +21,15 @@ import { NetworkingNewsViewerPage } from "../networking-news-viewer/networking-n
 })
 export class NetworkingNewsPage {
   getting = false;
-  news: aeosapp[] = [  {
-    
-    Osa_Cont: 102,
-    Osa_Nomb: "Duque amplía emergencia económica para afrontar covid-19",
-    Osa_Link: ".",
-    Osa_Liap: ".",
-    Osa_Lian: ".",
-    Osa_Fini: "07/05/2020",
-    Osa_Fina: "0001-01-01T00:00:00",
-    Osa_Bmpr: null,
-    osa_msge:"El presidente Iván Duque, en su programa Prevención y Acción, anunció este miércoles una ampliación de la emergencia económica en el país para afrontar la crisis de coronavirus ocasionada por la pandemia.El presidente Iván Duque, en su programa Prevención y Acción, anunció este miércoles una ampliación de la emergencia económica en el país para afrontar la crisis de coronavirus ocasionada por la pandemia ",
-  }  ]
-   
-
+  news: aeosapp[] = [];
+  filter: string = "M";
+  options: any[] = [
+    { text: "Más recientes", value: "M" },
+    { text: "Más Antiguos", value: "A" },
+    { text: "Orden alfabético", value: "O" },
+  
+  ];
+  optionsSheet: AlertOptions = { cssClass: "alert-nogal" };
   user: user = new user();
   constructor(
     public navCtrl: NavController,
@@ -62,6 +57,13 @@ export class NetworkingNewsPage {
       this.getting=false;
     if(resp!=null && resp.Retorno==0){
       this.news = resp.ObjTransaction;
+      console.log(resp.ObjTransaction);
+
+      if(this.news!=null && this.news.length>0){
+        for(let notice of this.news){
+          this.GetPhoto(notice);
+        }
+      }
     }
     })
     // setTimeout(() => {
@@ -71,7 +73,15 @@ export class NetworkingNewsPage {
 
   openNew(myNew:aeosapp) {
   this.navCtrl.push(NetworkingNewsViewerPage, { 'new':myNew })
+  }
 
-
+  GetPhoto(myNew:aeosapp){
+    console.log('cargando foto');
+    this._aeosapp.GetPhoto(myNew.emp_codi,myNew.osa_cont).then((resp:transaction)=>{
+      if(resp!=null && resp.Retorno==0){
+        console.log(resp.ObjTransaction);
+         myNew.osa_bmpr = "data:image/jpeg;base64," + resp.ObjTransaction.osa_bmpr;
+      }
+    })
   }
 }

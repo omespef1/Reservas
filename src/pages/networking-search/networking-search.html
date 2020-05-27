@@ -24,9 +24,8 @@
   <div>
     <ion-item no-lines class="item-filter">
       <ion-label>Organizar Por</ion-label>
-      <ion-select>
-        <ion-option value="A">Orden alfabético</ion-option>
-
+      <ion-select interface="alert" cancelText="Cancelar" (ionChange)="setFilter($event)" okText="Ok" [selectOptions]="optionsSheet" [(ngModel)]="filter" onchange="">
+        <ion-option *ngFor="let option of options" [value]="option.value">{{option.text}}</ion-option>        
       </ion-select>
     </ion-item>
   </div>
@@ -50,9 +49,12 @@
     </ion-list>
   </div>
   <div *ngIf="!loading">
-    <div (click)="goOtherProfile(profile)" class="card" *ngFor="let profile of profiles">
+    <div  class="card" *ngFor="let profile of profiles">
       <div class="card-profile">
         <ion-item no-lines no-padding class="item-filter transparent">
+          <button class="orange" (click)="goOtherProfile(profile)" item-end ion-button outline>
+               <ion-icon name="eye"></ion-icon> &nbsp; Perfil
+          </button>
           <ion-avatar class="profile-Menu" item-left>
             <img src="assets/imgs/user-profile.svg">
           </ion-avatar>
@@ -79,7 +81,7 @@
               </button>
             </ion-col>
             <ion-col>
-              <button ion-button class="btn-footer">
+              <button (click)="addToFavorites(profile)" ion-button class="btn-footer">
                 <ion-icon name="ios-mail-outline"></ion-icon>
                 &nbsp; Añadir a favoritos
               </button>

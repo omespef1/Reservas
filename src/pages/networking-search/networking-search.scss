@@ -8,6 +8,16 @@ page-networking-search {
         font-size: 1.3rem;
     }
     font-family: Raleway;
+ .orange {
+     color:#D1593D;
+     border-color:#D1593D; ;
+ }
+
+ .orange.activated {
+    color:white;
+    border-color:#2F2260; 
+    background-color: #2F2260;
+}
 
 
 //toolbar

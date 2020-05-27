@@ -89,7 +89,7 @@
  
     <ion-col text-center>
       <div>
-        <button class="btnMenu" ion-button color="light"  outline round block> Favoritos
+        <button (click)="goFavorites()" class="btnMenu" ion-button color="light"  outline round block> Favoritos
           
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-favorites.svg">
@@ -104,7 +104,7 @@
     <ion-col text-center>
       <div>
         
-        <button class="btnMenu" ion-button color="light"  outline round block> Zona empresarial
+        <button class="btnMenu" (click)="goBusinessArea()" ion-button color="light"  outline round block> Zona empresarial
           <div class="btnBadge btnBadge-left">
             <img src="assets/imgs/menu-business.svg">
           </div>
@@ -118,8 +118,26 @@
  
 </ion-grid>
 
+<div>
+  <div text-center class="loading-banner" *ngIf="loadingBanner">
+    <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+  </div>
+<ion-slides  *ngIf="banners && banners.length" effect="coverflow"  autoplay="5000" centeredSlides="true"  loop="true" zoom="true"  pager>
+    <ion-slide *ngFor="let item of banners">        
+    <ion-card>
+        <img src="data:image/jpeg;base64,{{item.Osa_Bmpr}}">
+        <!-- <ion-card-content>
+          <ion-card-title>
+           {{ item.Osa_Nomb }}
+            </ion-card-title>             
+        </ion-card-content> -->
+      </ion-card>
+    </ion-slide>
+</ion-slides>
+</div>
+
 <div padding text-center>
-  <button ion-button class="yellow" clear>Ayúdanos a mejorar</button>
+  <button (click)="goPqr()" ion-button class="yellow" clear>Ayúdanos a mejorar</button>
 </div>
 
 

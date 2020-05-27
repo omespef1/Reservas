@@ -110,7 +110,7 @@ banners:agreement[]=[];
     this.loadingBanner=true;
     this._agrrements.GetBanners().then((resp:transaction)=>{
       this.loadingBanner=false;
-      if(resp.Retorno==0){
+      if(resp!=null && resp.Retorno==0){
         console.log(resp);
         this.banners = resp.ObjTransaction;
       }

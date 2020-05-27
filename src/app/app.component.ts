@@ -17,6 +17,11 @@ import { AeinappProvider } from '../providers/aeinapp/aeinapp';
 import { NetworkingNewsPage } from '../pages/networking-news/networking-news';
 import { NetworkingProfilePage } from '../pages/networking-profile/networking-profile';
 import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
+import { NetworkingFavoritesPage } from '../pages/networking-favorites/networking-favorites';
+import { NetworkingBusinessAreaPage } from '../pages/networking-business-area/networking-business-area';
+import { NetworkingClassifiedsPage } from '../pages/networking-classifieds/networking-classifieds';
+import { NetworkingSearchPage } from '../pages/networking-search/networking-search';
+import { NetworkingChatPage } from '../pages/networking-chat/networking-chat';
 
 
 
@@ -34,7 +39,7 @@ import { NetworkingMenuPage } from '../pages/networking-menu/networking-menu';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav
-  rootPage: any = NetworkingProfilePage;
+  rootPage: any = NetworkingChatPage;
 
   ;
   logged: boolean = false;

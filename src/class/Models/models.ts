@@ -9,7 +9,7 @@ export class TOSoRsoci {
   public Soc_cing: string;
   public Sbe_pass: string = "";
   public Soc_cfec: string;
-  constructor() { }
+  constructor() {}
 }
 export interface item {
   Ite_nomb: string;
@@ -40,7 +40,7 @@ export class pqr {
   public soc_cont: number;
   public sbe_cont: number;
   public mac_nume: string;
-  constructor() { }
+  constructor() {}
 }
 
 export class user {
@@ -64,7 +64,7 @@ export class user {
   Emp_tele: string;
   Emp_nite: string;
   soc_ncar: string;
-  constructor() { }
+  constructor() {}
 }
 export interface transaction {
   Retorno: number;
@@ -170,7 +170,7 @@ export class disponibilityRequest {
   public Pro_nomb: string = "";
   public startTime: string;
   public endTime: string;
-  constructor() { }
+  constructor() {}
 }
 
 export class disponibilityRequestEvent {
@@ -204,7 +204,7 @@ export class factory {
   public user: any;
   public thirdPartie: any = { Ter_codi: 0 };
   public optionDisp: any = { OpDisp: "" };
-  constructor() { }
+  constructor() {}
 }
 export interface Ifactory {
   class: any;
@@ -323,19 +323,21 @@ export interface agreement {
   Osa_Fini: string;
   Osa_Fina: string;
   Osa_Tipo: string;
-  osa_msge:string;
+  osa_msge: string;
 }
 export class aeosapp {
-  Osa_Bmpr: string;
-  Osa_Link: string;
-  Osa_Nomb: string;
-  Osa_Lian: string;
-  Osa_Liap: string;
-  Osa_Fini: string;
-  Osa_Fina: string;
-  osa_msge:string;
-  Osa_Cont:number;
+  osa_bmpr: string;
+  osa_link?: string;
+  osa_nomb: string;
+  osa_lian: string;
+  osa_liap: string;
+  osa_fini: string;
+  osa_fina: string;
+  osa_msge: string;
+  osa_cont: number;
+  emp_codi:number;
 }
+
 
 export class ecmcomp {
   emp_codi: number;
@@ -432,8 +434,8 @@ export interface gn_dpaps {
 export class ae_param {
   cla_ceve: number;
   cla_cont: number;
-  par_trdu:string;
-  par_rsdc:string;
+  par_trdu: string;
+  par_rsdc: string;
 }
 
 export interface pageApp {
@@ -558,14 +560,13 @@ export class aeinapp {
   sbe_cont: number;
   pla_cont: number;
   pla_codi: string;
-  coa_tipo:string;
-  
+  coa_tipo: string;
 }
 
 export class sopernw {
-   constructor(){
-     this.details =[];
-   }
+  constructor() {
+    this.details = [];
+  }
   emp_codi: number;
   per_cont: number;
   soc_cont: number;
@@ -579,13 +580,12 @@ export class sopernw {
   per_tags: string;
   per_esta: string;
   cas_cont: number;
-  aud_ufac: Date
+  aud_ufac: Date;
   aud_usua: string;
   aud_esta: string;
-  details:sodpern[];
+  details: sodpern[];
 }
 export class sodpern {
-
   emp_codi: number;
   per_cont: number;
   dpe_proy: number;
@@ -598,10 +598,30 @@ export class sodpern {
   aud_esta: string;
 }
 
-
 export class radio {
-  type:string;
-  label:string;
-  value:string;
-  checked:boolean
+  type: string;
+  label: string;
+  value: string;
+  checked: boolean;
+}
+
+export class sofanet {
+  emp_codi: number;
+  per_cont: number;
+  fan_cont: number;
+  emp_codf: number;
+  per_conf: number;
+  aud_ufac: Date;
+  aud_esta: string;
+  aud_usua: string;
+}
+export class eerevet {
+   rev_cont:number;
+   rev_esta:string;
+   rev_desc:string;
+   rev_obse:string;
+   rev_luga:string;
+   ref_fini:Date;
+   ref_ffin:Date;
+   rev_foto:string;
 }

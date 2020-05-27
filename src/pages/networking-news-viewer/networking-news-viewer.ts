@@ -15,9 +15,9 @@ import { aeosapp } from '../../class/models/models';
   templateUrl: 'networking-news-viewer.html',
 })
 export class NetworkingNewsViewerPage {
- new:aeosapp= new aeosapp();
+ notice:aeosapp= new aeosapp();
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.new = this.navParams.get('new');
+    this.notice = this.navParams.get('new');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad NetworkingNewsViewerPage');
