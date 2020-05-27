@@ -135,15 +135,12 @@ import { EerevetProvider } from '../providers/eerevet/eerevet';
 import { SodpernProvider } from '../providers/sodpern/sodpern';
 import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
 
+import { AngularFireModule } from 'angularfire2';
 
 
-
-
-
-
-
-
-
+import { firebaseConfig } from '../environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
  
@@ -232,6 +229,8 @@ import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
       backButtonText: 'Atrás',
        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril','Mayo','junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre' ],
     }),
+ //   AngularFireModule.initializeApp(firebaseConfig),
+   
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
