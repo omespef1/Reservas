@@ -21,7 +21,7 @@ import { NetworkingFavoritesPage } from "../pages/networking-favorites/networkin
 import { NetworkingBusinessAreaPage } from "../pages/networking-business-area/networking-business-area";
 import { NetworkingClassifiedsPage } from "../pages/networking-classifieds/networking-classifieds";
 import { NetworkingSearchPage } from "../pages/networking-search/networking-search";
-import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
+import { NetworkingChatPage } from '../pages/networking-chat/networking-chat';
 
 
 //plugins
@@ -31,7 +31,7 @@ import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = LoginPage;
+  rootPage: any = NetworkingChatPage;
 
   logged: boolean = false;
 

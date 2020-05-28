@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs-compat';
 import { Injectable } from '@angular/core';
 import { appCentralizacionUrl } from '../../assets/config/config';
 import { LoadingController, ToastController, Events, Platform } from 'ionic-angular';
