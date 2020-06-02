@@ -64,7 +64,10 @@ export class user {
   Emp_tele: string;
   Emp_nite: string;
   soc_ncar: string;
-  constructor() {}
+  sbe_pass:string;
+  constructor() {
+    this.sbe_pass="";
+  }
 }
 export interface transaction {
   Retorno: number;

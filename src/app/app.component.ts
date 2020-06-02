@@ -6,7 +6,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { general } from "../class/general/general";
 import { sessions } from "../class/sessions/sessions";
 //pages
-import { LoginPage } from "../pages/login/login";
+import { LoginPage } from '../pages/login/login';
 import { TabsPage } from "../pages/tabs/tabs";
 import { PqrProvider } from "../providers/pqr/pqr";
 import { AeEspacProvider } from "../providers/ae-espac/ae-espac";
@@ -22,6 +22,8 @@ import { NetworkingBusinessAreaPage } from "../pages/networking-business-area/ne
 import { NetworkingClassifiedsPage } from "../pages/networking-classifieds/networking-classifieds";
 import { NetworkingSearchPage } from "../pages/networking-search/networking-search";
 import { NetworkingChatPage } from '../pages/networking-chat/networking-chat';
+import { NetworkingChatLoginPage } from '../pages/networking-chat-login/networking-chat-login';
+import { NetworkingMessagesPage } from '../pages/networking-messages/networking-messages';
 
 
 //plugins
@@ -31,7 +33,7 @@ import { NetworkingChatPage } from '../pages/networking-chat/networking-chat';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = NetworkingChatPage;
+  rootPage: any = NetworkingMessagesPage;
 
   logged: boolean = false;
 

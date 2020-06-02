@@ -142,6 +142,10 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { firebaseConfig } from '../environment';
+import { ChatProvider } from '../providers/chat/chat';
+import { NetworkingChatLoginPage } from '../pages/networking-chat-login/networking-chat-login';
+import { ChatRoomProvider } from '../providers/chat-room/chat-room';
+import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 
 
  
@@ -216,7 +220,8 @@ import { firebaseConfig } from '../environment';
     NetworkingProfileProyectPage,
     NetworkingFavoritesPage,
     NetworkingBusinessAreaPage,
-    NetworkingChatPage
+    NetworkingChatPage,
+    NetworkingChatLoginPage
   ],
   imports: [
     FormsModule,
@@ -303,7 +308,8 @@ import { firebaseConfig } from '../environment';
     NetworkingProfileProyectPage,
     NetworkingFavoritesPage,
     NetworkingBusinessAreaPage,
-    NetworkingChatPage
+    NetworkingChatPage,
+    NetworkingChatLoginPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -347,7 +353,10 @@ import { firebaseConfig } from '../environment';
     SofanetProvider,
     EerevetProvider,
     EerevetProvider,
-    SodpernProvider
+    SodpernProvider,
+    ChatProvider,
+    ChatRoomProvider,
+    FirebaseAuthProvider
 
   ]
 })

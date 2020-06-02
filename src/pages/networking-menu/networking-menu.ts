@@ -19,8 +19,8 @@ import { PartnerProvider } from "../../providers/partner/partner";
 import { NetworkingFavoritesPage } from "../networking-favorites/networking-favorites";
 import { NetworkingBusinessAreaPage } from '../networking-business-area/networking-business-area';
 import { PqrPage } from '../pqr/pqr';
-import { AeosappProvider } from '../../providers/aeosapp/aeosapp';
 import { AgreementsProvider } from '../../providers/agreements/agreements';
+import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -52,8 +52,8 @@ export class NetworkingMenuPage {
     private _sopernw:SopernwProvider,
     private _sessions:sessions,
     private _sosocio:PartnerProvider,
-    private _aeosapp:AeosappProvider,
-    private _agrrements:AgreementsProvider
+    private _agrrements:AgreementsProvider,
+    private _auth:FirebaseAuthProvider
   ) {
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
@@ -62,6 +62,7 @@ export class NetworkingMenuPage {
       this.GetSoPernw();
       this.GetSocPhoto();
       this.GetBanners();
+      this.LoginFirebase();
     });
   }
 
@@ -188,6 +189,25 @@ export class NetworkingMenuPage {
         this.banners = resp.ObjTransaction;
       }
     })
+  }
+
+
+  LoginFirebase(){
+    console.log(this.user);
+    this._auth.loginWithMail(this.user.Sbe_mail,this.user.sbe_pass).then((resp=>{
+      console.log(resp);
+  
+    })).catch( (err:any)=> {   
+       if(err.code =="auth/user-not-found"){
+        console.log("Usuario de chat no creado.Creando...");
+        this._auth.signInWithMail(this.user.Sbe_mail,"950501").then(resp=>{
+          if(resp){
+            console.log("Usuario logueado con éxito");
+            this._auth.updateUser(`${this.user.Soc_nomb} ${this.user.Soc_apel}`)
+          }
+        })
+       }
+     })
   }
 
   // GetBanners(){

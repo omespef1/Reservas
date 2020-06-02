@@ -30,7 +30,7 @@
   </ion-item>
  </div>
 
- <div class="card" (click)="goOtherProfile()" *ngFor="let item of  [0,1,2,3,4,5,6 ]">
+ <div class="card" (click)="goChat(chatRooms.id)"  *ngFor="let chatRooms of _chatRooms.chatRooms">
   <div class="card-profile">
     <ion-item button no-lines no-padding class="item-filter transparent" >
     <ion-avatar class="profile-Menu" item-left>
@@ -38,7 +38,7 @@
     </ion-avatar>
     
     
-    <h2  class="blue"> <b>JORGE CAMILO BERNAL</b></h2>
+    <h2  class="blue"> <b>Juan Rodriguez</b></h2>
     <h3 class="blue">Ing Sistemas</h3>
     <div class="button-message">
       <button class="orange div" ion-button icon-only clear>

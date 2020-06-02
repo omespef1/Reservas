@@ -23,6 +23,7 @@ export class sessions {
   public emp_codi: number;
 
   public aeparam: ae_param;
+  private profileNetworking:sopernw;
   constructor(private nativeStorage: Storage, private _touch: KeychainTouchId, private _platform: Platform) {
   }
   //Setea la sesión cuando se loguea un usuario
@@ -211,7 +212,11 @@ export class sessions {
   GetNetworkingUser():Promise<sopernw>{
     return this.nativeStorage.get('networking-user');
   }
+  GetCurrentNetworkingUser():sopernw{
+    return this.profileNetworking;
+  }
   SetNetworkingUser(user:sopernw){
+    this.profileNetworking= user;
     return this.nativeStorage.set('networking-user',user);
   }
   // setDeveloperOptions(developerOptions:boolean){

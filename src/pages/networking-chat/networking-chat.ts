@@ -1,8 +1,17 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, PopoverController } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ViewController,
+  PopoverController,
+} from "ionic-angular";
 
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { AngularFirestore } from "angularfire2/firestore";
+import { Observable } from "rxjs/Observable";
+import { ChatProvider } from "../../providers/chat/chat";
+import { sopernw } from '../../class/Models/models';
+import { sessions } from '../../class/sessions/sessions';
 /**
  * Generated class for the NetworkingChatPage page.
  *
@@ -11,39 +20,47 @@ import { Observable } from 'rxjs/Observable';
  */
 
 
-@Component({
-  template: `
-    <ion-list no-lines>
-      <button ion-item (click)="close()">Archive</button>
-      <button ion-item (click)="close()">Delete</button>
-      <button ion-item (click)="close()">Block</button>
-      <button ion-item (click)="close()">Report problem</button>
-    </ion-list>
-  `
-})
-export class SinglePopover {
-  constructor(private viewCtrl: ViewController) {}
-  close() {
-    this.viewCtrl.dismiss();
-  }
-}
 
 @IonicPage()
 @Component({
-  selector: 'page-networking-chat',
-  templateUrl: 'networking-chat.html',
+  selector: "page-networking-chat",
+  templateUrl: "networking-chat.html",
 })
-export class NetworkingChatPage {
-  messages:Array<any>
+export class NetworkingChatPage  implements OnInit{
+ message:string;
+ element:any;
+ userProfile:sopernw;
+ idChat:string;
+  constructor(
 
-  constructor(private popoverCtrl: PopoverController) {
-      this.messages = ["Hello", "world", "again"];
+    public _chat: ChatProvider,
+    private _session:sessions,
+    private nav:NavParams
+  ) {
+ 
   }
 
-  presentPopover(event) {
-      let popover = this.popoverCtrl.create(SinglePopover);
-      popover.present({
-          ev: event
-      });
+async ngOnInit(){
+  this.idChat = this.nav.get("chat-id");
+  console.log(this.idChat);
+  this.element = document.getElementById("chat-messages");
+  this.userProfile = await this._session.GetNetworkingUser()
+  this._chat.loadMessagesChat(this.idChat).subscribe(()=>{         
+    this.element.scrollTop = this.element.scrollHeight;
+  
+});
+
+}
+
+  sendMessage(){
+    if(this.message.length>0){
+    this._chat.sendMessage(this.message,this.userProfile.per_cont).then(()=>{
+      console.log("mensaje enviado")
+      this.message="";
+    })
+    .catch(err=> console.error('Error al enviar',err))
+    }
   }
+
+   
 }
