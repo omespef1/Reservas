@@ -161,10 +161,14 @@ export class NetworkingMenuPage {
   }
 
   FindProfession() {
-    let data = this.professions.filter(
-      (t) => t.Ite_cont == this.myProfile.ite_prof
-    )[0];
-    return data == undefined ? "Sin Definir" : data.Ite_nomb;
+    console.log(this.myProfile);
+    if(this.myProfile){
+      let data = this.professions.filter(
+        (t) => t.Ite_cont == this.myProfile.ite_prof
+      )[0];
+      return data == undefined ? "Sin Definir" : data.Ite_nomb;
+    }
+   return "Sin definir";
   }
 
   goFavorites(){

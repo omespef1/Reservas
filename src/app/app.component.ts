@@ -33,7 +33,7 @@ import { NetworkingMessagesPage } from '../pages/networking-messages/networking-
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = NetworkingMessagesPage;
+  rootPage: any = LoginPage;
 
   logged: boolean = false;
 

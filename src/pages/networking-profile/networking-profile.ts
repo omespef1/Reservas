@@ -316,10 +316,13 @@ export class NetworkingProfilePage {
   }
 
   getProfession() {
-    let data = this.professions.filter(
-      t => t.Ite_cont == this.myProfile.ite_prof
-    )[0];
-    return data == undefined ? "Sin Definir" : data.Ite_nomb;
+    if(this.myProfile.ite_prof!=null){
+      let data = this.professions.filter(
+        t => t.Ite_cont == this.myProfile.ite_prof
+      )[0];
+      return data == undefined ? "Sin Definir" : data.Ite_nomb;
+    }
+   return "Sin Definir";
   }
 
   saveChanges() {

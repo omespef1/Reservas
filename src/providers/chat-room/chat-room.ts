@@ -69,6 +69,6 @@ export class ChatRoomProvider {
   newChatRoom(){
     this.chatRoomsCollection = this.afs.collection<chatRoom>("chat-rooms");
     
-      this.chatRoomsCollection.add()
+      //this.chatRoomsCollection.add()
   }
 }
