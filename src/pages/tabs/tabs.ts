@@ -6,7 +6,7 @@ import { Component, ViewChild } from '@angular/core';
 import {BookingPage} from '../booking/booking';
 import {HistoryPage} from '../history/history';
 import {PqrPage} from '../pqr/pqr';
-import {SettingsPage} from '../settings/settings';
+import { SettingsPage } from '../settings/settings';
 import {AgreementsPage} from '../agreements/agreements';
 import {EventsPage} from '../events/events';
 import {AccommodationListPage} from '../accommodation-list/accommodation-list';
@@ -34,7 +34,8 @@ export class TabsPage {
   tab6Root= AccommodationListPage;
   tab7Root= InstitutionalPage;
   tab8Root = BookingInvitedsPage;
-  tab9Root=NetworkingMenuPage
+  tab9Root=NetworkingMenuPage;
+  tab10Root=SettingsPage
   // tab7Root = SettingsPage;
   indexTab:number;
   @ViewChild('myTabs') tabRef: Tabs;
