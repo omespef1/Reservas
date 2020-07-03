@@ -23,6 +23,7 @@ import { NetworkingProfileProyectPage } from "../networking-profile-proyect/netw
 import { PartnerProvider } from "../../providers/partner/partner";
 import { SofanetProvider } from '../../providers/sofanet/sofanet';
 import { SodpernProvider } from '../../providers/sodpern/sodpern';
+import { sopernw } from '../../class/Models/models';
 
 
 
@@ -134,7 +135,10 @@ export class NetworkingProfilePage {
         this.loadingProfile = false;
 
         if (resp != null && resp.Retorno == 0) {
+        
           this.myProfile = resp.ObjTransaction;
+          if(this.myProfile==null)
+          this.myProfile = new sopernw();
         }
       });
   }
@@ -286,10 +290,13 @@ export class NetworkingProfilePage {
   }
 
   getSectorName() {
-    let data = this.economicSectors.filter(
-      t => t.Ite_cont == this.myProfile.ite_seco
-    )[0];
-    return data == undefined ? "Sin definir" : data.Ite_nomb;
+    if(this.myProfile!=null && this.myProfile.ite_seco!=null){
+      let data = this.economicSectors.filter(
+        t => t.Ite_cont == this.myProfile.ite_seco
+      )[0];
+      return data == undefined ? "Sin definir" : data.Ite_nomb;
+    }
+   return "Sin definir";
   }
 
   setProfession() {
@@ -316,7 +323,7 @@ export class NetworkingProfilePage {
   }
 
   getProfession() {
-    if(this.myProfile.ite_prof!=null){
+    if(this.myProfile!=null && this.myProfile.ite_prof!=null){
       let data = this.professions.filter(
         t => t.Ite_cont == this.myProfile.ite_prof
       )[0];
