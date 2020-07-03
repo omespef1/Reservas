@@ -145,6 +145,45 @@ ion-card-header {
 
 
 
+//networking
+
+.ion-ios-app_networking,
+.ion-md-app_networking {
+  content: url(../assets/imgs/networking.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_networking-outline,
+.ion-md-app_networking-outline {
+  content: url(../assets/imgs/networking.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
+//settings
+.ion-ios-app_settings,
+.ion-md-app_settings {
+  content: url(../assets/imgs/profile-gray.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+.ion-ios-app_settings-outline,
+.ion-md-app_settings-outline {
+  content: url(../assets/imgs/profile-gray.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.2;
+}
+
 .ion-ios-app_calendar-outline,
 .ion-md-app_calendar-outline {
   content: url(../assets/imgs/calendar.svg);

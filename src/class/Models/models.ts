@@ -569,6 +569,10 @@ export class aeinapp {
 export class sopernw {
   constructor() {
     this.details = [];
+    this.per_esta="P";
+    this.per_tags ="";
+    this.per_admi="";
+    
   }
   emp_codi: number;
   per_cont: number;

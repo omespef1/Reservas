@@ -85,6 +85,11 @@ banners:agreement[]=[];
     urlIcon:'assets/imgs/networking.svg',
     page:NetworkingMenuPage
   },
+  {
+    name:'Ajustes',
+    urlIcon:'assets/imgs/profile-gray.svg',
+    page:SettingsPage
+  },
 ]
   constructor(public navCtrl: NavController, public navParams: NavParams,private _sesion:sessions,private _agrrements:AgreementsProvider) {
 

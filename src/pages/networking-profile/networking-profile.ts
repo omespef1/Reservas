@@ -26,6 +26,7 @@ import { SodpernProvider } from '../../providers/sodpern/sodpern';
 
 
 
+
 /**
  * Generated class for the NetworkingProfilePage page.
  *
@@ -134,7 +135,18 @@ export class NetworkingProfilePage {
         this.loadingProfile = false;
 
         if (resp != null && resp.Retorno == 0) {
+        
           this.myProfile = resp.ObjTransaction;
+          
+          if(this.myProfile==null){
+            this.myProfile = new sopernw();
+            this.myProfile.details=[];
+          }
+         this.myProfile.mac_nume =this.user.Mac_nume1;
+         this.myProfile.sbe_cont = this.user.Sbe_cont;
+         this.myProfile.soc_cont =this.user.Soc_cont;
+         this.myProfile.emp_codi = this._sessions.GetClientEmpCodi();
+  
         }
       });
   }
@@ -286,10 +298,13 @@ export class NetworkingProfilePage {
   }
 
   getSectorName() {
-    let data = this.economicSectors.filter(
-      t => t.Ite_cont == this.myProfile.ite_seco
-    )[0];
-    return data == undefined ? "Sin definir" : data.Ite_nomb;
+    if(this.myProfile!=null && this.myProfile.ite_seco!=null){
+      let data = this.economicSectors.filter(
+        t => t.Ite_cont == this.myProfile.ite_seco
+      )[0];
+      return data == undefined ? "Sin definir" : data.Ite_nomb;
+    }
+   return "Sin definir";
   }
 
   setProfession() {
@@ -316,7 +331,7 @@ export class NetworkingProfilePage {
   }
 
   getProfession() {
-    if(this.myProfile.ite_prof!=null){
+    if(this.myProfile!=null && this.myProfile.ite_prof!=null){
       let data = this.professions.filter(
         t => t.Ite_cont == this.myProfile.ite_prof
       )[0];
@@ -327,7 +342,7 @@ export class NetworkingProfilePage {
 
   saveChanges() {
     this.saving = true;
-    if (this.myProfile.per_cont == 0) {
+    if (this.myProfile.per_cont==undefined || this.myProfile.per_cont == 0) {
       this._sopernw.SetSoPernw(this.myProfile).then((resp: transaction) => {
         this.saving = false;
         if (resp != null && resp.Retorno == 0) {
@@ -364,7 +379,7 @@ export class NetworkingProfilePage {
     options.push({
       type: "input",
       label: "Años de experiencia",
-      value: this.myProfile.per_aexp.toString(),
+      value: this.myProfile.per_aexp==undefined?"0":this.myProfile.per_aexp.toString(),
       placeholder: "Años de experiencia",
       min: 0,
       max: 2
