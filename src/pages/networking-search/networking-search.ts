@@ -75,6 +75,7 @@ export class NetworkingSearchPage {
         this.loading = false;
         if (resp != null && resp.Retorno == 0) {
           this.profiles = resp.ObjTransaction;
+          this.setFilter(this.filter);
         }
       });
   }
@@ -137,16 +138,16 @@ export class NetworkingSearchPage {
 
   setFilter($event: any) {
     console.log($event);
-
+console.log(this.profiles);
     switch ($event) {
       case "O":
         this.profiles.sort((a, b) =>
-          a.soc_nomb > b.soc_nomb ? 1 : b.soc_nomb > a.soc_nomb ? -1 : 0
+        (a.sbe_nomb > b.sbe_nomb) ? 1 : ((b.sbe_nomb > a.sbe_nomb) ? -1 : 0)
         );
         break;
       case "P":
         this.profiles.sort((a, b) =>
-          a.aud_ufac > b.aud_ufac ? 1 : b.aud_ufac > a.aud_ufac ? -1 : 0
+        (a.sbe_nomb < b.sbe_nomb) ? 1 : ((b.sbe_nomb < a.sbe_nomb) ? -1 : 0)
         );
         break;
       case "A":
@@ -156,9 +157,14 @@ export class NetworkingSearchPage {
         break;
       case "M":
         this.profiles.sort((a, b) =>
-          a.per_aexp > b.per_aexp ? 1 : b.per_aexp > a.per_aexp ? -1 : 0
+      (a.per_aexp < b.per_aexp) ? 1 : ((b.per_aexp < a.per_aexp) ? -1 : 0)
         );
         break;
+        case "E":
+          this.profiles.sort((a, b) =>
+        (a.per_aexp > b.per_aexp) ? 1 : ((b.per_aexp > a.per_aexp) ? -1 : 0)
+          );
+          break;
       default:
         console.log("default");
     }

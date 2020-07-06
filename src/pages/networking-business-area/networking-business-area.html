@@ -25,11 +25,17 @@
     <ion-row>
       <ion-col>
         <div>
-          <ion-item no-lines class="item-filter">
+          <!-- <ion-item no-lines class="item-filter">
             <ion-label>Organizar Por</ion-label>
             <ion-select>
               <ion-option value="A">Más recientes</ion-option>
 
+            </ion-select>
+          </ion-item> -->
+          <ion-item no-lines class="item-filter">  
+            <ion-label>Organizar Por</ion-label>
+            <ion-select interface="alert" cancelText="Cancelar" (ionChange)="setFilter($event)" okText="Ok" [selectOptions]="optionsSheet" [(ngModel)]="filter" onchange="">
+              <ion-option *ngFor="let option of options" [value]="option.value">{{option.text}}</ion-option>        
             </ion-select>
           </ion-item>
         </div>

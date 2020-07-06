@@ -635,7 +635,7 @@ export class eerevet {
    rev_desc:string;
    rev_obse:string;
    rev_luga:string;
-   ref_fini:Date;
-   ref_ffin:Date;
+   rev_fini:Date;
+   rev_ffin:Date;
    rev_foto:string;
 }
