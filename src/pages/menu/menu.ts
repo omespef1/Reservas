@@ -86,7 +86,7 @@ banners:agreement[]=[];
     page:NetworkingMenuPage
   },
   {
-    name:'Ajustes',
+    name:'Perfil socio',
     urlIcon:'assets/imgs/profile-gray.svg',
     page:SettingsPage
   },

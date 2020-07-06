@@ -65,13 +65,17 @@
     <div  class="profile">
 
 
-      <ion-item button no-lines no-padding class="transparent">
-        <ion-avatar item-start text-center class="profile-avatar center">
-          <img class="profileMode" src="data:image/jpeg;base64,{{foto}}">        
-        </ion-avatar>
+     
+       
         <ion-item no-lines class="transparent item-edit">
-          <h2>Profesión</h2>
-          <p> <b>{{getProfession()}}</b></p>
+          <ion-avatar item-start text-center class="profile-avatar center">
+            <img class="profileMode" src="data:image/jpeg;base64,{{foto}}">        
+          </ion-avatar>
+          <div padding>
+            <h2>Profesión</h2>
+            <p> <b>{{getProfession()}}</b></p>
+          </div>
+         
           <button *ngIf="myProfileMode" class="button-edit" item-end ion-button clear (click)="setProfession()">
             <ion-icon name="md-create"></ion-icon>
           </button>
@@ -93,7 +97,7 @@
         </ion-item>
 
 
-      </ion-item>
+     
      
     </div>
 

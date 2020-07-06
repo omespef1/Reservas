@@ -593,6 +593,13 @@ export class sopernw {
   details: sodpern[];
 }
 export class sodpern {
+  constructor(){
+    this.emp_codi=0;
+    this.per_cont =0;
+    this.dpe_proy=0;
+    this.dpe_desc="";
+    
+  }
   emp_codi: number;
   per_cont: number;
   dpe_proy: number;

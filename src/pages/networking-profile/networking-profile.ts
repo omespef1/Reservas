@@ -202,7 +202,7 @@ export class NetworkingProfilePage {
       max: 100
     });
     this._general.showCustomAlertInputs(
-      "Años de experiencia",
+      "Palabras clave",
       options,
       (resp: any) => {
         console.log(resp);
@@ -238,8 +238,16 @@ export class NetworkingProfilePage {
       });
     modal.present();
     modal.onDidDismiss((proyectEdit: sodpern) => {
+      debugger;
       if (proyect == undefined && proyectEdit)
-        this.myProfile.details.push(proyectEdit);
+    {
+      if(this.myProfile.details==null){
+        this.myProfile.details=[];
+       
+      }
+      this.myProfile.details.push(proyectEdit);
+    }
+        
       else {
         proyect = proyectEdit;
       }
@@ -414,20 +422,29 @@ export class NetworkingProfilePage {
 
 deleteProyect(proyect:sodpern){
 
-    this._general.showCustomAlert('Borrar proyecto?','¿Estás seguro?, esta operación no puede deshacerse',()=>{
 
+if(proyect.dpe_proy>0){
+  this._general.showCustomAlert('Borrar proyecto?','¿Estás seguro?, esta operación no puede deshacerse',()=>{
+    this._sodpern.deleteSoDpern(this._sessions.GetClientEmpCodi(),proyect.dpe_proy).then((resp:transaction)=>{
+      if(resp!=null && resp.Retorno==0){
+        let proyects:sodpern[] = this.myProfile.details;
+        const index = proyects.indexOf(proyect);
+        proyects.splice(index,1);
+        this._general.showToastMessage('Proyecto borrado!','bottom')
+      }
+     
+      // this.myProfile.details= proyects;
     
-      this._sodpern.deleteSoDpern(this._sessions.GetClientEmpCodi(),proyect.dpe_proy).then((resp:transaction)=>{
-        if(resp!=null && resp.Retorno==0){
-          let proyects:sodpern[] = this.myProfile.details;
-          const index = proyects.indexOf(proyect);
-          proyects.splice(index,1);
-          // this.myProfile.details= proyects;
-          this._general.showToastMessage('Proyecto borrado!','bottom')
-        }
-        
-      })
-    },'alert-nogal',false)
+    })
+  },'alert-nogal',false)
+}
+else {
+  let proyects:sodpern[] = this.myProfile.details;
+  const index = proyects.indexOf(proyect);
+  proyects.splice(index,1);
+  this._general.showToastMessage('Proyecto borrado!','bottom')
+}
+
 
    
   }
