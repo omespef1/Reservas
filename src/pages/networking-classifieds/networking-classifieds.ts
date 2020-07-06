@@ -77,6 +77,7 @@ export class NetworkingClassifiedsPage {
         for(let classified of this.classifieds){
          this.GetPhoto(classified);
         }
+        this.setFilter(this.filter);
       }
 
      }
@@ -106,7 +107,25 @@ export class NetworkingClassifiedsPage {
   }
 
   setFilter($event){
-    
+    //let orderClassifieds = this.classifieds;
+    console.log($event);
+console.log(this.classifieds);
+    switch ($event) {
+      case "M":
+        console.log("desc");
+   this.classifieds.sort((a, b) => (a.cla_fech < b.cla_fech) ? 1 : ((b.cla_fech < a.cla_fech) ? -1 : 0))
+       break;
+      case "A":
+        console.log("asc");
+        this.classifieds.sort((a, b) => (a.cla_fech > b.cla_fech) ? 1 : ((b.cla_fech > a.cla_fech) ? -1 : 0))
+        // this.classifieds.sort((a, b) =>
+        // a.cla_fech < b.cla_fech ? 1 :  a.cla_fech < b.cla_fech ?-1:0
+        // );  
+     
+        break;
+      default:
+       
+    }
   }
   
 }

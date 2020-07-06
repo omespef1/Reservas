@@ -63,6 +63,7 @@ export class NetworkingNewsPage {
         for(let notice of this.news){
           this.GetPhoto(notice);
         }
+        this.setFilter(this.filter);
       }
     }
     })
@@ -83,5 +84,29 @@ export class NetworkingNewsPage {
          myNew.osa_bmpr = "data:image/jpeg;base64," + resp.ObjTransaction.osa_bmpr;
       }
     })
+  }
+
+  setFilter($event){
+    //let orderClassifieds = this.classifieds;
+    console.log($event);
+console.log(this.news);
+    switch ($event) {
+      case "M":
+        console.log("desc");
+   this.news.sort((a, b) => (a.osa_fini < b.osa_fini) ? 1 : ((b.osa_fini < a.osa_fini) ? -1 : 0))
+       break;
+      case "A":
+        console.log("asc");
+        this.news.sort((a, b) => (a.osa_fini > b.osa_fini) ? 1 : ((b.osa_fini > a.osa_fini) ? -1 : 0))
+       
+        break;
+        case "O":
+          console.log("asc");
+          this.news.sort((a, b) => (a.osa_nomb > b.osa_nomb) ? 1 : ((b.osa_nomb > a.osa_nomb) ? -1 : 0))
+         
+          break;
+      default:
+       
+    }
   }
 }

@@ -20,7 +20,13 @@ import { transaction, eerevet } from '../../class/Models/models';
 export class NetworkingBusinessAreaPage {
   loading=false;
   events:eerevet[]=[];
-  
+  filter="A";
+  options: any[] = [
+   
+    { text: "Más recientes", value: "M" },
+    { text: "Más antiguas", value: "A" },
+   
+  ];
   constructor(public navCtrl: NavController, public navParams: NavParams,private _eerevet:EerevetProvider,private _session:sessions) {
   }
 
@@ -43,6 +49,9 @@ export class NetworkingBusinessAreaPage {
                this.GetPhoto(log)
           }
         }
+       if(this.events!=undefined && this.events.length>0){
+        this.setFilter(this.filter);
+       }
       }
      })
   }
@@ -65,5 +74,26 @@ export class NetworkingBusinessAreaPage {
   }
 
 
+  setFilter($event){
+    //let orderClassifieds = this.classifieds;
+    console.log($event);
+console.log(this.events);
+    switch ($event) {
+      case "M":
+        console.log("desc");
+   this.events.sort((a, b) => (a.rev_fini < b.rev_fini) ? 1 : ((b.rev_fini < a.rev_fini) ? -1 : 0))
+       break;
+      case "A":
+        console.log("asc");
+        this.events.sort((a, b) => (a.rev_fini > b.rev_fini) ? 1 : ((b.rev_fini > a.rev_fini) ? -1 : 0))
+        // this.classifieds.sort((a, b) =>
+        // a.cla_fech < b.cla_fech ? 1 :  a.cla_fech < b.cla_fech ?-1:0
+        // );  
+     
+        break;
+      default:
+       
+    }
+  }
 
 }

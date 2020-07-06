@@ -172,11 +172,11 @@ export class NetworkingMenuPage {
   }
 
   goFavorites(){
-    this.navCtrl.push(NetworkingFavoritesPage);
+    this.navCtrl.setRoot(NetworkingFavoritesPage);
   }
 
   goBusinessArea(){
-    this.navCtrl.push(NetworkingBusinessAreaPage);
+    this.navCtrl.setRoot(NetworkingBusinessAreaPage);
   }
 
   goPqr(){
