@@ -82,9 +82,12 @@ load(){
       this.sending = false;
 
       if (resp != null && resp.Retorno == 0) {
-        this._soclanw.uploadPhoto(this.file,this._sesion.GetClientEmpCodi(),resp.number).subscribe(resp=>{
-          console.log(resp);
-        })
+        if(this.file!=undefined){
+          this._soclanw.uploadPhoto(this.file,this._sesion.GetClientEmpCodi(),resp.number).subscribe(resp=>{
+            console.log(resp);
+          })
+        }
+      
         this._general.showCustomAlert(
           "¡Hemos recibido la solicitud de su clasificado!",
           this._sesion.getAeParam().par_rsdc == undefined
