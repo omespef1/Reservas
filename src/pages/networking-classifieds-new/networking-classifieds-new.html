@@ -44,14 +44,33 @@
         <ion-icon class="input-icon" item-end name="call"></ion-icon>
       </ion-item>
       <ion-item no-lines>
+        <!-- <ion-label stacked >Imágen</ion-label> -->
+        <!-- <ion-input  name="image" placeholder="Subir imágen" type="file" accept="image/*" (change)="changeListener($event)"></ion-input> -->
+      <!-- <ion-label>Imágen</ion-label> -->
+        <button block type="button" large item-start (click) ="openeditprofile()" ion-button round outline item-end>
+          <ion-icon name="camera" item-end></ion-icon>
+          &nbsp;Subir imágen
+        </button>
+      </ion-item>
+      <ion-item *ngIf="classified!=undefined && classified.cla_foto !=undefined">
+                  
+        <ion-thumbnail item-start>
+          <img [src]="'data:image/jpeg;base64,' + this.classified.cla_foto" />
+        </ion-thumbnail>
+        <button  item-end type="button" color="danger" ion-button item-start (click)="deletePhoto()">
+          <ion-icon item-end name="trash"></ion-icon>
+          Eliminar
+        </button>
+     </ion-item>
+      <!-- <ion-item no-lines>
         <ion-label stacked >Imágen</ion-label>
-        <ion-input  name="image" placeholder="Subir imágen" type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
-        <ion-icon class="input-icon" item-end name="camera"></ion-icon>
-        <!-- <button  class="orange" ion-button round item-end>
+      
+
+        <button  class="orange" ion-button round item-end>
           <ion-icon class="input-icon" name="ios-cloud-upload-outline"></ion-icon>
           &nbsp;Subir
-        </button> -->
-      </ion-item>
+        </button>
+      </ion-item> -->
       <div padding text-center>
         <button block [disabled]="!classifiedForm.form.valid" class="orange" ion-button round>
           <div class="font-icon">

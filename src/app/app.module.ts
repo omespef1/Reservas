@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LOCALE_ID } from '@angular/core';
 //pages
@@ -314,6 +315,7 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
     StatusBar,
+    Camera,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ComunicationsProvider,
