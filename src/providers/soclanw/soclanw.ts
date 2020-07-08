@@ -29,4 +29,13 @@ GetSoClanw(emp_codi:number){
     return this._comu.Get(`SoClanw/GetPhoto?emp_codi=${emp_codi}&cla_cont=${cla_cont}`,false,'',false);
   }
 
+  uploadPhoto(file:File,emp_codi:number,cla_cont:number){
+    const formData: FormData = new FormData();
+    formData.append('fileKey', file, file.name);
+    formData.append('EMP_CODI', emp_codi.toString());
+    formData.append('CLA_CONT', cla_cont.toString());
+    return this._comu.postPhoto("SoClanw/PostPhotoClassified",formData);
+  }
+
+  
 }

@@ -255,7 +255,24 @@ export class ComunicationsProvider {
   }
 
 
+  postPhoto(urlService:string,data:FormData): Observable<boolean> {
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin':'*'
+    }
 
+    let bodyRequest: any = {
+      headers:  new HttpHeaders(headerDict),              
+    }
+ console.log(data);
+    
+    return this.http
+      .post(this._sesion.GetClientUrl() + urlService, data)
+      .map(() => { return true; })
+      
+}
 
 
 }

@@ -6,7 +6,7 @@ cla_titu:string;
 cla_desc:string;
 cla_nomb:string;
 cla_tele:number;
-cla_foto:string;
+cla_foto:any;
 mac_nume:string;
 soc_cont:number;
 sbe_cont:number;
