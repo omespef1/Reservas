@@ -45,7 +45,7 @@
       </ion-item>
       <ion-item no-lines>
         <ion-label stacked >Imágen</ion-label>
-        <ion-input placeholder="Subir imágen" type="file" ></ion-input>
+        <ion-input  name="image" placeholder="Subir imágen" type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
         <ion-icon class="input-icon" item-end name="camera"></ion-icon>
         <!-- <button  class="orange" ion-button round item-end>
           <ion-icon class="input-icon" name="ios-cloud-upload-outline"></ion-icon>

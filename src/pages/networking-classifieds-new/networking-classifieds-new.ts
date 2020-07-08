@@ -8,7 +8,7 @@ import {
 import { general } from "../../class/general/general";
 import { SoclanwProvider } from "../../providers/soclanw/soclanw";
 import { soclanw } from "../../class/models/soclanw/soclanw";
-import { transaction, user } from "../../class/models/models";
+import { transaction, user, transactionNumber } from "../../class/models/models";
 import { sessions } from "../../class/sessions/sessions";
 
 /**
@@ -29,6 +29,7 @@ export class NetworkingClassifiedsNewPage {
   user: user = new user();
   classified: soclanw = new soclanw();
   editMode=false;
+  file: File;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,14 +46,22 @@ export class NetworkingClassifiedsNewPage {
   ionViewDidLoad() {
     if(this.navParams.get('editClassified'))
     this.editMode=true;
-    if(!this.editMode)
-    this.classified = new soclanw();
+    if(!this.editMode){
+      this.classified = new soclanw();
+      this.load();
+    }
+  
     else {
       this.classified = this.navParams.get('editClassified')
     }
   }
 
-
+load(){
+  this._sesion.GetLoggedin().then((resp:user)=>{
+  this.classified.cla_nomb = `${resp.Soc_nomb} ${resp.Soc_apel}`;
+  this.classified.cla_tele = Number(resp.Soc_tele);
+  })
+}
   Ok(){
     if(!this.editMode)
     this.SetClassified();
@@ -62,16 +71,23 @@ export class NetworkingClassifiedsNewPage {
   }
 
   SetClassified() {
+    
     this.sending = true;
  
     this.classified.emp_codi = this._sesion.GetClientEmpCodi();
     this.classified.mac_nume = this.user.Mac_nume1;
     this.classified.soc_cont = this.user.Soc_cont;
-    this.classified.sbe_cont = this.user.Sbe_cont;
-    this._soclanw.SetSoClanw(this.classified).then((resp: transaction) => {
+    this.classified.sbe_cont = this.user.Sbe_cont;   
+    this._soclanw.SetSoClanw(this.classified).then((resp: transactionNumber) => {
       this.sending = false;
 
       if (resp != null && resp.Retorno == 0) {
+        if(this.file!=undefined){
+          this._soclanw.uploadPhoto(this.file,this._sesion.GetClientEmpCodi(),resp.number).subscribe(resp=>{
+            console.log(resp);
+          })
+        }
+      
         this._general.showCustomAlert(
           "¡Hemos recibido la solicitud de su clasificado!",
           this._sesion.getAeParam().par_rsdc == undefined
@@ -89,8 +105,7 @@ export class NetworkingClassifiedsNewPage {
   }
   updateClassified(){
     console.log(this.classified);
-    this.sending=true;
-    this.classified.cla_foto="";
+    this.sending=true;    
     this._soclanw.UpdateSoClanw(this.classified).then((resp: transaction) => {
       this.sending = false;
       if (resp != null && resp.Retorno == 0) {
@@ -116,5 +131,10 @@ export class NetworkingClassifiedsNewPage {
 
   closeModal() {
     this._view.dismiss();
+  }
+
+  changeListener($event){
+    this.file = $event.target.files[0];
+    console.log(this.file);
   }
 }
