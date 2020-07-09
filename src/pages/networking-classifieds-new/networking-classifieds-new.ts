@@ -187,6 +187,6 @@ load(){
   }
 
   deletePhoto(){
-    this.base64Image="";
+    this.classified.cla_foto="";
   }
 }
