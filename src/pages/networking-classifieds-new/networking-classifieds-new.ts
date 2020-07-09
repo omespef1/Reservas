@@ -175,7 +175,7 @@ load(){
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      ...useAlbum ? {sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM} : {}
+      ...useAlbum ? {sourceType: this.camera.PictureSourceType.PHOTOLIBRARY} : {}
     }
 
     const imageData = await this.camera.getPicture(options);
