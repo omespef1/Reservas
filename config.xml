@@ -74,6 +74,18 @@
         <config-file parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
             <string>Usamos estos datos para enviarte Notificaciones</string>
         </config-file>
+        <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+    <string>need camera access to take pictures</string>
+</edit-config>
+<edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
+    <string>need photo library access to get pictures from there</string>
+</edit-config>
+<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+    <string>need location access to find things nearby</string>
+</edit-config>
+<edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
+    <string>need photo library access to save pictures there</string>
+</edit-config>
         <icon height="20" src="resources/ios/icon/icon-20.png" width="20" />
         <icon height="40" src="resources/ios/icon/icon-20@2x.png" width="40" />
         <icon height="60" src="resources/ios/icon/icon-20@3x.png" width="60" />
