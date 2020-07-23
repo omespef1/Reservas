@@ -11,7 +11,7 @@ import firebase from "firebase";
 */
 @Injectable()
 export class FirebaseAuthProvider {
-  public usuario: any = {};
+  public user: firebase.UserInfo;
   constructor(public afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user) => {
       console.log("Estado del usuario: ", user);
@@ -20,20 +20,41 @@ export class FirebaseAuthProvider {
         return;
       }
 
-      this.usuario.nombre = user.displayName;
-      this.usuario.uid = user.uid;
+     this.user  = user;
     });
   }
 
-
+  
   logout() {
-    this.usuario = {};
+    console.log("sesión de chat cerrada");
+    this.user = null;
     this.afAuth.auth.signOut();
   }
 
   loginWithMail(user: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(user, password);
+      this.afAuth
+      .auth
+      .signInWithEmailAndPassword(user, password)
+      .then(value => {
+        console.log('login firebase satisfactorio');
+      })
+      .catch( (err:any)=> {   
+        console.log(err);
+         if(err.code =="auth/user-not-found"){
+          console.log("Usuario de chat no creado.Creando...");
+          this.signInWithMail(user,password).then(resp=>{
+            if(resp){
+              console.log("Usuario logueado con éxito");
+            }
+          })
+         }
+       })
   }
+
+ loggued(){
+   this.afAuth.user;
+ }
+
 
   signInWithMail(mail: string, password: string) {
     return this.afAuth.auth
@@ -53,6 +74,8 @@ export class FirebaseAuthProvider {
       // An error happened.
     });
   }
+
+
 
 
 }

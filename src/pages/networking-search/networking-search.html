@@ -11,7 +11,7 @@
         <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Lo que busco</ion-title>
+    <ion-title>{{ mode == 1? 'Lo que busco':'Perfiles'}}</ion-title>
 
   </ion-navbar>
 </ion-header>
@@ -52,9 +52,12 @@
     <div  class="card" *ngFor="let profile of profiles">
       <div class="card-profile">
         <ion-item no-lines no-padding class="item-filter transparent">
-          <button class="orange" (click)="goOtherProfile(profile)" item-end ion-button outline>
+          <button *ngIf="mode==1" class="orange" (click)="goOtherProfile(profile)" item-end ion-button outline>
                <ion-icon name="eye"></ion-icon> &nbsp; Perfil
           </button>
+          <button *ngIf="mode==2" class="orange" (click)="goChat(profile)" item-end ion-button outline>
+            <ion-icon name="eye"></ion-icon> &nbsp; Enviar mensaje
+       </button>
           <ion-avatar class="profile-Menu" item-left>
             <img src="assets/imgs/user-profile.svg">
           </ion-avatar>
@@ -63,6 +66,7 @@
         </ion-item>
 
       </div>
+      <div *ngIf="mode==1">
       <div class="card-body">
         <div class="card-text" text-left>
           <p class="text-profile"> {{  profile.per_admi}} </p>
@@ -89,7 +93,7 @@
           </ion-row>
         </ion-grid>
       </div>
-
+    </div>
     </div>
   </div>
 

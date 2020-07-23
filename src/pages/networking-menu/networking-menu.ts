@@ -197,21 +197,11 @@ export class NetworkingMenuPage {
 
 
   LoginFirebase(){
-    console.log(this.user);
-    this._auth.loginWithMail(this.user.Sbe_mail,this.user.sbe_pass).then((resp=>{
-      console.log(resp);
-  
-    })).catch( (err:any)=> {   
-       if(err.code =="auth/user-not-found"){
-        console.log("Usuario de chat no creado.Creando...");
-        this._auth.signInWithMail(this.user.Sbe_mail,"950501").then(resp=>{
-          if(resp){
-            console.log("Usuario logueado con éxito");
-            this._auth.updateUser(`${this.user.Soc_nomb} ${this.user.Soc_apel}`)
-          }
-        })
-       }
-     })
+    console.log(this._auth.user==null);
+    if(this._auth.user==null){
+      this._auth.loginWithMail(this.user.Sbe_mail,"123456");
+    }
+    
   }
 
   // GetBanners(){

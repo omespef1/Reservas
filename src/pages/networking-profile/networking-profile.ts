@@ -23,6 +23,7 @@ import { NetworkingProfileProyectPage } from "../networking-profile-proyect/netw
 import { PartnerProvider } from "../../providers/partner/partner";
 import { SofanetProvider } from '../../providers/sofanet/sofanet';
 import { SodpernProvider } from '../../providers/sodpern/sodpern';
+import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
 
 
 
@@ -58,7 +59,8 @@ export class NetworkingProfilePage {
     private _general: general,
     private _sosocio: PartnerProvider,
     private _sofanet:SofanetProvider,
-    private _sodpern:SodpernProvider
+    private _sodpern:SodpernProvider,
+    private _auth:FirebaseAuthProvider
   ) {}
 
   ionViewDidLoad() {
@@ -350,6 +352,7 @@ export class NetworkingProfilePage {
 
   saveChanges() {
     this.saving = true;
+    this.myProfile.per_uuid = this._auth.user.uid;
     if (this.myProfile.per_cont==undefined || this.myProfile.per_cont == 0) {
       this._sopernw.SetSoPernw(this.myProfile).then((resp: transaction) => {
         this.saving = false;

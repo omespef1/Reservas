@@ -7,6 +7,7 @@ import {
 } from "angularfire2/firestore";
 import { message } from "../../interfaces/chat";
 import firebase from "firebase";
+import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
 
 
 /*
@@ -20,11 +21,17 @@ export class ChatProvider {
   public chats: message[] = [];
 
   public captcha: any;
-  private collection :AngularFirestoreCollection<message>;
-  constructor(private afs: AngularFirestore ) {
+  private collection :AngularFirestoreDocument<message>;
+  constructor(private afs: AngularFirestore,private _auth:FirebaseAuthProvider ) {
 
   }
 
+
+  SetNewCharRoom(uuid:string){
+    const chatName= 'chat_'+(uuid< this._auth.user.uid? uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+uuid);
+    // Add a new document in collection "cities"
+this.collection.collection("chat-rooms").doc(chatName)
+  }
   loadMessagesChat(id:string) {
     this.collection= this.afs.collection<message>(`chat-rooms/${id}/chat-mesagges`, (ref) =>
       ref.orderBy("date", "desc").limit(15)

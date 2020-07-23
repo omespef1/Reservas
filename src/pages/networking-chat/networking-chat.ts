@@ -29,7 +29,7 @@ import { sessions } from '../../class/sessions/sessions';
 export class NetworkingChatPage  implements OnInit{
  message:string;
  element:any;
- userProfile:sopernw;
+ userProfile:any;
  idChat:string;
   constructor(
 
@@ -41,10 +41,10 @@ export class NetworkingChatPage  implements OnInit{
   }
 
 async ngOnInit(){
-  this.idChat = this.nav.get("chat-id");
-  console.log(this.idChat);
+ // this.idChat = this.nav.get("chat-id");
+ // console.log(this.idChat);
   this.element = document.getElementById("chat-messages");
-  this.userProfile = await this._session.GetNetworkingUser()
+  this.userProfile = this.nav.get("profile");
   this._chat.loadMessagesChat(this.idChat).subscribe(()=>{         
     this.element.scrollTop = this.element.scrollHeight;
   

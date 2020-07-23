@@ -591,6 +591,7 @@ export class sopernw {
   aud_usua: string;
   aud_esta: string;
   details: sodpern[];
+  per_uuid:string;
 }
 export class sodpern {
   constructor(){

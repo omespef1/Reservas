@@ -24,6 +24,7 @@ import { NetworkingSearchPage } from "../pages/networking-search/networking-sear
 import { NetworkingChatPage } from '../pages/networking-chat/networking-chat';
 import { NetworkingChatLoginPage } from '../pages/networking-chat-login/networking-chat-login';
 import { NetworkingMessagesPage } from '../pages/networking-messages/networking-messages';
+import { FirebaseAuthProvider } from "../providers/firebase-auth/firebase-auth";
 
 
 //plugins
@@ -49,6 +50,7 @@ export class MyApp {
     private _espac: AeEspacProvider,
     private _noti: NotificationsPushProvider,
     private _aeinapp: AeinappProvider,
+    private auth:FirebaseAuthProvider
     
   ) {
 
@@ -88,6 +90,7 @@ export class MyApp {
       this._sessions.removeSession();
       this.logged = false;
       this.nav.setRoot(LoginPage);
+      this.auth.logout();
       this._general.showToastMessage("Su sesión se ha cerrado!", "bottom");
     });
     //   this.events.subscribe('onBackground',()=>{

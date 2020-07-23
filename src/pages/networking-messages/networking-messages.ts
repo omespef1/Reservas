@@ -5,6 +5,7 @@ import { NetworkingProfilePage } from '../networking-profile/networking-profile'
 import { NetworkingChatPage } from '../networking-chat/networking-chat';
 import { ChatRoomProvider } from '../../providers/chat-room/chat-room';
 import { sessions } from '../../class/sessions/sessions';
+import { NetworkingSearchPage } from '../networking-search/networking-search';
 
 /**
  * Generated class for the NetworkingMessagesPage page.
@@ -44,7 +45,9 @@ export class NetworkingMessagesPage implements OnInit {
   goChat(id:string){
     this.navCtrl.push(NetworkingChatPage,{'chat-id':id});
   }
-
+  goProfiles(){
+    this.navCtrl.push(NetworkingSearchPage,{ 'mode' : 2 })
+  }
 
 
 }
