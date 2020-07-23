@@ -17,6 +17,7 @@ import {
 import { SofanetProvider } from "../../providers/sofanet/sofanet";
 import { general } from "../../class/general/general";
 import { NetworkingChatPage } from "../networking-chat/networking-chat";
+import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
 
 /**
  * Generated class for the NetworkingSearchPage page.
@@ -59,7 +60,8 @@ export class NetworkingSearchPage {
     private _sopwenw: SopernwProvider,
     private _sofanet: SofanetProvider,
     private _general: general,
-    private _session: sessions
+    private _session: sessions,
+    public auth:FirebaseAuthProvider
   ) {}
 
   ionViewDidLoad() {

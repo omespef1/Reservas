@@ -50,7 +50,7 @@
   </div>
   <div *ngIf="!loading">
     <div  class="card" *ngFor="let profile of profiles">
-      <div class="card-profile">
+      <div *ngIf="profile.per_uuid != auth.user.uid" class="card-profile">
         <ion-item no-lines no-padding class="item-filter transparent">
           <button *ngIf="mode==1" class="orange" (click)="goOtherProfile(profile)" item-end ion-button outline>
                <ion-icon name="eye"></ion-icon> &nbsp; Perfil

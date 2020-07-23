@@ -45,7 +45,7 @@ export class NetworkingChatPage  implements OnInit{
 async ngOnInit(){
  // this.idChat = this.nav.get("chat-id");
   console.log(this.userProfile);
- this._chat.SetNewChatRoom(this.userProfile);
+ this._chat.SetNewChatRoom(this.userProfile)
   this.element = document.getElementById("chat-messages");
   
   this._chat.loadMessagesChat().subscribe(()=>{         
@@ -54,6 +54,8 @@ async ngOnInit(){
 });
 
 }
+
+
 
   sendMessage(){
     if(this.message.length>0){

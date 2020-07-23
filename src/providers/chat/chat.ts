@@ -37,6 +37,8 @@ this.afs.collection("chat-rooms").doc(chatName).set({}).then(resp=>{
 });
   }
   loadMessagesChat() {
+    console.log('CHAT ES');
+    console.log(this.chatId);
    let collection = this.afs.collection<message>('chat-rooms').doc(this.chatId).collection<message>('messages',(ref) =>
       ref.orderBy("date", "desc").limit(15)
     );
