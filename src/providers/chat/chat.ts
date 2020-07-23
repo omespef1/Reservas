@@ -28,7 +28,7 @@ export class ChatProvider {
 
   SetNewChatRoom(profile:any){
     console.log(this._auth.user.uid);
-    const chatName= 'chat_'+(profile.per_uuid< this._auth.user.uid? profile.per_uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+uuid);
+    const chatName= 'chat_'+(profile.per_uuid< this._auth.user.uid? profile.per_uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+profile.per_uuid);
     // Add a new document in collection "cities"
 this.afs.collection("chat-rooms").doc(chatName).set({}).then(resp=>{
   console.log(resp);
