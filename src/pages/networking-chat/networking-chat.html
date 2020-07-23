@@ -38,27 +38,16 @@
          <ion-item class="session-start">
         <p text-center>{{message.date | date:"dd/MM/yyyy hh:mm"}}</p>
       </ion-item>
-        <ion-item *ngIf="message.profileId == userProfile.per_cont"  class="sent" no-padding>
+        <ion-item *ngIf="message.uid == auth.user.uid"  class="sent" no-padding>
           <ion-avatar item-left>
             <img src="https://www.thebusinessyear.com/Content/interviewee/afb409fd-647f-4d43-9105-100ff450b231.jpg?anchor=topcenter&mode=crop&w=218&h=238">
           </ion-avatar>
-          <p item-left class="message-content">{{message.message}}</p>
+          <p item-left class="message-content">{{message.content}}</p>
         </ion-item>
-        <ion-item *ngIf="message.profileId != userProfile.per_cont" class="received">
-        <p class="message-content" item-right>{{message.message}}</p>
+        <ion-item *ngIf="message.uid != auth.user.uid" class="received">
+        <p class="message-content" item-right>{{message.content}}</p>
       </ion-item>
       </div>
-     
-      <!-- <ion-item  class="sent">
-        <p class="message-content" item-right>Todavía faltan cosas</p>
-      </ion-item> -->
-     
-      <!-- <ion-item class="session-start">
-        <p text-center>March 14th, 9:04pm</p>
-      </ion-item> -->
-      <!-- <ion-item class="sent">
-        <p class="message-content" item-right>okay</p>
-      </ion-item> -->
     </ion-list>
   </div>
 

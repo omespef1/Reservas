@@ -1,8 +1,9 @@
 export interface message {
  
- message:string;
- date:number,
- profileId:number
+ content:string;
+ date:number;
+ read:boolean;
+ uid:string;
 }
 
 export interface chatRoom {

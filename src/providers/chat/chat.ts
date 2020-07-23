@@ -19,24 +19,28 @@ import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
 @Injectable()
 export class ChatProvider {
   public chats: message[] = [];
-
+  public chatId="";
   public captcha: any;
-  private collection :AngularFirestoreDocument<message>;
   constructor(private afs: AngularFirestore,private _auth:FirebaseAuthProvider ) {
 
   }
 
 
-  SetNewCharRoom(uuid:string){
-    const chatName= 'chat_'+(uuid< this._auth.user.uid? uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+uuid);
+  SetNewChatRoom(profile:any){
+    console.log(this._auth.user.uid);
+    const chatName= 'chat_'+(profile.per_uuid< this._auth.user.uid? profile.per_uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+uuid);
     // Add a new document in collection "cities"
-this.collection.collection("chat-rooms").doc(chatName)
+this.afs.collection("chat-rooms").doc(chatName).set({}).then(resp=>{
+  console.log(resp);
+
+  this.chatId = chatName;
+});
   }
-  loadMessagesChat(id:string) {
-    this.collection= this.afs.collection<message>(`chat-rooms/${id}/chat-mesagges`, (ref) =>
+  loadMessagesChat() {
+   let collection = this.afs.collection<message>('chat-rooms').doc(this.chatId).collection<message>('messages',(ref) =>
       ref.orderBy("date", "desc").limit(15)
     );
-    return this.collection.valueChanges().map((messages) => {
+    return collection.valueChanges().map((messages) => {
       this.chats = [];
       console.log(messages);
       for (let message of messages) {
@@ -45,13 +49,14 @@ this.collection.collection("chat-rooms").doc(chatName)
     });
   }
 
-  sendMessage(messageStr:string,userId:number) {
+  sendMessage(messageStr:string) {
     let message: message = {
-      profileId: userId,
-      message: messageStr,
+      uid: this._auth.user.uid,
+      content: messageStr,
       date: new Date().getTime(),
+      read:false
     };
-    return this.collection.add(message);
+    return this.afs.collection('chat-rooms').doc(this.chatId).collection('messages').add(message);
   }
 
 

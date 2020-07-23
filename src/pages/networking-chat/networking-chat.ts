@@ -12,6 +12,7 @@ import { Observable } from "rxjs/Observable";
 import { ChatProvider } from "../../providers/chat/chat";
 import { sopernw } from '../../class/Models/models';
 import { sessions } from '../../class/sessions/sessions';
+import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
 /**
  * Generated class for the NetworkingChatPage page.
  *
@@ -29,23 +30,25 @@ import { sessions } from '../../class/sessions/sessions';
 export class NetworkingChatPage  implements OnInit{
  message:string;
  element:any;
- userProfile:any;
+ userProfile:any={};
  idChat:string;
   constructor(
 
     public _chat: ChatProvider,
     private _session:sessions,
-    private nav:NavParams
+    private nav:NavParams,
+    public auth:FirebaseAuthProvider
   ) {
- 
+    this.userProfile = this.nav.get("profile");
   }
 
 async ngOnInit(){
  // this.idChat = this.nav.get("chat-id");
- // console.log(this.idChat);
+  console.log(this.userProfile);
+ this._chat.SetNewChatRoom(this.userProfile);
   this.element = document.getElementById("chat-messages");
-  this.userProfile = this.nav.get("profile");
-  this._chat.loadMessagesChat(this.idChat).subscribe(()=>{         
+  
+  this._chat.loadMessagesChat().subscribe(()=>{         
     this.element.scrollTop = this.element.scrollHeight;
   
 });
@@ -54,7 +57,7 @@ async ngOnInit(){
 
   sendMessage(){
     if(this.message.length>0){
-    this._chat.sendMessage(this.message,this.userProfile.per_cont).then(()=>{
+    this._chat.sendMessage(this.message).then(()=>{
       console.log("mensaje enviado")
       this.message="";
     })

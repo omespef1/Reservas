@@ -105,6 +105,7 @@ console.log(this.mode);
       .GeSoPernw(this._session.GetClientEmpCodi(), this.searchTerms)
       .then((resp: transaction) => {
         this.loading = false;
+        console.log(resp);
         if (resp != null && resp.Retorno == 0) {
           this.profilesAll = resp.ObjTransaction;
           this.profiles = resp.ObjTransaction;
@@ -203,7 +204,7 @@ console.log(this.mode);
   }
 
   goChat(profile:any){
-    if(profile.per_uuif ==undefined || profile.per_uuif ==null){
+    if(profile.per_uuid ==undefined || profile.per_uuid ==null){
       this._general.showCustomAlert(
         "No permitido!",
         "",
@@ -214,6 +215,7 @@ console.log(this.mode);
       );
     }
     else {
+      console.log('perfil enviado', profile);
       this.navCtrl.push(NetworkingChatPage, { 'profile': profile})
     }
     
