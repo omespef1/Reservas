@@ -9,6 +9,7 @@ import {
 } from "angularfire2/firestore";
 import { AngularFireAuth } from "angularfire2/auth";
 import firebase, { firestore } from "firebase";
+import { FirebaseAuthProvider } from '../firebase-auth/firebase-auth';
 /*
   Generated class for the ChatRoomProvider provider.
 
@@ -18,14 +19,24 @@ import firebase, { firestore } from "firebase";
 @Injectable()
 export class ChatRoomProvider {
   public chatRooms: any[] = [];
-  private chatRoomsCollection: AngularFirestoreCollection<any>;
-  constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth) {
+  constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth,
+    private auth:FirebaseAuthProvider) {
     console.log('Hello ChatRoomProvider Provider');
   }
 
 
-  loadChatRooms(chatUserId:number,companyId:number) {
-
+  loadChatRooms() {
+    this.afs.firestore.collection('chat-rooms')
+    .where('users','array-contains',this.auth.user.uid).get().then(function(querySnapshot) {
+      console.log('carga de chats');
+      querySnapshot.docChanges().map((messages) => {
+      
+        console.log(messages.doc.data());
+        // for (let message of messages) {
+        //   this.chats.unshift(message);
+        // }
+      });
+  })
     // let db = this.afs.firestore;
     //   let collection =  db.collection("chat-rooms").where(firebase.firestore.FieldPath.documentId,
     // .get()
