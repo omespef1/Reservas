@@ -3,6 +3,37 @@ $primary: #387ef5;
 $ligtGray: #ededed;
 
 page-networking-chat {
+      //general
+      .blue {
+        color: #2F2260;
+    }
+    h3 {
+       font-size: 1.3rem;
+   }
+   .orange{
+    color: #FB512C;
+}
+   font-family: Raleway;
+
+//toolbar
+.toolbar-title-ios {
+        
+    color: white;
+   
+}
+.toolbar-background-ios {
+    background: #2F2260;
+    color: white;
+}
+.bar-button-default-ios{
+    color: white;
+    background-color: #341F53;
+    border-radius: 25px;
+    padding: 8px 8px 8px 9px;
+    height: 40px;
+    width: 40px;
+}
+
     ion-navbar ion-buttons ion-icon {
         font-size: 2.2rem !important;
         &:first-of-type {

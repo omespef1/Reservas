@@ -27,9 +27,9 @@ export class NetworkingMessagesPage implements OnInit {
   }
 
   async ngOnInit(){
-   let userProfile =  await this._sesion.GetNetworkingUser();
+  //  let userProfile =  await this._sesion.GetNetworkingUser();
    
-    this._chatRooms.loadChatRooms(userProfile.per_cont, this._sesion.GetClientEmpCodi());
+    // this._chatRooms.loadChatRooms(userProfile.per_cont, this._sesion.GetClientEmpCodi());
   }
 
   ionViewDidLoad() {

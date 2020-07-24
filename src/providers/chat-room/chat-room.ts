@@ -25,44 +25,21 @@ export class ChatRoomProvider {
 
 
   loadChatRooms(chatUserId:number,companyId:number) {
-    console.log(`user id es ${chatUserId}`)
-    this.chatRoomsCollection = this.afs.collection<chatRoom>("chat-rooms", (ref) =>
-      ref.orderBy("date", "desc")
-    .where("participants","array-contains",chatUserId).where("companyId","==",companyId)
-    );
-     this.chatRoomsCollection.valueChanges({ idField: 'id'}).map((chatRooms: any[]) => {
-    console.log(chatRooms);
-      this.chatRooms = [];
-      for (let chatroom of chatRooms) {
-        this.chatRooms.unshift(chatroom);
-      }
-   }).subscribe()
+
+    // let db = this.afs.firestore;
+    //   let collection =  db.collection("chat-rooms").where(firebase.firestore.FieldPath.documentId,
+    // .get()
+    // .then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // })
+    // .catch(function(error) {
+    //     console.log("Error getting documents: ", error);
+    // });
 
 
-
-
- 
-//  this.itemsCollection = this.afs.collection<any>("chat-rooms", (ref) =>
-//       ref.orderBy("date", "desc")
-//     .where("chat-rooms","array-contains",chatUserId).where("companyId","==",companyId)
-//     );
-//    return this.itemsCollection.valueChanges().map((chatRooms)=>{
-//      console.log(chatRooms);
-//     this.chatRooms = [];
-//       for (let chatroom of chatRooms) {
-//         this.chatRooms.unshift(chatroom);
-//       }
-//     })
-// const ref = firebase.firestore().collection('chat-rooms');
-// ref.onSnapshot((doc:any) => {
-
-//   const data = doc;
-//    console.log(doc);
-  
-  
-//   // ...
-// });
-//   }
 
   }
 

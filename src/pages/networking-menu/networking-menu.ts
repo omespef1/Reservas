@@ -58,6 +58,7 @@ export class NetworkingMenuPage {
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
       this.user = resp;
+      console.log('usuario es ', this.user);
       this.GetProfessions();
       this.GetSoPernw();
       this.GetSocPhoto();
@@ -115,11 +116,11 @@ export class NetworkingMenuPage {
     this.navCtrl.setRoot(NetworkingNewsPage);
   }
 
-  GetSoPernw() {
+  async GetSoPernw() {
     console.log(this.user);
     this._sopernw
       .GetSoPernw(
-        this._sessions.GetClientEmpCodi(),
+       await this._sessions.getEmpCodiSession(),
         this.user.Sbe_cont,
         this.user.Soc_cont,
         this.user.Mac_nume1
@@ -134,8 +135,8 @@ export class NetworkingMenuPage {
       });
   }
 
-  GetSocPhoto(){
-    this._sosocio.GetSoSocioPhoto(this._sessions.GetClientEmpCodi(),
+  async GetSocPhoto(){
+    this._sosocio.GetSoSocioPhoto(await this._sessions.getEmpCodiSession(),
     this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume1).then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){
            this.foto = resp.ObjTransaction;

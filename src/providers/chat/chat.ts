@@ -30,14 +30,18 @@ export class ChatProvider {
     console.log(this._auth.user.uid);
     const chatName= 'chat_'+(profile.per_uuid< this._auth.user.uid? profile.per_uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+profile.per_uuid);
     // Add a new document in collection "cities"
+    this.chatId = chatName;
 this.afs.collection("chat-rooms").doc(chatName).set({}).then(resp=>{
-  console.log(resp);
+  console.log('coleccion creada');
 
-  this.chatId = chatName;
+  
+
+  
 });
+return this.loadMessagesChat();
   }
   loadMessagesChat() {
-    console.log('CHAT ES');
+    console.log('cargando mensajes...');
     console.log(this.chatId);
    let collection = this.afs.collection<message>('chat-rooms').doc(this.chatId).collection<message>('messages',(ref) =>
       ref.orderBy("date", "desc").limit(15)

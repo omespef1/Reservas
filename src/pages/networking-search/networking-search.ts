@@ -101,10 +101,10 @@ console.log(this.mode);
   }
 
 
-  loadProfiles(){
+ async loadProfiles(){
     this.loading = true;
     this._sopwenw
-      .GeSoPernw(this._session.GetClientEmpCodi(), this.searchTerms)
+      .GeSoPernw(await this._session.getEmpCodiSession(), this.searchTerms)
       .then((resp: transaction) => {
         this.loading = false;
         console.log(resp);
