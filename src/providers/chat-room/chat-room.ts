@@ -1,15 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { chatRoom } from '../../interfaces/chat';
 import {
   AngularFirestore,
-  AngularFirestoreCollection,
-  AngularFirestoreDocument,
-  AngularFirestoreCollectionGroup,
 } from "angularfire2/firestore";
 import { AngularFireAuth } from "angularfire2/auth";
-import firebase, { firestore } from "firebase";
 import { FirebaseAuthProvider } from '../firebase-auth/firebase-auth';
+import { room } from '../../class/Models/models';
 /*
   Generated class for the ChatRoomProvider provider.
 
@@ -26,37 +21,27 @@ export class ChatRoomProvider {
 
 
   loadChatRooms() {
-    this.afs.firestore.collection('chat-rooms')
-    .where('users','array-contains',this.auth.user.uid).get().then(function(querySnapshot) {
-      console.log('carga de chats');
-      querySnapshot.docChanges().map((messages) => {
-      
-        console.log(messages.doc.data());
-        // for (let message of messages) {
-        //   this.chats.unshift(message);
-        // }
+
+   this.chatRooms=[];
+
+  const ref=  this.afs.firestore.collection('chat-rooms')
+    .where('users','array-contains',this.auth.user.uid);
+
+    ref.onSnapshot((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.data());
+       this.chatRooms.unshift(doc.data());
+        // ...
       });
-  })
+    });
+  }
+  
     // let db = this.afs.firestore;
-    //   let collection =  db.collection("chat-rooms").where(firebase.firestore.FieldPath.documentId,
-    // .get()
-    // .then(function(querySnapshot) {
-    //     querySnapshot.forEach(function(doc) {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //     });
-    // })
-    // .catch(function(error) {
-    //     console.log("Error getting documents: ", error);
-    // });
-
-
-
+  
+  addChatRoom(room:any){
+    this.chatRooms.unshift(room);
   }
 
-  newChatRoom(){
-    this.chatRoomsCollection = this.afs.collection<chatRoom>("chat-rooms");
-    
-      //this.chatRoomsCollection.add()
-  }
+
+
 }

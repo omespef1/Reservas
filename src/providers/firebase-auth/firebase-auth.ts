@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import firebase from "firebase";
+import { AngularFirestore } from "angularfire2/firestore";
 
 /*
   Generated class for the FirebaseAuthProvider provider.
@@ -12,7 +13,7 @@ import firebase from "firebase";
 @Injectable()
 export class FirebaseAuthProvider {
   public user: firebase.UserInfo;
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth,private _firestore:AngularFirestore) {
     this.afAuth.authState.subscribe((user) => {
       console.log("Estado del usuario: ", user);
 
@@ -31,12 +32,16 @@ export class FirebaseAuthProvider {
     this.afAuth.auth.signOut();
   }
 
-  loginWithMail(user: string, password: string) {
+  loginWithMail(user: string, password: string,displayName:string) {
+    console.log("actualizado username",displayName);
       this.afAuth
       .auth
       .signInWithEmailAndPassword(user, password)
       .then(value => {
         console.log('login firebase satisfactorio');
+       // this.updateUser(displayName);
+       this.addUser(displayName);
+        
       })
       .catch( (err:any)=> {   
         console.log(err);
@@ -44,7 +49,9 @@ export class FirebaseAuthProvider {
           console.log("Usuario de chat no creado.Creando...");
           this.signInWithMail(user,password).then(resp=>{
             if(resp){
-              console.log("Usuario logueado con éxito");
+              //this.updateUser(displayName);
+              this.addUser(displayName);
+            
             }
           })
          }
@@ -69,13 +76,28 @@ export class FirebaseAuthProvider {
       displayName: displayName
    
     }).then(function() {
+      this.addUser();
       console.log("usuario actualizado");
     }).catch(function(error) {
-      // An error happened.
+      console.log("error actualizando");
     });
   }
 
 
+addUser(displayName:string){
+  this._firestore.collection('users').doc(firebase.auth().currentUser.uid).set({
+    displayName: displayName
+  })
+}
+GetUserName(uiid){
+  console.log(uiid);
+ return this._firestore.collection('users').doc(uiid).snapshotChanges();
 
+}
+
+GetUuidPartnerFromKeyPair(users){
+    let partnerProfile = users.filter(v=> v != this.user.uid );
+    return partnerProfile[0];
+}
 
 }

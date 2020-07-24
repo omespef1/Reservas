@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { NetworkingProfilePage } from '../networking-profile/networking-profile';
@@ -6,6 +6,7 @@ import { NetworkingChatPage } from '../networking-chat/networking-chat';
 import { ChatRoomProvider } from '../../providers/chat-room/chat-room';
 import { sessions } from '../../class/sessions/sessions';
 import { NetworkingSearchPage } from '../networking-search/networking-search';
+import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
 
 /**
  * Generated class for the NetworkingMessagesPage page.
@@ -21,7 +22,8 @@ import { NetworkingSearchPage } from '../networking-search/networking-search';
 })
 export class NetworkingMessagesPage implements OnInit {
   
-  constructor(public _chatRooms:ChatRoomProvider,private navCtrl:NavController,private _sesion:sessions) {
+  constructor(public _chatRooms:ChatRoomProvider,private navCtrl:NavController,private _sesion:sessions,
+    public _auth:FirebaseAuthProvider) {
     
   
   }
@@ -42,12 +44,20 @@ export class NetworkingMessagesPage implements OnInit {
   goOtherProfile(){
     this.navCtrl.push(NetworkingProfilePage,{'myProfile':false})
   }
-  goChat(id:string){
-    this.navCtrl.push(NetworkingChatPage,{'chat-id':id});
+  goChat(users:any[]){
+   
+    this.GetUserName(users);
+    // this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: uiid ,sbe_nomb:'Prueba'}});
   }
   goProfiles(){
     this.navCtrl.push(NetworkingSearchPage,{ 'mode' : 2 })
   }
-
+  GetUserName(users:any[]){
+    const uiid = this._auth.GetUuidPartnerFromKeyPair(users);
+  //  return "Prueba";
+    return this._auth.GetUserName(uiid).subscribe(resp=>{
+      console.log(resp.payload.data());
+    })
+  }
 
 }

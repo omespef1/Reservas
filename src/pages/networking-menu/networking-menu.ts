@@ -200,7 +200,7 @@ export class NetworkingMenuPage {
   LoginFirebase(){
     console.log(this._auth.user==null);
     if(this._auth.user==null){
-      this._auth.loginWithMail(this.user.Sbe_mail,"123456");
+      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`);
     }
     
   }
