@@ -35,6 +35,7 @@ import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-aut
   templateUrl: "networking-menu.html",
 })
 export class NetworkingMenuPage implements OnInit {
+  
   user: user= new user();
   params: ae_param;
   myProfile:sopernw = new sopernw();

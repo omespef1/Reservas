@@ -34,12 +34,13 @@ export class ChatRoomProvider {
     console.log('user es chat', this.auth.user.uid);
     let companyCode =await  this._session.getEmpCodiSession()
  let professions = await  this._session.getProfessions();
-   this.chatRooms=[];
-
+  
   const ref=  this.afs.firestore.collection('chat-rooms')
     .where('users','array-contains',this.auth.user.uid);
 
     ref.onSnapshot((snapshot) => {
+      this.chatRooms=[];
+
       snapshot.forEach((doc) => {
         console.log(doc.data());
        this.chatRooms.unshift({ users : doc.data().users, lastMessage:'',read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:'',partnerPhoto:'assets/imgs/user-profile.svg',loaded:false});

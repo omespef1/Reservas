@@ -42,7 +42,7 @@
       
           <p item-right class="message-content">{{message.content}}</p>
           <ion-avatar item-right>
-            <img src="https://www.thebusinessyear.com/Content/interviewee/afb409fd-647f-4d43-9105-100ff450b231.jpg?anchor=topcenter&mode=crop&w=218&h=238">
+            <img [src]="userProfile.per_foto">
           </ion-avatar>
         </ion-item>
         <ion-item *ngIf="message.uid != auth.user.uid" class="received">         
@@ -61,7 +61,7 @@
 
   <ion-item class="textarea-wrapper" no-padding>
     <ion-textarea  (keyup.enter)="sendMessage()"  [(ngModel)]="message"type="text" placeholder="Envía un mensaje"></ion-textarea>  
-    <button item-end (click)="sendMessage()" ion-button clear>
+    <button (mousedown)="$event.preventDefault()" item-end (click)="sendMessage()" ion-button clear>
       <ion-icon item-right name="send" color="primary"></ion-icon>
     </button>  
    
