@@ -38,7 +38,7 @@ GeSoPernw(emp_codi:number, per_tags:string){
   
 }
 
-GeSoPernwByUuid(uuid:string){
+GetSoPernwByUuid(uuid:string){
   return this._comu.Get(`sopernw/GetSoPernwByUid?per_uuid=${uuid}`,false,'',false)
   
 }

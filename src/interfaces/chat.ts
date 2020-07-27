@@ -7,10 +7,12 @@ export interface message {
 }
 
 export interface chatRoom {
-    id:number;
-    companyId:number;
-    date:number;
-    participants:number[];    
+    displayNameUser:string;
+    profession:string;
+    lastMessage:string;
+    read:boolean
+    users:string[];
+    
 }
 
 

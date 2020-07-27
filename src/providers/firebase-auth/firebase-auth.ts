@@ -96,6 +96,7 @@ GetUserName(uiid){
 }
 
 GetUuidPartnerFromKeyPair(users){
+ 
     let partnerProfile = users.filter(v=> v != this.user.uid );
     return partnerProfile[0];
 }

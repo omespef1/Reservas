@@ -96,13 +96,13 @@ export class sessions {
 
 
   GetClientUrl() {
-return 'http://192.168.1.107/SevenReservas/api/'
+return 'http://localhost/SevenReservas/api/'
    // return 'http://appnogalpruebas.clubelnogal.com/api/';
     // return 'http://186.154.240.181/Nogalapi/api/';
    // return 'http://186.154.240.181//NogalApi/api/';
   //   return 'http://192.168.1.209/appnogal/api/';
   // return 'https://erp.clubelnogal.com/appnogal/api/';
-    // Le quita el https a la url configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
+    // Le quita el https a la usrl configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
     // if (this._platform.is("cordova") && this.clientUrl.indexOf("https") > -1) {
     //   let urlUnsafe: string = this.clientUrl.replace("https", "http");
     //   return urlUnsafe;
@@ -218,6 +218,16 @@ return 'http://192.168.1.107/SevenReservas/api/'
   SetNetworkingUser(user:sopernw){
     this.profileNetworking= user;
     return this.nativeStorage.set('networking-user',user);
+  }
+
+
+  FindProfessions(professions:item[],code:number){
+    let data = professions.filter(
+      (t) => t.Ite_cont == code
+    )[0];
+    const result = data == undefined ? "Sin Definir" : data.Ite_nomb;
+    return result;
+  
   }
   // setDeveloperOptions(developerOptions:boolean){
   //   this.nativeStorage.set("DeveloperOptions",developerOptions); 

@@ -46,18 +46,18 @@ export class NetworkingMessagesPage implements OnInit {
   }
   goChat(users:any[]){
    
-    this.GetUserName(users);
+  //  this.GetUserName(users);
     // this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: uiid ,sbe_nomb:'Prueba'}});
   }
   goProfiles(){
     this.navCtrl.push(NetworkingSearchPage,{ 'mode' : 2 })
   }
   GetUserName(users:any[]){
-    const uiid = this._auth.GetUuidPartnerFromKeyPair(users);
-  //  return "Prueba";
-    return this._auth.GetUserName(uiid).subscribe(resp=>{
-      console.log(resp.payload.data());
-    })
+  //   const uiid = this._auth.GetUuidPartnerFromKeyPair(users);
+  // //  return "Prueba";
+  //   return this._auth.GetUserName(uiid).subscribe(resp=>{
+  //     console.log(resp.payload.data());
+  //   })
   }
 
 }

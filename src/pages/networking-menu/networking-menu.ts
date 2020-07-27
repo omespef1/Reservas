@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   IonicPage,
   NavController,
@@ -34,7 +34,7 @@ import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-aut
   selector: "page-networking-menu",
   templateUrl: "networking-menu.html",
 })
-export class NetworkingMenuPage {
+export class NetworkingMenuPage implements OnInit {
   user: user= new user();
   params: ae_param;
   myProfile:sopernw = new sopernw();
@@ -55,6 +55,12 @@ export class NetworkingMenuPage {
     private _agrrements:AgreementsProvider,
     private _auth:FirebaseAuthProvider
   ) {
+   
+  }
+
+
+  ngOnInit(){
+
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
       this.user = resp;
@@ -62,13 +68,15 @@ export class NetworkingMenuPage {
       this.GetProfessions();
       this.GetSoPernw();
       this.GetSocPhoto();
-      this.GetBanners();
+    this.GetBanners();
       this.LoginFirebase();
+     // this.VerifyTerms();
     });
+    console.log('leyendo terminos')
+  
   }
-
   ionViewDidLoad() {
-    this.VerifyTerms();
+   
    
   }
 
@@ -84,9 +92,8 @@ export class NetworkingMenuPage {
   async VerifyTerms() {
     //revisamos si en sesión ya sabemos que el usuario aceptó términos
     //si no, vamos a la base de datos a ver si hay registro de aceptación de términos
-    let accepted: any = await (<any>this._sesions.getAcceptedTerms());
-    console.log(accepted)
-    if (accepted==null) {
+   // let accepted: any = await (<any>this._sesions.getAcceptedTerms());
+  
       this._aeinapp
         .ExistsAeInapp(
           this.user.Emp_codi,
@@ -99,7 +106,7 @@ export class NetworkingMenuPage {
             this.showModalTerms();
           }
         });
-    }
+    
   }
 
   goProfile() {
@@ -164,12 +171,7 @@ export class NetworkingMenuPage {
   FindProfession() {
     console.log(this.myProfile);
     if(this.myProfile){
-      let data = this.professions.filter(
-        (t) => t.Ite_cont == this.myProfile.ite_prof
-      )[0];
-      return data == undefined ? "Sin Definir" : data.Ite_nomb;
-    }
-   return "Sin definir";
+     return this._sesions.FindProfessions(this.professions,this.myProfile.ite_prof);
   }
 
   goFavorites(){

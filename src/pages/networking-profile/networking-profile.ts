@@ -240,7 +240,7 @@ export class NetworkingProfilePage {
       });
     modal.present();
     modal.onDidDismiss((proyectEdit: sodpern) => {
-      debugger;
+     
       if (proyect == undefined && proyectEdit)
     {
       if(this.myProfile.details==null){
