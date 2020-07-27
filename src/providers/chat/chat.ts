@@ -8,6 +8,7 @@ import {
 import { message } from "../../interfaces/chat";
 import firebase from "firebase";
 import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
+import { Vibration } from '@ionic-native/vibration';
 
 
 /*
@@ -20,7 +21,7 @@ import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
 export class ChatProvider {
   public chats: message[] = [];  
   public captcha: any;
-  constructor(private afs: AngularFirestore,private _auth:FirebaseAuthProvider ) {
+  constructor(private afs: AngularFirestore,private _auth:FirebaseAuthProvider ,private vibration: Vibration) {
 
   }
 
@@ -44,6 +45,7 @@ return this.loadMessagesChat(chatName);
       ref.orderBy("date", "desc").limit(15)
     );
     return collection.valueChanges().map((messages) => {
+      this.vibration.vibrate(500);
       this.chats = [];
       console.log(messages);
       for (let message of messages) {
