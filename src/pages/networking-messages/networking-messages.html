@@ -36,31 +36,54 @@
   </ion-item>
  </div>
 
- <div class="card" (click)="goChat(chatRoom)"  *ngFor="let chatRoom of _chatRooms.chatRooms">
-  <div class="card-profile">
-    <ion-item button no-lines no-padding class="item-filter transparent" >
+ <div class="card"   *ngFor="let chatRoom of _chatRooms.chatRooms">
+  <div class="card-profile" *ngIf="chatRoom.loaded" >
+    <ion-item (click)="goChat(chatRoom)" button no-lines no-padding class="item-filter transparent" >
     <ion-avatar class="profile-Menu" item-left>
-      <img src="assets/imgs/user-profile.svg">
+     
+      <img [src]="chatRoom.partnerPhoto==''?'assets/imgs/user-profile.svg':chatRoom.partnerPhoto">
     </ion-avatar>
     
     
     <h2  class="blue"> <b>{{chatRoom.displayNameUser}}</b></h2>
     <h3 class="blue">{{ chatRoom.profession}}</h3>
     <p> {{ chatRoom.lastMessage}}</p>
-    <div class="button-message">
-      <button class="orange div" ion-button icon-only clear>
-        <ion-icon name="ios-mail-outline"></ion-icon>
-      </button>
-    </div>
-    <div class="notification-badge"></div>
-    <div class="button-trash">
-      <button class="orange" ion-button icon-only clear>
-        <ion-icon name="ios-trash-outline"></ion-icon>
-      </button>
-    </div>
+    
   </ion-item>
+  <div class="button-message">
+    <button class="orange div" ion-button icon-only clear>
+      <ion-icon name="ios-mail-outline"></ion-icon>
+    </button>
+  </div>
+  <div class="notification-badge"></div>
+  <div class="button-trash">
+    <button class="orange" ion-button icon-only clear>
+      <ion-icon name="ios-trash-outline"></ion-icon>
+    </button>
+  </div>
   
 
   </div>
+  <div *ngIf="!chatRoom.loaded">
+    <ion-list class="m-n">
+      <ion-item no-lines>
+        <ion-avatar item-start>
+          <skeleton-item height="50px" width="50px"></skeleton-item>
+        </ion-avatar>
+        <skeleton-item></skeleton-item>
+        <skeleton-item height="8px" width="67%"></skeleton-item>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-avatar item-start>
+          <skeleton-item height="50px" width="50px" rounded></skeleton-item>
+        </ion-avatar>
+        <skeleton-item></skeleton-item>
+        <skeleton-item height="8px" width="67%"></skeleton-item>
+      </ion-item>
+    </ion-list>
+  </div>
  </div>
+
+ 
+
 

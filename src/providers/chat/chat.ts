@@ -18,30 +18,29 @@ import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
 */
 @Injectable()
 export class ChatProvider {
-  public chats: message[] = [];
-  public chatId="";
+  public chats: message[] = [];  
   public captcha: any;
   constructor(private afs: AngularFirestore,private _auth:FirebaseAuthProvider ) {
 
   }
 
 
-  SetNewChatRoom(profile:any){
-    const chatName= 'chat_'+(profile.per_uuid< this._auth.user.uid? profile.per_uuid+'_'+this._auth.user.uid : this._auth.user.uid+'_'+profile.per_uuid);
+  SetNewChatRoom(profile:any,chatName:string){
+   
     // Add a new document in collection "cities"
-    this.chatId = chatName;
+
 this.afs.collection("chat-rooms").doc(chatName).set({
   users: [profile.per_uuid,this._auth.user.uid ]
 }).then(resp=>{
   console.log('coleccion creada');
 
 });
-return this.loadMessagesChat();
+return this.loadMessagesChat(chatName);
   }
-  loadMessagesChat() {
+  loadMessagesChat(chatId:string) {
     console.log('cargando mensajes...');
-    console.log(this.chatId);
-   let collection = this.afs.collection<message>('chat-rooms').doc(this.chatId).collection<message>('messages',(ref) =>
+    console.log(chatId);
+   let collection = this.afs.collection<message>('chat-rooms').doc(chatId).collection<message>('messages',(ref) =>
       ref.orderBy("date", "desc").limit(15)
     );
     return collection.valueChanges().map((messages) => {
@@ -53,18 +52,32 @@ return this.loadMessagesChat();
     });
   }
 
-  sendMessage(messageStr:string) {
+  loadMessagesChatLastChat(chatId:string) {
+    console.log('cargando mensajes...');
+    console.log(chatId);
+   let collection = this.afs.collection<message>('chat-rooms').doc(chatId).collection<message>('messages',(ref) =>
+      ref.orderBy("date", "desc").limit(1)
+    );
+    return collection.valueChanges().map((messages) => {
+    
+     return messages[0];
+    });
+  }
+
+  sendMessage(messageStr:string,chatId:string) {
     let message: message = {
       uid: this._auth.user.uid,
       content: messageStr,
       date: new Date().getTime(),
       read:false
     };
-    return this.afs.collection('chat-rooms').doc(this.chatId).collection('messages').add(message);
+    return this.afs.collection('chat-rooms').doc(chatId).collection('messages').add(message);
   }
 
 
-
+GetChatName(uidPartner:string){
+  return'chat_'+(uidPartner< this._auth.user.uid? uidPartner+'_'+this._auth.user.uid : this._auth.user.uid+'_'+uidPartner);
+}
 
 
 

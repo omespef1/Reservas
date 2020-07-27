@@ -172,6 +172,7 @@ export class NetworkingMenuPage implements OnInit {
     console.log(this.myProfile);
     if(this.myProfile){
      return this._sesions.FindProfessions(this.professions,this.myProfile.ite_prof);
+    }
   }
 
   goFavorites(){

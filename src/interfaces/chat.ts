@@ -13,6 +13,8 @@ export interface chatRoom {
     read:boolean
     users:string[];
     uidPartner:string;
+    partnerPhoto:string;
+    loaded:boolean;
     
 }
 

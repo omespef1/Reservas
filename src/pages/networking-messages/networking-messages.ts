@@ -32,10 +32,11 @@ export class NetworkingMessagesPage implements OnInit {
   async ngOnInit(){
   //  let userProfile =  await this._sesion.GetNetworkingUser();
    
-     this._chatRooms.loadChatRooms();
+    
   }
 
   ionViewDidLoad() {
+    this._chatRooms.loadChatRooms();
     console.log('ionViewDidLoad NetworkingMessagesPage');
   }
 

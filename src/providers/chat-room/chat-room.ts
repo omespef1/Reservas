@@ -8,6 +8,8 @@ import { chatRoom } from '../../interfaces/chat';
 import { user, transaction } from '../../class/Models/models';
 import { SopernwProvider } from '../sopernw/sopernw';
 import { sessions } from '../../class/sessions/sessions';
+import { ChatProvider } from '../chat/chat';
+import { PartnerProvider } from '../partner/partner';
 
 
 
@@ -21,13 +23,16 @@ import { sessions } from '../../class/sessions/sessions';
 @Injectable()
 export class ChatRoomProvider {
   public chatRooms: chatRoom[] = [];
+
   constructor(private afs: AngularFirestore, public afAuth: AngularFireAuth,
-    private auth:FirebaseAuthProvider,private _sopernw:SopernwProvider,private _session:sessions) {
+    private auth:FirebaseAuthProvider,private _sopernw:SopernwProvider,private _session:sessions,private _chat:ChatProvider,private _sosocio:PartnerProvider) {
     console.log('Hello ChatRoomProvider Provider');
   }
 
 
   async loadChatRooms() {
+    console.log('user es chat', this.auth.user.uid);
+    let companyCode =await  this._session.getEmpCodiSession()
  let professions = await  this._session.getProfessions();
    this.chatRooms=[];
 
@@ -37,21 +42,34 @@ export class ChatRoomProvider {
     ref.onSnapshot((snapshot) => {
       snapshot.forEach((doc) => {
         console.log(doc.data());
-       this.chatRooms.unshift({ users : doc.data().users, lastMessage:'Se acuerda de la última vez que hablamos? Pues Lo que pasa es que no estoy seguro de ese proyecto.',read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:''});
-       for(let chat of this.chatRooms){
+       this.chatRooms.unshift({ users : doc.data().users, lastMessage:'',read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:'',partnerPhoto:'assets/imgs/user-profile.svg',loaded:false});
+       for(let chat of this.chatRooms){     
          let uiidPartner = this.auth.GetUuidPartnerFromKeyPair(chat.users);
          chat.uidPartner = uiidPartner;
             this.auth.GetUserName(uiidPartner).subscribe(resp=>{       
               let soprenw = this._sopernw.GetSoPernwByUuid(uiidPartner).then((sopernw:transaction)=>{
+                let socio =sopernw.ObjTransaction[0];               
                 let data:any =resp.payload.data();
-                chat.displayNameUser = data.displayName;                     
-                chat.profession = this._session.FindProfessions(professions, sopernw.ObjTransaction[0].ITE_PROF) ;
-                
+                chat.displayNameUser = data.displayName;                           
+                chat.profession = this._session.FindProfessions(professions, socio.ITE_PROF) ;
+                chat.loaded=true;
+                this._chat.loadMessagesChatLastChat(this._chat.GetChatName(socio.PER_UUID)).subscribe((message)=>{
+                  console.log(message);
+                  chat.lastMessage = message.content;
+                })
+                this._sosocio.GetSoSocioPhoto(companyCode,
+                  socio.SOC_CONT,socio.SBE_CONT,socio.MAC_NUME).then((resp:transaction)=>{
+                    if(resp!=null && resp.Retorno==0){
+                         chat.partnerPhoto = `data:image/jpeg;base64,${resp.ObjTransaction}`;
+                    }
+                  })
+              
               })
-    
+              
             
         })  
        }
+     
         // ...
       });
     });

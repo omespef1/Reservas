@@ -53,15 +53,15 @@ page-networking-chat {
       ion-item {
         &.received {
           p.message-content {
-            background: $primary;
-            color: white;
+            background: $ligtGray;
+            color: #333;
           }
         }
     
         &.sent {
           p.message-content {
-            background: $ligtGray;
-            color: #333;
+            background: $primary;
+            color:white;
           }
         }
     

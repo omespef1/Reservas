@@ -43,15 +43,15 @@ export class NetworkingChatPage  implements OnInit{
   }
 
 async ngOnInit(){
- // this.idChat = this.nav.get("chat-id");
+  this.idChat = this._chat.GetChatName(this.userProfile.per_uuid)
   console.log(this.userProfile);
- this._chat.SetNewChatRoom(this.userProfile)
   this.element = document.getElementById("chat-messages");
+ this._chat.SetNewChatRoom(this.userProfile,this.idChat).subscribe(()=>{
+  this.element.scrollTop = this.element.scrollHeight;
+ })
+
   
-  this._chat.loadMessagesChat().subscribe(()=>{         
-    this.element.scrollTop = this.element.scrollHeight;
-  
-});
+
 
 }
 
@@ -59,7 +59,7 @@ async ngOnInit(){
 
   sendMessage(){
     if(this.message.length>0){
-    this._chat.sendMessage(this.message).then(()=>{
+    this._chat.sendMessage(this.message,this.idChat).then(()=>{
       console.log("mensaje enviado")
       this.message="";
     })
