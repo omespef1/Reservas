@@ -117,7 +117,7 @@ import {sessions} from '../class/sessions/sessions';
 //plugins
 import { BrowserTab } from '@ionic-native/browser-tab';
 import * as moment from 'moment';
-
+import { Vibration } from '@ionic-native/vibration';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
@@ -358,7 +358,8 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
     SodpernProvider,
     ChatProvider,
     ChatRoomProvider,
-    FirebaseAuthProvider
+    FirebaseAuthProvider,
+    Vibration
 
   ]
 })
