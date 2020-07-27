@@ -121,6 +121,7 @@ import { Vibration } from '@ionic-native/vibration';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { NativeRingtones } from '@ionic-native/native-ringtones';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
@@ -359,7 +360,8 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
     ChatProvider,
     ChatRoomProvider,
     FirebaseAuthProvider,
-    Vibration
+    Vibration,
+    NativeRingtones
 
   ]
 })

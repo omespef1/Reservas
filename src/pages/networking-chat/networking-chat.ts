@@ -8,6 +8,7 @@ import {
   Content,
 } from "ionic-angular";
 
+
 import { AngularFirestore } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
 import { ChatProvider } from "../../providers/chat/chat";
@@ -16,6 +17,7 @@ import { sessions } from '../../class/sessions/sessions';
 import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
 import { SopernwProvider } from '../../providers/sopernw/sopernw';
 import { PartnerProvider } from '../../providers/partner/partner';
+import { NativeRingtones } from '@ionic-native/native-ringtones';
 /**
  * Generated class for the NetworkingChatPage page.
  *
@@ -44,7 +46,8 @@ export class NetworkingChatPage  implements OnInit{
     private nav:NavParams,
     public auth:FirebaseAuthProvider,
     private _sopernw:SopernwProvider,
-    private _sosocio:PartnerProvider
+    private _sosocio:PartnerProvider,
+    private ringtones: NativeRingtones
   ) {
     this.userProfile = this.nav.get("profile");
   }
@@ -76,6 +79,7 @@ async ngOnInit(){
     this._chat.sendMessage(this.message,this.idChat).then(()=>{
       console.log("mensaje enviado")
       this.message="";
+      this.ringtones.playRingtone('assets/sound/send.mp3');
     })
     .catch(err=> console.error('Error al enviar',err))
     }

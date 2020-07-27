@@ -42,7 +42,7 @@ return this.loadMessagesChat(chatName);
     console.log('cargando mensajes...');
     console.log(chatId);
    let collection = this.afs.collection<message>('chat-rooms').doc(chatId).collection<message>('messages',(ref) =>
-      ref.orderBy("date", "desc").limit(15)
+      ref.orderBy("date", "desc").limit(500)
     );
     return collection.valueChanges().map((messages) => {
       this.vibration.vibrate(500);

@@ -40,7 +40,7 @@
         <h2>{{user.Soc_nomb}} {{user.Soc_apel}} </h2>
         <h4>Profesión</h4>
         <skeleton-item *ngIf="loading"  width="60px" rounded></skeleton-item>
-        <p *ngIf="!loading"> {{FindProfession()}}</p>
+        <p *ngIf="!loading"> {{professionName}}</p>
       </ion-item>
     </ion-col>
   </ion-row>

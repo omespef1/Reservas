@@ -44,6 +44,7 @@ export class NetworkingMenuPage implements OnInit {
   foto:string="";
   loadingBanner=false;
   banners:agreement[]=[];
+  professionName:string="Sin definir";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -66,9 +67,10 @@ export class NetworkingMenuPage implements OnInit {
     this._sesions.GetLoggedin().then((resp: user) => {
       this.user = resp;
       console.log('usuario es ', this.user);
-      this.GetProfessions();
+      
       this.GetSoPernw();
       this.GetSocPhoto();
+
     this.GetBanners();
       this.LoginFirebase();
      // this.VerifyTerms();
@@ -139,6 +141,7 @@ export class NetworkingMenuPage implements OnInit {
         if (resp != null && resp.Retorno == 0) {
           this.myProfile = resp.ObjTransaction;
           this._sesions.SetNetworkingUser(this.myProfile);
+          this.GetProfessions();
         }
       });
   }
@@ -165,15 +168,15 @@ export class NetworkingMenuPage implements OnInit {
     this._sessions.getProfessions().then((resp: item[]) => {
       if (resp) {
         this.professions = resp;
+        this.FindProfession();
       }
     });
   }
 
   FindProfession() {
-    console.log(this.myProfile);
-    if(this.myProfile){
-     return this._sesions.FindProfessions(this.professions,this.myProfile.ite_prof);
-    }
+    
+     this.professionName = this._sesions.FindProfessions(this.professions,this.myProfile.ite_prof);
+    
   }
 
   goFavorites(){
