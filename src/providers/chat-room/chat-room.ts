@@ -37,9 +37,10 @@ export class ChatRoomProvider {
     ref.onSnapshot((snapshot) => {
       snapshot.forEach((doc) => {
         console.log(doc.data());
-       this.chatRooms.unshift({ users : doc.data().users, lastMessage:'Se acuerda de la última vez que hablamos? Pues Lo que pasa es que no estoy seguro de ese proyecto.',read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal'});
+       this.chatRooms.unshift({ users : doc.data().users, lastMessage:'Se acuerda de la última vez que hablamos? Pues Lo que pasa es que no estoy seguro de ese proyecto.',read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:''});
        for(let chat of this.chatRooms){
          let uiidPartner = this.auth.GetUuidPartnerFromKeyPair(chat.users);
+         chat.uidPartner = uiidPartner;
             this.auth.GetUserName(uiidPartner).subscribe(resp=>{       
               let soprenw = this._sopernw.GetSoPernwByUuid(uiidPartner).then((sopernw:transaction)=>{
                 let data:any =resp.payload.data();

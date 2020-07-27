@@ -12,6 +12,7 @@ export interface chatRoom {
     lastMessage:string;
     read:boolean
     users:string[];
+    uidPartner:string;
     
 }
 

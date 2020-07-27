@@ -7,6 +7,7 @@ import { ChatRoomProvider } from '../../providers/chat-room/chat-room';
 import { sessions } from '../../class/sessions/sessions';
 import { NetworkingSearchPage } from '../networking-search/networking-search';
 import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
+import { chatRoom } from '../../interfaces/chat';
 
 /**
  * Generated class for the NetworkingMessagesPage page.
@@ -44,10 +45,10 @@ export class NetworkingMessagesPage implements OnInit {
   goOtherProfile(){
     this.navCtrl.push(NetworkingProfilePage,{'myProfile':false})
   }
-  goChat(users:any[]){
+  goChat(chat:chatRoom){
    
   //  this.GetUserName(users);
-    // this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: uiid ,sbe_nomb:'Prueba'}});
+   this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: chat.uidPartner ,sbe_nomb:chat.displayNameUser}});
   }
   goProfiles(){
     this.navCtrl.push(NetworkingSearchPage,{ 'mode' : 2 })
