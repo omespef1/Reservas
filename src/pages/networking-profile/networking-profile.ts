@@ -84,7 +84,7 @@ export class NetworkingProfilePage {
       this.GetSectors();
       if(this.myProfileMode){
         this.GetSoPernw();
-        this.GetSocPhoto();
+      
       }
     
       if(!this.myProfileMode){
@@ -97,12 +97,10 @@ export class NetworkingProfilePage {
   }
 
   GetSocPhoto() {
-    this._sosocio
-      .GetSoSocioPhoto(
-        this._sessions.GetClientEmpCodi(),
-        this.user.Soc_cont,
-        this.user.Sbe_cont,
-        this.user.Mac_nume1
+    this._sopernw
+      .GetPhoto(
+       this.myProfile.emp_codi,
+       this.myProfile.per_cont
       )
       .then((resp: transaction) => {
         if (resp != null && resp.Retorno == 0) {
@@ -112,13 +110,11 @@ export class NetworkingProfilePage {
   }
 
   GetSocPhotoOtherProfile() {
-    this._sosocio
-      .GetSoSocioPhoto(
-        this._sessions.GetClientEmpCodi(),
-        this.myProfile.soc_cont,
-        this.myProfile.sbe_cont,
-        this.myProfile.mac_nume
-      )
+    this._sopernw
+    .GetPhoto(
+      this.myProfile.emp_codi,
+      this.myProfile.per_cont
+     )
       .then((resp: transaction) => {
         if (resp != null && resp.Retorno == 0) {
           this.foto = resp.ObjTransaction;
@@ -142,15 +138,18 @@ export class NetworkingProfilePage {
         if (resp != null && resp.Retorno == 0) {
         
           this.myProfile = resp.ObjTransaction;
-          
+          console.log(this.myProfile);
           if(this.myProfile==null){
             this.myProfile = new sopernw();
             this.myProfile.details=[];
+          }else {
+            this.GetSocPhoto();
           }
          this.myProfile.mac_nume =this.user.Mac_nume1;
          this.myProfile.sbe_cont = this.user.Sbe_cont;
          this.myProfile.soc_cont =this.user.Soc_cont;
          this.myProfile.emp_codi = this._sessions.GetClientEmpCodi();
+      
   
         }
       });
@@ -360,6 +359,7 @@ export class NetworkingProfilePage {
       this._sopernw.SetSoPernw(this.myProfile).then((resp: transaction) => {
         this.saving = false;
         if (resp != null && resp.Retorno == 0) {
+          this._sopernw.updatePhoto({ emp_codi:this.myProfile.emp_codi, per_cont :this.myProfile.per_cont,per_foto:this.foto })
           this.ShowMessageDone();
         }
       }),

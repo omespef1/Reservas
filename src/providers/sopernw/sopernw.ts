@@ -38,7 +38,7 @@ GeSoPernw(emp_codi:number, per_tags:string){
   
 }
 GetPhoto(emp_codi:number, per_cont:number){
-  return this._comu.Get(`SoPernw/GetPhoto?emp_codi=${emp_codi}&per_tags=${per_cont}`,false,'',false)
+  return this._comu.Get(`SoPernw/GetPhoto?emp_codi=${emp_codi}&per_cont=${per_cont}`,false,'',false)
   
 }
 
