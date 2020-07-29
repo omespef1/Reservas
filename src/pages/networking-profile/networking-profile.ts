@@ -370,6 +370,7 @@ export class NetworkingProfilePage {
       this._sopernw.UpdateSoPernw(this.myProfile).then((resp: transaction) => {
         this.saving = false;
         if (resp != null && resp.Retorno == 0) {
+          this._sopernw.updatePhoto({ emp_codi:this.myProfile.emp_codi, per_cont :this.myProfile.per_cont,per_foto:this.foto })
           this.ShowMessageDone();
         }
       });
