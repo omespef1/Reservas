@@ -4,12 +4,13 @@ import {
 } from "angularfire2/firestore";
 import { AngularFireAuth } from "angularfire2/auth";
 import { FirebaseAuthProvider } from '../firebase-auth/firebase-auth';
-import { chatRoom } from '../../interfaces/chat';
+import { chatRoom, message } from '../../interfaces/chat';
 import { user, transaction } from '../../class/Models/models';
 import { SopernwProvider } from '../sopernw/sopernw';
 import { sessions } from '../../class/sessions/sessions';
 import { ChatProvider } from '../chat/chat';
 import { PartnerProvider } from '../partner/partner';
+import { general } from '../../class/general/general';
 
 
 
@@ -31,19 +32,20 @@ export class ChatRoomProvider {
 
 
   async loadChatRooms() {
-    console.log('user es chat', this.auth.user.uid);
+    console.log('user es chat', this.auth.user.uid);  
     let companyCode =await  this._session.getEmpCodiSession()
  let professions = await  this._session.getProfessions();
   
   const ref=  this.afs.firestore.collection('chat-rooms')
     .where('users','array-contains',this.auth.user.uid);
-
+console.log("auth id" , this.auth.user.uid);
     ref.onSnapshot((snapshot) => {
       this.chatRooms=[];
 
       snapshot.forEach((doc) => {
+       
         console.log(doc.data());
-       this.chatRooms.unshift({ users : doc.data().users, lastMessage:'',read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:'',partnerPhoto:'assets/imgs/user-profile.svg',loaded:false});
+       this.chatRooms.unshift({ users : doc.data().users, lastMessage: {  content:'',read:false},read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:'',partnerPhoto:'assets/imgs/user-profile.svg',loaded:false});
        for(let chat of this.chatRooms){     
          let uiidPartner = this.auth.GetUuidPartnerFromKeyPair(chat.users);
          chat.uidPartner = uiidPartner;
@@ -56,7 +58,7 @@ export class ChatRoomProvider {
                 chat.loaded=true;
                 this._chat.loadMessagesChatLastChat(this._chat.GetChatName(socio.PER_UUID)).subscribe((message)=>{
                   console.log(message);
-                  chat.lastMessage = message.content;
+                  chat.lastMessage = message;
                 })
                 this._sosocio.GetSoSocioPhoto(companyCode,
                   socio.SOC_CONT,socio.SBE_CONT,socio.MAC_NUME).then((resp:transaction)=>{

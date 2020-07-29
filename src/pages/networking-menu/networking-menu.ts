@@ -21,6 +21,7 @@ import { NetworkingBusinessAreaPage } from '../networking-business-area/networki
 import { PqrPage } from '../pqr/pqr';
 import { AgreementsProvider } from '../../providers/agreements/agreements';
 import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
+import { general } from '../../class/general/general';
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -55,7 +56,8 @@ export class NetworkingMenuPage implements OnInit {
     private _sessions:sessions,
     private _sosocio:PartnerProvider,
     private _agrrements:AgreementsProvider,
-    private _auth:FirebaseAuthProvider
+    private _auth:FirebaseAuthProvider,
+    private _general:general
   ) {
    
   }
@@ -69,8 +71,7 @@ export class NetworkingMenuPage implements OnInit {
       console.log('usuario es ', this.user);
       
       this.GetSoPernw();
-      this.GetSocPhoto();
-
+     
     this.GetBanners();
       this.LoginFirebase();
      // this.VerifyTerms();
@@ -78,10 +79,7 @@ export class NetworkingMenuPage implements OnInit {
     console.log('leyendo terminos')
   
   }
-  ionViewDidLoad() {
-   
-   
-  }
+
 
   showModalTerms() {
     let modal = this._modal.create(NetworkingTermsPage);
@@ -138,11 +136,16 @@ export class NetworkingMenuPage implements OnInit {
       .then((resp: transaction) => {
         this.loading = false;
 
-        if (resp != null && resp.Retorno == 0) {
+        if (resp != null && resp.ObjTransaction != null && resp.Retorno==0) {
+          this.GetSocPhoto();
           this.myProfile = resp.ObjTransaction;
           this._sesions.SetNetworkingUser(this.myProfile);
           this.GetProfessions();
         }
+        else
+        this._general.showCustomAlert('Atención!','Para acceder a las funciones de Nogal Conecta debes completar tu perfil.',()=>{
+          this.navCtrl.push(NetworkingProfilePage)
+        },'alert-nogal',false,'');
       });
   }
 

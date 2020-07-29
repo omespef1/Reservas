@@ -36,29 +36,23 @@
     <ion-list no-lines>
       <div *ngFor="let message of _chat.chats">
          <ion-item class="session-start">
-        <p text-center>{{message.date | date:"dd/MM/yyyy hh:mm"}}</p>
+        <p text-center>{{ message.payload.doc.data().date | date:"dd/MM/yyyy hh:mm"}}</p>
       </ion-item>
-        <ion-item *ngIf="message.uid == auth.user.uid"  class="sent" no-padding>
-      
-          <p item-right class="message-content">{{message.content}}</p>
-          <ion-avatar item-right>
-            <img [src]="userProfile.per_foto">
-          </ion-avatar>
+        <ion-item *ngIf="message.payload.doc.data().uid == auth.user.uid"  class="sent" no-padding>      
+          <p item-right class="message-content">{{message.payload.doc.data().content}}</p>      
+          <ion-icon [color]="message.payload.doc.data().read?'primary':'secondary'"  item-end class="chat-read" name="ios-checkmark"></ion-icon>    
         </ion-item>
-        <ion-item *ngIf="message.uid != auth.user.uid" class="received">         
-        <p class="message-content" item-left>{{message.content}}</p>
+        <ion-item *ngIf="message.payload.doc.data().uid != auth.user.uid" class="received"> 
+          <ion-avatar item-left>
+            <img [src]="partnerPhoto">
+          </ion-avatar>        
+        <p class="message-content" item-left>{{message.payload.doc.data().content}}</p>      
       </ion-item>
       </div>
     </ion-list>
   </div>
-
-
-
 </ion-content>
-
 <ion-footer>
-
-
   <ion-item class="textarea-wrapper" no-padding>
     <ion-textarea  (keyup.enter)="sendMessage()"  [(ngModel)]="message"type="text" placeholder="Envía un mensaje"></ion-textarea>  
     <button (mousedown)="$event.preventDefault()" item-end (click)="sendMessage()" ion-button clear>
