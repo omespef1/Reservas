@@ -137,9 +137,10 @@ export class NetworkingMenuPage implements OnInit {
         this.loading = false;
 
         if (resp != null && resp.ObjTransaction != null && resp.Retorno==0) {
-          this.GetSocPhoto();
+        
           this.myProfile = resp.ObjTransaction;
           this._sesions.SetNetworkingUser(this.myProfile);
+          this.GetPhoto();
           this.GetProfessions();
         }
         else
@@ -149,10 +150,18 @@ export class NetworkingMenuPage implements OnInit {
       });
   }
 
-  async GetSocPhoto(){
-    this._sosocio.GetSoSocioPhoto(await this._sessions.getEmpCodiSession(),
-    this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume1).then((resp:transaction)=>{
-      if(resp!=null && resp.Retorno==0){
+  // async GetSocPhoto(){
+  //   this._sosocio.GetSoSocioPhoto(await this._sessions.getEmpCodiSession(),
+  //   this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume1).then((resp:transaction)=>{
+  //     if(resp!=null && resp.Retorno==0){
+  //          this.foto = resp.ObjTransaction;
+  //     }
+  //   })
+  // }
+
+  async GetPhoto(){
+    this._sopernw.GetPhoto(await this._sessions.getEmpCodiSession(),this.myProfile.per_cont).then((resp:transaction)=>{
+           if(resp!=null && resp.Retorno==0){
            this.foto = resp.ObjTransaction;
       }
     })

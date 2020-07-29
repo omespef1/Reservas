@@ -80,12 +80,10 @@ export class NetworkingChatPage implements OnInit {
       .GetSoPernwByUuid(uiidPartner)
       .then((resp: transaction) => {
         let socio = resp.ObjTransaction[0];
-        this._sosocio
-          .GetSoSocioPhoto(
-            companyCode,
-            socio.SOC_CONT,
-            socio.SBE_CONT,
-            socio.MAC_NUME
+        this._sopernw
+          .GetPhoto(
+            socio.EMP_CODI,
+            socio.PER_CONT
           )
           .then((resp: transaction) => {
             if (resp != null && resp.Retorno == 0) {

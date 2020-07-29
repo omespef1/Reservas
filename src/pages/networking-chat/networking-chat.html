@@ -55,7 +55,7 @@
 <ion-footer>
   <ion-item class="textarea-wrapper" no-padding>
     <ion-textarea  (keyup.enter)="sendMessage()"  [(ngModel)]="message"type="text" placeholder="Envía un mensaje"></ion-textarea>  
-    <button (mousedown)="$event.preventDefault()" item-end (click)="sendMessage()" ion-button clear>
+    <button class="btn-send" (mousedown)="$event.preventDefault()" item-end (click)="sendMessage()" ion-button clear>
       <ion-icon item-right name="send" color="primary"></ion-icon>
     </button>  
    

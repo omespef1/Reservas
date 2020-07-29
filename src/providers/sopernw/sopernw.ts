@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../comunications/comunications';
-import { sopernw } from '../../class/models/models';
+import { sopernw, networkingPhoto } from '../../class/models/models';
 
 /*
   Generated class for the SopernwProvider provider.
@@ -37,12 +37,22 @@ GeSoPernw(emp_codi:number, per_tags:string){
   return this._comu.Get(`sopernw/GetSoPernw?emp_codi=${emp_codi}&per_tags=${per_tags}`,false,'',false)
   
 }
+GetPhoto(emp_codi:number, per_cont:number){
+  return this._comu.Get(`SoPernw/GetPhoto?emp_codi=${emp_codi}&per_tags=${per_cont}`,false,'',false)
+  
+}
+
 
 GetSoPernwByUuid(uuid:string){
   return this._comu.Get(`sopernw/GetSoPernwByUid?per_uuid=${uuid}`,false,'',false)
   
 }
 
+
+updatePhoto(photo:networkingPhoto){
+  return this._comu.Post(photo,`SoPernw/UpdatePhoto`,'',false);
+  
+}
 
 
 }

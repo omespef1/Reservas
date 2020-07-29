@@ -148,6 +148,7 @@ import { ChatProvider } from '../providers/chat/chat';
 import { NetworkingChatLoginPage } from '../pages/networking-chat-login/networking-chat-login';
 import { ChatRoomProvider } from '../providers/chat-room/chat-room';
 import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
+import { CameraProvider } from '../providers/camera/camera';
 
 
  
@@ -361,7 +362,8 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
     ChatRoomProvider,
     FirebaseAuthProvider,
     Vibration,
-    NativeRingtones
+    NativeRingtones,
+    CameraProvider
 
   ]
 })

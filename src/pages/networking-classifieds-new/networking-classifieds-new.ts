@@ -10,8 +10,8 @@ import { SoclanwProvider } from "../../providers/soclanw/soclanw";
 import { soclanw } from "../../class/models/soclanw/soclanw";
 import { transaction, user, transactionNumber } from "../../class/models/models";
 import { sessions } from "../../class/sessions/sessions";
-import { ActionSheetController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { CameraProvider } from '../../providers/camera/camera';
+
 
 
 /**
@@ -41,8 +41,7 @@ export class NetworkingClassifiedsNewPage {
     private _soclanw: SoclanwProvider,
     private _sesion: sessions,
     private _view: ViewController,
-    private actionsheetCtrl:ActionSheetController,
-    private camera:Camera
+   public camera:CameraProvider
   ) {
     this._sesion.GetLoggedin().then((resp: user) => {
       this.user = resp;
@@ -143,48 +142,52 @@ load(){
     this.file = $event.target.files[0];
     console.log(this.file);
   }
+loadCamera(){
+ this.camera.openeditprofile().then((resp:string)=>{
+   this.classified.cla_foto = resp;
+ })
+}
+  // openeditprofile() {
+  //   let actionSheet = this.actionsheetCtrl.create({
+  //     title: 'Option',
+  //     cssClass: 'action-sheets-basic-page',
+  //     buttons: [
+  //       {
+  //         text: 'Tomar foto',
+  //         role: 'destructive',
+  //         icon: 'ios-camera-outline',
+  //         handler: () => {
+  //           this.captureImage(false);
+  //         }
+  //       },
+  //       {
+  //         text: 'Galería',
+  //         icon: 'ios-images-outline',
+  //         handler: () => {
+  //           this.captureImage(true);
+  //         }
+  //       },
+  //     ]
+  //   });
+  //   actionSheet.present();
+  // }
 
-  openeditprofile() {
-    let actionSheet = this.actionsheetCtrl.create({
-      title: 'Option',
-      cssClass: 'action-sheets-basic-page',
-      buttons: [
-        {
-          text: 'Tomar foto',
-          role: 'destructive',
-          icon: 'ios-camera-outline',
-          handler: () => {
-            this.captureImage(false);
-          }
-        },
-        {
-          text: 'Galería',
-          icon: 'ios-images-outline',
-          handler: () => {
-            this.captureImage(true);
-          }
-        },
-      ]
-    });
-    actionSheet.present();
-  }
+  // async captureImage(useAlbum: boolean) {
+  //   const options: CameraOptions = {
+  //     quality: 50,
+  //     destinationType: this.camera.DestinationType.DATA_URL,
+  //     encodingType: this.camera.EncodingType.JPEG,
+  //     mediaType: this.camera.MediaType.PICTURE,
+  //     ...useAlbum ? {sourceType: this.camera.PictureSourceType.PHOTOLIBRARY} : {}
+  //   }
 
-  async captureImage(useAlbum: boolean) {
-    const options: CameraOptions = {
-      quality: 50,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      ...useAlbum ? {sourceType: this.camera.PictureSourceType.PHOTOLIBRARY} : {}
-    }
+  //   const imageData = await this.camera.getPicture(options);
 
-    const imageData = await this.camera.getPicture(options);
+  //   this.classified.cla_foto = `${imageData}`;
 
-    this.classified.cla_foto = `${imageData}`;
+  //   // this.photos.unshift(this.base64Image);
 
-    // this.photos.unshift(this.base64Image);
-
-  }
+  // }
 
   deletePhoto(){
     this.classified.cla_foto="";

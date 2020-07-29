@@ -45,7 +45,7 @@ console.log("auth id" , this.auth.user.uid);
       snapshot.forEach((doc) => {
        
         console.log(doc.data());
-       this.chatRooms.unshift({ users : doc.data().users, lastMessage: {  content:'',read:false},read:false, profession:'Ing Sistemas', displayNameUser:'Jorge Camilo Bernal',uidPartner:'',partnerPhoto:'assets/imgs/user-profile.svg',loaded:false});
+       this.chatRooms.unshift({ users : doc.data().users, lastMessage: {  content:'',read:false},read:false, profession:'', displayNameUser:'',uidPartner:'',partnerPhoto:'assets/imgs/user-profile.svg',loaded:false});
        for(let chat of this.chatRooms){     
          let uiidPartner = this.auth.GetUuidPartnerFromKeyPair(chat.users);
          chat.uidPartner = uiidPartner;
@@ -60,8 +60,8 @@ console.log("auth id" , this.auth.user.uid);
                   console.log(message);
                   chat.lastMessage = message;
                 })
-                this._sosocio.GetSoSocioPhoto(companyCode,
-                  socio.SOC_CONT,socio.SBE_CONT,socio.MAC_NUME).then((resp:transaction)=>{
+                this._sopernw.GetPhoto(socio.EMP_CODI,
+                  socio.PER_CONT).then((resp:transaction)=>{
                     if(resp!=null && resp.Retorno==0){
                          chat.partnerPhoto = `data:image/jpeg;base64,${resp.ObjTransaction}`;
                     }

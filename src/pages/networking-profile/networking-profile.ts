@@ -24,6 +24,8 @@ import { PartnerProvider } from "../../providers/partner/partner";
 import { SofanetProvider } from '../../providers/sofanet/sofanet';
 import { SodpernProvider } from '../../providers/sodpern/sodpern';
 import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
+import { CameraProvider } from '../../providers/camera/camera';
+
 
 
 
@@ -60,7 +62,8 @@ export class NetworkingProfilePage {
     private _sosocio: PartnerProvider,
     private _sofanet:SofanetProvider,
     private _sodpern:SodpernProvider,
-    private _auth:FirebaseAuthProvider
+    private _auth:FirebaseAuthProvider,
+    private camera:CameraProvider
   ) {}
 
   ionViewDidLoad() {
@@ -451,4 +454,13 @@ else {
 
    
   }
+
+
+  loadCamera(){
+    this.camera.openeditprofile().then((resp:string)=>{
+      this.foto = resp;
+    })
+   }
+
+  
 }

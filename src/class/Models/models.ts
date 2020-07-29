@@ -655,3 +655,9 @@ export interface User {
   time: string;
 }
 
+export class networkingPhoto {
+emp_codi:number;
+per_cont:number;
+per_foto:any;
+
+}
