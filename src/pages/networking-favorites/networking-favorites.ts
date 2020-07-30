@@ -6,6 +6,7 @@ import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { NetworkingProfilePage } from "../networking-profile/networking-profile";
 import { transaction, item } from '../../class/Models/models';
 import { general } from "../../class/general/general";
+import { NetworkingChatPage } from '../networking-chat/networking-chat';
 
 /**
  * Generated class for the NetworkingFavoritesPage page.
@@ -61,6 +62,10 @@ export class NetworkingFavoritesPage {
         .then((resp: transaction) => {
           if (resp != null && resp.Retorno == 0) {
             this.favorites = resp.ObjTransaction;
+            
+            for(let favorite of this.favorites){
+              favorite.profession = this._sesion.FindProfessions(this.professions,favorite.ite_prof);
+            }
             this.favoritesFilter = resp.ObjTransaction;
           }
         });
@@ -74,17 +79,18 @@ export class NetworkingFavoritesPage {
     });
   }
 
-   GetProfession(profile) {
+  //  GetProfession(profile) {
    
-    console.log(this.professions);
-    console.log(profile);
-    if (profile != undefined) {
-      let data = this.professions.filter(
-        (t) => t.Ite_cont == profile.ite_prof
-      )[0];
-      return data == undefined ? "Sin Definir" : data.Ite_nomb;
-    }
-  }
+  //   console.log(this.professions);
+  //   console.log(profile);
+  //   if (profile != undefined) {
+  //     let data = this.professions.filter(
+  //       (t) => t.Ite_cont == profile.ite_prof
+  //     )[0];
+  //     return data == undefined ? "Sin Definir" : data.Ite_nomb;
+  //   }
+  // }
+
 
   initializeItems() {
     this.favoritesFilter = this.favorites;
@@ -136,6 +142,10 @@ export class NetworkingFavoritesPage {
           this.initializeItems();
         }
       });
+  }
+
+  goChat(favorite:any){
+    this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: favorite.PER_UUID ,sbe_nomb:favorite.favorite}});
   }
   
 }
