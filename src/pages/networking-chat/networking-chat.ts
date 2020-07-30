@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -17,6 +17,7 @@ import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-aut
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { PartnerProvider } from "../../providers/partner/partner";
 import { NativeRingtones } from "@ionic-native/native-ringtones";
+import { Subscription } from "rxjs";
 /**
  * Generated class for the NetworkingChatPage page.
  *
@@ -29,13 +30,14 @@ import { NativeRingtones } from "@ionic-native/native-ringtones";
   selector: "page-networking-chat",
   templateUrl: "networking-chat.html",
 })
-export class NetworkingChatPage implements OnInit {
+export class NetworkingChatPage implements OnInit,OnDestroy  {
   @ViewChild(Content) content: Content;
   message: string;
   element: any;
   userProfile: any = {};
   idChat: string;
   partnerPhoto: string;
+  listener:Subscription;
   constructor(
     public _chat: ChatProvider,
     private _session: sessions,
@@ -52,14 +54,20 @@ export class NetworkingChatPage implements OnInit {
     this.GetPhoto(this.userProfile.per_uuid);
     console.log(this.userProfile);
     this.element = document.getElementsByClassName("scroll-content");
-    this._chat.SetNewChatRoom(this.userProfile, this.idChat).subscribe(() => {
+    this._chat.SetNewChatRoom(this.userProfile, this.idChat).then(() => {
       //this.element.scrollTop = this.element.scrollHeight;
       console.log("nuevo elemento");
-      setTimeout(() => {
-        this.content.scrollToBottom();
-      }, 500);
+  this.listener =    this._chat.loadMessagesChat(this.idChat).subscribe(()=>{
+        setTimeout(() => {
+          this.content.scrollToBottom();
+        }, 100);
+      })
+      
     });
   }
+
+ 
+
 
   sendMessage() {
     if (this.message.length > 0) {
@@ -67,8 +75,7 @@ export class NetworkingChatPage implements OnInit {
         .sendMessage(this.message, this.idChat)
         .then(() => {
           console.log("mensaje enviado");
-          this.message = "";
-          this.ringtones.playRingtone("assets/sound/send.mp3");
+          this.message = "";       
         })
         .catch((err) => console.error("Error al enviar", err));
     }
@@ -91,5 +98,14 @@ export class NetworkingChatPage implements OnInit {
             }
           });
       });
+  }
+  ngOnDestroy(): void {
+    
+    console.log('destruido');
+    this.listener.unsubscribe();
+    this._chat.chats=[];
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    
   }
 }

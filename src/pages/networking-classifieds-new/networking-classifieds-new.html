@@ -52,8 +52,7 @@
           &nbsp;Subir imágen
         </button>
       </ion-item>     
-      <ion-item *ngIf="classified!=undefined && classified.cla_foto !=''">
-            {{classified.cla_foto | json}}      
+      <ion-item *ngIf="classified!=undefined && classified.cla_foto !=''">           
         <ion-thumbnail item-start>
           <img [src]="'data:image/jpeg;base64,' + this.classified.cla_foto" />
         </ion-thumbnail>

@@ -35,6 +35,12 @@
     </ion-select>
   </ion-item>
  </div>
+ <div text-center>
+  <ion-spinner *ngIf="_chatRooms.loading"   name="ios-small" color="primary">
+  </ion-spinner>
+ </div>
+
+
 
  <div class="card"   *ngFor="let chatRoom of _chatRooms.chatRooms">
   <div class="card-profile" *ngIf="chatRoom.loaded" >
@@ -47,7 +53,8 @@
     
     <h2  class="blue"> <b>{{chatRoom.displayNameUser}}</b></h2>
     <h3 class="blue">{{ chatRoom.profession}}</h3>
-    <p> {{ chatRoom.lastMessage.content}}</p>
+    <p *ngIf="!chatRoom.lastMessage.read && chatRoom.lastMessage.uid != _auth.user.uid"> <b> {{ chatRoom.lastMessage.content}}</b></p>
+    <p *ngIf="chatRoom.lastMessage.read || chatRoom.lastMessage.uid == _auth.user.uid">  {{ chatRoom.lastMessage.content}}</p>
     
   </ion-item>
   <div class="button-message">
@@ -55,12 +62,12 @@
       <ion-icon name="ios-mail-outline"></ion-icon>
     </button>
   </div>
-  <div *ngIf="!chatRoom.lastMessage.read" class="notification-badge"></div>
-  <div class="button-trash">
+  <div *ngIf="!chatRoom.lastMessage.read && chatRoom.lastMessage.uid != _auth.user.uid" class="notification-badge"></div>
+  <!-- <div class="button-trash">
     <button class="orange" ion-button icon-only clear>
       <ion-icon name="ios-trash-outline"></ion-icon>
     </button>
-  </div>
+  </div> -->
   
 
   </div>

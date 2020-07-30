@@ -230,6 +230,15 @@ export class sessions {
     return result;
   
   }
+
+  findSector(sectors:item[],code:number){
+    let data = sectors.filter(
+      (t) => t.Ite_cont == code
+    )[0];
+    const result = data == undefined ? "Sin Definir" : data.Ite_nomb;
+    return result;
+  
+  }
   // setDeveloperOptions(developerOptions:boolean){
   //   this.nativeStorage.set("DeveloperOptions",developerOptions); 
   // }

@@ -28,20 +28,26 @@
         <ion-input  name="dpe_npro" [(ngModel)]="proyect.dpe_npro" placeholder="Título proyecto" type="text" required ></ion-input>
         <ion-icon class="input-icon" item-end name="md-albums"></ion-icon>
       </ion-item>
+      {{  proyect.dpe_desc.length}} / 255
       <ion-item no-lines>
         <ion-label stacked  >Descripción</ion-label>
-        <ion-textarea [(ngModel)]="proyect.dpe_desc" name="dpe_desc" required placeholder="Descripción"></ion-textarea>
+        <ion-textarea maxlength="255" [(ngModel)]="proyect.dpe_desc" name="dpe_desc" required placeholder="Descripción"></ion-textarea>
         <ion-icon class="input-icon" item-end name="md-albums"></ion-icon>
+      </ion-item>    
+      <ion-item>
+        <button class="orange"  type="button"  ion-button block icon-start (click)="loadCamera()">
+          <ion-icon name="camera"></ion-icon>&nbsp;Cargar imágen
+        </button>
       </ion-item>
-      <ion-item no-lines>
-        <ion-label stacked >Imágen</ion-label>
-        <ion-input name="dpe_fpro" [(ngModel)]="proyect.dpe_fpro" placeholder="Subir imágen" type="file" ></ion-input>
-        <ion-icon class="input-icon" item-end name="camera"></ion-icon>
-        <!-- <button  class="orange" ion-button round item-end>
-          <ion-icon class="input-icon" name="ios-cloud-upload-outline"></ion-icon>
-          &nbsp;Subir
-        </button> -->
-      </ion-item>
+      <ion-item *ngIf="proyect!=undefined && proyect.dpe_fpro !=''">       
+    <ion-thumbnail item-start>
+      <img [src]="'data:image/jpeg;base64,' + this.proyect.dpe_fpro" />
+    </ion-thumbnail>
+    <button type="button"  item-end type="button" color="danger" ion-button item-start (click)="deletePhoto()">
+      <ion-icon item-end name="trash"></ion-icon>
+      Eliminar
+    </button>
+ </ion-item>
       <div padding text-center>
         <button block [disabled]="!proyectsForm.form.valid" class="orange" ion-button round>
           <div class="font-icon">

@@ -49,52 +49,56 @@
     </ion-list>
   </div>
   <div *ngIf="!loading">
-    <div  class="card" *ngFor="let profile of profiles">
-      <div *ngIf="profile.per_uuid != auth.user.uid" class="card-profile">
-        <ion-item no-lines no-padding class="item-filter transparent">
-          <button *ngIf="mode==1" class="orange" (click)="goOtherProfile(profile)" item-end ion-button outline>
-               <ion-icon name="eye"></ion-icon> &nbsp; Perfil
-          </button>
-          <button *ngIf="mode==2" class="orange" (click)="goChat(profile)" item-end ion-button outline>
-            <ion-icon name="eye"></ion-icon> &nbsp; Enviar mensaje
-       </button>
-          <ion-avatar class="profile-Menu" item-left>
-            <img src="assets/imgs/user-profile.svg">
-          </ion-avatar>
-          <h2 class="blue"> <b>{{profile.sbe_nomb}}</b></h2>
-          <h3 class="blue">{{ getProfession(profile) }}</h3>
-        </ion-item>
-
-      </div>
-      <div *ngIf="mode==1">
-      <div class="card-body">
-        <div class="card-text" text-left>
-          <p class="text-profile"> {{  profile.per_admi}} </p>
-          <h3 class="blue">{{getSectorName()}}</h3>
+    <div *ngFor="let profile of profiles">
+    <div *ngIf="profile.per_uuid != auth.user.uid">
+      <div  class="card">
+        <div class="card-profile">
+          <ion-item no-lines no-padding class="item-filter transparent">
+            <button *ngIf="mode==1" class="orange" (click)="goOtherProfile(profile)" item-end ion-button outline>
+                 <ion-icon name="eye"></ion-icon> &nbsp; Perfil
+            </button>
+            <button *ngIf="mode==2" class="orange" (click)="goChat(profile)" item-end ion-button outline>
+              <ion-icon name="eye"></ion-icon> &nbsp; Enviar mensaje
+         </button>
+            <ion-avatar class="profile-Menu" item-left>
+              <img src="assets/imgs/user-profile.svg">
+            </ion-avatar>
+            <h2 class="blue"> <b>{{profile.sbe_nomb}}</b></h2>
+            <h3 class="blue">{{ profile.profession }}</h3>
+          </ion-item>
+  
         </div>
-
+        <div *ngIf="mode==1">
+        <div class="card-body">
+          <div class="card-text" text-left>
+            <p class="text-profile"> {{  profile.per_admi}} </p>
+            <h3 class="blue">{{profile.sector}}</h3>
+          </div>
+  
+        </div>
+        <div class="card-footer">
+  
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <button ion-button class="btn-footer" (click)="goChat(profile)">
+                  <ion-icon name="ios-mail-outline"></ion-icon>
+                  &nbsp; Enviar Mensaje
+                </button>
+              </ion-col>
+              <ion-col>
+                <button (click)="addToFavorites(profile)" ion-button class="btn-footer">
+                  <ion-icon name="ios-mail-outline"></ion-icon>
+                  &nbsp; Añadir a favoritos
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
-      <div class="card-footer">
-
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <button ion-button class="btn-footer">
-                <ion-icon name="ios-mail-outline"></ion-icon>
-                &nbsp; Enviar Mensaje
-              </button>
-            </ion-col>
-            <ion-col>
-              <button (click)="addToFavorites(profile)" ion-button class="btn-footer">
-                <ion-icon name="ios-mail-outline"></ion-icon>
-                &nbsp; Añadir a favoritos
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
       </div>
     </div>
-    </div>
+  </div>
   </div>
 
 

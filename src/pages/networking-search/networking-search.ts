@@ -18,6 +18,7 @@ import { SofanetProvider } from "../../providers/sofanet/sofanet";
 import { general } from "../../class/general/general";
 import { NetworkingChatPage } from "../networking-chat/networking-chat";
 import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
+import { throwError } from "rxjs";
 
 /**
  * Generated class for the NetworkingSearchPage page.
@@ -66,7 +67,7 @@ export class NetworkingSearchPage {
 
   ionViewDidLoad() {
     console.log(this.navParams.get("mode"));
-    this.GetProfessions();
+  
     this.mode =
       this.navParams.get("mode") == undefined
         ? modeSearchProfile.search
@@ -102,33 +103,51 @@ console.log(this.mode);
 
 
  async loadProfiles(){
+   try {
     this.loading = true;
     this._sopwenw
       .GeSoPernw(await this._session.getEmpCodiSession(), this.searchTerms)
-      .then((resp: transaction) => {
+      .then(async(resp: transaction) => {
+
+       this.professions = await    this._session.getProfessions();      
+       this.economicSectors = await this._session.getEconomicSector();
+      if(this.professions==null || this.professions ==undefined)
+       throw new Error("Profesiones no disponibles.");
+       if(this.professions==null || this.professions ==undefined)
+       throw new Error("Secotres económicos no disponibles.");
+
         this.loading = false;
         console.log(resp);
         if (resp != null && resp.Retorno == 0) {
           this.profilesAll = resp.ObjTransaction;
           this.profiles = resp.ObjTransaction;
+
+          for(let profile of this.profiles){
+            profile.profession = this._session.FindProfessions(this.professions,profile.ite_prof)
+            profile.sector = this._session.findSector(this.economicSectors,profile.ite_seco);
+          }
           this.setFilter(this.filter);
         }
       });
-  }
-  GetProfessions() {
-    this._session.getProfessions().then((resp: item[]) => {
-      if (resp) {
-        this.professions = resp;
-      }
-    });
-  }
+   } catch (error) {
+     this._general.showCustomAlert('Error',error.message,()=>{},'alert-nogal',false,'');
+   }
 
-  getProfession(profile: any) {
-    let data = this.professions.filter(
-      (t) => t.Ite_cont == profile.ite_prof
-    )[0];
-    return data == undefined ? "Sin Definir" : data.Ite_nomb;
   }
+  // GetProfessions() {
+  //   this._session.getProfessions().then((resp: item[]) => {
+  //     if (resp) {
+  //       this.professions = resp;
+  //     }
+  //   });
+  // }
+
+  // getProfession(profile: any) {
+  //   let data = this.professions.filter(
+  //     (t) => t.Ite_cont == profile.ite_prof
+  //   )[0];
+  //   return data == undefined ? "Sin Definir" : data.Ite_nomb;
+  // }
 
   getSectorName(profile: any) {
     let data = this.economicSectors.filter(

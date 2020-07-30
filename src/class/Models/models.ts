@@ -606,7 +606,7 @@ export class sodpern {
   dpe_proy: number;
   dpe_npro: string;
   dpe_desc: string;
-  dpe_fpro: string[];
+  dpe_fpro: string;
   cas_cont: number;
   aud_ufac: Date;
   aud_usua: string;
@@ -661,3 +661,11 @@ per_cont:number;
 per_foto:any;
 
 }
+
+export class networkingDetailPhoto {
+  emp_codi:number;
+  per_cont:number;
+  dpe_fpro:string;
+  dpe_proy:any;
+  
+  }

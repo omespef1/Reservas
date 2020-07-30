@@ -149,6 +149,7 @@ import { NetworkingChatLoginPage } from '../pages/networking-chat-login/networki
 import { ChatRoomProvider } from '../providers/chat-room/chat-room';
 import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 import { CameraProvider } from '../providers/camera/camera';
+import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/networking-proyect-viewer';
 
 
  
@@ -224,7 +225,8 @@ import { CameraProvider } from '../providers/camera/camera';
     NetworkingFavoritesPage,
     NetworkingBusinessAreaPage,
     NetworkingChatPage,
-    NetworkingChatLoginPage
+    NetworkingChatLoginPage,
+    NetworkingProyectViewerPage
   ],
   imports: [
     FormsModule,
@@ -312,7 +314,8 @@ import { CameraProvider } from '../providers/camera/camera';
     NetworkingFavoritesPage,
     NetworkingBusinessAreaPage,
     NetworkingChatPage,
-    NetworkingChatLoginPage
+    NetworkingChatLoginPage,
+    NetworkingProyectViewerPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

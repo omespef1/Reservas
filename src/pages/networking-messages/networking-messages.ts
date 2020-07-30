@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ɵConsole, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { NetworkingProfilePage } from '../networking-profile/networking-profile';
@@ -21,7 +21,7 @@ import { chatRoom } from '../../interfaces/chat';
   selector: 'page-networking-messages',
   templateUrl: 'networking-messages.html',
 })
-export class NetworkingMessagesPage implements OnInit {
+export class NetworkingMessagesPage implements OnInit,OnDestroy {
   
   constructor(public _chatRooms:ChatRoomProvider,private navCtrl:NavController,private _sesion:sessions,
     public _auth:FirebaseAuthProvider) {
@@ -36,8 +36,15 @@ export class NetworkingMessagesPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    this._chatRooms.loadChatRooms();
+   var suscription = this._chatRooms.loadChatRooms()
     console.log('ionViewDidLoad NetworkingMessagesPage');
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    console.log('destruidos last');
+    
   }
 
   goHome(){
@@ -49,6 +56,7 @@ export class NetworkingMessagesPage implements OnInit {
   goChat(chat:chatRoom){
    
   //  this.GetUserName(users);
+  this._chatRooms.subscription.unsubscribe();
    this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: chat.uidPartner ,sbe_nomb:chat.displayNameUser}});
   }
   goProfiles(){

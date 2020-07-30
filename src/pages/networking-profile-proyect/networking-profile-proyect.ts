@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { soclanw } from '../../class/models/soclanw/soclanw';
 import { sodpern } from '../../class/models/models';
+import { CameraProvider } from '../../providers/camera/camera';
+
 
 /**
  * Generated class for the NetworkingProfileProyectPage page.
@@ -17,7 +19,7 @@ import { sodpern } from '../../class/models/models';
 })
 export class NetworkingProfileProyectPage {
   proyect:sodpern= new sodpern();
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController,private camera:CameraProvider) {
     this.proyect = this.navParams.get('proyect');
   }
 
@@ -34,4 +36,15 @@ export class NetworkingProfileProyectPage {
   closeModal(){
     this._view.dismiss();
   }
+
+  loadCamera(){
+    this.camera.openeditprofile().then((resp:string)=>{
+      this.proyect.dpe_fpro = resp;
+    })
+}
+
+deletePhoto(){
+  this.proyect.dpe_fpro="";
+}
+
 }

@@ -30,16 +30,12 @@ export class ChatProvider {
   SetNewChatRoom(profile: any, chatName: string) {
     // Add a new document in collection "cities"
 
-    this.afs
+  return  this.afs
       .collection("chat-rooms")
       .doc(chatName)
       .set({
         users: [profile.per_uuid, this._auth.user.uid],
       })
-      .then((resp) => {
-        console.log("coleccion creada");
-      });
-    return this.loadMessagesChat(chatName);
   }
   loadMessagesChat(chatId: string) {
     console.log("cargando mensajes...");
@@ -48,28 +44,20 @@ export class ChatProvider {
       .collection<message>("chat-rooms")
       .doc(chatId)
       .collection<message>("messages", (ref) =>
-        ref.orderBy("date", "desc").limit(500)
+        ref.orderBy("date", "desc").limit(30)
       );
 
 
       return collection.snapshotChanges().map((resp)=>{
       console.log(resp);
-        this.chats=[];
-        let index =1;
-        resp.forEach(element => {
-         
-          this.chats.unshift(element); 
-          index+=1;
+        this.chats=[];    
+        resp.forEach(element => {         
+          this.chats.unshift(element);          
           if(element.payload.doc.data().uid != this._auth.user.uid && !element.payload.doc.data().read ){
             collection.doc(element.payload.doc.id).update({read:true}).then(()=>{ console.log("leido")});
-          }
-
-          //Para saber si es el último mensaje
-            if(index == resp.length &&  element.payload.doc.data().uid != this._auth.user.uid ){
-              this.vibration.vibrate(500);
-            }
-          
-        });                   
+          }  
+        });      
+        console.log('termina de llenar')             
       })
 //     return collection.valueChanges().map((messages) => {
 //       this.vibration.vibrate(500);

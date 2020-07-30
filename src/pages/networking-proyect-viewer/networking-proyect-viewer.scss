@@ -1,0 +1,63 @@
+page-networking-proyect-viewer {
+    ion-content {
+        background-color: #F1F2F2 !important;
+
+        img {
+            width: 100%;
+        }
+    }
+
+      //general
+      .blue {
+        color:#2F2260;
+    }
+    h3 {
+       font-size: 1.3rem;
+    }
+    .orange{
+    background-color: #FB512C;
+    }
+    .yellow {
+        background-color: #9EDC39;
+    }
+    font-family: Raleway;
+    
+    //toolbar
+    .toolbar-title-ios {
+        
+    color: white;
+    
+    }
+    .toolbar-ios{
+        ion-title{
+            padding: 0 60px 1px;
+        }
+    }
+    .toolbar-background-ios {
+    background: #2F2260;
+    color: white;
+    }
+    .bar-button-default-ios{
+    color: white;
+    background-color:#2F2260;
+    border-radius: 25px;
+    padding: 8px 8px 8px 9px;
+    height: 40px;
+    width: 40px;
+    }
+    
+    
+    //header 
+    
+    ion-header{
+        border-bottom: 10px solid #FB512C;
+    }
+    .label-ios[stacked]{
+        color: #2F2260;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+.item-ios {
+    background-color: transparent !important;
+}
+}
