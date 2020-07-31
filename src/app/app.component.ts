@@ -6,7 +6,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { general } from "../class/general/general";
 import { sessions } from "../class/sessions/sessions";
 //pages
-import { LoginPage } from '../pages/login/login';
+import { LoginPage } from "../pages/login/login";
 import { TabsPage } from "../pages/tabs/tabs";
 import { PqrProvider } from "../providers/pqr/pqr";
 import { AeEspacProvider } from "../providers/ae-espac/ae-espac";
@@ -21,11 +21,11 @@ import { NetworkingFavoritesPage } from "../pages/networking-favorites/networkin
 import { NetworkingBusinessAreaPage } from "../pages/networking-business-area/networking-business-area";
 import { NetworkingClassifiedsPage } from "../pages/networking-classifieds/networking-classifieds";
 import { NetworkingSearchPage } from "../pages/networking-search/networking-search";
-import { NetworkingChatPage } from '../pages/networking-chat/networking-chat';
-import { NetworkingChatLoginPage } from '../pages/networking-chat-login/networking-chat-login';
-import { NetworkingMessagesPage } from '../pages/networking-messages/networking-messages';
+import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
+import { NetworkingChatLoginPage } from "../pages/networking-chat-login/networking-chat-login";
+import { NetworkingMessagesPage } from "../pages/networking-messages/networking-messages";
 import { FirebaseAuthProvider } from "../providers/firebase-auth/firebase-auth";
-
+import { OneSignal } from "@ionic-native/onesignal/ngx";
 
 //plugins
 
@@ -38,7 +38,6 @@ export class MyApp {
 
   logged: boolean = false;
 
-  
   constructor(
     platform: Platform,
     statusBar: StatusBar,
@@ -50,33 +49,28 @@ export class MyApp {
     private _espac: AeEspacProvider,
     private _noti: NotificationsPushProvider,
     private _aeinapp: AeinappProvider,
-    private auth:FirebaseAuthProvider
-    
+    private auth: FirebaseAuthProvider,
+    private oneSignal: OneSignal
   ) {
-
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 
       statusBar.styleDefault();
       splashScreen.hide();
-      // OneSignal Code start:
-      // Enable to debug issues:
-      // window["plugins"].OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-      var notificationOpenedCallback = function (jsonData) {
-        // console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      };
       if (platform.is("cordova")) {
-        window["plugins"].OneSignal.startInit(
-          "6796a626-5bef-4c76-8148-9df8833fe6d0",
-          "343787359895"
-        )
-          .handleNotificationOpened((notificationOpenedCallback) => {
-            console.log(notificationOpenedCallback);
-            this._noti.open(notificationOpenedCallback);
-          })
-          .endInit();
+    
+      
+        // window["plugins"].OneSignal.startInit(
+        //   "6796a626-5bef-4c76-8148-9df8833fe6d0",
+        //   "343787359895"
+        // )
+        //   .handleNotificationOpened((notificationOpenedCallback) => {
+        //     console.log(notificationOpenedCallback);
+        //     this._noti.open(notificationOpenedCallback);
+        //   })
+        //   .endInit();
       }
 
       this.listenToLoginEvents();

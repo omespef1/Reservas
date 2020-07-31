@@ -32,7 +32,7 @@ export class FirebaseAuthProvider {
     this.afAuth.auth.signOut();
   }
 
-  loginWithMail(user: string, password: string,displayName:string) {
+  loginWithMail(user: string, password: string,displayName:string,oneSignalId:string) {
     console.log("actualizado username",displayName);
       this.afAuth
       .auth
@@ -69,24 +69,25 @@ export class FirebaseAuthProvider {
      
   }
 
-  updateUser(displayName:string) {
+  // updateUser(displayName:string) {
     
-    var user = firebase.auth().currentUser;
-    user.updateProfile({
-      displayName: displayName
+  //   var user = firebase.auth().currentUser;
+  //   user.updateProfile({
+  //     displayName: displayName
    
-    }).then(function() {
-      this.addUser();
-      console.log("usuario actualizado");
-    }).catch(function(error) {
-      console.log("error actualizando");
-    });
-  }
+  //   }).then(function() {
+  //     this.addUser();
+  //     console.log("usuario actualizado");
+  //   }).catch(function(error) {
+  //     console.log("error actualizando");
+  //   });
+  // }
 
 
 addUser(displayName:string){
   this._firestore.collection('users').doc(firebase.auth().currentUser.uid).set({
-    displayName: displayName
+    displayName: displayName,
+    OneSignalId: 
   })
 }
 GetUserName(uiid){

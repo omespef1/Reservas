@@ -216,11 +216,12 @@ export class NetworkingMenuPage implements OnInit {
   }
 
 
-  LoginFirebase(){
+  async LoginFirebase(){
     console.log(this._auth.user==null);
-    if(this._auth.user==null){
-      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`);
-    }
+   let oneSignalData:any = await this._sessions.getOneSignalIds();
+    // if(this._auth.user==null){
+      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData.userId);
+    // }
     
   }
 

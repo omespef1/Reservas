@@ -18,6 +18,7 @@ import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { PartnerProvider } from "../../providers/partner/partner";
 import { NativeRingtones } from "@ionic-native/native-ringtones";
 import { Subscription } from "rxjs";
+import { NotificationsPushProvider } from '../../providers/notifications-push/notifications-push';
 /**
  * Generated class for the NetworkingChatPage page.
  *
@@ -45,7 +46,8 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
     public auth: FirebaseAuthProvider,
     private _sopernw: SopernwProvider,
     private _sosocio: PartnerProvider,
-    private ringtones: NativeRingtones
+    private ringtones: NativeRingtones,
+    private _noti:NotificationsPushProvider
   ) {}
 
   async ngOnInit() {
@@ -76,6 +78,7 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
         .then(() => {
           console.log("mensaje enviado");
           this.message = "";       
+          // this._noti.
         })
         .catch((err) => console.error("Error al enviar", err));
     }
