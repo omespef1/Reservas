@@ -94,13 +94,14 @@ this.oneSignalWindow.startInit(
   sendNotifcation(message:messageNotification,playerId:string){
 let players:string[]=[];
 players.push(playerId);
-   let notification :any={};
+   let notification :OSNotification={};
    notification.app_id = "6796a626-5bef-4c76-8148-9df8833fe6d0";
    notification.include_player_ids= players;
    notification.contents=  { en: message.message, es: message.message};
    notification.headings= { en: message.title, es: message.title};
+  
 
-  this.oneSignalWindow.postNotification(notification).then(()=>{
+   window["plugins"].OneSignal.postNotification(notification).then(()=>{
        console.log("notificacion enviada");
       })
   }
