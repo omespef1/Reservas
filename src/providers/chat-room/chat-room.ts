@@ -57,6 +57,7 @@ export class ChatRoomProvider {
           uidPartner: "",
           partnerPhoto: "assets/imgs/user-profile.svg",
           loaded: false,
+          oneSignalId:''
         });
         for (let chat of this.chatRooms) {
           debugger;
@@ -69,6 +70,7 @@ export class ChatRoomProvider {
                 let socio = sopernw.ObjTransaction[0];
                 let data: any = resp.payload.data();
                 chat.displayNameUser = data.displayName;
+                chat.oneSignalId = data.OneSignalId;
                 chat.profession = this._session.FindProfessions(
                   professions,
                   socio.ITE_PROF

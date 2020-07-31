@@ -15,6 +15,7 @@ export interface chatRoom {
     uidPartner:string;
     partnerPhoto:string;
     loaded:boolean;
+    oneSignalId:string;
     
 }
 

@@ -17,6 +17,8 @@ import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-aut
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { PartnerProvider } from "../../providers/partner/partner";
 import { Subscription } from "rxjs";
+import { NotificationsPushProvider } from '../../providers/notifications-push/notifications-push';
+import { Platform } from 'ionic-angular';
 /**
  * Generated class for the NetworkingChatPage page.
  *
@@ -43,7 +45,9 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
     private nav: NavParams,
     public auth: FirebaseAuthProvider,
     private _sopernw: SopernwProvider,
-    private _sosocio: PartnerProvider
+    private _sosocio: PartnerProvider,
+    private _noti:NotificationsPushProvider,
+    private platform:Platform
   ) {}
 
   async ngOnInit() {
@@ -69,14 +73,24 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
 
   sendMessage() {
     if (this.message.length > 0) {
+      this.sendNotification(this.message);
+      this.message = "";      
       this._chat
         .sendMessage(this.message, this.idChat)
         .then(() => {
           console.log("mensaje enviado");
-          this.message = "";       
+          
+         
         })
         .catch((err) => console.error("Error al enviar", err));
     }
+  }
+
+  async sendNotification(message:string){
+    if(this.platform.is("cordova")){   
+      this._noti.sendNotifcation({ title:this.userProfile.sbe_nomb, message:message },this.userProfile.oneSignalId);
+    }
+    
   }
 
   async GetPhoto(uiidPartner: string) {

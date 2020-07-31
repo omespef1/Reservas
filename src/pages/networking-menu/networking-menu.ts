@@ -22,6 +22,8 @@ import { PqrPage } from '../pqr/pqr';
 import { AgreementsProvider } from '../../providers/agreements/agreements';
 import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-auth';
 import { general } from '../../class/general/general';
+import { NotificationsPushProvider } from '../../providers/notifications-push/notifications-push';
+import { Platform } from 'ionic-angular';
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -57,14 +59,16 @@ export class NetworkingMenuPage implements OnInit {
     private _sosocio:PartnerProvider,
     private _agrrements:AgreementsProvider,
     private _auth:FirebaseAuthProvider,
-    private _general:general
+    private _general:general,
+    private _notification:NotificationsPushProvider,
+    private _platform : Platform
   ) {
    
   }
 
 
   ngOnInit(){
-
+    this.VerifyTerms();
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
       this.user = resp;
@@ -73,8 +77,8 @@ export class NetworkingMenuPage implements OnInit {
       this.GetSoPernw();
      
     this.GetBanners();
-      this.LoginFirebase();
-     // this.VerifyTerms();
+   
+  
     });
     console.log('leyendo terminos')
   
@@ -140,6 +144,7 @@ export class NetworkingMenuPage implements OnInit {
         
           this.myProfile = resp.ObjTransaction;
           this._sesions.SetNetworkingUser(this.myProfile);
+          this.LoginFirebase();
           this.GetPhoto();
           this.GetProfessions();
         }
@@ -212,16 +217,18 @@ export class NetworkingMenuPage implements OnInit {
         console.log(resp);
         this.banners = resp.ObjTransaction;
       }
+
     })
   }
 
-
-  LoginFirebase(){
+  async LoginFirebase(){
+    let oneSignalData = "";
     console.log(this._auth.user==null);
-    if(this._auth.user==null){
-      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`);
-    }
-    
+    if(this._platform.is("cordova")){
+      oneSignalData= await (await this._notification.GetOneSignalIds()).userId;
+    }   
+      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData,this.myProfile.emp_codi,this.myProfile.per_cont); 
+        
   }
 
   // GetBanners(){

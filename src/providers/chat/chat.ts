@@ -57,28 +57,6 @@ export class ChatProvider {
         });      
         console.log('termina de llenar')             
       })
-//     return collection.valueChanges().map((messages) => {
-//       this.vibration.vibrate(500);
-//       this.chats = [];
-// console.log('chats reseteados');
-//       console.log(messages);
-//       let indice =0;
-//       for (let message of messages) {
-//         console.log(`insertando mensaje ${indice + 1}`);
-//         this.chats.unshift(message);
-//         indice+=1;
-        
-
-//         // firebase.firestore().doc('chat-rooms/chat_YGdgCpgNFHelyCCm7iZ98nHlHYE3_r6uUFClQ8sRsYi63GySUNPDupHn2/messages/F9KKpq5pSa2n9kc1E5Tx')
-//         // const ref = firebase.firestore().doc('chat-rooms/chat_YGdgCpgNFHelyCCm7iZ98nHlHYE3_r6uUFClQ8sRsYi63GySUNPDupHn2/messages/F9KKpq5pSa2n9kc1E5Tx');
-//         // ref.onSnapshot((doc) => {
-//         //   const data = doc.data();
-//         //   // ...
-//         // });
-
-
-//       }
-//     });
   }
 
   loadMessagesChatLastChat(chatId: string) {
@@ -118,7 +96,6 @@ export class ChatProvider {
     );
   }
 
-  GetChatRoomsFromUser() {}
   // loginWithSms() {
   //   console.log("entra phone");
   //   this.captcha = new firebase.auth.RecaptchaVerifier("sign-in-number", {

@@ -145,7 +145,9 @@ export class NetworkingFavoritesPage {
   }
 
   goChat(favorite:any){
-    this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: favorite.PER_UUID ,sbe_nomb:favorite.favorite}});
+    this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: favorite.per_uuid ,sbe_nomb:favorite.sbe_nomb,oneSignalId:favorite.per_osid}});
+    
+    
   }
   
 }

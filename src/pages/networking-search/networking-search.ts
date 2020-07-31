@@ -237,7 +237,8 @@ console.log(this.mode);
     }
     else {
       console.log('perfil enviado', profile);
-      this.navCtrl.push(NetworkingChatPage, { 'profile': profile})
+      // this.navCtrl.push(NetworkingChatPage, { 'profile': profile})
+      this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: profile.per_uuid ,sbe_nomb:profile.sbe_nomb.displayNameUser,oneSignalId: profile.per_osid}});
     }
     
 
