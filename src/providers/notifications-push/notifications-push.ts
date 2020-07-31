@@ -7,6 +7,7 @@ import { ComunicationsProvider } from "../comunications/comunications";
 import { message } from '../../interfaces/chat';
 import { sessions } from '../../class/sessions/sessions';
 import { ThirdPartiesPage } from '../../pages/third-parties/third-parties';
+import { HttpClient } from '@angular/common/http';
 
 /*
   Generated class for the NotificationsPushProvider provider.
@@ -20,7 +21,7 @@ export class NotificationsPushProvider {
 
   ];
 oneSignalWindow :any;
-  constructor(private _modal:ModalController,private _http:ComunicationsProvider,private oneSignal:OneSignal,private _platform:Platform,private _session:sessions) {
+  constructor(private _modal:ModalController,private oneSignal:OneSignal,private _platform:Platform,private _session:sessions,private _http:HttpClient) {
     console.log("Hello NotificationsPushProvider Provider");
   }
 
@@ -101,8 +102,23 @@ players.push(playerId);
    notification.headings= { en: message.title, es: message.title};
   
 
-   window["plugins"].OneSignal.postNotification(notification).then(()=>{
-       console.log("notificacion enviada");
-      })
+   this.MakeAnewNotification(notification);
+  }
+
+  MakeAnewNotification(notification:OSNotification) {
+   
+      var body = {
+        app_id: notification.app_id,
+        include_player_ids: notification.include_player_ids,
+        contents: notification.contents,
+        headings:notification.headings
+      };
+      
+      this._http.post('https://onesignal.com/api/v1/notifications', body).subscribe(data => {
+        console.log(data);
+      } , error => {
+        console.log(error);
+      });
+  
   }
 }
