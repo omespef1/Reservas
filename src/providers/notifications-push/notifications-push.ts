@@ -2,9 +2,11 @@ import { Injectable, Component } from '@angular/core';
 import { OSNotification, OSNotificationPayload, OSNotificationOpenedResult, OneSignal } from '@ionic-native/onesignal/ngx';
 import { Platform, ModalController } from 'ionic-angular';
 import { NotificationsPage } from '../../pages/notifications/notifications';
-import { messageNotification } from '../../class/Models/notifications/notifications';
+import { messageNotification } from '../../class/models/notifications/notifications';
 import { ComunicationsProvider } from "../comunications/comunications";
 import { message } from '../../interfaces/chat';
+import { sessions } from '../../class/sessions/sessions';
+import { ThirdPartiesPage } from '../../pages/third-parties/third-parties';
 
 /*
   Generated class for the NotificationsPushProvider provider.
@@ -17,31 +19,33 @@ export class NotificationsPushProvider {
   mensajes: OSNotificationPayload[] = [
 
   ];
-
-  constructor(private _modal:ModalController,private _http:ComunicationsProvider,private oneSignal:OneSignal,private _platform:Platform) {
+oneSignalWindow :any;
+  constructor(private _modal:ModalController,private _http:ComunicationsProvider,private oneSignal:OneSignal,private _platform:Platform,private _session:sessions) {
     console.log("Hello NotificationsPushProvider Provider");
   }
 
 
   init_Notifications(){
 
-    this.oneSignal.startInit(
-      "6796a626-5bef-4c76-8148-9df8833fe6d0",
-      "343787359895"
-    );
-    this.oneSignal
-      .handleNotificationOpened()
-      .subscribe((notificationOpenedCallback) => {
-        // do something when notification is received
-        this.open(notificationOpenedCallback);
-      });   
+this.oneSignalWindow=  window["plugins"].OneSignal
+
+this.oneSignalWindow.startInit(
+          "6796a626-5bef-4c76-8148-9df8833fe6d0",
+          "343787359895"
+        )
+          .handleNotificationOpened((notificationOpenedCallback) => {
+            console.log(notificationOpenedCallback);
+            this.open(notificationOpenedCallback);
+          })
+          .endInit();
+
+          window["plugins"].OneSignal.getIds((notificationIds)=>{
+            console.log(notificationIds);
+          this._session.setOneSignalIds(notificationIds);
+          });   
   }
 
 
-  GetOneSignalIds(){
-
-  return this.oneSignal.getIds();   
-  }
   // init_notifications() {
 
   //   if(this._platform.is("cordova")){
@@ -88,14 +92,17 @@ export class NotificationsPushProvider {
   }
 
   sendNotifcation(message:messageNotification,playerId:string){
-
+console.log(`mensaje a enviar es ${message.title}`);
+let players:string[]=[];
+players.push(playerId);
    let notification :OSNotification;
    notification.app_id = "6796a626-5bef-4c76-8148-9df8833fe6d0";
-   notification.include_player_ids= [playerId];
+   notification.include_player_ids= players;
+   console.log(`player id es ${players[0]}`);
    notification.contents=  { en: message.message, es: message.message};
    notification.headings= { en: message.title, es: message.title};
 
-      this.oneSignal.postNotification(notification).then(()=>{
+  this.oneSignalWindow.postNotification(notification).then(()=>{
        console.log("notificacion enviada");
       })
   }

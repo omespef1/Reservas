@@ -60,7 +60,6 @@ export class NetworkingMenuPage implements OnInit {
     private _agrrements:AgreementsProvider,
     private _auth:FirebaseAuthProvider,
     private _general:general,
-    private _notification:NotificationsPushProvider,
     private _platform : Platform
   ) {
    
@@ -222,12 +221,12 @@ export class NetworkingMenuPage implements OnInit {
   }
 
   async LoginFirebase(){
-    let oneSignalData = "";
+    let oneSignalData:any;
     console.log(this._auth.user==null);
     if(this._platform.is("cordova")){
-      oneSignalData= await (await this._notification.GetOneSignalIds()).userId;
+      oneSignalData= await this._sesions.getOneSignalIds();
     }   
-      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData,this.myProfile.emp_codi,this.myProfile.per_cont); 
+      this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData.userId,this.myProfile.emp_codi,this.myProfile.per_cont); 
         
   }
 

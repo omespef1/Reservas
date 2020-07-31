@@ -72,14 +72,15 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
 
 
   sendMessage() {
+    
     if (this.message.length > 0) {
       this.sendNotification(this.message);
-      this.message = "";      
+         
       this._chat
         .sendMessage(this.message, this.idChat)
         .then(() => {
           console.log("mensaje enviado");
-          
+          this.message = "";   
          
         })
         .catch((err) => console.error("Error al enviar", err));

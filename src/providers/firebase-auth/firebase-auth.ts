@@ -87,7 +87,7 @@ export class FirebaseAuthProvider {
 
 
 addUser(displayName:string,oneSignalId:string){
-  if(oneSignalId!=""){
+  if(oneSignalId!=undefined){
     this._firestore.collection('users').doc(firebase.auth().currentUser.uid).set({
       displayName: displayName,
       OneSignalId: oneSignalId

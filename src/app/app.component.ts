@@ -55,7 +55,7 @@ export class MyApp {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-
+       this._noti.init_Notifications();
       statusBar.styleDefault();
       splashScreen.hide();
 
