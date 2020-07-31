@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "angularfire2/auth";
 import firebase from "firebase";
 import { AngularFirestore } from "angularfire2/firestore";
+import { SopernwProvider } from '../sopernw/sopernw';
+import { Platform } from 'ionic-angular';
 
 /*
   Generated class for the FirebaseAuthProvider provider.
@@ -13,7 +15,7 @@ import { AngularFirestore } from "angularfire2/firestore";
 @Injectable()
 export class FirebaseAuthProvider {
   public user: firebase.UserInfo;
-  constructor(public afAuth: AngularFireAuth,private _firestore:AngularFirestore) {
+  constructor(public afAuth: AngularFireAuth,private _firestore:AngularFirestore,private _sopernw:SopernwProvider) {
     this.afAuth.authState.subscribe((user) => {
       console.log("Estado del usuario: ", user);
 
@@ -32,7 +34,7 @@ export class FirebaseAuthProvider {
     this.afAuth.auth.signOut();
   }
 
-  loginWithMail(user: string, password: string,displayName:string,oneSignalId:string) {
+  loginWithMail(user: string, password: string,displayName:string,oneSignalId:string,emp_codi:number,per_cont:number) {
     console.log("actualizado username",displayName);
       this.afAuth
       .auth
@@ -40,8 +42,8 @@ export class FirebaseAuthProvider {
       .then(value => {
         console.log('login firebase satisfactorio');
        // this.updateUser(displayName);
-       this.addUser(displayName);
-        
+       this.addUser(displayName,oneSignalId);
+        this.updateTokens(emp_codi,per_cont,oneSignalId);
       })
       .catch( (err:any)=> {   
         console.log(err);
@@ -50,7 +52,7 @@ export class FirebaseAuthProvider {
           this.signInWithMail(user,password).then(resp=>{
             if(resp){
               //this.updateUser(displayName);
-              this.addUser(displayName);
+              this.addUser(displayName,oneSignalId);
             
             }
           })
@@ -84,12 +86,31 @@ export class FirebaseAuthProvider {
   // }
 
 
-addUser(displayName:string){
-  this._firestore.collection('users').doc(firebase.auth().currentUser.uid).set({
-    displayName: displayName,
-    OneSignalId: 
-  })
+addUser(displayName:string,oneSignalId:string){
+  if(oneSignalId!=""){
+    this._firestore.collection('users').doc(firebase.auth().currentUser.uid).set({
+      displayName: displayName,
+      OneSignalId: oneSignalId
+    })
+  }
+  else {
+    this._firestore.collection('users').doc(firebase.auth().currentUser.uid).set({
+      displayName: displayName,     
+    })
+  }
+
 }
+
+async updateTokens(emp_codi:number,per_cont:number,per_osid:string){
+
+
+  this._sopernw.updateTokens({emp_codi:emp_codi,per_cont:per_cont,per_osid : per_osid, per_uuid:firebase.auth().currentUser.uid}).then(()=>{
+    console.log("tokens actualizados");
+  
+  })
+ }
+  
+
 GetUserName(uiid){
   console.log(uiid);
  return this._firestore.collection('users').doc(uiid).snapshotChanges();

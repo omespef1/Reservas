@@ -95,6 +95,8 @@ export class NotificationsPushProvider {
    notification.contents=  { en: message.message, es: message.message};
    notification.headings= { en: message.title, es: message.title};
 
-      this.oneSignal.postNotification(notification);
+      this.oneSignal.postNotification(notification).then(()=>{
+       console.log("notificacion enviada");
+      })
   }
 }

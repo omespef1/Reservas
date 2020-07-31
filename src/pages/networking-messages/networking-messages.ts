@@ -57,7 +57,7 @@ export class NetworkingMessagesPage implements OnInit,OnDestroy {
    
   //  this.GetUserName(users);
   this._chatRooms.subscription.unsubscribe();
-   this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: chat.uidPartner ,sbe_nomb:chat.displayNameUser}});
+   this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: chat.uidPartner ,sbe_nomb:chat.displayNameUser,oneSignalId: chat.oneSignalId}});
   }
   goProfiles(){
     this.navCtrl.push(NetworkingSearchPage,{ 'mode' : 2 })

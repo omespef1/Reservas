@@ -593,6 +593,9 @@ export class sopernw {
   details: sodpern[];
   per_uuid:string;
 }
+export class tokens extends sopernw {
+ per_osid:string
+}
 export class sodpern {
   constructor(){
     this.emp_codi=0;

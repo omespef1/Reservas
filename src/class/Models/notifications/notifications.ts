@@ -7,9 +7,6 @@ export interface notifications {
 
 export interface messageNotification {
 
-    title:string;
-    subTitle:string;
-    message:string;
-    delivery:string;
-    allUsers:boolean
+    title:string;   
+    message:string;    
 }

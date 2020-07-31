@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../comunications/comunications';
 import { sopernw, networkingPhoto } from '../../class/models/models';
+import { tokens } from '../../class/Models/models';
 
 /*
   Generated class for the SopernwProvider provider.
@@ -48,7 +49,10 @@ GetSoPernwByUuid(uuid:string){
   
 }
 
-
+updateTokens(tokens:any){
+  console.log("tokens", tokens);
+  return this._comu.Post({emp_codi:tokens.emp_codi,per_cont:tokens.per_cont,per_uuid:tokens.per_uuid, per_osid:tokens.per_osid},`SoPernw/UpdateTokens`,'',false)
+}
 updatePhoto(photo:networkingPhoto){
   return this._comu.Post(photo,`SoPernw/UpdatePhoto`,'',false);
   
