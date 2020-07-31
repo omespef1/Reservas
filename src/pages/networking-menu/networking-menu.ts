@@ -221,7 +221,7 @@ export class NetworkingMenuPage implements OnInit {
   }
 
   async LoginFirebase(){
-    let oneSignalData:any;
+    let oneSignalData:any= { userId:""}
     console.log(this._auth.user==null);
     if(this._platform.is("cordova")){
       oneSignalData= await this._sesions.getOneSignalIds();

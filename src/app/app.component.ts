@@ -55,13 +55,13 @@ export class MyApp {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-       this._noti.init_Notifications();
+   
       statusBar.styleDefault();
       splashScreen.hide();
 
       if (platform.is("cordova")) {
     
-      
+        this._noti.init_Notifications();
         // window["plugins"].OneSignal.startInit(
         //   "6796a626-5bef-4c76-8148-9df8833fe6d0",
         //   "343787359895"

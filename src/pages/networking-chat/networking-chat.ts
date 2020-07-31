@@ -88,9 +88,9 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
   }
 
   async sendNotification(message:string){
-    if(this.platform.is("cordova")){   
+   
       this._noti.sendNotifcation({ title:this.userProfile.sbe_nomb, message:message },this.userProfile.oneSignalId);
-    }
+    
     
   }
 

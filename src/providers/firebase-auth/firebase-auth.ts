@@ -119,7 +119,7 @@ GetUserName(uiid){
 
 GetUuidPartnerFromKeyPair(users){
  
-    let partnerProfile = users.filter(v=> v != this.user.uid );
+    let partnerProfile = users.filter(v=> v != firebase.auth().currentUser.uid );
     return partnerProfile[0];
 }
 

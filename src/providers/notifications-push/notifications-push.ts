@@ -1,5 +1,5 @@
 import { Injectable, Component } from '@angular/core';
-import { OSNotification, OSNotificationPayload, OSNotificationOpenedResult, OneSignal } from '@ionic-native/onesignal/ngx';
+import { OSNotification, OSNotificationPayload, OSNotificationOpenedResult } from '@ionic-native/onesignal/ngx';
 
 import { Platform, ModalController } from 'ionic-angular';
 import { NotificationsPage } from '../../pages/notifications/notifications';
@@ -22,17 +22,15 @@ export class NotificationsPushProvider {
 
   ];
   
-oneSignalWindow :any;
   constructor(private _modal:ModalController,private _session:sessions,private _http:HttpClient) {
     console.log("Hello NotificationsPushProvider Provider");
   }
 
 
   init_Notifications(){
+ 
 
-this.oneSignalWindow=  window["plugins"].OneSignal
-
-this.oneSignalWindow.startInit(
+    window["plugins"].OneSignal.startInit(
           "6796a626-5bef-4c76-8148-9df8833fe6d0",
           "343787359895"
         )
