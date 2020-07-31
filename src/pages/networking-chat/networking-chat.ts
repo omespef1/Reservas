@@ -16,7 +16,6 @@ import { sessions } from "../../class/sessions/sessions";
 import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { PartnerProvider } from "../../providers/partner/partner";
-import { NativeRingtones } from "@ionic-native/native-ringtones";
 import { Subscription } from "rxjs";
 /**
  * Generated class for the NetworkingChatPage page.
@@ -44,8 +43,7 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
     private nav: NavParams,
     public auth: FirebaseAuthProvider,
     private _sopernw: SopernwProvider,
-    private _sosocio: PartnerProvider,
-    private ringtones: NativeRingtones
+    private _sosocio: PartnerProvider
   ) {}
 
   async ngOnInit() {

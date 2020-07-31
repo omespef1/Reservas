@@ -9,7 +9,6 @@ import {
 import { message } from '../../interfaces/chat';
 import firebase from "firebase";
 import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
-import { Vibration } from "@ionic-native/vibration";
 
 /*
   Generated class for the ChatProvider provider.
@@ -23,8 +22,7 @@ export class ChatProvider {
   public captcha: any;
   constructor(
     private afs: AngularFirestore,
-    private _auth: FirebaseAuthProvider,
-    private vibration: Vibration
+    private _auth: FirebaseAuthProvider
   ) {}
 
   SetNewChatRoom(profile: any, chatName: string) {

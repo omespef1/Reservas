@@ -117,11 +117,9 @@ import {sessions} from '../class/sessions/sessions';
 //plugins
 import { BrowserTab } from '@ionic-native/browser-tab';
 import * as moment from 'moment';
-import { Vibration } from '@ionic-native/vibration';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
-import { NativeRingtones } from '@ionic-native/native-ringtones';
 //pipes
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
@@ -364,8 +362,6 @@ import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/
     ChatProvider,
     ChatRoomProvider,
     FirebaseAuthProvider,
-    Vibration,
-    NativeRingtones,
     CameraProvider
 
   ]
