@@ -1,5 +1,6 @@
 import { Injectable, Component } from '@angular/core';
 import { OSNotification, OSNotificationPayload, OSNotificationOpenedResult, OneSignal } from '@ionic-native/onesignal/ngx';
+
 import { Platform, ModalController } from 'ionic-angular';
 import { NotificationsPage } from '../../pages/notifications/notifications';
 import { messageNotification } from '../../class/models/notifications/notifications';
@@ -20,8 +21,9 @@ export class NotificationsPushProvider {
   mensajes: OSNotificationPayload[] = [
 
   ];
+  
 oneSignalWindow :any;
-  constructor(private _modal:ModalController,private oneSignal:OneSignal,private _platform:Platform,private _session:sessions,private _http:HttpClient) {
+  constructor(private _modal:ModalController,private _session:sessions,private _http:HttpClient) {
     console.log("Hello NotificationsPushProvider Provider");
   }
 
@@ -35,8 +37,8 @@ this.oneSignalWindow.startInit(
           "343787359895"
         )
           .handleNotificationOpened((notificationOpenedCallback) => {
-            console.log(notificationOpenedCallback);
-            this.open(notificationOpenedCallback);
+            // console.log(notificationOpenedCallback);
+            // this.open(notificationOpenedCallback);
           })
           .endInit();
 
