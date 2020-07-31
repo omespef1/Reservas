@@ -92,13 +92,11 @@ this.oneSignalWindow.startInit(
   }
 
   sendNotifcation(message:messageNotification,playerId:string){
-console.log(`mensaje a enviar es ${message.title}`);
 let players:string[]=[];
 players.push(playerId);
-   let notification :OSNotification;
+   let notification :any={};
    notification.app_id = "6796a626-5bef-4c76-8148-9df8833fe6d0";
    notification.include_player_ids= players;
-   console.log(`player id es ${players[0]}`);
    notification.contents=  { en: message.message, es: message.message};
    notification.headings= { en: message.title, es: message.title};
 
