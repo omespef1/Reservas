@@ -320,7 +320,7 @@ export class NetworkingProfilePage {
 
   saveChanges() {
     this.saving = true;
-    this.myProfile.per_uuid = this._auth.user.uid;
+   // this.myProfile.per_uuid = this._auth.user.uid;
     if (this.myProfile.per_cont == undefined || this.myProfile.per_cont == 0) {
       this._sopernw.SetSoPernw(this.myProfile).then((resp: transaction) => {
         this.saving = false;
