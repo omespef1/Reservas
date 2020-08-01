@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertOptions } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { NetworkingClassifiedsTermsPage } from '../networking-classifieds-terms/networking-classifieds-terms';
-import { ThirdPartiesPageModule } from '../third-parties/third-parties.module';
 import { NetworkingClassifiedsNewPage } from '../networking-classifieds-new/networking-classifieds-new';
 import { SoclanwProvider } from '../../providers/soclanw/soclanw';
 import { user, transaction } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { soclanw } from '../../class/models/soclanw/soclanw';
+import { NetworkingImageViewerPage } from '../networking-image-viewer/networking-image-viewer';
 
 /**
  * Generated class for the NetworkingClassifiedsPage page.
@@ -126,6 +126,10 @@ console.log(this.classifieds);
       default:
        
     }
+  }
+
+  goViewer(data){
+  this.navCtrl.push(NetworkingImageViewerPage, {'image': data})
   }
   
 }

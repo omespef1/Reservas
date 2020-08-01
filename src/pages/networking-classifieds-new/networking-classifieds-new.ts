@@ -11,6 +11,8 @@ import { soclanw } from "../../class/models/soclanw/soclanw";
 import { transaction, user, transactionNumber } from "../../class/models/models";
 import { sessions } from "../../class/sessions/sessions";
 import { CameraProvider } from '../../providers/camera/camera';
+import { PartnerProvider } from "../../providers/partner/partner";
+import { NetworkingNewsViewerPage } from "../networking-news-viewer/networking-news-viewer";
 
 
 
@@ -37,7 +39,7 @@ export class NetworkingClassifiedsNewPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private _general: general,
+    public _general: general,
     private _soclanw: SoclanwProvider,
     private _sesion: sessions,
     private _view: ViewController,
@@ -191,5 +193,9 @@ loadCamera(){
 
   deletePhoto(){
     this.classified.cla_foto="";
+  }
+
+  viewImage(data:any){
+    this.navCtrl.push(NetworkingNewsViewerPage, { 'image':data});
   }
 }

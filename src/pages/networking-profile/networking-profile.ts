@@ -27,6 +27,7 @@ import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-aut
 import { CameraProvider } from "../../providers/camera/camera";
 import { transaction } from '../../class/Models/models';
 import { NetworkingProyectViewerPage } from '../networking-proyect-viewer/networking-proyect-viewer';
+import { NetworkingImageViewerPage } from "../networking-image-viewer/networking-image-viewer";
 
 /**
  * Generated class for the NetworkingProfilePage page.
@@ -499,5 +500,9 @@ export class NetworkingProfilePage {
   GoProyect(proyect:any){
 
     this.navCtrl.push(NetworkingProyectViewerPage, { 'proyect':proyect});
+  }
+
+  viewImage(data){
+    this.navCtrl.push(NetworkingImageViewerPage, { 'image':data})
   }
 }

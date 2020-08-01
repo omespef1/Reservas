@@ -4,6 +4,8 @@ import {  ComunicationsProvider} from '../comunications/comunications';
 //clases
 import {TOSoRsoci } from '../../class/models/models';
 import {sessions} from '../../class/sessions/sessions';
+import { NavController } from 'ionic-angular';
+import { NetworkingImageViewerPage } from '../../pages/networking-image-viewer/networking-image-viewer';
 
 
 /*
@@ -36,6 +38,10 @@ export class PartnerProvider {
   GetSoSocioPhoto(emp_codi:number,soc_cont:number,sbe_cont:number,mac_nume:string){
     return this._comunications.Get(`SoSocio/GetSoSocioPhoto?emp_codi=${emp_codi}&soc_cont=${soc_cont}&sbe_cont=${sbe_cont}&mac_nume=${mac_nume}`,false,'',false)
   }
+
+  viewImage(data:any){
+  //  this.nav.push(NetworkingImageViewerPage, {'image': data})
+    }
 
 
 }

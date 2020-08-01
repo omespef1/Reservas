@@ -54,7 +54,7 @@
       </ion-item>     
       <ion-item *ngIf="classified!=undefined && classified.cla_foto !=''">           
         <ion-thumbnail item-start>
-          <img [src]="'data:image/jpeg;base64,' + this.classified.cla_foto" />
+          <img (click)="viewImage('data:image/jpeg;base64,' + this.classified.cla_foto)" [src]="'data:image/jpeg;base64,' + this.classified.cla_foto" />
         </ion-thumbnail>
         <button  item-end type="button" color="danger" ion-button item-start (click)="deletePhoto()">
           <ion-icon item-end name="trash"></ion-icon>

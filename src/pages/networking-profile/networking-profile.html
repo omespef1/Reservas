@@ -45,7 +45,7 @@
     <div class="profile">
       <ion-item button no-lines no-padding class="transparent">
         <ion-avatar item-start text-center class="profile-avatar center">
-          <img class="profileMode" src="data:image/jpeg;base64,{{foto}}">
+          <img (click)="viewImage('data:image/jpeg;base64,' + foto)" class="profileMode" src="data:image/jpeg;base64,{{foto}}">
         </ion-avatar>
         <ion-item no-lines class="transparent item-edit">
           <h2>Profesión</h2>

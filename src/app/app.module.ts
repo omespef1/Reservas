@@ -148,6 +148,7 @@ import { ChatRoomProvider } from '../providers/chat-room/chat-room';
 import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 import { CameraProvider } from '../providers/camera/camera';
 import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/networking-proyect-viewer';
+import { NetworkingImageViewerPage } from '../pages/networking-image-viewer/networking-image-viewer';
 
 
  
@@ -224,7 +225,8 @@ import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/
     NetworkingBusinessAreaPage,
     NetworkingChatPage,
     NetworkingChatLoginPage,
-    NetworkingProyectViewerPage
+    NetworkingProyectViewerPage,
+    NetworkingImageViewerPage
   ],
   imports: [
     FormsModule,
@@ -313,7 +315,8 @@ import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/
     NetworkingBusinessAreaPage,
     NetworkingChatPage,
     NetworkingChatLoginPage,
-    NetworkingProyectViewerPage
+    NetworkingProyectViewerPage,
+    NetworkingImageViewerPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

@@ -76,7 +76,7 @@
       </ion-item>
       <ion-item no-padding no-lines class="transparent">     
      
-        <img *ngIf="item.cla_foto != null" src="{{item.cla_foto}}" alt="proyecto">             
+        <img (click)="goViewer(item.cla_foto)"  *ngIf="item.cla_foto != null" src="{{item.cla_foto}}" alt="proyecto">             
         <div text-center *ngIf="item.cla_foto == null" class="classified-img-loading">
           <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
         </div>
