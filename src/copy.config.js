@@ -2,6 +2,13 @@
 //El archivo original se encuentra dentro de node_modules\@ionic\app-scripts\config\copy.config.js  ... 
 //Se debe reeemplazar por este en  caso de que se re instalen los node_modules o cuando se usa una máquina de trabajo nueva
 module.exports = {
+
+  includePaths: [
+    'node_modules/ionic-angular/themes',
+    'node_modules/ionicons/dist/css',
+    'node_modules/ionic-angular/fonts',
+    'node_modules/bootstrap/scss',
+  ],
     copyAssets: {
       src: ['{{SRC}}/assets/**/*'],
       dest: '{{WWW}}/assets'

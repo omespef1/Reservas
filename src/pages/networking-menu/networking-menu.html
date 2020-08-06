@@ -7,11 +7,11 @@
 
 
 <ion-content padding class="element-aparecer">
-  <ion-fab right top>
+  <!-- <ion-fab right top>
     <button ion-fab class="fab-message" (click)="goMessages()"> 
       <ion-icon name="mail"></ion-icon></button>
    
-  </ion-fab>
+  </ion-fab> -->
 <ion-grid padding>
   <ion-row>
     <ion-col>
@@ -112,9 +112,24 @@
         </button>
       </div>
     </ion-col>
+    
   </ion-row>
 
-  
+  <ion-row>
+    <ion-col text-center>
+      <button ion-button (click)="goMenu()"> 
+        <ion-icon name="home"></ion-icon></button>
+     
+    </ion-col>
+    <ion-col>
+      <div text-center>
+        <button class="fab-message" ion-button (click)="goMessages()"> 
+          <ion-icon name="mail"></ion-icon></button>
+      </div>
+    
+    </ion-col>
+    
+  </ion-row>
  
 </ion-grid>
 
@@ -136,9 +151,11 @@
 </ion-slides>
 </div>
 
+
 <div padding text-center>
   <button (click)="goPqr()" ion-button class="yellow" clear>Ayúdanos a mejorar</button>
 </div>
+
 
 
 </ion-content>

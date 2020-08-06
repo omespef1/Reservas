@@ -24,6 +24,7 @@ import { FirebaseAuthProvider } from '../../providers/firebase-auth/firebase-aut
 import { general } from '../../class/general/general';
 import { NotificationsPushProvider } from '../../providers/notifications-push/notifications-push';
 import { Platform } from 'ionic-angular';
+import { MenuPage } from "../menu/menu";
 
 /**
  * Generated class for the NetworkingMenuPage page.
@@ -82,7 +83,9 @@ export class NetworkingMenuPage implements OnInit {
     console.log('leyendo terminos')
   
   }
-
+goMenu(){
+  this.navCtrl.setRoot(MenuPage);
+}
 
   showModalTerms() {
     let modal = this._modal.create(NetworkingTermsPage);

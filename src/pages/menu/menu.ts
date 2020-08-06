@@ -106,6 +106,10 @@ banners:agreement[]=[];
   
   }
   openTab(page:number){
+   
+    if(page==8)
+    this.navCtrl.setRoot(NetworkingMenuPage);
+    else
     this.navCtrl.setRoot(TabsPage,{'tabSelected': page });
   }
   goProfile(){

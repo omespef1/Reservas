@@ -59,8 +59,7 @@ export class ChatRoomProvider {
           loaded: false,
           oneSignalId:''
         });
-        for (let chat of this.chatRooms) {
-          debugger;
+        for (let chat of this.chatRooms) {      
           let uiidPartner = this.auth.GetUuidPartnerFromKeyPair(chat.users);
           chat.uidPartner = uiidPartner;
           this.auth.GetUserName(uiidPartner).subscribe((resp) => {

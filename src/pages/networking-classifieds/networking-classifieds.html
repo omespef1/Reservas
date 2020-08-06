@@ -23,7 +23,7 @@
 </ion-header>
 <ion-content class="element-aparecer">
   <div class="search-container">
-    <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Buscar"  (ionChange)="getItems($event.value)"></ion-searchbar>
   </div>
   <ion-grid>
     <ion-row>
