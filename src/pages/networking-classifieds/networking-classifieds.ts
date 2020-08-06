@@ -25,6 +25,7 @@ export class NetworkingClassifiedsPage {
   getting=false;
   user:user;
   classifieds:soclanw[];
+  classifiedsAll:soclanw[];
   filter: string = "M";
   options: any[] = [
     { text: "Más recientes", value: "M" },
@@ -72,7 +73,7 @@ export class NetworkingClassifiedsPage {
      if(resp!=null && resp.Retorno==0){
         
       this.classifieds= resp.ObjTransaction;
-
+        this.classifiedsAll = resp.ObjTransaction;
       if(this.classifieds!=null && this.classifieds.length>0){
         for(let classified of this.classifieds){
          this.GetPhoto(classified);
@@ -127,6 +128,17 @@ console.log(this.classifieds);
        
     }
   }
+
+  getItems(q: string) {
+    //Reseteo los items a su estado original
+    this.classifieds = this.classifiedsAll;
+    //Si el valor es vacío ni filtra ndada
+    if (!q || q.trim() === '') {
+    return;
+    }
+    //Realiza el filtrado
+    this.classifieds = this.classifieds.filter((v) =>  v.cla_titu.toLowerCase().indexOf(q.toLowerCase()) > -1);
+    }
 
   goViewer(data){
   this.navCtrl.push(NetworkingImageViewerPage, {'image': data})
