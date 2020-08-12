@@ -1,0 +1,38 @@
+<!--
+  Generated template for the NetworkingClassifiedViewerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>networking-classified-viewer</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="element-aparecer">
+  <div padding  class="card">
+    <ion-item no-padding no-lines class="transparent">                  
+      <ion-label>
+        <h1><b>{{classified.cla_titu}}</b></h1>
+        <h2>{{classified.cla_fech | date : 'dd/MM/yyyy'}}</h2>         
+      </ion-label>                      
+    </ion-item>
+    <ion-item no-padding no-lines class="transparent">           
+      <img (click)="goViewer(classified.cla_foto)"  *ngIf="classified.cla_foto != null && classified.cla_foto!=''" src="{{classified.cla_foto}}" alt="clasificado">    
+      <img class="img-nothing"  *ngIf="classified.cla_foto == ''" src="assets/imgs/computer.svg" alt="clasificado">   
+      <!-- <img class="img-waiting"  *ngIf="classified.cla_foto == null" src="assets/imgs/waiting.svg" alt="clasificado">                       -->
+     <waiting-clock *ngIf="classified.cla_foto==null"></waiting-clock>
+      <!-- <div text-center *ngIf="classified.cla_foto == null" class="classified-img-loading">
+        <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
+      </div> -->
+    </ion-item>
+   
+    <div class="text-body">
+      <p>{{classified.cla_desc}}</p>
+      <h2><b>Nombre: </b>{{classified.cla_nomb}}</h2> 
+      <h2><b>Teléfono: </b>{{classified.cla_tele}}</h2> 
+     
+    </div>      
+  </div>  
+</ion-content>

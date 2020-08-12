@@ -78,6 +78,7 @@ import { NetworkingBusinessAreaPage } from '../pages/networking-business-area/ne
 
 
 
+
 //Providers
 import { ComunicationsProvider } from '../providers/comunications/comunications';
 import { PartnerProvider } from '../providers/partner/partner';
@@ -109,6 +110,7 @@ import { SofanetProvider } from '../providers/sofanet/sofanet';
 import {NgCalendarModule} from 'ionic2-calendar';
 import {AccordionComponent} from '../components/accordion/accordion';
 import { SkeletonItemComponent } from '../components/skeleton-item/skeleton-item';
+import {  WaitingClockComponent} from '../components/waiting-clock/waiting-clock';
 //clases
 import {general} from '../class/general/general';
 import {sessions} from '../class/sessions/sessions';
@@ -149,6 +151,8 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 import { CameraProvider } from '../providers/camera/camera';
 import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/networking-proyect-viewer';
 import { NetworkingImageViewerPage } from '../pages/networking-image-viewer/networking-image-viewer';
+import { NetworkingMyClassifiedsPage } from "../pages/networking-my-classifieds/networking-my-classifieds";
+import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-viewer/networking-classified-viewer';
 
 
  
@@ -226,7 +230,10 @@ import { NetworkingImageViewerPage } from '../pages/networking-image-viewer/netw
     NetworkingChatPage,
     NetworkingChatLoginPage,
     NetworkingProyectViewerPage,
-    NetworkingImageViewerPage
+    NetworkingImageViewerPage,
+    NetworkingMyClassifiedsPage,
+    WaitingClockComponent,
+    NetworkingClassifiedViewerPage
   ],
   imports: [
     FormsModule,
@@ -316,7 +323,10 @@ import { NetworkingImageViewerPage } from '../pages/networking-image-viewer/netw
     NetworkingChatPage,
     NetworkingChatLoginPage,
     NetworkingProyectViewerPage,
-    NetworkingImageViewerPage
+    NetworkingImageViewerPage,
+    NetworkingMyClassifiedsPage,
+    WaitingClockComponent,
+    NetworkingClassifiedViewerPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },

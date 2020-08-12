@@ -37,5 +37,12 @@ GetSoClanw(emp_codi:number){
     return this._comu.postPhoto("SoClanw/PostPhotoClassified",formData);
   }
 
-  
+  GetSoclanwClassifieds(emp_codi:number,soc_cont:number,sbe_cont:number,mac_nume:string){
+    console.log("top es",top);
+    return this._comu.Get(`SoClanw/MyClassifieds?emp_codi=${emp_codi}&soc_cont=${soc_cont}&sbe_cont=${sbe_cont}&mac_nume=${mac_nume}`,false,'',false)
+    
+  }
+  updateSoClanwDelete(emp_codi:number,cla_cont:number){
+    return this._comu.Get(`SoClanw/updateSoClanwDelete?emp_codi=${emp_codi}&cla_cont=${cla_cont}`,false,'',false);
+  }
 }

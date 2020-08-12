@@ -61,9 +61,10 @@
               <ion-icon name="eye"></ion-icon> &nbsp; Enviar mensaje
          </button>
             <ion-avatar class="profile-Menu" item-left>
-              <img src="assets/imgs/user-profile.svg">
+              <img *ngIf="profile.per_foto!=null" src="data:image/jpeg;base64,{{profile.per_foto}}">
+              <img *ngIf="profile.per_foto==null" src="assets/imgs/user-profile.svg">
             </ion-avatar>
-            <h2 class="blue"> <b>{{profile.sbe_nomb}}</b></h2>
+            <h2 class="blue"> <b>{{profile.sbe_nomb}} {{profile.sbe_apel}}</b></h2>
             <h3 class="blue">{{ profile.profession }}</h3>
           </ion-item>
   

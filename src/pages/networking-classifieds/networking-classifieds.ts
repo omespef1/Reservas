@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertOptions } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, AlertOptions, Refresher } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { NetworkingClassifiedsTermsPage } from '../networking-classifieds-terms/networking-classifieds-terms';
 import { NetworkingClassifiedsNewPage } from '../networking-classifieds-new/networking-classifieds-new';
@@ -8,6 +8,9 @@ import { user, transaction } from '../../class/models/models';
 import { sessions } from '../../class/sessions/sessions';
 import { soclanw } from '../../class/models/soclanw/soclanw';
 import { NetworkingImageViewerPage } from '../networking-image-viewer/networking-image-viewer';
+import { NetworkingMyClassifiedsPage } from '../networking-my-classifieds/networking-my-classifieds';
+import { NetworkingClassifiedViewerPage } from '../networking-classified-viewer/networking-classified-viewer';
+
 
 /**
  * Generated class for the NetworkingClassifiedsPage page.
@@ -21,11 +24,11 @@ import { NetworkingImageViewerPage } from '../networking-image-viewer/networking
   selector: 'page-networking-classifieds',
   templateUrl: 'networking-classifieds.html',
 })
-export class NetworkingClassifiedsPage {
+export class NetworkingClassifiedsPage implements OnInit {
   getting=false;
   user:user;
-  classifieds:soclanw[];
-  classifiedsAll:soclanw[];
+  classifieds:soclanw[]=[];
+  classifiedsAll:soclanw[]=[];
   filter: string = "M";
   options: any[] = [
     { text: "Más recientes", value: "M" },
@@ -42,13 +45,44 @@ export class NetworkingClassifiedsPage {
 
   }
 
-  ionViewDidLoad() {
+  loadData(refresh?:Refresher){
+    this.classifieds=[];
     this._sessions.GetLoggedin().then((resp:user)=>{
       this.user = resp;
       this.GetSoClanws();
+     if(refresh) refresh.complete();
     })
+  }
+  ngOnInit(){
+   this.loadData();
+  }
+  ionViewDidLoad() {
+    
    
     console.log('ionViewDidLoad NetworkingClassifiedsPage');
+  }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation'); 
+     setTimeout(() => {
+      this.pushClassified(this.classifieds.length,this.classifieds.length+10)
+      infiniteScroll.complete();
+     }, 500);
+    
+     
+     
+    
+
+  }
+
+  pushClassified(init:number,end:number){
+    for(let i = init; i<=end;i++){
+     if(i<=this.classifiedsAll.length-1){
+      this.classifieds.push(this.classifiedsAll[i]);
+      this.GetPhoto(this.classifieds[i]);
+     }
+   
+    }
   }
 
   goHome(){
@@ -72,14 +106,9 @@ export class NetworkingClassifiedsPage {
     this.getting=false;
      if(resp!=null && resp.Retorno==0){
         
-      this.classifieds= resp.ObjTransaction;
+      // this.classifieds= resp.ObjTransaction;
         this.classifiedsAll = resp.ObjTransaction;
-      if(this.classifieds!=null && this.classifieds.length>0){
-        for(let classified of this.classifieds){
-         this.GetPhoto(classified);
-        }
-        this.setFilter(this.filter);
-      }
+      this.pushClassified(0,10);
 
      }
    })
@@ -93,16 +122,17 @@ export class NetworkingClassifiedsPage {
     return true;
   }
 
-  editClassified(classified:soclanw){
-    this.navCtrl.push(NetworkingClassifiedsNewPage,{ 'editClassified':classified})
-  }
+
 
 
   GetPhoto(classified:soclanw){
     console.log('obteniendo imagenes..');
     this._soclanw.GetPhoto(classified.emp_codi,classified.cla_cont).then((resp:transaction)=>{
-      if(resp!=null && resp.Retorno==0){
+      if(resp!=null && resp.Retorno==0){  
+        if(resp.ObjTransaction.cla_foto!='' && resp.ObjTransaction.cla_foto!=null)      
         classified.cla_foto = "data:image/jpeg;base64," + resp.ObjTransaction.cla_foto;
+        else
+        classified.cla_foto ="";
       }
     })
   }
@@ -142,6 +172,19 @@ console.log(this.classifieds);
 
   goViewer(data){
   this.navCtrl.push(NetworkingImageViewerPage, {'image': data})
+  }
+
+  goMyClassifieds(){
+    this.navCtrl.push(NetworkingMyClassifiedsPage);
+  }
+
+  doRefresh(refresher: Refresher) 
+  {
+    this.loadData(refresher);
+  }
+
+  goClassifiedViewer(classified:soclanw){
+    this.navCtrl.push(NetworkingClassifiedViewerPage, { 'classified': classified})
   }
   
 }

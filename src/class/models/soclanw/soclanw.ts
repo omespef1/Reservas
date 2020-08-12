@@ -14,4 +14,5 @@ soc_cont:number;
 sbe_cont:number;
 cla_esta:string;
 cla_fech:Date;
+cla_fefi:Date;
 }

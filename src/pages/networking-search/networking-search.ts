@@ -9,11 +9,7 @@ import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { NetworkingProfilePage } from "../networking-profile/networking-profile";
 import { SopernwProvider } from "../../providers/sopernw/sopernw";
 import { sessions } from "../../class/sessions/sessions";
-import {
-  transaction,
-  item,
-  sofanet,
-} from "../../class/models/models";
+import { transaction, item, sofanet } from "../../class/models/models";
 import { SofanetProvider } from "../../providers/sofanet/sofanet";
 import { general } from "../../class/general/general";
 import { NetworkingChatPage } from "../networking-chat/networking-chat";
@@ -27,9 +23,8 @@ import { throwError } from "rxjs";
  * Ionic pages and navigation.
  */
 enum modeSearchProfile {
-
-  search=1,
-  allProfilesApprobed=2 
+  search = 1,
+  allProfilesApprobed = 2,
 }
 @IonicPage()
 @Component({
@@ -62,19 +57,19 @@ export class NetworkingSearchPage {
     private _sofanet: SofanetProvider,
     private _general: general,
     private _session: sessions,
-    public auth:FirebaseAuthProvider
+    public auth: FirebaseAuthProvider
   ) {}
 
   ionViewDidLoad() {
     console.log(this.navParams.get("mode"));
-  
+
     this.mode =
       this.navParams.get("mode") == undefined
         ? modeSearchProfile.search
         : modeSearchProfile.allProfilesApprobed;
-console.log(this.mode);
-     if(this.mode== modeSearchProfile.allProfilesApprobed)
-     this.loadProfiles();   
+    console.log(this.mode);
+    if (this.mode == modeSearchProfile.allProfilesApprobed) this.loadProfiles();
+    if (this.mode == modeSearchProfile.search) this.loadProfiles(10);
   }
 
   getItems() {}
@@ -93,46 +88,60 @@ console.log(this.mode);
     console.log(this.mode);
     switch (this.mode) {
       case modeSearchProfile.search:
-       this.loadProfiles();
+        this.loadProfiles();
         break;
       case modeSearchProfile.allProfilesApprobed:
         this.profiles = this.profilesAll;
-        this.profiles.filter((v) => v.sbe_nomb);
+      this.profiles =  this.profiles.filter((v) => v.sbe_nomb.toUpperCase().indexOf(this.searchTerms.toUpperCase())>-1 || v.sbe_apel.toUpperCase().indexOf(this.searchTerms.toUpperCase())>-1 );
     }
   }
 
+  async loadProfiles(top:number=0) {
+    try {
+      this.loading = true;     
+      this._sopwenw
+        .GeSoPernw(await this._session.getEmpCodiSession(), this.searchTerms,top)
+        .then(async (resp: transaction) => {
+          this.professions = await this._session.getProfessions();
+          this.economicSectors = await this._session.getEconomicSector();
+          if (this.professions == null || this.professions == undefined)
+            throw new Error("Profesiones no disponibles.");
+          if (this.professions == null || this.professions == undefined)
+            throw new Error("Secotres económicos no disponibles.");
 
- async loadProfiles(){
-   try {
-    this.loading = true;
-    this._sopwenw
-      .GeSoPernw(await this._session.getEmpCodiSession(), this.searchTerms)
-      .then(async(resp: transaction) => {
-
-       this.professions = await    this._session.getProfessions();      
-       this.economicSectors = await this._session.getEconomicSector();
-      if(this.professions==null || this.professions ==undefined)
-       throw new Error("Profesiones no disponibles.");
-       if(this.professions==null || this.professions ==undefined)
-       throw new Error("Secotres económicos no disponibles.");
-
-        this.loading = false;
-        console.log(resp);
-        if (resp != null && resp.Retorno == 0) {
-          this.profilesAll = resp.ObjTransaction;
-          this.profiles = resp.ObjTransaction;
-
-          for(let profile of this.profiles){
-            profile.profession = this._session.FindProfessions(this.professions,profile.ite_prof)
-            profile.sector = this._session.findSector(this.economicSectors,profile.ite_seco);
+          this.loading = false;
+          console.log(resp);
+          if (resp != null && resp.Retorno == 0) {
+            this.profilesAll = resp.ObjTransaction;
+            this.profiles = resp.ObjTransaction;
+            for (let profile of this.profiles) {
+              this._sopwenw.GetPhoto(profile.emp_codi,profile.per_cont).then((photo:transaction)=>{
+                if(photo!=undefined && photo.Retorno==0){
+                  profile.per_foto = photo.ObjTransaction;
+                }
+              })
+              profile.profession = this._session.FindProfessions(
+                this.professions,
+                profile.ite_prof
+              );
+              profile.sector = this._session.findSector(
+                this.economicSectors,
+                profile.ite_seco
+              );
+            }
+            this.setFilter(this.filter);
           }
-          this.setFilter(this.filter);
-        }
-      });
-   } catch (error) {
-     this._general.showCustomAlert('Error',error.message,()=>{},'alert-nogal',false,'');
-   }
-
+        });
+    } catch (error) {
+      this._general.showCustomAlert(
+        "Error",
+        error.message,
+        () => {},
+        "alert-nogal",
+        false,
+        ""
+      );
+    }
   }
   // GetProfessions() {
   //   this._session.getProfessions().then((resp: item[]) => {
@@ -224,8 +233,8 @@ console.log(this.mode);
     }
   }
 
-  goChat(profile:any){
-    if(profile.per_uuid ==undefined || profile.per_uuid ==null){
+  goChat(profile: any) {
+    if (profile.per_uuid == undefined || profile.per_uuid == null) {
       this._general.showCustomAlert(
         "No permitido!",
         "",
@@ -234,13 +243,16 @@ console.log(this.mode);
         false,
         "El socio seleccionado aún no ha creado su perfil en nogal-conecta."
       );
-    }
-    else {
-      console.log('perfil enviado', profile);
+    } else {
+      console.log("perfil enviado", profile);
       // this.navCtrl.push(NetworkingChatPage, { 'profile': profile})
-      this.navCtrl.push(NetworkingChatPage,{'profile':{ per_uuid: profile.per_uuid ,sbe_nomb:profile.sbe_nomb.displayNameUser,oneSignalId: profile.per_osid}});
+      this.navCtrl.push(NetworkingChatPage, {
+        profile: {
+          per_uuid: profile.per_uuid,
+          sbe_nomb: profile.sbe_nomb.displayNameUser,
+          oneSignalId: profile.per_osid,
+        },
+      });
     }
-    
-
   }
 }

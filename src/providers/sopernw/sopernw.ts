@@ -34,10 +34,13 @@ DeleteSoPernw(emp_codi:number,per_cont:number){
   return this._comu.Post({emp_codi:emp_codi,per_cont:per_cont},`sopernw/delete`)
 }
 
-GeSoPernw(emp_codi:number, per_tags:string){
-  return this._comu.Get(`sopernw/GetSoPernw?emp_codi=${emp_codi}&per_tags=${per_tags}`,false,'',false)
+GeSoPernw(emp_codi:number, per_tags:string,top:number){
+  console.log("top es",top);
+  return this._comu.Get(`sopernw/GetSoPernw?emp_codi=${emp_codi}&per_tags=${per_tags}&top=${top}`,false,'',false)
   
 }
+
+
 GetPhoto(emp_codi:number, per_cont:number){
   return this._comu.Get(`SoPernw/GetPhoto?emp_codi=${emp_codi}&per_cont=${per_cont}`,false,'',false)
   
