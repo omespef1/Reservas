@@ -48,17 +48,17 @@
       <ion-item no-padding no-lines class="transparent">           
         <img (click)="goViewer(item.cla_foto)"  *ngIf="item.cla_foto != null && item.cla_foto!=''" src="{{item.cla_foto}}" alt="clasificado">    
         <img class="img-nothing"  *ngIf="item.cla_foto == ''" src="assets/imgs/computer.svg" alt="clasificado">   
-        <img class="img-waiting"  *ngIf="item.cla_foto == null" src="assets/imgs/waiting.svg" alt="clasificado">                      
+        <waiting-clock *ngIf="item.cla_foto==null"></waiting-clock>                  
         <!-- <div text-center *ngIf="item.cla_foto == null" class="classified-img-loading">
           <i  class="fa fa-refresh fa-spin" aria-hidden="true"></i>
         </div> -->
       </ion-item>
-     
-      <div>
+      <div tappable (click)="goClassifiedViewer(item)" class="text-body">
         <p>{{item.cla_desc}}</p>
         <h2><b>Nombre: </b>{{item.cla_nomb}}</h2> 
-        <h2><b>Teléfono: </b>{{item.cla_tele}}</h2>        
-      </div>      
+        <h2><b>Teléfono: </b>{{item.cla_tele}}</h2> 
+       
+      </div>     
     </div>    
   </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

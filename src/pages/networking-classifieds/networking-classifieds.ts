@@ -97,6 +97,9 @@ export class NetworkingClassifiedsPage implements OnInit {
     
    let modal= this._modal.create(NetworkingClassifiedsNewPage);
    modal.present();
+   modal.onDidDismiss(()=>{
+     this.loadData();
+   })
     
   }
 

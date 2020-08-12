@@ -12,6 +12,7 @@ import { SoclanwProvider } from "../../providers/soclanw/soclanw";
 import { sessions } from "../../class/sessions/sessions";
 import { NetworkingClassifiedsNewPage } from "../networking-classifieds-new/networking-classifieds-new";
 import { general } from '../../class/general/general';
+import { NetworkingClassifiedViewerPage } from "../networking-classified-viewer/networking-classified-viewer";
 
 /**
  * Generated class for the NetworkingMyClassifiedsPage page.
@@ -90,7 +91,9 @@ export class NetworkingMyClassifiedsPage {
     
 
   }
-
+  goClassifiedViewer(classified:soclanw){
+    this.navCtrl.push(NetworkingClassifiedViewerPage, { 'classified': classified})
+  }
   pushClassified(init:number,end:number){
     for(let i = init; i<=end;i++){
      if(i<=this.classifieds.length-1){
