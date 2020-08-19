@@ -12,7 +12,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 //clases
 import { general } from "../../class/general/general";
 import { sessions } from "../../class/sessions/sessions";
-import { GnAppDw, GnDigfl, user } from "../../class/models/models";
+import { GnAppDw, GnDigfl, user, radio } from "../../class/models/models";
 //Providers
 import { PartnerProvider } from "../../providers/partner/partner";
 import { ConnectionsProvider } from "../../providers/connections/connections";
@@ -78,7 +78,8 @@ export class LoginPage {
     private _companies: CompaniesProvider,
     private _dom: DomSanitizer,
     private _conect: ConnectionsProvider,
-    private _loading: LoadingController
+    private _loading: LoadingController,
+    private _general: general
   ) {
     this.appVersion = appVersion;
     this.appCopyright = appCopyright;
@@ -97,7 +98,7 @@ export class LoginPage {
     loadingModal.present();
     this.CheckConnectionChanges().then(
       async () => {
-        console.log("empresa escogida");
+       
         await this.GetPartnerConnections();
         loadingModal.dismiss();
         this.events.publish("user:gnempre");
@@ -179,9 +180,8 @@ export class LoginPage {
     //Llena la variable de url de conexion ya sea desde la sesión o desde la bd
     let promise = new Promise((resolve, reject) => {
       this.session.getPartnerConnections().then((resp: GnConex) => {
-        console.log("conexion leida");
-        if (resp) {
-          console.log("setea set client url porque ya la tiene");
+      
+        if (resp) {         
           this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
@@ -215,14 +215,14 @@ export class LoginPage {
   GetEmpCodiSession() {
     let promise = new Promise((resolve, reject) => {
       this.session.getEmpCodiSession().then((resp) => {
-        console.log("empresa por defecto es ");
-        console.log(resp);
+     
+       
         if (resp) {
           this.session.SetClientEmpCodi(resp);
           this.session.setEmpCodiSession(resp);
           resolve();
         } else {
-          console.log("abre modal");
+         
           let modalCompanies = this.modalCrl.create(CompaniesPage);
           modalCompanies.present();
           modalCompanies.onDidDismiss((resp: GnEmpre) => {
@@ -245,10 +245,10 @@ export class LoginPage {
   CheckLastVersion() {
     //Verifica si el usuario cuenta con la última versión y lo obliga a actualizar el app
     return this._connections.GetVersioning().then((resp: any) => {
-      console.log(resp);
+    
       if (resp.State) {
         let AppLastVersion: GnAppDw = resp.ObjResult;
-        console.log(this.compareVersion(appVersion, AppLastVersion.App_Vers));
+       
         if (this.compareVersion(appVersion, AppLastVersion.App_Vers) < 0) {
           this.IsLastVersion = false;
           this.GoUpdateApp();
@@ -328,16 +328,15 @@ export class LoginPage {
             let arrConex: GnConex[] = resp.ObjResult;
             let NogalConex = arrConex.filter((n) => n.$id == 2)[0];
             this.SetConexiones(NogalConex);
-            this.session.getEmpCodiSession().then((resp) => {
-              console.log("empresa que carga es");
-              console.log(resp);
+            this.session.getEmpCodiSession().then((resp) => {              
+             
               if (resp != null) {
-                console.log("resuelve");
+               
                 resolve();
               }
 
               this._companies.GetGnEmpre().then((data: any) => {
-                console.log("carga empresas ok");
+      
                 if (data == null || data == undefined)
                   throw new Error("No se encontraron empresas");
                 let companies: any[] = data.ObjTransaction;
@@ -365,5 +364,68 @@ export class LoginPage {
   SetEmpCodi(emp_codi: number) {
     this.session.SetClientEmpCodi(emp_codi);
     this.session.setEmpCodiSession(emp_codi);
+  }
+
+
+  verifyTestingPassword(){
+    let inputs:radio[] = [
+      { type:'text', value:'', label:'Url testing',checked:false }
+    ];
+   
+    this._general.showCustomAlertInputs(
+      "Llave de configuración",inputs,  ((resp:any)=>{ this.goSettingsTestersBusiness(resp[0])}),'alert-nogal','',
+      "Ingrese la llave de configuración"
+    );
+  }
+
+  goSettingsTestersBusiness(key:string) {
+
+
+    if(key=="sistemas"){
+      let inputs:radio[] = [
+        { type:'text', value:'', label:'Url testing',checked:false }
+      ];
+     
+      this._general.showCustomAlertInputs(
+        "Ajustes de apuntamiento",inputs,  ((resp:any)=>{  this.setUrlApiForTestingPorpouses(`${resp[0]}api/`);
+      this.goSettingsTestersBusinessCode() }),'alert-nogal','',
+        "Defina la url a la que apuntará la aplicación.El direccionamiento debe seguir la siguiente nomenclatura : http://servidor/sitio/"
+      );
+    }
+    else 
+    this._general.showCustomAlert('Error','Llave inválida',()=>{},'alert-nogal',false,'')
+   
+
+ 
+  }
+
+
+  goSettingsTestersBusinessCode() {
+
+
+      let inputs:radio[] = [
+        { type:'text', value:'', label:'Código de empresa',checked:false }
+      ];
+     
+      this._general.showCustomAlertInputs(
+        "Código de empresa",inputs,  ((resp:any)=>{  this.setUrlApiForTestingPorpousesBusinessCode(`${resp[0]}`) }),'alert-nogal','',
+        "Defina el código de empresa con el cual hará el ingreso"
+      );
+    
+    
+   
+
+ 
+  }
+
+
+  setUrlApiForTestingPorpouses(value:string){
+  
+    this.session.SetClientUrl(value);
+  }
+
+  setUrlApiForTestingPorpousesBusinessCode(value:string){
+ 
+    this.session.SetClientEmpCodi(Number(value));
   }
 }

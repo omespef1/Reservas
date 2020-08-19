@@ -51,10 +51,10 @@
 
               </ion-item>
               <div padding>
-                <button [style.color] = "colorTer"  [style.background-color]="colorPri" [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
+                <button type="submit" [style.color] = "colorTer"  [style.background-color]="colorPri" [disabled]="!loginForm.form.valid" ion-button block>Ingresar &nbsp;
                   <ion-icon button name="checkmark-circle"></ion-icon>
                 </button>              
-              </div>
+              </div>            
             </ion-list>
           </form>
 
@@ -106,10 +106,13 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>
 <ion-footer>
   <ion-toolbar id="footer"  text-center [style.color]="colorSeg">
-
+    <button class="btn-testing" type="button" [style.color] = "colorSeg"  (click)="verifyTestingPassword()" ion-button clear> &nbsp;
+      <ion-icon button name="cog"></ion-icon>
+    </button>      
     <small> {{appCopyright}}</small><br>
     <small> V.{{appVersion}}</small>
 

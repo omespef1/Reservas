@@ -11,7 +11,7 @@ import { TabsPage } from "../pages/tabs/tabs";
 import { PqrProvider } from "../providers/pqr/pqr";
 import { AeEspacProvider } from "../providers/ae-espac/ae-espac";
 import { transaction } from "../class/models/models";
-import { MenuPage } from "../pages/menu/menu";
+import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from "../providers/notifications-push/notifications-push";
 import { AeinappProvider } from "../providers/aeinapp/aeinapp";
 import { NetworkingNewsPage } from "../pages/networking-news/networking-news";
@@ -34,7 +34,7 @@ import { OneSignal } from "@ionic-native/onesignal/ngx";
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = LoginPage;
+  rootPage: any = MenuPage;
 
   logged: boolean = false;
 
