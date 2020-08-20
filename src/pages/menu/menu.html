@@ -19,7 +19,7 @@
   </ion-navbar>
 </ion-header> -->
 
-<ion-content padding  >
+<ion-content padding class="card-background-page outer-content"  >
   <div>
       <ion-card *ngIf="loadingBanner">
           <ion-spinner ></ion-spinner>
@@ -52,7 +52,7 @@
       </div>
     </div> -->
     <ion-grid padding>
-      <ion-row>
+      <ion-row align-items-center>
         
    
         <ion-col text-center>
@@ -75,9 +75,9 @@
         <div class="btn_card" *ngIf="i % 2 == 0" >
           <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
-              <img [src]="page.urlIcon">
+              <img class="img-card" [src]="page.urlIcon">
            
-            <!-- <div class="card-subtitle"></div> -->
+            <div class="card-subtitle"> {{page.name}}</div>
           </ion-card>
         </div>
       </div>
@@ -88,9 +88,9 @@
         <div class="btn_card" *ngIf="i % 2 != 0" >
           <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
-              <img [src]="page.urlIcon">
+              <img class="img-card" [src]="page.urlIcon">
            
-            <div class="card-subtitle"> {{page.name}}</div> 
+              <div class="card-subtitle"> {{page.name}}</div>
           </ion-card>
         </div>
       </div>

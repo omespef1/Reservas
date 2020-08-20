@@ -14,7 +14,9 @@ ion-card {
   
 }
 
-
+.img-card {
+  margin-bottom: 22px;
+}
 
 .card-title {
   position: absolute;
@@ -30,6 +32,7 @@ ion-card {
 }
 .card {
   height: 100%;
+  border: 0px;
 }
 .card-subtitle {
   font-size: 1.2em;
@@ -40,21 +43,22 @@ ion-card {
   font-family: SourceSansPro;
   text-align: center
 }
-.divLogo{
+#divLogo{
   margin: auto;
   width: 100px;
 }
 
-// ion-col {
-//   border-top: 1px solid #dfdfdf;
-// border-left: 1px solid #dfdfdf;
-// &:nth-child(-n+2) {
-// border-top: none;
-// }
-// &:nth-child(odd) {
-// border-left: none;
-// } border: 1px solid darkgray;
-// }
+.btn_card {
+  border-top: 1px solid #dfdfdf;
+border-left: 1px solid #dfdfdf;
+&:nth-child(-n+2) {
+border-top: none;
+}
+&:nth-child(odd) {
+border-left: none;
+}
+ border: 1px solid darkgray;
+}
 
   
 }
