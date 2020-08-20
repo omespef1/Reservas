@@ -87,7 +87,7 @@ banners:agreement[]=[];
   },
   {
     name:'Perfil socio',
-    urlIcon:'assets/imgs/profile-gray.svg',
+    urlIcon:'assets/imgs/partner-profile.svg',
     page:SettingsPage
   },
 ]
