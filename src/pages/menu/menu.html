@@ -19,7 +19,7 @@
   </ion-navbar>
 </ion-header> -->
 
-<ion-content padding  class="element-aparecer">
+<ion-content padding  >
   <div>
       <ion-card *ngIf="loadingBanner">
           <ion-spinner ></ion-spinner>
@@ -53,15 +53,12 @@
     </div> -->
     <ion-grid padding>
       <ion-row>
-        <ion-col>
-          <div text-left>
-      <h3>CLUBES Y HOTELES</h3>
-          </div>
-      </ion-col>
-        <ion-col>
-          <div text-right>
+        
+   
+        <ion-col text-center>
+          <div text-center>
             <div  id="divLogo">
-              <img src="assets/imgs/nogal-blanco.svg">
+              <img src="assets/imgs/nogal.png">
              </div>
           </div>
           
@@ -73,33 +70,31 @@
 
     </ion-grid>
 
-    <ion-grid class="grid-categories">
-      <ion-row *ngFor="let page of pages;let i=index" >
-        <ion-col *ngIf="i % 2 == 0" >
-          <button  (click)="openTab(i)"  class="btnMenu" ion-button color="light"  outline  block> {{page.name}}
+    <div class="grid-categories">
+      <div align-items-center *ngFor="let page of pages;let i=index" >
+        <div class="btn_card" *ngIf="i % 2 == 0" >
+          <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
-            <div class="card_menu">
               <img [src]="page.urlIcon">
-            </div>
-            <div class="notification-badge"></div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+           
+            <!-- <div class="card-subtitle"></div> -->
+          </ion-card>
+        </div>
+      </div>
+    </div>
   
-    <ion-grid class="grid-categories">
-      <ion-row *ngFor="let page of pages;let i=index" >
-        <ion-col *ngIf="i % 2 != 0" >
-          <button  (click)="openTab(i)"  class="btnMenu" ion-button color="light"  outline  block> {{page.name}}
+    <div class="grid-categories">
+      <div align-items-center *ngFor="let page of pages;let i=index" >
+        <div class="btn_card" *ngIf="i % 2 != 0" >
+          <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
-            <div class="card_menu">
               <img [src]="page.urlIcon">
-            </div>
-            <div class="notification-badge"></div>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+           
+            <div class="card-subtitle"> {{page.name}}</div> 
+          </ion-card>
+        </div>
+      </div>
+    </div>
     <!-- <ion-row *ngFor="let page of pages;let i=index">
     
   

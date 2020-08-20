@@ -1,331 +1,60 @@
 page-menu {
-
   .grid-categories {
     width: 50%;
     float: left;
-    // border: red solid;
-}
-
-// /* 
-//   ##Device = Desktops
-//   ##Screen = 1281px to higher resolution desktops
-// */
-
-@media (min-width: 1281px) {
-  
-  .imgLogo{
-    max-width: 400px;
-    height: auto
-  }
-  .slide_card{
-
-    img{
-      max-width: 1150px;
-    }
-  }
-  
-}
-
-/* 
-  ##Device = Laptops, Desktops
-  ##Screen = B/w 1025px to 1280px
-*/
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  
-  .imgLogo{
-    max-width: 300px;
-    height: auto
-  }
-  .card_menu img {
-    max-width: 300px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 1100px;
-    }
-  }
-  
-}
-
-/* 
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  
-    font-size: 30px;
-  
-
-  .imgLogo{
-    max-width: 250px;
-    height: auto
-  }
-  
-  .card_menu img {
-    max-width: 250px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 950px;
-    }
-  }
-}
-
-/* 
-  ##Device = Tablets, Ipads (landscape)
-  ##Screen = B/w 768px to 1024px
-*/
-
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  
-  .imgLogo{
-    max-width: 200px;
-    height: auto
-  }
-  .card_menu img {
-    max-width: 200px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 950px;
-    }
-  }
-  
-  
-}
-
-/* 
-  ##Device = Low Resolution Tablets, Mobiles (Landscape)
-  ##Screen = B/w 481px to 767px
-*/
-
-@media (min-width: 481px) and (max-width: 767px) {
-  
-  .imgLogo{
-    max-width: 120px;
-    height: auto
-  }
-
-  .card_menu img {
-    max-width: 180px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 600px;
-    }
-  }
-  
-}
-
-/* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
-
-@media (min-width: 200px) and (max-width: 320px) {
-  
-  .imgLogo{
-    max-width: 80px;
-    height: auto
-  }
-
-  .card_menu img {
-    max-width: 50px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 250px;
-    }
-  }
-  
-}
-
-
-@media (min-width: 321px) and (max-width: 400px) {
-  
-  .imgLogo{
-    max-width: 120px;
-    height: auto
-  }
-
-  .card_menu img {
-    max-width: 70px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 310px;
-    }
-  }
-
-  
-}
-
-@media (min-width: 400px) and (max-width: 480px) {
-  
-  .imgLogo{
-    max-width: 120px;
-    height: auto
-  }
-
-  .card_menu img {
-    max-width: 90px;
-    height: auto;
-  }
-  .slide_card{
-
-    img{
-      max-width: 410px;
-    }
-  }
-  
-}
-
-
-
-//   //font-family: SourceSansPro;
-//     ion-card {
-//         position: relative;
-//         text-align: center;       
-//         background: transparent !important; 
-//         box-shadow: none !important;
-//          img{
-//            margin:auto;
-//          }
-        
-//       }
-
     
-//       .card-title {
-//         position: absolute;
-//         top: 50%;
-//         font-size: 1.5em;
-//         width: 100%;
-//         font-weight: bold;
-//         color: #fff;
-//       }
-    
-//       .card-subtitle {
-//         font-size: 1.2em;
-//         position: absolute;
-//        bottom: 0%;
-//         width: 100%;
-//         color: lightslategray;
-//         font-family: SourceSansPro;
-//         text-align: center
-//       }
+}
+//font-family: SourceSansPro;
+ion-card {
+  position: relative;
+  text-align: center;       
+  background: transparent !important; 
+  box-shadow: none !important;
 
-//       ion-col {
-//         border-top: 1px solid #dfdfdf;
-//     border-left: 1px solid #dfdfdf;
-//     &:nth-child(-n+2) {
-//       border-top: none;
-//     }
-//     &:nth-child(odd) {
-//       border-left: none;
-//     }
-//      // border: 1px solid darkgray;
-//       }
-// .yellow {
-//   color:#FFFF00;
-// }
-// font-family: raleway;
-// ion-content {
-//   background-color: #331A2D !important;
-//   border-bottom: 12px solid #E86243;
-//  }
-//  ion-avatar.profile-Menu img {
-//   height: 70px;
-//   width: 70px;
-//   border: 3px solid #E86243;
-// }
-// h1,h2,h3 {
-//   color:white;
-//   font-family:myriadPro;
   
- 
-// }  
-// .item-ios h2 {
-//   margin: 0 0 2px;
-//   font-size: 2.0rem;
-//   font-weight: normal;
+}
+
+
+
+.card-title {
+  position: absolute;
+  top: 50%;
+  font-size: 1.5em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+ion-card {
+  height: 100%;
+  width: 100%;
+}
+.card {
+  height: 100%;
+}
+.card-subtitle {
+  font-size: 1.2em;
+  position: absolute;
+ bottom: 0%;
+  width: 100%;
+  color: lightslategray;
+  font-family: SourceSansPro;
+  text-align: center
+}
+.divLogo{
+  margin: auto;
+  width: 100px;
+}
+
+// ion-col {
+//   border-top: 1px solid #dfdfdf;
+// border-left: 1px solid #dfdfdf;
+// &:nth-child(-n+2) {
+// border-top: none;
 // }
-// h4{
-//   color:#FFFFAA;
-//   font-family: raleway;
-// }
-// #divLogo{
-//   img {
-//       max-width: 50%;
-//       height: auto;
-//   }
- 
-// }
-// .btnMenu {
-// border:0px;
-//   // padding: 0 10.6rem;
-//   background-color: #7A5630;
+// &:nth-child(odd) {
+// border-left: none;
+// } border: 1px solid darkgray;
 // }
 
-// .btnBadge{
-    
-// height: 45px;
-// width: 45px;
-// background-color: white;
-// position: absolute;
-// border-radius: 40px;
-// padding: 8px 8px 8px 8px;
-// top:0px;
-// }
-// .btnBadge-rigth{
-//   @extend .btnBadge;
-//   right: 0px;
-// }
-// .btnBadge-left{
-//   @extend .btnBadge;
-//   left: 0px;
-// }
-
-// .fab-message {
-
-// color: #FCFCFC;
-// background-color: #00A885;
-// }
-// .fab-ios.activated{
-//   background-color:#E86243 ;
-// }
-// .notification-badge{
-//   height: 12px;
-//   width: 12px;
-//   background-color: white;
-//   right: 10px;
-//   top: 5px;
-//   position: absolute;
-//   border-radius: 12px;
-// }
-// .loading-banner{
-// i {
-//    color:white;
-//    font-size: 3rem;
-// }
-// }
-
-// .card-ios {
-
-// border: 2px solid white;
-// border-radius: 10px;
-// }
+  
 }
