@@ -60,7 +60,8 @@ export class NetworkingFavoritesPage {
       this._sofanet
         .GetSoFanet(this._sesion.GetClientEmpCodi(), netUser.per_cont)
         .then((resp: transaction) => {
-          if (resp != null && resp.Retorno == 0) {
+          console.log(resp);
+          if (resp != null && resp.ObjTransaction != null) {
             this.favorites = resp.ObjTransaction;
             
             for(let favorite of this.favorites){
@@ -73,23 +74,12 @@ export class NetworkingFavoritesPage {
   }
 
   goOtherProfile(profile: any) {
+ 
     this.navCtrl.push(NetworkingProfilePage, {
       myProfile: false,
       profile: profile,
     });
   }
-
-  //  GetProfession(profile) {
-   
-  //   console.log(this.professions);
-  //   console.log(profile);
-  //   if (profile != undefined) {
-  //     let data = this.professions.filter(
-  //       (t) => t.Ite_cont == profile.ite_prof
-  //     )[0];
-  //     return data == undefined ? "Sin Definir" : data.Ite_nomb;
-  //   }
-  // }
 
 
   initializeItems() {

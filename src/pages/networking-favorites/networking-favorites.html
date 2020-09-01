@@ -41,23 +41,19 @@
       <h2  class="blue"> <b>{{favorite.sbe_nomb + " " + favorite.sbe_apel}}  </b></h2>
       <h3 class="blue">{{ favorite.profession}}</h3>
     
+      <button (click)="goOtherProfile(favorite)" color="primary" item-end  ion-button outline>
+       Ver Perfil
+      </button>
+
       <button (click)="goChat(favorite)" item-end class="orange div" ion-button icon-only clear>
         <ion-icon name="ios-mail-outline"></ion-icon>
       </button>
       <button item-end (click)="showConfirmDelete(favorite)" class="orange" ion-button icon-only clear>
         <ion-icon name="ios-trash-outline"></ion-icon>
       </button>
-      <!-- <div class="button-message">
-        <button class="orange div" ion-button icon-only clear>
-          <ion-icon name="ios-mail-outline"></ion-icon>
-        </button>
-      </div> -->
+   
       <div class="notification-badge"></div>
-      <!-- <div class="button-trash">
-        <button (click)="showConfirmDelete(favorite)" class="orange" ion-button icon-only clear>
-          <ion-icon name="ios-trash-outline"></ion-icon>
-        </button>
-      </div> -->
+     
     </ion-item>
     
   

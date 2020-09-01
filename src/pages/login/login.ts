@@ -427,5 +427,7 @@ export class LoginPage {
   setUrlApiForTestingPorpousesBusinessCode(value:string){
  
     this.session.SetClientEmpCodi(Number(value));
+    this.session.setEmpCodiSession(Number(value));
+    this.events.publish("user:gnempre");
   }
 }

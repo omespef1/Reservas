@@ -107,7 +107,7 @@ export class NetworkingClassifiedsPage implements OnInit {
    this.getting=true;
    this._soclanw.GetSoClanw(this._sessions.GetClientEmpCodi()).then((resp:transaction)=>{
     this.getting=false;
-     if(resp!=null && resp.Retorno==0){
+     if(resp!=null && resp.ObjTransaction!=null){
         
       // this.classifieds= resp.ObjTransaction;
         this.classifiedsAll = resp.ObjTransaction;
