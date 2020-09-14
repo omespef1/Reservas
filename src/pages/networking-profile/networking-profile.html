@@ -61,7 +61,7 @@
             <ion-icon name="md-create"></ion-icon>
           </button>
         </ion-item>
-        <ion-item no-lines class="transparent item-edit">
+        <ion-item *ngIf="myProfileMode" no-lines class="transparent item-edit">
           <h2>Estado</h2>
           <p><b>{{myProfile.per_esta=='A'?'Aprobado':myProfile.per_esta=='P'?'Pendiente':'Sin definir'}}</b></p>
         </ion-item>
@@ -79,7 +79,7 @@
           </button>
         </ion-col>
         <ion-col>
-          <button block class="yellow" ion-button round>
+          <button (click)="goChat()" block class="yellow" ion-button round>
             <ion-icon name="ios-mail-outline"></ion-icon>
             &nbsp;Enviar mensaje
           </button>

@@ -28,6 +28,7 @@ import { CameraProvider } from "../../providers/camera/camera";
 import { transaction } from '../../class/Models/models';
 import { NetworkingProyectViewerPage } from '../networking-proyect-viewer/networking-proyect-viewer';
 import { NetworkingImageViewerPage } from "../networking-image-viewer/networking-image-viewer";
+import { NetworkingChatPage } from "../networking-chat/networking-chat";
 
 /**
  * Generated class for the NetworkingProfilePage page.
@@ -80,6 +81,7 @@ export class NetworkingProfilePage {
       this.user = await (<any>this._sessions.GetLoggedin());
     else {
       this.myProfile = this.navParams.get("profile");
+      console.log("el perfil es", this.myProfile);
     }
 
     console.log(this.myProfile);
@@ -91,7 +93,7 @@ export class NetworkingProfilePage {
 
     if (!this.myProfileMode) {
       this.GetSoPernwOtherProfile();
-      this.GetSocPhotoOtherProfile();
+     this.GetSocPhotoOtherProfile();
     }
   }
 
@@ -104,15 +106,38 @@ export class NetworkingProfilePage {
         }
       });
   }
-
-  GetSocPhotoOtherProfile() {
-    this._sopernw
-      .GetPhoto(this.myProfile.emp_codi, this.myProfile.per_cont)
-      .then((resp: transaction) => {
-        if (resp != null && resp.Retorno == 0) {
-          this.foto = resp.ObjTransaction;
-        }
+  goChat() {
+    console.log(this.myProfile);
+    if (this.myProfile.per_uuid == undefined || this.myProfile.per_uuid == null) {
+      this._general.showCustomAlert(
+        "No permitido!",
+        "",
+        () => {},
+        "alert-nogal",
+        false,
+        "El socio seleccionado aún no ha creado su perfil en nogal-conecta."
+      );
+    } else {
+     
+      // this.navCtrl.push(NetworkingChatPage, { 'profile': profile})
+      this.navCtrl.push(NetworkingChatPage, {
+        profile: {
+          per_uuid: this.myProfile.per_uuid,
+          sbe_nomb: this.myProfile.sbe_nomb,
+          oneSignalId: this.myProfile.per_osid,
+        },
       });
+    }
+  }
+  GetSocPhotoOtherProfile() {
+    // this._sopernw
+    //   .GetPhoto(this.myProfile.emp_codi, this.myProfile.per_cont)
+    //   .then((resp: transaction) => {
+    //     if (resp != null && resp.Retorno == 0) {
+    //       this.foto = resp.ObjTransaction;
+    //     }
+    //   });
+    this.foto = this.myProfile.per_foto;
   }
 
   GetSoPernw() {
@@ -157,7 +182,7 @@ export class NetworkingProfilePage {
         this.loadingProfile = false;
 
         if (resp != null && resp.Retorno == 0) {
-          this.myProfile = resp.ObjTransaction;
+          this.myProfile.details = resp.ObjTransaction.details;
         }
       });
   }

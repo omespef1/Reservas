@@ -126,6 +126,7 @@ export class NetworkingMyClassifiedsPage {
     this._soclanw.updateSoClanwDelete(classified.emp_codi,classified.cla_cont).then((resp:transaction)=>{
       if(resp!=undefined && resp.Retorno==0){
         this._general.showCustomAlert('Perfecto!','Clasificado eliminado!',()=>{},'alert-nogal');
+        this.ionViewDidLoad();
       }
     })
   }
