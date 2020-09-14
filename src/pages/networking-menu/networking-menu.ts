@@ -68,10 +68,12 @@ export class NetworkingMenuPage implements OnInit {
 
 
   ngOnInit(){
-    this.VerifyTerms();
+   
     this.params = this._sesions.getAeParam();
     this._sesions.GetLoggedin().then((resp: user) => {
+   
       this.user = resp;
+      this.VerifyTerms();
       console.log('usuario es ', this.user);
       
       this.GetSoPernw();
@@ -103,10 +105,10 @@ goMenu(){
   
       this._aeinapp
         .ExistsAeInapp(
-          this.user.Emp_codi,
+          this._sessions.GetClientEmpCodi(),
           this.user.Soc_cont,
           this.user.Sbe_cont,
-          this.user.Mac_nume
+          this.user.Mac_nume1
         )
         .then((request: transactionNumber) => {
           if (request.Retorno == 0 && request.number == 0) {
