@@ -102,19 +102,20 @@ export class MenuPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.sendOneSignal();
     this.GetBanners();
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }
   ionViewDidLoad() {
-    this.sendOneSignal();
+   
   }
 
   async sendOneSignal() {
     let data: any = await this._sesion.getOneSignalIds();
     let user: user = await this._sesion.GetLoggedin();
     let notification: notificationIdHandler = new notificationIdHandler();
-    notification.emp_codi = user.Emp_codi;
+    notification.emp_codi = this._sesion.GetClientEmpCodi();
     notification.rte_esta = "A";
     notification.rte_osid = data.userId;
     notification.ter_codi = user.Ter_Codi;
