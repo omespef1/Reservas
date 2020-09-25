@@ -155,6 +155,7 @@ import { NetworkingMyClassifiedsPage } from "../pages/networking-my-classifieds/
 import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-viewer/networking-classified-viewer';
 import { EventInvitedBookingPage } from '../pages/event-invited-booking/event-invited-booking';
 import { EventOnesignalIdHandlerProvider } from '../providers/event-onesignal-id-handler/event-onesignal-id-handler';
+import { GntipdoProvider } from '../providers/gntipdo/gntipdo';
 
 
  
@@ -380,7 +381,8 @@ import { EventOnesignalIdHandlerProvider } from '../providers/event-onesignal-id
     ChatRoomProvider,
     FirebaseAuthProvider,
     CameraProvider,
-    EventOnesignalIdHandlerProvider    
+    EventOnesignalIdHandlerProvider,
+    GntipdoProvider    
 
   ]
 })

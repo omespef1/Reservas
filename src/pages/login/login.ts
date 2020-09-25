@@ -182,7 +182,7 @@ export class LoginPage {
       this.session.getPartnerConnections().then((resp: GnConex) => {
       
         if (resp) {         
-          this.session.SetClientUrl("http://appnogalpruebas.clubelnogal.com/api/");
+          this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
           this.backgroundColor = resp.CNX_BACK;

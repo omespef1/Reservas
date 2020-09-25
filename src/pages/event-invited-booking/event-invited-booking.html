@@ -36,6 +36,18 @@
       <ion-input [(ngModel)]="invited.det_ape2" name="Apellido2" placeholder="Apellido 2" required></ion-input>
     </ion-item> 
     <ion-item>
+      <ion-icon item-start name="card"></ion-icon>
+      <ion-input [(ngModel)]="invited.det_codi" name="identificaion" placeholder="Identificación" required></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-icon item-start name="card"></ion-icon>
+      <ion-label>Tipo de documento</ion-label>
+          <ion-select name="tip_codi" [(ngModel)]="invited.tip_codi" required>
+            <ion-option *ngFor="let item of typesDocs" [value]="item.TIP_CODI">{{item.TIP_NOMB}}</ion-option>
+            
+          </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-icon item-start name="mail"></ion-icon>
       <ion-input [(ngModel)]="invited.det_corr" name="mail" placeholder="Email" required></ion-input>
     </ion-item> 

@@ -491,7 +491,7 @@ export class AeDetin{
   emp_codi:number;
   res_cont:number;
   det_cont:number;
-  tip_codi:number;
+  tip_codi:string;
   det_codi:string;
   det_nomb:string;
   det_ape1:string;
