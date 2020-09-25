@@ -82,11 +82,11 @@ export class MenuPage implements OnInit {
       urlIcon: "assets/imgs/guest-post.svg",
       page: BookingInvitedsPage,
     },
-    {
-      name: "Networking",
-      urlIcon: "assets/imgs/networking.svg",
-      page: NetworkingMenuPage,
-    },
+    // {
+    //   name: "Networking",
+    //   urlIcon: "assets/imgs/networking.svg",
+    //   page: NetworkingMenuPage,
+    // },
     {
       name: "Perfil socio",
       urlIcon: "assets/imgs/partner-profile.svg",
