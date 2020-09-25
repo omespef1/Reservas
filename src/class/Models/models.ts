@@ -443,6 +443,7 @@ export class ae_param {
   cla_cont: number;
   par_trdu: string;
   par_rsdc: string;
+  par_rein:string;
 }
 
 export interface pageApp {

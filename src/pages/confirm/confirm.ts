@@ -37,7 +37,8 @@ export class ConfirmPage {
   today: Date = new Date();
   user: user;
   booking: Ifactory;
-  transport:string;
+  transport: string;
+
   constructor(
     public navParams: NavParams,
     private _booking: BookingProvider,
@@ -54,8 +55,8 @@ export class ConfirmPage {
   }
 
   ionViewDidLoad() {
-    this.booking.inviteds=[];
-    this.booking.transport="";
+    this.booking.inviteds = [];
+    this.booking.transport = "";
   }
   SetBooking() {
     if (this.booking.thirdPartie == null)
@@ -91,7 +92,6 @@ export class ConfirmPage {
         },
       ],
       guests: this.booking.inviteds,
-    
     };
 
     let inputs: radio[] = [
@@ -105,27 +105,37 @@ export class ConfirmPage {
     this._general.showCustomAlertInputs(
       "Modo de transporte",
       inputs,
-      (transport: any) => {      
+      (transport: any) => {
         console.log(transport[0]);
-        newBooking.transport =  transport[0];
-        this._booking.SetBooking(newBooking).then((resp: any) => {
-          if (resp != null) {
-            if (resp.InvoiceId == 0) {
-              this._general.ShowMessageAlert(
-                "Reserva no realizada",
-                `${resp.TxtError}`
-              );
-              return;
-            }
-            this._general.ShowMessageAlert(
-              "Reserva realizada!",
-              `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`
-            );
-            this._nav.setRoot(BookingPage);
-          }
-        });
+        newBooking.transport = transport[0];
+
+        this._general.showCustomAlert(
+          "Términos y condiciones",
+          this._sesion.getAeParam().par_rein,
+          () => {
+            this._booking.SetBooking(newBooking).then((resp: any) => {
+              if (resp != null) {
+                if (resp.InvoiceId == 0) {
+                  this._general.ShowMessageAlert(
+                    "Reserva no realizada",
+                    `${resp.TxtError}`
+                  );
+                  return;
+                }
+                this._general.ShowMessageAlert(
+                  "Reserva realizada!",
+                  `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`
+                );
+                this._nav.setRoot(BookingPage);
+              }
+            });
+          },
+          "alert-nogal-primary",
+          false,
+          ""
+        );
       },
-      "",
+      "alert-nogal-primary",
       "",
       "Especifíca el modelo de transporte en el cual te transporás al club"
     );
@@ -134,15 +144,14 @@ export class ConfirmPage {
   addInvited() {
     var modal = this._modal.create(EventInvitedBookingPage);
     modal.present();
-    modal.onDidDismiss((data)=>{
-        this.booking.inviteds.push(data);
-
-    })
+    modal.onDidDismiss((data) => {
+      this.booking.inviteds.push(data);
+    });
   }
 
-  deleteInvi(doc){
-    this.booking.inviteds.forEach( (item, index) => {
-      if(item === doc) this.booking.inviteds.splice(index,1);
+  deleteInvi(doc) {
+    this.booking.inviteds.forEach((item, index) => {
+      if (item === doc) this.booking.inviteds.splice(index, 1);
     });
   }
 }

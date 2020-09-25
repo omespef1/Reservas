@@ -873,6 +873,44 @@ ion-tabs {
 
 
 }
+
+
+.alert-ios.alert-nogal-primary {
+  font-family: raleway;
+  .alert-wrapper{
+
+   
+    background-color: #f2f2f2;
+    
+  }
+  .alert-title {
+    margin-top: 8px;
+    font-size: 17px;
+    font-weight: 600;
+  color:#488aff;
+}
+.alert-sub-title{
+
+  color:#488aff;
+}
+
+.alert-button-group {
+ 
+  background-color:#896D4B;
+ 
+}
+.alert-button{
+
+color:white;
+}
+.alert-button.activated {
+background-color: #488aff;
+
+}
+
+
+
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
