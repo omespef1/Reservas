@@ -750,7 +750,16 @@ $glassColor: lighten(#341F53,0);
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-  
+
+  .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+    padding: 8px;
+    line-height: 10px !important;
+    vertical-align: top;
+}
+.item-ios {
+
+  font-size: 1.3rem;
+}
   //CSS
   .item-ios p {
     overflow: inherit;
@@ -763,10 +772,14 @@ $glassColor: lighten(#341F53,0);
   
 }
 
-@media (min-width: 200px) and (max-width: 320px) {
+@media (min-width: 200px) and (max-width: 319px) {
   
   //CSS
-
+  .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > th[_ngcontent-c1], .table[_ngcontent-c1] > thead[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tbody[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1], .table[_ngcontent-c1] > tfoot[_ngcontent-c1] > tr[_ngcontent-c1] > td[_ngcontent-c1] {
+    padding: 8px;
+    line-height: 10px;
+    vertical-align: top;
+}
 .item-ios {
   padding-left: 16px;
   padding-left: 16px;
