@@ -95,11 +95,11 @@ export class ConfirmPage {
     };
 
     let inputs: radio[] = [
-      { type: "radio", value: "P", label: "Peatonal", checked: false },
-      { type: "radio", value: "V", label: "Vehicular", checked: false },
-      { type: "radio", value: "M", label: "Moto", checked: false },
-      { type: "radio", value: "B", label: "Bicicleta", checked: false },
-      { type: "text", value: "O", label: "Otro", checked: false },
+      { type: "radio", value: "Peaton", label: "Peatonal", checked: false },
+      { type: "radio", value: "Vehículo", label: "Vehicular", checked: false },
+      { type: "radio", value: "Moto", label: "Moto", checked: false },
+      { type: "radio", value: "Bicileta", label: "Bicicleta", checked: false },
+      { type: "text", value: "Otro", label: "Otro", checked: false },
     ];
 
     this._general.showCustomAlertInputs(
