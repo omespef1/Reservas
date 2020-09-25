@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { invitedEvent, invited, AeDetin } from '../../class/models/models';
+import {  AeDetin } from '../../class/models/models';
 
 /**
  * Generated class for the EventInvitedBookingPage page.

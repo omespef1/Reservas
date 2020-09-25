@@ -115,7 +115,8 @@ export class MenuPage implements OnInit {
     let user: user = await this._sesion.GetLoggedin();
     let notification: notificationIdHandler = new notificationIdHandler();
     notification.emp_codi = user.Emp_codi;
-    (notification.rte_esta = "A"), (notification.rte_osid = data.userId);
+    notification.rte_esta = "A";
+    notification.rte_osid = data.userId;
     notification.ter_codi = user.Ter_Codi;
     this._one.PostNewNotificationId(notification).then((resp: transaction) => {
       if (resp.ObjTransaction) {
