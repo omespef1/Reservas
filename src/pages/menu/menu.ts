@@ -14,7 +14,7 @@ import { InstitutionalPage } from "../institutional/institutional";
 import { AgreementsProvider } from "../../providers/agreements/agreements";
 import {  agreement } from "../../class/models/models";
 import { BookingInvitedsPage } from "../booking-inviteds/booking-inviteds";
-import { NetworkingMenuPage } from "../networking-menu/networking-menu";
+// import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { EventOnesignalIdHandlerProvider } from "../../providers/event-onesignal-id-handler/event-onesignal-id-handler";
 import { notificationIdHandler } from "../../class/models/notifications/notifications";
 
@@ -81,17 +81,17 @@ export class MenuPage implements OnInit {
       name: "Libro de invitados",
       urlIcon: "assets/imgs/guest-post.svg",
       page: BookingInvitedsPage,
-    },
-    // {
-    //   name: "Networking",
-    //   urlIcon: "assets/imgs/networking.svg",
-    //   page: NetworkingMenuPage,
-    // },
+    },   
     {
       name: "Perfil socio",
       urlIcon: "assets/imgs/partner-profile.svg",
       page: SettingsPage,
-    },
+    }
+     // {
+    //   name: "Networking",
+    //   urlIcon: "assets/imgs/networking.svg",
+    //   page: NetworkingMenuPage,
+    // },
   ];
   constructor(
     public navCtrl: NavController,
@@ -126,8 +126,9 @@ export class MenuPage implements OnInit {
     });
   }
   openTab(page: number) {
-    if (page == 8) this.navCtrl.setRoot(NetworkingMenuPage);
-    else this.navCtrl.setRoot(TabsPage, { tabSelected: page });
+    // if (page == 8) this.navCtrl.setRoot(NetworkingMenuPage);
+    // else
+     this.navCtrl.setRoot(TabsPage, { tabSelected: page });
   }
   goProfile() {
     this.navCtrl.push(SettingsPage);

@@ -26,7 +26,7 @@ PostNewNotificationId(notificationId:notificationIdHandler){
 }
 
 deleteNotificationId(notificationId:notificationIdHandler){
-  return this.http.Post(notificationId,`GnRteno/Update`,'',false);
+  return this.http.Get(`GnRteno/Update?emp_codi=${notificationId.emp_codi}&ter_codi=${notificationId.ter_codi}&rte_osid=${notificationId.rte_osid}`,false,'');
 }
 
 }
