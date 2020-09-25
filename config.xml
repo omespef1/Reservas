@@ -68,6 +68,9 @@
         <config-file parent="NSFaceIDUsageDescription" target="*-Info.plist">
             <string>Usaremos tus datos biométricos para acceder a la aplicación</string>
         </config-file>
+        <config-file parent="NSPhotoLibraryUsageDescription" target="*-Info.plist">
+            <string>Usaremos tus datos para que puedas tomar fotos y subirlas a tu perfil</string>
+        </config-file>
         <icon height="20" src="resources/ios/icon/icon-20.png" width="20" />
         <icon height="40" src="resources/ios/icon/icon-20@2x.png" width="40" />
         <icon height="60" src="resources/ios/icon/icon-20@3x.png" width="60" />
