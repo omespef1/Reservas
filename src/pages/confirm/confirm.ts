@@ -1,17 +1,23 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { disponibilityRequest } from '../../class/models/models';
-import * as moment from 'moment';
+import { Component } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController,
+} from "ionic-angular";
+import { disponibilityRequest, radio } from "../../class/models/models";
+import * as moment from "moment";
 //providers
-import { BookingProvider } from '../../providers/booking/booking';
+import { BookingProvider } from "../../providers/booking/booking";
 //Clases
-import { sessions } from '../../class/sessions/sessions';
-import { user,Ifactory } from '../../class/models/models';
-import {general} from '../../class/general/general';
+import { sessions } from "../../class/sessions/sessions";
+import { user, Ifactory } from "../../class/models/models";
+import { general } from "../../class/general/general";
 //pages
-import {BookingPage} from '../../pages/booking/booking';
+import { BookingPage } from "../../pages/booking/booking";
 //pipes
-import{DigitalDatePipe} from '../../pipes/digital-date/digital-date';
+import { DigitalDatePipe } from "../../pipes/digital-date/digital-date";
+import { EventInvitedBookingPage } from "../event-invited-booking/event-invited-booking";
 
 /**
  * Generated class for the ConfirmPage page.
@@ -22,8 +28,8 @@ import{DigitalDatePipe} from '../../pipes/digital-date/digital-date';
 
 @IonicPage()
 @Component({
-  selector: 'page-confirm',
-  templateUrl: 'confirm.html',
+  selector: "page-confirm",
+  templateUrl: "confirm.html",
 })
 export class ConfirmPage {
   startTime: string;
@@ -31,26 +37,32 @@ export class ConfirmPage {
   today: Date = new Date();
   user: user;
   booking: Ifactory;
-  constructor(public navParams: NavParams, private _booking: BookingProvider, private _sesion: sessions,private _general:general, private _nav:NavController) {
-    this.booking = navParams.get('booking');
-    
-    
+  transport:string;
+  constructor(
+    public navParams: NavParams,
+    private _booking: BookingProvider,
+    private _sesion: sessions,
+    private _general: general,
+    private _nav: NavController,
+    private _modal: ModalController
+  ) {
+    this.booking = navParams.get("booking");
+
     this._sesion.GetLoggedin().then((user: user) => {
       this.user = user;
-    })
-
+    });
   }
 
   ionViewDidLoad() {
-   
+    this.booking.inviteds=[];
+    this.booking.transport="";
   }
   SetBooking() {
- 
-   if(this.booking.thirdPartie==null)
-   this.booking.thirdPartie = {
-     Ter_codi:0
-   }
-   
+    if (this.booking.thirdPartie == null)
+      this.booking.thirdPartie = {
+        Ter_codi: 0,
+      };
+
     let newBooking: any = {
       Emp_codi: this._sesion.GetClientEmpCodi(),
       Res_fini: this.booking.agend.age_Fini,
@@ -68,29 +80,68 @@ export class ConfirmPage {
       Res_inac: "",
       Cla_cont: this.booking.class.Cla_cont,
       Esp_mdit: this.booking.product.esp_mdit,
-      arb_sucu:0,
-      cotizacionExpress:false,
+      arb_sucu: 0,
+      Ter_CodiN: this.user.Ter_Codi,
+      cotizacionExpress: false,
       Productos: [
         {
           Pro_cont: this.booking.product.Pro_cont,
-          Dpr_valo:this.booking.product.Pro_Valo,
-          Dpr_dura:  this.booking.product.Pro_dmin
-
-        }
-      ]
-    }
+          Dpr_valo: this.booking.product.Pro_Valo,
+          Dpr_dura: this.booking.product.Pro_dmin,
+        },
+      ],
+      guests: this.booking.inviteds,
     
-     this._booking.SetBooking(newBooking).then((resp:any)=>{
-      
-       if(resp!=null){
-          if(resp.InvoiceId==0){
-            this._general.ShowMessageAlert('Reserva no realizada', `${resp.TxtError}`);
-            return;
-          }
-            this._general.ShowMessageAlert('Reserva realizada!', `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`);
+    };
+
+    let inputs: radio[] = [
+      { type: "radio", value: "P", label: "Peatonal", checked: false },
+      { type: "radio", value: "V", label: "Vehicular", checked: false },
+      { type: "radio", value: "M", label: "Moto", checked: false },
+      { type: "radio", value: "B", label: "Bicicleta", checked: false },
+      { type: "text", value: "O", label: "Otro", checked: false },
+    ];
+
+    this._general.showCustomAlertInputs(
+      "Modo de transporte",
+      inputs,
+      (transport: any) => {        
+        newBooking.transport =  transport[0];
+        this._booking.SetBooking(newBooking).then((resp: any) => {
+          if (resp != null) {
+            if (resp.InvoiceId == 0) {
+              this._general.ShowMessageAlert(
+                "Reserva no realizada",
+                `${resp.TxtError}`
+              );
+              return;
+            }
+            this._general.ShowMessageAlert(
+              "Reserva realizada!",
+              `Se ha creado la reserva número ${resp.InvoiceId}, puede ver los detalles o cancelarla en la sección mis reservas.`
+            );
             this._nav.setRoot(BookingPage);
           }
-     })
+        });
+      },
+      "",
+      "",
+      "Especifíca el modelo de transporte en el cual te transporás al club"
+    );
   }
 
+  addInvited() {
+    var modal = this._modal.create(EventInvitedBookingPage);
+    modal.present();
+    modal.onDidDismiss((data)=>{
+        this.booking.inviteds.push(data);
+
+    })
+  }
+
+  deleteInvi(doc){
+    this.booking.inviteds.forEach( (item, index) => {
+      if(item === doc) this.booking.inviteds.splice(index,1);
+    });
+  }
 }

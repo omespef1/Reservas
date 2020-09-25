@@ -153,6 +153,8 @@ import { NetworkingProyectViewerPage } from '../pages/networking-proyect-viewer/
 import { NetworkingImageViewerPage } from '../pages/networking-image-viewer/networking-image-viewer';
 import { NetworkingMyClassifiedsPage } from "../pages/networking-my-classifieds/networking-my-classifieds";
 import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-viewer/networking-classified-viewer';
+import { EventInvitedBookingPage } from '../pages/event-invited-booking/event-invited-booking';
+import { EventOnesignalIdHandlerProvider } from '../providers/event-onesignal-id-handler/event-onesignal-id-handler';
 
 
  
@@ -233,7 +235,8 @@ import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-v
     NetworkingImageViewerPage,
     NetworkingMyClassifiedsPage,
     WaitingClockComponent,
-    NetworkingClassifiedViewerPage
+    NetworkingClassifiedViewerPage,
+    EventInvitedBookingPage
   ],
   imports: [
     FormsModule,
@@ -326,7 +329,8 @@ import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-v
     NetworkingImageViewerPage,
     NetworkingMyClassifiedsPage,
     WaitingClockComponent,
-    NetworkingClassifiedViewerPage
+    NetworkingClassifiedViewerPage,
+    EventInvitedBookingPage
   ],
   providers: [
   {  provide: LOCALE_ID, useValue: "es-ES" },
@@ -375,7 +379,8 @@ import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-v
     ChatProvider,
     ChatRoomProvider,
     FirebaseAuthProvider,
-    CameraProvider
+    CameraProvider,
+    EventOnesignalIdHandlerProvider    
 
   ]
 })

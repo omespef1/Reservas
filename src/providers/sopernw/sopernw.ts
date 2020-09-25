@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../comunications/comunications';
 import { sopernw, networkingPhoto } from '../../class/models/models';
-import { tokens } from '../../class/Models/models';
+import { tokens } from '../../class/models/models';
 
 /*
   Generated class for the SopernwProvider provider.

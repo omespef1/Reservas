@@ -3,7 +3,7 @@ import { AngularFirestore } from "angularfire2/firestore";
 import { AngularFireAuth } from "angularfire2/auth";
 import { FirebaseAuthProvider } from "../firebase-auth/firebase-auth";
 import { chatRoom, message } from "../../interfaces/chat";
-import { user, transaction } from "../../class/Models/models";
+import { user, transaction } from "../../class/models/models";
 import { SopernwProvider } from "../sopernw/sopernw";
 import { sessions } from "../../class/sessions/sessions";
 import { ChatProvider } from "../chat/chat";

@@ -11,7 +11,7 @@ import {
 import { AngularFirestore } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
 import { ChatProvider } from "../../providers/chat/chat";
-import { sopernw, transaction } from "../../class/Models/models";
+import { sopernw, transaction } from "../../class/models/models";
 import { sessions } from "../../class/sessions/sessions";
 import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
 import { SopernwProvider } from "../../providers/sopernw/sopernw";

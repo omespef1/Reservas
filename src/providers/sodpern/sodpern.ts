@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ComunicationsProvider } from '../comunications/comunications';
-import { networkingDetailPhoto } from '../../class/Models/models';
+import { networkingDetailPhoto } from '../../class/models/models';
 
 /*
   Generated class for the SodpernProvider provider.

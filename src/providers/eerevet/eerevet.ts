@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ComunicationsProvider } from "../comunications/comunications";
-import { transaction } from '../../class/Models/models';
+import { transaction } from '../../class/models/models';
 
 /*
   Generated class for the EerevetProvider provider.

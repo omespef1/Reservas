@@ -4,7 +4,7 @@ import { sessions } from "../../class/sessions/sessions";
 import { SofanetProvider } from "../../providers/sofanet/sofanet";
 import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { NetworkingProfilePage } from "../networking-profile/networking-profile";
-import { transaction, item } from '../../class/Models/models';
+import { transaction, item } from '../../class/models/models';
 import { general } from "../../class/general/general";
 import { NetworkingChatPage } from '../networking-chat/networking-chat';
 
