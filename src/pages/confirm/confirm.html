@@ -60,6 +60,24 @@
       <ion-label>{{booking.thirdPartie.Ter_noco}}</ion-label>
       <ion-note></ion-note>
     </ion-item>
+    <ion-item *ngIf="booking.esp_invi!=undefined && booking.esp_invi=='S'">         
+    <button color="secondary" ion-button block (click)="addInvited()">
+      <ion-icon name="person"></ion-icon> &nbsp; Agregar invitado
+    </button>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="booking.inviteds && booking.inviteds.length>0">
+    <ion-list-header >
+      Invitados
+    </ion-list-header>
+    <ion-item *ngFor="let item of booking.inviteds">
+      <ion-icon name="person" item-start>
+      </ion-icon>
+      <ion-label>{{item.det_nomb}} {{item.det_ape1}}</ion-label>
+      <button color="danger" (click)="deleteInvi(item)" ion-button item-end outline>
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item>
   </ion-list>
   <button ion-button full icon-left (click)="SetBooking()">
   <ion-icon name ="checkmark"></ion-icon>Reservar

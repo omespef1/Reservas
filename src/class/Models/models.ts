@@ -65,6 +65,7 @@ export class user {
   Emp_nite: string;
   soc_ncar: string;
   sbe_pass:string;
+  Ter_Codi:number;
   constructor() {
     this.sbe_pass="";
   }
@@ -217,6 +218,9 @@ export interface Ifactory {
   user: any;
   thirdPartie: any;
   optionDisp: any;
+  esp_invi:string;
+  inviteds:AeDetin[]; 
+  transport:string;
 }
 export interface DisponibilityTime {
   FechaInicio: Date;
@@ -460,6 +464,7 @@ export class invited {
   Sbe_Cont: number;
   Soc_cont: number;
   Mac_nume: string;
+  genero:string;
 
   constructor() {
     this.Nombre = "";
@@ -478,6 +483,23 @@ export class month {
 export class ambiente {
   bod_cont: number;
   bod_nomb: string;
+}
+export class AeDetin{
+  aud_esta:string;
+  aud_usua:string;
+  aud_ufac:Date;
+  emp_codi:number;
+  res_cont:number;
+  det_cont:number;
+  tip_codi:number;
+  det_codi:string;
+  det_nomb:string;
+  det_ape1:string;
+  det_ape2:string;
+  det_fnac:Date;
+  det_gene:string;
+  det_corr:string;
+
 }
 
 export class consumo {

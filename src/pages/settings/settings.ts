@@ -5,6 +5,9 @@ import { sessions } from '../../class/sessions/sessions';
 import { PartnerDetailPage } from '../partner-detail/partner-detail';
 import { AboutPage } from '../about/about';
 import { PartnerPaymentsPage } from '../partner-payments/partner-payments';
+import { EventOnesignalIdHandlerProvider } from '../../providers/event-onesignal-id-handler/event-onesignal-id-handler';
+import { notificationIdHandler } from '../../class/models/notifications/notifications';
+import { transaction } from '../../class/models/models';
 
 
 /**
@@ -25,7 +28,8 @@ export class SettingsPage {
     private _modalCtrl: ModalController,
     private _events: Events,
     private navCtrl: NavController,
-    private _platform:Platform) {
+    private _platform:Platform,
+    private _oneSignalId:EventOnesignalIdHandlerProvider) {
     this._sessions.GetLoggedin().then(user => {
       this.user = user;
     })
@@ -35,7 +39,17 @@ export class SettingsPage {
     let modal = this._modalCtrl.create(PartnerDetailPage, { 'user': partner });
     modal.present();
   }
-  sessionOut() {
+  async sessionOut() {
+    let oneSignalData:any = await this._sessions.getOneSignalIds();
+    let notification= new notificationIdHandler();
+    notification.emp_codi = this.user.Emp_Codi;
+    notification.rte_osid = oneSignalData.userId;
+    notification.ter_codi = this.user.Ter_Codi;      
+    this._oneSignalId.deleteNotificationId(notification).then((resp:transaction)=>{
+      if(resp.Retorno==0){
+        console.log('oneSingal Id eliminado');
+      }
+    })
     this._events.publish('user:logout');
   }
   GoAbout() {

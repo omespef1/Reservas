@@ -17,7 +17,7 @@ import { GnAppDw, GnDigfl, user, radio } from "../../class/models/models";
 import { PartnerProvider } from "../../providers/partner/partner";
 import { ConnectionsProvider } from "../../providers/connections/connections";
 import { CompaniesProvider } from "../../providers/companies/companies";
-//Models
+//models
 import { TOSoRsoci, GnConex, GnEmpre } from "../../class/models/models";
 //plugins
 import { KeychainTouchId } from "@ionic-native/keychain-touch-id";
@@ -32,7 +32,7 @@ import {
   appAppStoreUrl,
   appGooglePlayUrl,
 } from "../../assets/config/config";
-import { transaction } from "../../class/Models/models";
+import { transaction } from "../../class/models/models";
 
 /**
  * Generated class for the LoginPage page.
@@ -182,7 +182,7 @@ export class LoginPage {
       this.session.getPartnerConnections().then((resp: GnConex) => {
       
         if (resp) {         
-          this.session.SetClientUrl("http://appnogalpruebas.clubelnogal.com/api/");
+          this.session.SetClientUrl(resp.CNX_IPSR);
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
           this.backgroundColor = resp.CNX_BACK;

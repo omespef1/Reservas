@@ -25,7 +25,7 @@ import { SofanetProvider } from "../../providers/sofanet/sofanet";
 import { SodpernProvider } from "../../providers/sodpern/sodpern";
 import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
 import { CameraProvider } from "../../providers/camera/camera";
-import { transaction } from '../../class/Models/models';
+import { transaction } from '../../class/models/models';
 import { NetworkingProyectViewerPage } from '../networking-proyect-viewer/networking-proyect-viewer';
 import { NetworkingImageViewerPage } from "../networking-image-viewer/networking-image-viewer";
 import { NetworkingChatPage } from "../networking-chat/networking-chat";

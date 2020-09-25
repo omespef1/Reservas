@@ -45,6 +45,7 @@ export class ProductsPage {
   }
   SetProducts(product: any) {
     this.newFactory.product = product;
+    this.newFactory.esp_invi = product.esp_invi;
     //Si maneja disponibilidad por tercero se muestra el modal de opciones
     if (this.newFactory.product.esp_mdit.toString().toUpperCase() == "S") {
       this.ShowOptionsSearch();

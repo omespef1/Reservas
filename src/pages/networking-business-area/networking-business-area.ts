@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NetworkingMenuPage } from '../networking-menu/networking-menu';
 import { EerevetProvider } from '../../providers/eerevet/eerevet';
 import { sessions } from '../../class/sessions/sessions';
-import { transaction, eerevet } from '../../class/Models/models';
+import { transaction, eerevet } from '../../class/models/models';
 
 /**
  * Generated class for the NetworkingBusinessAreaPage page.

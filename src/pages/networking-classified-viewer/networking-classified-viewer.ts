@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { soclanw } from '../../class/Models/soclanw/soclanw';
+import { soclanw } from '../../class/models/soclanw/soclanw';
 
 /**
  * Generated class for the NetworkingClassifiedViewerPage page.

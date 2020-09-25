@@ -1,0 +1,71 @@
+<!--
+  Generated template for the BookingNewInvitedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  
+  <ion-navbar>
+    <ion-title>
+      <img button ion-button icon-only src="assets/icon/icon.png" class="app_nogal">
+      <div><label>Nuevo invitado</label></div>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()" >
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+          </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="outer-content">
+    <form  #invitedForm="ngForm">
+   
+  <ion-list inset>
+    <ion-item>
+      <ion-icon item-start name="person"></ion-icon>
+      <ion-input [(ngModel)]="invited.det_nomb" name="Nombre" placeholder="Nombres" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-start name="person"></ion-icon>
+      <ion-input [(ngModel)]="invited.det_ape1" name="Apellido1" placeholder="Apellido 1" required></ion-input>
+    </ion-item>  
+    <ion-item>
+      <ion-icon item-start name="person"></ion-icon>
+      <ion-input [(ngModel)]="invited.det_ape2" name="Apellido2" placeholder="Apellido 2" required></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-icon item-start name="mail"></ion-icon>
+      <ion-input [(ngModel)]="invited.det_corr" name="mail" placeholder="Email" required></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-icon item-start name="calendar"></ion-icon>
+      <!-- <input type="date" id="start" name="trip-start"
+      
+      min="2020-11-01" > -->
+      <ion-datetime displayFormat="DD/MM/YYYY" cancelText="Cancelar" name="fecha" required doneText="Hecho" placeholder="Fecha de nacimiento"
+       pickerFormat="DD MMMM YYYY" [(ngModel)]="invited.det_fnac"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-icon item-start name="person"></ion-icon>
+      <ion-label>Género</ion-label>
+          <ion-select name="gener" [(ngModel)]="invited.det_gene" required>
+            <ion-option value="M">Masculino</ion-option>
+            <ion-option value="F">Femenino</ion-option>
+          </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <button [disabled]="!invitedForm.form.valid" (click)="addInvited()" type="submit"  ion-button block icon-end>
+      <ion-icon item-end name="ios-checkmark-circle"></ion-icon>
+      Invitar
+    </button>
+  </div>
+
+</form>
+
+
+
+</ion-content>
