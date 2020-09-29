@@ -344,6 +344,7 @@ export class LoginPage {
                 //descomentarear para desarrollo
                 // let NogalCompanie = companies[3];
                 this.SetEmpCodi(NogalCompanie.Emp_Codi);
+                this.events.publish("user:gnempre");
                 resolve();
               });
             });
