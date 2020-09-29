@@ -42,8 +42,8 @@ export class SettingsPage {
   async sessionOut() {
     let oneSignalData:any = await this._sessions.getOneSignalIds();
     let notification= new notificationIdHandler();
-    notification.emp_codi = this.user.Emp_Codi;
-    notification.rte_osid = oneSignalData.userId;
+    notification.emp_codi = this._sessions.GetClientEmpCodi(),
+    notification.rte_osid = oneSignalData==undefined?"0":oneSignalData.userId;
     notification.ter_codi = this.user.Ter_Codi;      
     this._oneSignalId.deleteNotificationId(notification).then((resp:transaction)=>{
       if(resp.Retorno==0){
