@@ -76,6 +76,7 @@ export class ConfirmPage {
       Ite_cont: 10207,
       Ter_codi: this.booking.thirdPartie.Ter_codi,
       Res_tdoc: 0,
+      sbe_codi: this.user.Sbe_codi,
       Res_dinv: 0,
       Res_ninv: "",
       Res_inac: "",
@@ -92,6 +93,7 @@ export class ConfirmPage {
         },
       ],
       guests: this.booking.inviteds,
+      pla_codi: this._general.GetPlatform()
     };
 
     let inputs: radio[] = [
@@ -109,10 +111,8 @@ export class ConfirmPage {
         console.log(transport[0]);
         newBooking.transport = transport[0];
 
-        this._general.showCustomAlert(
-          "Términos y condiciones",
-          this._sesion.getAeParam().par_rein,
-          () => {
+        this._general.showCustomAlertInputs(
+          "Términos y condiciones",[],   () => {
             this._booking.SetBooking(newBooking).then((resp: any) => {
               if (resp != null) {
                 if (resp.InvoiceId == 0) {
@@ -130,9 +130,8 @@ export class ConfirmPage {
               }
             });
           },
-          "alert-nogal-primary",
-          false,
-          ""
+          "alert-nogal-primary",'',
+          this._sesion.getAeParam().par_rein
         );
       },
       "alert-nogal-primary",
@@ -145,7 +144,10 @@ export class ConfirmPage {
     var modal = this._modal.create(EventInvitedBookingPage);
     modal.present();
     modal.onDidDismiss((data) => {
-      this.booking.inviteds.push(data);
+      if(data){
+        this.booking.inviteds.push(data);
+      }
+    
     });
   }
 

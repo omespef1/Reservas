@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams,Refresher } from 'ionic-angular';
 import {ClassSpacesProvider} from '../../providers/class-spaces/class-spaces';
 //pages
 import {ProductsPage} from '../products/products';
-import {factory} from '../../class/models/models';
+import { factory, transaction } from '../../class/models/models';
 //class
 import {general} from '../../class/general/general';
 
@@ -31,13 +31,24 @@ export class ClassSpacesPage {
     this._classSpaces.GetClassSpaces().then((resp:any)=>{
 
       if(resp!=null){
+
         this.typeSpaces = resp.ObjTransaction;
         if(ref)
         ref.complete();
+        for(let space of this.typeSpaces){
+          this._classSpaces.GetAePhoto(space.Emp_codi,space.Cla_cont).then((resp:transaction)=>{
+            if(resp.ObjTransaction)      
+            space.cla_foto = "data:image/jpeg;base64," + resp.ObjTransaction;
+            else
+            space.cla_foto ="";
+          })
+        }
+        
 
       }
     })
   }
+  
   SetSpaceType(ClassSpace:any){
   //  let newRequest: disponibilityRequest = new disponibilityRequest();
   let newFactory:factory = new factory();

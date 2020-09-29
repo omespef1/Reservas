@@ -97,7 +97,7 @@ export class sessions {
 
   GetClientUrl() {
    //return 'http://192.168.1.107/SevenReservas/api/'
-   // return 'http://localhost/SevenReservas/api/'
+    //return 'http://localhost/SevenReservas/api/'
  //return 'http://appnogalpruebas.clubelnogal.com/api/';
     // return 'http://186.154.240.181/Nogalapi/api/';
    // return 'http://186.154.240.181//NogalApi/api/';

@@ -19,8 +19,10 @@
     </ion-refresher>
 <ion-list>
   <ion-item *ngFor="let typeSpace of typeSpaces">
+    
     <ion-thumbnail item-start (tap)="showDetail(typeSpace)">
-      <img src="data:image/jpeg;base64,{{typeSpace.Cla_foto}}">
+      <img *ngIf="typeSpace.cla_foto != null" src="{{typeSpace.cla_foto}}">      
+        <!-- <img class="img-nothing"  *ngIf="typeSpace.cla_foto == undefined" src="assets/imgs/computer.svg" alt="clasificado">    -->
     </ion-thumbnail>
     <h2>{{typeSpace.Cla_nomb}}</h2>
     <p>{{typeSpace.Cla_desc}}</p>

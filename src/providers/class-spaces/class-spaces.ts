@@ -19,5 +19,7 @@ GetClassSpaces(){
 GetClassSpace(booking:any){
    return  this._comunications.Get(`aeclase/GetAeClase?cla_cont=${booking.Cla_cont}`);
 }
-
+GetAePhoto(emp_codi:number,cla_cont){
+  return  this._comunications.Get(`aeclase/GetAeClasePhoto?emp_codi=${emp_codi}&cla_cont=${cla_cont}`,false,'');
+}
 }
