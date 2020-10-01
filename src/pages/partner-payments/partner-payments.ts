@@ -4,6 +4,7 @@ import { PartnerPaymentsDetailsPage } from '../partner-payments-details/partner-
 import { PartnerPaymentsProvider } from '../../providers/partner-payments/partner-payments';
 import { transaction, gn_papse } from '../../class/models/models';
 import { ConfirmPaymentPage } from '../confirm-payment/confirm-payment';
+import { sessions } from '../../class/sessions/sessions';
 
 
 
@@ -21,7 +22,7 @@ import { ConfirmPaymentPage } from '../confirm-payment/confirm-payment';
 })
 export class PartnerPaymentsPage {
   payments: gn_papse[]=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _payment:PartnerPaymentsProvider,private _modal:ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _payment:PartnerPaymentsProvider,private _modal:ModalController,private _session:sessions) {
   }
 
   ionViewDidLoad() {

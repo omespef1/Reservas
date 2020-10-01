@@ -4,6 +4,7 @@ import { AgreementsProvider } from '../../providers/agreements/agreements';
 //clases
 import { transaction, agreement } from '../../class/models/models';
 import { general } from '../../class/general/general';
+import { sessions } from '../../class/sessions/sessions';
 
 
 /**
@@ -20,7 +21,7 @@ import { general } from '../../class/general/general';
 })
 export class AgreementsPage {
   agreements: agreement[];
-  constructor(private _agreement: AgreementsProvider, private _general: general, private _platform: Platform) {
+  constructor(private _agreement: AgreementsProvider, private _general: general, private _platform: Platform,private _session:sessions) {
   }
 
   ionViewDidLoad() {

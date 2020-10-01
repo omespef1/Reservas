@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { booking, room } from '../../class/models/models';
 import {AccommodationDisponibilityPage} from '../accommodation-disponibility/accommodation-disponibility';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the AccommodationRoomsPage page.
@@ -24,7 +25,7 @@ export class AccommodationRoomsPage {
   maxGuests=4;
   minGuests=1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _session:sessions) {
     this.AccomodationBooking.rooms = [];
     this.AccomodationBooking = navParams.get("accommodation");
     

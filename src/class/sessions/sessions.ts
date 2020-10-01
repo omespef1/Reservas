@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { NavController, Platform } from 'ionic-angular'
+import {  Platform } from 'ionic-angular'
 //pages
-import { TabsPage } from '../../pages/tabs/tabs';
+
 //config
 import { GnConex, ae_param, item } from '../../class/models/models';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 //models
-import { bookingInfo, disponibilityRequestEvent } from '../models/models';
-import { resolveDefinition } from '@angular/core/src/view/util';
-import { platformBrowser } from '@angular/platform-browser';
-import { stringify } from '@angular/core/src/util';
+import { bookingInfo } from '../models/models';
+
 import { sopernw } from '../models/models';
 
 
@@ -21,7 +19,7 @@ import { sopernw } from '../models/models';
 export class sessions {
   public clientUrl: string;
   public emp_codi: number;
-
+public customSettings:GnConex;
   public aeparam: ae_param;
   private profileNetworking:sopernw;
   constructor(private nativeStorage: Storage, private _touch: KeychainTouchId, private _platform: Platform) {
@@ -83,8 +81,9 @@ export class sessions {
     return this.nativeStorage.get('partnerConnection');
   }
   setPartnerConnections(conex: GnConex) {
+    debugger;
     this.nativeStorage.set('partnerConnection', conex);
-    this.SetClientUrl(conex.CNX_IPSR);
+    this.SetClientUrl(conex.CNX_IPSR);      
   }
 
   getEmpCodiSession(): Promise<number> {
@@ -93,8 +92,12 @@ export class sessions {
   setEmpCodiSession(EmpCodi: number) {
     this.nativeStorage.set('EmpCodi', EmpCodi);
   }
-
-
+SetCustomSettings(conex:GnConex){
+  this.customSettings = conex;
+}
+GetCustomSettings(){
+  return this.customSettings;
+}
   GetClientUrl() {
    //return 'http://192.168.1.107/SevenReservas/api/'
     //return 'http://localhost/SevenReservas/api/'

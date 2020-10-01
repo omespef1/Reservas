@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angular';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the PartnerDetailPage page.
@@ -15,7 +16,7 @@ import { IonicPage, NavController, NavParams,ViewController } from 'ionic-angula
 })
 export class PartnerDetailPage {
 user:any={};
-  constructor(private viewCtrl:ViewController, nav:NavParams) {
+  constructor(private viewCtrl:ViewController, nav:NavParams,private _session:sessions) {
     this.user = nav.get('user');
     
   }

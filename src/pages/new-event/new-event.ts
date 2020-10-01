@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 //pages
 import {RunwayEventPage} from '../../pages/runway-event/runway-event';
+import { sessions } from '../../class/sessions/sessions';
 /**
  * Generated class for the NewEventPage page.
  *
@@ -25,7 +26,7 @@ export class NewEventPage {
   minDate:any = new Date().toISOString();
   doneText:string ="Hecho";
   cancelText:string ="Cancelar"
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _session:sessions) {
   }
 
   ionViewDidLoad() {
