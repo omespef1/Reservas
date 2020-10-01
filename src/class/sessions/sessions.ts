@@ -81,7 +81,6 @@ public customSettings:GnConex;
     return this.nativeStorage.get('partnerConnection');
   }
   setPartnerConnections(conex: GnConex) {
-    debugger;
     this.nativeStorage.set('partnerConnection', conex);
     this.SetClientUrl(conex.CNX_IPSR);      
   }
