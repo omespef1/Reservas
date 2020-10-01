@@ -1,6 +1,6 @@
 // http://ionicframework.com/docs/theming/
 
-
+ion-app.platform-ios14 ion-content { pointer-events: auto; /*fix scroll lock on ios12.2*/ }
 
 ion-card-header {
   color: white !important;
