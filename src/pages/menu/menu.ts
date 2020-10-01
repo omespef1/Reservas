@@ -113,17 +113,20 @@ export class MenuPage implements OnInit {
 
   async sendOneSignal() {
     let data: any = await this._sesion.getOneSignalIds();
-    let user: user = await this._sesion.GetLoggedin();
-    let notification: notificationIdHandler = new notificationIdHandler();
-    notification.emp_codi = this._sesion.GetClientEmpCodi();
-    notification.rte_esta = "A";
-    notification.rte_osid = data.userId;
-    notification.ter_codi = user.Ter_Codi;
-    this._one.PostNewNotificationId(notification).then((resp: transaction) => {
-      if (resp.ObjTransaction) {
-        console.log("notificacion guardada");
-      }
-    });
+    if(data!=undefined){
+      let user: user = await this._sesion.GetLoggedin();
+      let notification: notificationIdHandler = new notificationIdHandler();
+      notification.emp_codi = this._sesion.GetClientEmpCodi();
+      notification.rte_esta = "A";
+      notification.rte_osid = data.userId;
+      notification.ter_codi = user.Ter_Codi;
+      this._one.PostNewNotificationId(notification).then((resp: transaction) => {
+        if (resp.ObjTransaction) {
+          console.log("notificacion guardada");
+        }
+      });
+    }
+  
   }
   openTab(page: number) {
     // if (page == 8) this.navCtrl.setRoot(NetworkingMenuPage);
