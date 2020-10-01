@@ -40,7 +40,7 @@
     "angularfire2": "^5.4.2",
     "cordova": "8.1.2",
     "cordova-android": "^8.1.0",
-    "cordova-browser": "5.0.4",
+    "cordova-browser": "^5.0.4",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-advanced-http": "^2.5.1",
     "cordova-plugin-browsertab": "^0.2.0",
@@ -101,9 +101,9 @@
       "onesignal-cordova-plugin": {}
     },
     "platforms": [
-      "browser",
       "android",
-      "ios"
+      "ios",
+      "browser"
     ]
   },
   "config": {
