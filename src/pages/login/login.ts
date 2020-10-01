@@ -96,21 +96,12 @@ export class LoginPage {
       content: "Cargando configuración",
     });
     loadingModal.present();
-    this.CheckConnectionChanges().then(
-      async () => {
-       
-        await this.GetPartnerConnections();
-        loadingModal.dismiss();
-        this.events.publish("user:gnempre");
-        await this.checkForGnDigfl();
-        await this.CheckLastVersion();
-
-        this.GetTouchId();
-      },
-      () => {
-        loadingModal.dismiss();
-      }
-    );
+    await this.GetPartnerConnections();
+    loadingModal.dismiss();
+    this.events.publish("user:gnempre");
+    await this.checkForGnDigfl();
+    await this.CheckLastVersion();
+    this.GetTouchId();
   }
 
   onSubmit(f: NgForm) {
