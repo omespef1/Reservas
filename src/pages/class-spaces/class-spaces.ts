@@ -6,7 +6,6 @@ import {ProductsPage} from '../products/products';
 import { factory, transaction } from '../../class/models/models';
 //class
 import {general} from '../../class/general/general';
-import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the ClassSpacesPage page.
@@ -22,7 +21,7 @@ import { sessions } from '../../class/sessions/sessions';
 })
 export class ClassSpacesPage {
   typeSpaces:any[];
-  constructor(private _classSpaces:ClassSpacesProvider,private nav:NavController,private _general:general,private _session:sessions) {
+  constructor(private _classSpaces:ClassSpacesProvider,private nav:NavController,private _general:general) {
   }
 
   ionViewDidLoad() {

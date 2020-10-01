@@ -1,7 +1,6 @@
 import { Component, ViewChild, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {  EcDespa } from '../../class/models/models';
-import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the EventCotizProductsChildsPage page.
@@ -19,7 +18,7 @@ export class EventCotizProductsChildsPage {
 espacio:EcDespa;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _session:sessions) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.espacio = navParams.get("espacio");
   }
 

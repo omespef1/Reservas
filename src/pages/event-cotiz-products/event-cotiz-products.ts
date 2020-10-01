@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { eccotiz, EcDespa } from '../../class/models/models';
 import { EventCotizProductsChildsPage } from '../event-cotiz-products-childs/event-cotiz-products-childs';
-import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the EventCotizProductsPage page.
@@ -18,7 +17,7 @@ import { sessions } from '../../class/sessions/sessions';
 })
 export class EventCotizProductsPage {
 cotiz:eccotiz= new eccotiz();
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _session:sessions) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.cotiz = navParams.get('cotiz');
     
   }

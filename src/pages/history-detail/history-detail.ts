@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { detalleConsumo } from '../../class/models/models';
-import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the HistoryDetailPage page.
@@ -17,7 +16,7 @@ import { sessions } from '../../class/sessions/sessions';
 })
 export class HistoryDetailPage {
 detail:detalleConsumo;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController,private _session:sessions) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController) {
     this.detail = this.navParams.get('detalle');
     console.log(this.detail);
   }
