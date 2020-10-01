@@ -61,7 +61,7 @@ export class MyApp {
 
       if (platform.is("cordova")) {
     
-        this._noti.init_Notifications();
+       // this._noti.init_Notifications();
         // window["plugins"].OneSignal.startInit(
         //   "6796a626-5bef-4c76-8148-9df8833fe6d0",
         //   "343787359895"

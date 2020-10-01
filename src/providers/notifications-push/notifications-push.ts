@@ -102,7 +102,7 @@ players.push(playerId);
    notification.headings= { en: message.title, es: message.title};
   
 
-   this.MakeAnewNotification(notification);
+   //this.MakeAnewNotification(notification);
   }
 
   MakeAnewNotification(notification:OSNotification) {
