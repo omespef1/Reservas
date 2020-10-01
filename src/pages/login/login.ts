@@ -183,6 +183,7 @@ export class LoginPage {
       
         if (resp) {         
           this.session.SetClientUrl(resp.CNX_IPSR);
+          this.session.SetCustomSettings(resp);
           this.GetEmpCodiSession();
           this.logo = resp.CNX_LOGO;
           this.backgroundColor = resp.CNX_BACK;
@@ -196,6 +197,7 @@ export class LoginPage {
           modalClient.present();
           modalClient.onDidDismiss((resp: GnConex) => {
             this.session.setPartnerConnections(resp);
+            this.session.SetCustomSettings(resp);
             this.session.SetClientUrl(resp.CNX_IPSR);
             this.GetEmpCodiSession().then(() => {
               resolve();
