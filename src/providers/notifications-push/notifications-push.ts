@@ -31,8 +31,8 @@ export class NotificationsPushProvider {
  
 
     window["plugins"].OneSignal.startInit(
-          "6796a626-5bef-4c76-8148-9df8833fe6d0",
-          "343787359895"
+          "f2ee78b9-0f89-4a35-86c2-e929089ca24d",
+          "1066165143974"
         )
           .handleNotificationOpened((notificationOpenedCallback) => {
             // console.log(notificationOpenedCallback);
