@@ -58,7 +58,7 @@
         <ion-col text-center>
           <div text-center>
             <div  id="divLogo">
-              <img src="assets/imgs/nogal.png">
+              <img [src]="_sesion.customSettings.CNX_LOGO">
              </div>
           </div>
           
@@ -75,7 +75,7 @@
         <div class="btn_card" *ngIf="i % 2 == 0" >
           <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
-              <img class="img-card" [src]="page.urlIcon">
+              <img class="img-card" [src]="page.name!='Institucional'?page.urlIcon:_sesion.customSettings.CNX_LOGO">
            
             <div class="card-subtitle"> {{page.name}}</div>
           </ion-card>
