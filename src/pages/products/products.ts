@@ -9,6 +9,7 @@ import { ProductsProvider } from '../../providers/products/products';
 //Class
 import { Ifactory } from '../../class/models/models';
 import { general } from '../../class/general/general';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the ProductsPage page.
@@ -25,7 +26,7 @@ import { general } from '../../class/general/general';
 export class ProductsPage {
   newFactory: Ifactory;
   products: any[];
-  constructor(public navCtrl: NavController, public navParam: NavParams, private _product: ProductsProvider, private _general: general) {
+  constructor(public navCtrl: NavController, public navParam: NavParams, private _product: ProductsProvider, private _general: general,private _session:sessions) {
     this.newFactory = navParam.get('booking');
 
   }

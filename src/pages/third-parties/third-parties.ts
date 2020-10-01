@@ -10,6 +10,7 @@ import {general} from '../../class/general/general';
 //Pages
 import {DisponibilityPage} from '../../pages/disponibility/disponibility';
 import {ConfirmPage} from '../confirm/confirm';
+import { sessions } from '../../class/sessions/sessions';
 /**
  * Generated class for the ThirdPartiesPage page.
  *
@@ -29,7 +30,7 @@ export class ThirdPartiesPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private _third: ThirdPartiesProvider,
-  private _general:general) {
+  private _general:general,private _session:sessions) {
     this.newFactory = navParams.get('booking');
     this.newDisponibilityRequest.Cla_cont = this.newFactory.class.Cla_cont;
     this.newDisponibilityRequest.pro_cont = this.newFactory.product.Pro_cont;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { gn_papse } from '../../class/models/models';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the PartnerPaymentsDetailsPage page.
@@ -16,7 +17,7 @@ import { gn_papse } from '../../class/models/models';
 })
 export class PartnerPaymentsDetailsPage {
   payment:gn_papse;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _session:sessions) {
     this.payment = navParams.get('payment');
    
   }

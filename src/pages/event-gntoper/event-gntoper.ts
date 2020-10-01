@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams ,ViewController} from 'ionic-angula
 import {BookingProvider} from  '../../providers/booking/booking';
 //models
 import {gntoper,transaction} from '../../class/models/models';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the EventGntoperPage page.
@@ -19,7 +20,7 @@ import {gntoper,transaction} from '../../class/models/models';
 })
 export class EventGntoperPage {
   gntoper:gntoper[];
-  constructor(public navCtrl: NavController, public navParams: NavParams,private _booking:BookingProvider,private _view:ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private _booking:BookingProvider,private _view:ViewController,private _session:sessions) {
   }
 
   ionViewDidLoad() {

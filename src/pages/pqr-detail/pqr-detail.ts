@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { PopoverController, NavParams ,IonicPage,ViewController} from 'ionic-angular';
 //Pages
 import {PopOverPage} from '../pop-over/pop-over';
+import { sessions } from '../../class/sessions/sessions';
 
 /**
  * Generated class for the PqrDetailPage page.
@@ -22,7 +23,7 @@ export class PqrDetailPage {
 
 
 
-    constructor(private popoverCtrl: PopoverController,private nav:NavParams, private viewCtrl:ViewController) {
+    constructor(private popoverCtrl: PopoverController,private nav:NavParams, private viewCtrl:ViewController,private _session:sessions) {
        this.trace = nav.get('trace');
     }
 
