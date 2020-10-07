@@ -17,6 +17,7 @@ import { BookingInvitedsPage } from "../booking-inviteds/booking-inviteds";
 // import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 import { EventOnesignalIdHandlerProvider } from "../../providers/event-onesignal-id-handler/event-onesignal-id-handler";
 import { notificationIdHandler } from "../../class/models/notifications/notifications";
+import { PartnerProvider } from '../../providers/partner/partner';
 
 /**
  * Generated class for the MenuPage page.
@@ -40,7 +41,6 @@ export class MenuPage implements OnInit {
   loadingBanner = false;
   logo: string;
   banners: agreement[] = [];
-
   pages: pageApp[] = [
     {
       name: "Reservas",
@@ -98,17 +98,34 @@ export class MenuPage implements OnInit {
     public navParams: NavParams,
     private _sesion: sessions,
     private _agrrements: AgreementsProvider,
-    private _one: EventOnesignalIdHandlerProvider
+    private _one: EventOnesignalIdHandlerProvider,
+    private _partner:PartnerProvider
   ) {}
 
   ngOnInit(): void {
     this.sendOneSignal();
     this.GetBanners();
+   
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }
   ionViewDidLoad() {
-   
+    this.GetBenficiares();
+  }
+
+  GetBenficiares(){
+   this._sesion.GetLoggedin().then((resp)=>{    
+     if(resp){
+       let user:user = resp;        
+          this._partner.GetBeneficiarieslikeInviteds(this._sesion.GetClientEmpCodi(),user.Mac_nume).then((beneficiaries:transaction)=>{
+              if(beneficiaries!=null){
+                console.log(beneficiaries.ObjTransaction);
+               this._sesion.SetBeneficiariesInviteds(beneficiaries.ObjTransaction);
+              }
+
+          })
+     }
+   })
   }
 
   async sendOneSignal() {

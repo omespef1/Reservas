@@ -500,6 +500,7 @@ export class AeDetin{
   det_fnac:Date;
   det_gene:string;
   det_corr:string;
+  isChecked:boolean;
 
 }
 
@@ -694,4 +695,8 @@ export class networkingDetailPhoto {
   dpe_fpro:string;
   dpe_proy:any;
   
+  }
+
+  export class beneficiares{
+    
   }
