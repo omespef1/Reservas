@@ -14,16 +14,6 @@ import { transaction } from "../class/models/models";
 import { MenuPage } from '../pages/menu/menu';
 import { NotificationsPushProvider } from "../providers/notifications-push/notifications-push";
 import { AeinappProvider } from "../providers/aeinapp/aeinapp";
-import { NetworkingNewsPage } from "../pages/networking-news/networking-news";
-import { NetworkingProfilePage } from "../pages/networking-profile/networking-profile";
-import { NetworkingMenuPage } from "../pages/networking-menu/networking-menu";
-import { NetworkingFavoritesPage } from "../pages/networking-favorites/networking-favorites";
-import { NetworkingBusinessAreaPage } from "../pages/networking-business-area/networking-business-area";
-import { NetworkingClassifiedsPage } from "../pages/networking-classifieds/networking-classifieds";
-import { NetworkingSearchPage } from "../pages/networking-search/networking-search";
-import { NetworkingChatPage } from "../pages/networking-chat/networking-chat";
-import { NetworkingChatLoginPage } from "../pages/networking-chat-login/networking-chat-login";
-import { NetworkingMessagesPage } from "../pages/networking-messages/networking-messages";
 import { FirebaseAuthProvider } from "../providers/firebase-auth/firebase-auth";
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 
