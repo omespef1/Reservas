@@ -5,7 +5,7 @@ import {
   NavParams,
   ModalController,
 } from "ionic-angular";
-import { disponibilityRequest, radio, AeDetin } from '../../class/models/models';
+import { disponibilityRequest, radio } from "../../class/models/models";
 import * as moment from "moment";
 //providers
 import { BookingProvider } from "../../providers/booking/booking";
@@ -38,11 +38,6 @@ export class ConfirmPage {
   user: user;
   booking: Ifactory;
   transport: string;
-  options:radio[]=[
-     {  value:'S',type:'radio', label:'Socio (Misma acción)',checked:false},
-     {  value:'I',type:'radio', label:'Invitado (No socio)',checked:false},
-     {  value:'C',type:'radio', label:'Consocio',checked:false}
-    ];
 
   constructor(
     public navParams: NavParams,
@@ -146,22 +141,14 @@ export class ConfirmPage {
   }
 
   addInvited() {
- 
-  this._general.showCustomAlertInputs('Tipo de invitado',this.options,(data)=>{
-
-    let selected = data[0];
-    var modal = this._modal.create(EventInvitedBookingPage,{ 'type':selected});
+    var modal = this._modal.create(EventInvitedBookingPage);
     modal.present();
-    modal.onDidDismiss((data:AeDetin[]) => {
-
-      //terminar de validar este tipo de dato
-      if(data!=undefined){
-        this.booking.inviteds.push(...data);
-      }    
-    });
-  },'','','')
+    modal.onDidDismiss((data) => {
+      if(data){
+        this.booking.inviteds.push(data);
+      }
     
- 
+    });
   }
 
   deleteInvi(doc) {

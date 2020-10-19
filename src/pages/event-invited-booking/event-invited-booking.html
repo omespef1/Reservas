@@ -18,28 +18,11 @@
       </button>
           </ion-buttons>
   </ion-navbar>
-  <ion-toolbar *ngIf="type=='C'" no-border-top>
-    <ion-searchbar debounce="300" type="text" (ionChange)="searchAAction($event.value)" [showCancelButton]="true" placeholder="Buscar por No.Acción">
-    </ion-searchbar>
-  </ion-toolbar>
 </ion-header>
-<ion-content  class="outer-content">
-  <div *ngIf="type=='C'">
-    <ion-item *ngIf="partners!=null && partners.length>0" class="header">
-      <ion-label>SOCIOS</ion-label>
-    </ion-item>
-   <ion-item>
-     <ion-label><p>Digite el número de acción del socio a invitar</p></ion-label>
-   </ion-item>
-    <ion-list>   
-      <ion-item class="animate-in-primary" *ngFor="let beneficiary of partners">    
-        <ion-label>{{beneficiary.det_nomb}} {{beneficiary.det_ape1}} {{beneficiary.det_ape2}}</ion-label>    
-        <ion-checkbox item-end item-end [(ngModel)]="beneficiary.isChecked"></ion-checkbox>
-      </ion-item>
-    </ion-list>
-  </div>
- <form *ngIf="type=='I'"  #invitedForm="ngForm">   
-  <ion-list>
+<ion-content padding class="outer-content">
+    <form  #invitedForm="ngForm">
+   
+  <ion-list inset>
     <ion-item>
       <ion-icon item-start name="person"></ion-icon>
       <ion-input [(ngModel)]="invited.det_nomb" name="Nombre" placeholder="Nombres" required></ion-input>
@@ -85,32 +68,16 @@
           </ion-select>
     </ion-item>
   </ion-list>
-  <button *ngIf="type=='I'"  (click)="addInvited()" type="submit"  ion-button block icon-end>
-    <ion-icon item-end name="ios-checkmark-circle"></ion-icon>
-    {{ invitedForm.form.valid? 'Invitar a ' + invited.det_nomb:'Invitar seleccionados' }}
-  </button>
+
+  <div padding>
+    <button [disabled]="!invitedForm.form.valid" (click)="addInvited()" type="submit"  ion-button block icon-end>
+      <ion-icon item-end name="ios-checkmark-circle"></ion-icon>
+      Invitar
+    </button>
+  </div>
 
 </form>
-<div *ngIf="type=='S'">
 
-  <ion-item class="header">
-    <ion-label>MIS BENEFICIARIOS</ion-label>
-   
-  </ion-item>
-  <ion-item>
-   <ion-label> <p>Seleccione los socios que desea invitar</p></ion-label>>
-  </ion-item>
-  <ion-list>   
-    <ion-item class="animate-in-primary" *ngFor="let beneficiary of beneficiaries">      
-      <ion-label>{{beneficiary.det_nomb}} {{beneficiary.det_ape1}}  {{beneficiary.det_ape2}}</ion-label>    
-      <ion-checkbox item-end item-end [(ngModel)]="beneficiary.isChecked"></ion-checkbox>
-    </ion-item>
-  </ion-list>  
-</div>
 
-<button color="secondary" *ngIf="type=='S' || type =='C'" [disabled]="!beneficiariesValid()" (click)="addInvited()"  ion-button block icon-end>
-  <ion-icon item-end name="ios-checkmark-circle"></ion-icon>
- Invitar seleccionados
-</button>
 
 </ion-content>

@@ -38,13 +38,7 @@ export class PartnerProvider {
   GetSoSocioPhoto(emp_codi:number,soc_cont:number,sbe_cont:number,mac_nume:string){
     return this._comunications.Get(`SoSocio/GetSoSocioPhoto?emp_codi=${emp_codi}&soc_cont=${soc_cont}&sbe_cont=${sbe_cont}&mac_nume=${mac_nume}`,false,'',false)
   }
-  GetSoSbene(emp_codi:number,sbe_ncar:string){
-    return this._comunications.Get(`sosocio/GetSoSbene?emp_codi=${emp_codi}&sbe_ncar=${sbe_ncar}`,true,'Buscando socios...',false)
-  }
 
-  GetBeneficiarieslikeInviteds(emp_codi:number,sbe_ncar:string){
-    return this._comunications.Get(`sosocio/GetBeneficiariesLikeInviteds?emp_codi=${emp_codi}&sbe_ncar=${sbe_ncar}`,false,'',false)
-  }
   viewImage(data:any){
   //  this.nav.push(NetworkingImageViewerPage, {'image': data})
     }
