@@ -18,6 +18,7 @@ import { BookingInvitedsPage } from "../booking-inviteds/booking-inviteds";
 import { EventOnesignalIdHandlerProvider } from "../../providers/event-onesignal-id-handler/event-onesignal-id-handler";
 import { notificationIdHandler } from "../../class/models/notifications/notifications";
 import { PartnerProvider } from '../../providers/partner/partner';
+import { NetworkingMenuPage } from "../networking-menu/networking-menu";
 
 /**
  * Generated class for the MenuPage page.
@@ -83,15 +84,15 @@ export class MenuPage implements OnInit {
       page: BookingInvitedsPage,
     },   
     {
+      name: "Networking",
+      urlIcon: "assets/imgs/networking.svg",
+      page: NetworkingMenuPage,
+    },
+    {
       name: "Perfil socio",
       urlIcon: "assets/imgs/partner-profile.svg",
       page: SettingsPage,
-    }
-     // {
-    //   name: "Networking",
-    //   urlIcon: "assets/imgs/networking.svg",
-    //   page: NetworkingMenuPage,
-    // },
+    }    
   ];
   constructor(
     public navCtrl: NavController,
