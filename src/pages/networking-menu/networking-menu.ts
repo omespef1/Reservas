@@ -240,7 +240,7 @@ goMenu(){
         
   }
   setDonations(){
-    this._general.showCustomAlert('¡Quiero apoyar a Nogal Conecta!',
+    this._general.showCustomAlert('¡Quiero apoyar Networking!',
     'Los aportes voluntarios de los socios del Club El Nogal permiten mejorar esta plataforma de networking.',()=>{this.goDonations()},'alert-nogal',false,'');
   }
 
