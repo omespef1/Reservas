@@ -37,6 +37,7 @@ this._sesions.GetLoggedin().then((resp:user)=>{
   }
 
   Ok(){
+    debugger;
     console.log('acepto');
     this.accepting=true;
     this._aeinapp.SetAeInApp('T').then((resp:transaction)=>{

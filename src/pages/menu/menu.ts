@@ -84,8 +84,8 @@ export class MenuPage implements OnInit {
       page: BookingInvitedsPage,
     },   
     {
-      name: "Networking",
-      urlIcon: "assets/imgs/networking.svg",
+      name: "Nogal Conecta",
+      urlIcon: "assets/imgs/conecta1.svg",
       page: NetworkingMenuPage,
     },
     {

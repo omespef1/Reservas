@@ -33,9 +33,16 @@ page-networking-menu {
     #divLogo{
         img {
             max-width: 50%;
-            height: auto;
+    height: auto;
+    margin-top: 5%;
         }
        
+    }
+    #divLogoConecta{
+        img {
+            max-width: 90%;
+            height: auto;
+        }
     }
     .btnMenu {
 border:0px;
