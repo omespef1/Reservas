@@ -66,6 +66,7 @@ export class ComunicationsProvider {
       return this.http.get(stringUrl,bodyRequest).retryWhen(error => {
         return error
           .flatMap((error: any) => {
+            this.loading.dismiss();
             if (error.status === 503) {
               return Observable.of(error.status).delay(1000)
             }
@@ -179,6 +180,7 @@ export class ComunicationsProvider {
       return this.http.post(this._sesion.GetClientUrl() + urlService, params,bodyRequest).retryWhen(error => {
         return error
           .flatMap((error: any) => {
+            this.loading.dismiss();
             if (error.status === 503) {
               return Observable.of(error.status).delay(1000)
             }

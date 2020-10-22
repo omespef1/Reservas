@@ -74,7 +74,7 @@
       
       min="2020-11-01" > -->
       <ion-datetime displayFormat="DD/MM/YYYY" cancelText="Cancelar" name="fecha" required doneText="Hecho" placeholder="Fecha de nacimiento"
-       pickerFormat="DD MMMM YYYY" [(ngModel)]="invited.det_fnac"></ion-datetime>
+       pickerFormat="DD MMMM YYYY" [(ngModel)]="invited.det_fnac" [max]="minimum"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-icon item-start name="person"></ion-icon>

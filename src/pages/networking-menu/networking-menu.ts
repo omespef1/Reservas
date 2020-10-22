@@ -83,7 +83,12 @@ export class NetworkingMenuPage implements OnInit {
   
     });
     console.log('leyendo terminos')
-  
+    let tabs = document.querySelectorAll('.tabs-ios .tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'none';
+        });
+    }
   }
 goMenu(){
   this.navCtrl.setRoot(MenuPage);
@@ -234,7 +239,21 @@ goMenu(){
       this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData.userId,this.myProfile.emp_codi,this.myProfile.per_cont); 
         
   }
+  setDonations(){
+    this._general.showCustomAlert('¡Quiero apoyar a Nogal Conecta!',
+    'Los aportes voluntarios de los socios del Club El Nogal permiten mejorar esta plataforma de networking.',()=>{this.goDonations()},'alert-nogal',false,'');
+  }
 
+goDonations(){
+ let url = this._sessions.getUrlDonations();
+ if(url=="")
+ this._general.showToastMessage('Funcionalidad no activada. Consulte con su administrador del sistema','bottom');
+ else
+  this._general.openUrl(url);
+}
+ngAfterViewInit() {
+ 
+}
   // GetBanners(){
   //   this.loadingBanner=true;
   //   this._agrrements.GetBanners().then((resp:transaction)=>{

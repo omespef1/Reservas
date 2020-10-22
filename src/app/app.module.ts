@@ -156,6 +156,7 @@ import { NetworkingClassifiedViewerPage } from '../pages/networking-classified-v
 import { EventInvitedBookingPage } from '../pages/event-invited-booking/event-invited-booking';
 import { EventOnesignalIdHandlerProvider } from '../providers/event-onesignal-id-handler/event-onesignal-id-handler';
 import { GntipdoProvider } from '../providers/gntipdo/gntipdo';
+import { ConfigProvider } from '../providers/config/config';
 
 
  
@@ -382,8 +383,8 @@ import { GntipdoProvider } from '../providers/gntipdo/gntipdo';
     FirebaseAuthProvider,
     CameraProvider,
     EventOnesignalIdHandlerProvider,
-    GntipdoProvider    
-
+    GntipdoProvider,
+    ConfigProvider
   ]
 })
 export class AppModule {}

@@ -19,6 +19,7 @@ import { sopernw } from '../models/models';
 export class sessions {
   public clientUrl: string;
   public emp_codi: number;
+  public urlDonations:string="";
 public customSettings:GnConex;
   public aeparam: ae_param;
   private profileNetworking:sopernw;
@@ -253,6 +254,14 @@ GetBeneficiariesInviteds(){
     const result = data == undefined ? "Sin Definir" : data.Ite_nomb;
     return result;
   
+  }
+
+
+  setUrlDonations(value:string){
+    this.urlDonations = value;
+  }
+  getUrlDonations(){
+    return this.urlDonations;
   }
   // setDeveloperOptions(developerOptions:boolean){
   //   this.nativeStorage.set("DeveloperOptions",developerOptions); 

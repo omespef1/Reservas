@@ -16,6 +16,7 @@ import { NotificationsPushProvider } from "../providers/notifications-push/notif
 import { AeinappProvider } from "../providers/aeinapp/aeinapp";
 import { FirebaseAuthProvider } from "../providers/firebase-auth/firebase-auth";
 import { OneSignal } from "@ionic-native/onesignal/ngx";
+import { ConfigProvider } from '../providers/config/config';
 
 //plugins
 
@@ -39,8 +40,8 @@ export class MyApp {
     private _espac: AeEspacProvider,
     private _noti: NotificationsPushProvider,
     private _aeinapp: AeinappProvider,
-    private auth: FirebaseAuthProvider,
-    private oneSignal: OneSignal
+    private auth: FirebaseAuthProvider, 
+    private _config:ConfigProvider
   ) {
     platform.ready().then(async () => {
       // Okay, so the platform is ready and our plugins are available.
@@ -131,6 +132,9 @@ export class MyApp {
         this._sessions.setAeParam(resp.ObjTransaction);
       }
     });
+
+    this._config.GetConfig("urlDonnations");
+    
   }
 
   goHome() {

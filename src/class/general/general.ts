@@ -201,6 +201,7 @@ export class general {
     }    
     else{
       console.log('abriendo navegador movil')
+      console.log(url);
       this._browser.openUrl(url);
     }
   
