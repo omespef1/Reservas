@@ -17,7 +17,7 @@ export class ConfigProvider {
   }
 
   GetConfig(key:string){
-    this._http.Get(`Config/GetConfig?keyName=${key}`).then((resp:transaction)=>{
+    this._http.Get(`Config/GetConfig?keyName=${key}`,false,'',false).then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){
         this._sesion.setUrlDonations(resp.ObjTransaction);
       }
