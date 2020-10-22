@@ -5,7 +5,7 @@ import { GntipdoProvider } from '../../providers/gntipdo/gntipdo';
 import { sessions } from '../../class/sessions/sessions';
 import { PartnerProvider } from '../../providers/partner/partner';
 
-
+import * as moment from 'moment';
 
 /**
  * Generated class for the EventInvitedBookingPage page.
@@ -26,6 +26,7 @@ export class EventInvitedBookingPage implements OnInit {
   user:user = new user();
   type:string="";
   typesDocs:any[];
+   minimum = new Date().toISOString();
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private view:ViewController,private _gntipdo:GntipdoProvider,private _session:sessions,
     private _sosbene:PartnerProvider) {
@@ -34,15 +35,10 @@ export class EventInvitedBookingPage implements OnInit {
   }
 
   ionViewDidLoad() {
-   this._session.GetBeneficiariesInviteds().then(resp=>{
-     
+   this._session.GetBeneficiariesInviteds().then(resp=>{     
      this.beneficiaries = resp;
-   })
- 
- 
-    
+   })      
   }
-
 
   beneficiariesValid():Boolean{
     
