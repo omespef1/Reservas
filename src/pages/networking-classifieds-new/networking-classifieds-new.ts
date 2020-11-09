@@ -105,7 +105,7 @@ load(){
           },
           "alert-nogal",
           false,
-          "Recuerde que los avisos se publicarán el día viernes de cada semana."
+          ""
         );
       }
     });

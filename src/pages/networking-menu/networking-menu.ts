@@ -220,7 +220,7 @@ goMenu(){
 
   GetBanners(){
     this.loadingBanner=true;
-    this._agrrements.GetBanners().then((resp:transaction)=>{
+    this._agrrements.GetBannersNetwoking().then((resp:transaction)=>{
       this.loadingBanner=false;
       if(resp!=null && resp.Retorno==0){
         console.log(resp);

@@ -24,6 +24,9 @@ export class AgreementsProvider {
 GetBanners(){
   return this._comunications.Get('AeOsApp/GetAeOsApp?osa_tipo=B',false,'',true);
 }
+GetBannersNetwoking(){
+  return this._comunications.Get('AeOsApp/GetAeOsApp?osa_tipo=W',false,'',true);
+}
 
 
 }

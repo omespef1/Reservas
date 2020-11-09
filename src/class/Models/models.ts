@@ -343,6 +343,8 @@ export class aeosapp {
   osa_msge: string;
   osa_cont: number;
   emp_codi:number;
+  osa_desc:string;
+  osa_livi:string;
 }
 
 
