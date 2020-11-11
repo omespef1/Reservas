@@ -6,6 +6,7 @@ import { transaction, aeosapp, user } from "../../class/models/models";
 import { sessions } from "../../class/sessions/sessions";
 import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 import { NetworkingNewsViewerPage } from "../networking-news-viewer/networking-news-viewer";
+import { DomSanitizer } from "@angular/platform-browser";
 
 /**
  * Generated class for the NetworkingNewsPage page.
@@ -35,7 +36,8 @@ export class NetworkingNewsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private _aeosapp: AeosappProvider,
-    private _sessions: sessions
+    private _sessions: sessions,
+    private _sanitizer: DomSanitizer
   ) {
    
   }
@@ -109,4 +111,17 @@ console.log(this.news);
        
     }
   }
+
+  getVideoIframe(url) {
+    console.log(url);
+    var video, results;
+ 
+    if (url === null) {
+        return '';
+    }
+    results = url.match('[\\?&]v=([^&#]*)');
+    video   = (results === null) ? url : results[1];
+ 
+    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
+}
 }
