@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.digitalware.Clubes" version="20.0.11.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.digitalware.Clubes" version="20.0.11.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <platform name="android">
         <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
         <allow-intent href="market:*" />
