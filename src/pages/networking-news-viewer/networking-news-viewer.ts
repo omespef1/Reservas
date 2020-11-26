@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { aeosapp } from '../../class/models/models';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LinkifyPipe } from '../../pipes/linkify/linkify';
+
 /**
  * Generated class for the NetworkingNewsViewerPage page.
  *
@@ -37,6 +39,8 @@ export class NetworkingNewsViewerPage {
  
     return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + video);   
 }
+
+
 
 
 }

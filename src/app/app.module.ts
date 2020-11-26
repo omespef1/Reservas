@@ -126,7 +126,6 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
 import {DigitalDatePipe } from '../pipes/digital-date/digital-date';
 import {LongDatePipe} from '../pipes/long-date/long-date';
 import { NotificationsPushProvider } from '../providers/notifications-push/notifications-push';
-
 import { InvitedProvider } from '../providers/invited/invited';
 
 import { AeinappProvider } from '../providers/aeinapp/aeinapp';
@@ -157,6 +156,7 @@ import { EventInvitedBookingPage } from '../pages/event-invited-booking/event-in
 import { EventOnesignalIdHandlerProvider } from '../providers/event-onesignal-id-handler/event-onesignal-id-handler';
 import { GntipdoProvider } from '../providers/gntipdo/gntipdo';
 import { ConfigProvider } from '../providers/config/config';
+import { LinkifyPipe } from '../pipes/linkify/linkify';
 
 
  
@@ -186,6 +186,7 @@ import { ConfigProvider } from '../providers/config/config';
     ThirdPartiesPage,
     PartnerConfirmPage,
     DigitalDatePipe,
+    LinkifyPipe,
     LongDatePipe,
     CompaniesPage,
     PartnerConnectionsPage,
@@ -354,6 +355,7 @@ import { ConfigProvider } from '../providers/config/config';
     ThirdPartiesProvider,
     KeychainTouchId,
     DigitalDatePipe,
+    LinkifyPipe,
     LongDatePipe,
     ConnectionsProvider,
     CompaniesProvider,
