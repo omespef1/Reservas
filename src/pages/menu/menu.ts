@@ -83,11 +83,11 @@ export class MenuPage implements OnInit {
       urlIcon: "assets/imgs/guest-post.svg",
       page: BookingInvitedsPage,
     },   
-    {
-      name: "Nogal Conecta",
-      urlIcon: "assets/imgs/conecta1.svg",
-      page: NetworkingMenuPage,
-    },
+    // {
+    //   name: "Nogal Conecta",
+    //   urlIcon: "assets/imgs/conecta1.svg",
+    //   page: NetworkingMenuPage,
+    // },
     {
       name: "Perfil socio",
       urlIcon: "assets/imgs/partner-profile.svg",
@@ -147,6 +147,7 @@ export class MenuPage implements OnInit {
   
   }
   openTab(page: number) {
+    //Esta linea fija como raiz de las tabs networking, descomentar para activar networking
     // if (page == 8) this.navCtrl.setRoot(NetworkingMenuPage);
     // else
      this.navCtrl.setRoot(TabsPage, { tabSelected: page });

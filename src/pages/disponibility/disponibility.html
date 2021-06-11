@@ -42,11 +42,16 @@
 
                       <h3><b> Desde la(s)  {{event.startTime|date:'HH:mm'}} Hasta la(s) {{event.endTime|date:'HH:mm'}}</b></h3>
                         <ion-badge *ngIf="!isToday" color="primary">  {{event.startTime|date: 'dd/MM/yyyy'}}</ion-badge>
-                          <ion-badge *ngIf="isToday" color="primary">  HOY</ion-badge>
+                         
+                          <ion-badge *ngIf="event.express;else today" color="danger">ESTA RESERVA TENDRÁ SOLO {{event.minutes }} MINUTOS</ion-badge>
                           <h3> Disponible!!</h3>
                           <p>Toca para reservar</p>
                            <ion-icon name="clock" item-start></ion-icon>
+                           <ion-icon *ngIf="event.express" color="danger" name="timer" item-end></ion-icon>
                     </ion-item>
+                  <ng-template #today>
+                    <ion-badge *ngIf="isToday" color="primary">  HOY</ion-badge>
+                  </ng-template>
                     <ion-item *ngIf="selectedDate?.events.length==0">
                         <div class="no-events-label"><p>{{noEventsLabel}}</p></div>
                     </ion-item>

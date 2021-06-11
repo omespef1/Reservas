@@ -277,6 +277,29 @@ for(let option of options){
 }
 
 
+
+showCustomAlertInputsButtons(title:string,options:radio[],action:(value:any)=>void,cssclass?:string,subTitle?:string,message?:string) {
+  console.log(options);
+  let alert = this.alert.create({
+    title: title,
+    subTitle: subTitle,
+    message: message,
+    cssClass:cssclass});
+  
+  alert.setTitle(title);
+for(let option of options){
+  alert.addInput(option);
+}
+ 
+  alert.addButton('No Acepto');
+  alert.addButton({
+    text: 'Acepto',
+    handler: action
+  });
+  alert.present();
+}
+
+
 showCustomAlert(title:string,message:string,action: (value:any)=>void,cssClass?:string,enableBackdropDismiss?:boolean,
 subTitle?:string,
   ){

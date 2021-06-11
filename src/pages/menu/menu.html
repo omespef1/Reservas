@@ -72,7 +72,7 @@
 
     <div class="grid-categories">
       <div align-items-center *ngFor="let page of pages;let i=index" >
-        <div class="btn_card" *ngIf="i % 2 == 0" >
+        <div class="btn_card" *ngIf="i % 2 == 0">
           <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
               <img class="img-card" [src]="page.urlIcon">
@@ -85,7 +85,7 @@
   
     <div class="grid-categories">
       <div align-items-center *ngFor="let page of pages;let i=index" >
-        <div class="btn_card" *ngIf="i % 2 != 0" >
+        <div class="btn_card" *ngIf="i % 2 != 0">
           <ion-card   (click)="openTab(i)"   ion-button color="light"    > 
           
               <img class="img-card" [src]="page.urlIcon">

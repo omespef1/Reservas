@@ -37,10 +37,10 @@ export class ClassSpacesPage {
         ref.complete();
         for(let space of this.typeSpaces){
           this._classSpaces.GetAePhoto(space.Emp_codi,space.Cla_cont).then((resp:transaction)=>{
-            if(resp.ObjTransaction)      
+            if(resp!= null && resp.ObjTransaction!= null)      
             space.cla_foto = "data:image/jpeg;base64," + resp.ObjTransaction;
             else
-            space.cla_foto ="";
+            space.cla_foto ="./assets/imgs/out-of-stock.svg";
           })
         }
         

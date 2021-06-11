@@ -227,6 +227,8 @@ export interface DisponibilityTime {
   FechaFin: Date;
   esp_cont: number;
   Estado: string;
+  Express:boolean;
+  Minutes:number;
 }
 export interface GnConex {
   $id: number;
@@ -446,6 +448,7 @@ export class ae_param {
   par_trdu: string;
   par_rsdc: string;
   par_rein:string;
+  par_conc:string;
 }
 
 export interface pageApp {

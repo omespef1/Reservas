@@ -34,7 +34,7 @@ export class TabsPage {
   tab6Root= AccommodationListPage;
   tab7Root= InstitutionalPage;
   tab8Root = BookingInvitedsPage;
-  tab9Root=NetworkingMenuPage;
+  // tab9Root=NetworkingMenuPage;
   tab10Root=SettingsPage;
   // tab7Root = SettingsPage;
   indexTab:number;

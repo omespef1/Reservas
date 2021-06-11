@@ -21,7 +21,7 @@ export class NetworkingClassifiedsTermsPage {
 
   terms:string;
   constructor(public navCtrl: NavController,private _sessions:sessions) {
-    this.terms = this._sessions.aeparam.par_trdu;
+    this.terms = this._sessions.aeparam.par_conc;
   
   }
 

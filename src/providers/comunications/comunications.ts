@@ -186,7 +186,7 @@ export class ComunicationsProvider {
             }
             return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
           })
-          .take(5)
+          .take(5)          
           .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
       })
 

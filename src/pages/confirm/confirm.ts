@@ -116,7 +116,7 @@ export class ConfirmPage {
         console.log(transport[0]);
         newBooking.transport = transport[0];
 
-        this._general.showCustomAlertInputs(
+        this._general.showCustomAlertInputsButtons(
           "Términos y condiciones",[],   () => {
             this._booking.SetBooking(newBooking).then((resp: any) => {
               if (resp != null) {

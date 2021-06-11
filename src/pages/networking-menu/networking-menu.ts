@@ -236,6 +236,7 @@ goMenu(){
     if(this._platform.is("cordova")){
       oneSignalData= await this._sesions.getOneSignalIds();
     }   
+    debugger;
       this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData.userId,this.myProfile.emp_codi,this.myProfile.per_cont); 
         
   }

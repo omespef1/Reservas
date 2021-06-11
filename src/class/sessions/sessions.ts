@@ -98,12 +98,12 @@ export class sessions {
 
   GetClientUrl() {
    //return 'http://192.168.1.107/SevenReservas/api/'
-   // return 'http://localhost/SevenReservas/api/'
+  // return 'http://localhost:4835/api/'
  //return 'http://appnogalpruebas.clubelnogal.com/api/';
     // return 'http://186.154.240.181/Nogalapi/api/';
    // return 'http://186.154.240.181//NogalApi/api/';
   //   return 'http://192.168.1.209/appnogal/api/';
-  // return 'https://erp.clubelnogal.com/appnogal/api/';
+  //return 'https://erp.clubelnogal.com/appnogal/api/';
     // Le quita el https a la usrl configurada por el cliente. Esta medida se ejecutará mientras se pueda resolver en tema de funcionamiento https sobre apps
     // if (this._platform.is("cordova") && this.clientUrl.indexOf("https") > -1) {
     //   let urlUnsafe: string = this.clientUrl.replace("https", "http");

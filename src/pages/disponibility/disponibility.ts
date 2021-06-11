@@ -114,6 +114,8 @@ export class DisponibilityPage {
               age_Fina: disp.FechaFin,
               esp_cont: disp.esp_cont,
               Estado: disp.Estado,
+              express:disp.Express,
+              minutes:disp.Minutes
             });
           }
           this.eventSource = events;
