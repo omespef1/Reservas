@@ -195,13 +195,10 @@ export class general {
   openUrl(url: string) {
     if (url.indexOf('http') == -1 && url.indexOf('https') ==-1)        
     url = `http://${url}`;  
-    if(!this.platform.is("android") && !this.platform.is("ios") ) {
-      console.log('abriendo navegador web')
+    if(!this.platform.is("android") && !this.platform.is("ios") ) {   
       window.open(url,'_blank');
     }    
-    else{
-      console.log('abriendo navegador movil')
-      console.log(url);
+    else{     
       this._browser.openUrl(url);
     }
   
@@ -255,8 +252,7 @@ GetPlatform():string{
 
 }
 
-showCustomAlertInputs(title:string,options:radio[],action:(value:any)=>void,cssclass?:string,subTitle?:string,message?:string) {
-  console.log(options);
+showCustomAlertInputs(title:string,options:radio[],action:(value:any)=>void,cssclass?:string,subTitle?:string,message?:string) { 
   let alert = this.alert.create({
     title: title,
     subTitle: subTitle,
@@ -279,7 +275,6 @@ for(let option of options){
 
 
 showCustomAlertInputsButtons(title:string,options:radio[],action:(value:any)=>void,cssclass?:string,subTitle?:string,message?:string) {
-  console.log(options);
   let alert = this.alert.create({
     title: title,
     subTitle: subTitle,

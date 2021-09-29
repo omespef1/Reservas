@@ -118,7 +118,7 @@ export class sessions {
   }
   GetClientEmpCodi() {
    //return 1;
-    // console.log('obtiene el tercero guardado');
+    // //console.log('obtiene el tercero guardado');
     return this.emp_codi;
   }
   SetClientEmpCodi(value: number) {

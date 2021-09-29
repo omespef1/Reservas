@@ -47,7 +47,7 @@ export class SettingsPage {
     notification.ter_codi = this.user.Ter_Codi;      
     this._oneSignalId.deleteNotificationId(notification).then((resp:transaction)=>{
       if(resp.Retorno==0){
-        console.log('oneSingal Id eliminado');
+        //console.log('oneSingal Id eliminado');
       }
     })
     this._events.publish('user:logout');

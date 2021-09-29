@@ -80,7 +80,7 @@ export class NetworkingMyClassifiedsPage {
   }
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation'); 
+    //console.log('Begin async operation'); 
      setTimeout(() => {
       this.pushClassified(this.classifiedsAll.length,this.classifiedsAll.length+10)
       infiniteScroll.complete();
@@ -105,7 +105,7 @@ export class NetworkingMyClassifiedsPage {
   }
 
   GetPhoto(classified: soclanw) {
-    console.log("obteniendo imagenes..");
+    //console.log("obteniendo imagenes..");
     this._soclanw
       .GetPhoto(classified.emp_codi, classified.cla_cont)
       .then((resp: transaction) => {
@@ -132,17 +132,17 @@ export class NetworkingMyClassifiedsPage {
   }
   setFilter($event) {
     //let orderClassifieds = this.classifieds;
-    console.log($event);
-    console.log(this.classifieds);
+    //console.log($event);
+    //console.log(this.classifieds);
     switch ($event) {
       case "M":
-        console.log("desc");
+        //console.log("desc");
         this.classifiedsAll.sort((a, b) =>
           a.cla_fech < b.cla_fech ? 1 : b.cla_fech < a.cla_fech ? -1 : 0
         );
         break;
       case "A":
-        console.log("asc");
+        //console.log("asc");
         this.classifiedsAll.sort((a, b) =>
           a.cla_fech > b.cla_fech ? 1 : b.cla_fech > a.cla_fech ? -1 : 0
         );

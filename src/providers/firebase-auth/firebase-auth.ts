@@ -16,8 +16,7 @@ import { Platform } from 'ionic-angular';
 export class FirebaseAuthProvider {
   public user: firebase.UserInfo;
   constructor(public afAuth: AngularFireAuth,private _firestore:AngularFirestore,private _sopernw:SopernwProvider) {
-    this.afAuth.authState.subscribe((user) => {
-      console.log("Estado del usuario: ", user);
+    this.afAuth.authState.subscribe((user) => {     
 
       if (!user) {
         return;
@@ -29,26 +28,23 @@ export class FirebaseAuthProvider {
 
   
   logout() {
-    console.log("sesión de chat cerrada");
+    //console.log("sesión de chat cerrada");
     this.user = null;
     this.afAuth.auth.signOut();
   }
 
-  loginWithMail(user: string, password: string,displayName:string,oneSignalId:string,emp_codi:number,per_cont:number) {
-    console.log("actualizado username",displayName);
+  loginWithMail(user: string, password: string,displayName:string,oneSignalId:string,emp_codi:number,per_cont:number) {    
       this.afAuth
       .auth
       .signInWithEmailAndPassword(user, password)
-      .then(value => {
-        console.log('login firebase satisfactorio');
+      .then(value => {      
        // this.updateUser(displayName);
        this.addUser(displayName,oneSignalId);
         this.updateTokens(emp_codi,per_cont,oneSignalId);
       })
       .catch( (err:any)=> {   
-        console.log(err);
-         if(err.code =="auth/user-not-found"){
-          console.log("Usuario de chat no creado.Creando...");
+        //console.log(err);
+         if(err.code =="auth/user-not-found"){         
           this.signInWithMail(user,password).then(resp=>{
             if(resp){
               //this.updateUser(displayName);
@@ -71,19 +67,6 @@ export class FirebaseAuthProvider {
      
   }
 
-  // updateUser(displayName:string) {
-    
-  //   var user = firebase.auth().currentUser;
-  //   user.updateProfile({
-  //     displayName: displayName
-   
-  //   }).then(function() {
-  //     this.addUser();
-  //     console.log("usuario actualizado");
-  //   }).catch(function(error) {
-  //     console.log("error actualizando");
-  //   });
-  // }
 
 
 addUser(displayName:string,oneSignalId:string){
@@ -105,14 +88,14 @@ async updateTokens(emp_codi:number,per_cont:number,per_osid:string){
 
 
   this._sopernw.updateTokens({emp_codi:emp_codi,per_cont:per_cont,per_osid : per_osid, per_uuid:firebase.auth().currentUser.uid}).then(()=>{
-    console.log("tokens actualizados");
+ 
   
   })
  }
   
 
 GetUserName(uiid){
-  console.log(uiid);
+  //console.log(uiid);
  return this._firestore.collection('users').doc(uiid).snapshotChanges();
 
 }

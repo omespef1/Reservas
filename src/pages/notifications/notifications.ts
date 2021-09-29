@@ -20,11 +20,11 @@ export class NotificationsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController) {
 
     this.notification = navParams.get('notification');
-    console.log(this.notification.payload);
+    //console.log(this.notification.payload);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationsPage');
+    //console.log('ionViewDidLoad NotificationsPage');
   }
 
   close(){

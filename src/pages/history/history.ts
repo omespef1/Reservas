@@ -62,7 +62,7 @@ export class HistoryPage {
     
     this._history.GetHistory(this.emp_codi,this.user.Soc_cont,this.user.Sbe_cont,this.user.Mac_nume,this.month,this.year,this.dayI,this.dayF,this.ambienteS).then((resp: any) => {
       if (resp != null) {
-        console.log(resp);
+        //console.log(resp);
         this.histories = resp.ObjTransaction;
       }
       else{
@@ -124,7 +124,7 @@ export class HistoryPage {
 
 
  loadMonths(){
-  console.log('load months');
+  //console.log('load months');
   
   this.months = [
 

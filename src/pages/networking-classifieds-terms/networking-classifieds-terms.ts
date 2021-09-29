@@ -27,7 +27,7 @@ export class NetworkingClassifiedsTermsPage {
 
   ionViewDidLoad() {
 
-    console.log('ionViewDidLoad NetworkingClassifiedsTermsPage');
+    //console.log('ionViewDidLoad NetworkingClassifiedsTermsPage');
   }
   goHome(){
     this.navCtrl.setRoot(NetworkingMenuPage);

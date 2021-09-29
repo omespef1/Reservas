@@ -12,7 +12,7 @@ import { ComunicationsProvider } from '../comunications/comunications';
 export class AeosappProvider {
 
   constructor(private _comunications:ComunicationsProvider) {
-    console.log('Hello AeosappProvider Provider');
+    //console.log('Hello AeosappProvider Provider');
   }
 GetNews(emp_codi:number){
   return this._comunications.Get(`AeOsApp/GetAeOsAppByType?emp_codi=${emp_codi}&osa_tipo=T&osa_mapp=S`,false,'',false);

@@ -74,7 +74,7 @@ export class NetworkingMenuPage implements OnInit {
    
       this.user = resp;
       this.VerifyTerms();
-      console.log('usuario es ', this.user);
+      //console.log('usuario es ', this.user);
       
       this.GetSoPernw();
      
@@ -82,7 +82,7 @@ export class NetworkingMenuPage implements OnInit {
    
   
     });
-    console.log('leyendo terminos')
+    //console.log('leyendo terminos')
     let tabs = document.querySelectorAll('.tabs-ios .tabbar');
     if (tabs !== null) {
         Object.keys(tabs).map((key) => {
@@ -138,7 +138,7 @@ goMenu(){
   }
 
   async GetSoPernw() {
-    console.log(this.user);
+    //console.log(this.user);
     this._sopernw
       .GetSoPernw(
        await this._sessions.getEmpCodiSession(),
@@ -223,7 +223,7 @@ goMenu(){
     this._agrrements.GetBannersNetwoking().then((resp:transaction)=>{
       this.loadingBanner=false;
       if(resp!=null && resp.Retorno==0){
-        console.log(resp);
+        //console.log(resp);
         this.banners = resp.ObjTransaction;
       }
 
@@ -232,11 +232,10 @@ goMenu(){
 
   async LoginFirebase(){
     let oneSignalData:any= { userId:""}
-    console.log(this._auth.user==null);
+    //console.log(this._auth.user==null);
     if(this._platform.is("cordova")){
       oneSignalData= await this._sesions.getOneSignalIds();
     }   
-    debugger;
       this._auth.loginWithMail(this.user.Sbe_mail,"123456",`${this.user.Soc_nomb} ${this.user.Soc_apel}`,oneSignalData.userId,this.myProfile.emp_codi,this.myProfile.per_cont); 
         
   }
@@ -260,7 +259,7 @@ ngAfterViewInit() {
   //   this._agrrements.GetBanners().then((resp:transaction)=>{
   //     this.loadingBanner=false;
   //     if(resp.Retorno==0){
-  //       console.log(resp);
+  //       //console.log(resp);
   //       this.banners = resp.ObjTransaction;
   //     }
   //   })

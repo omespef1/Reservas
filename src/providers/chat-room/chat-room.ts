@@ -31,7 +31,7 @@ export class ChatRoomProvider {
     private _chat: ChatProvider,
     private _sosocio: PartnerProvider
   ) {
-    console.log("Hello ChatRoomProvider Provider");
+    //console.log("Hello ChatRoomProvider Provider");
   }
 
   async loadChatRooms() {
@@ -42,12 +42,11 @@ export class ChatRoomProvider {
     const ref = this.afs.firestore
       .collection("chat-rooms")
       .where("users", "array-contains", this.auth.user.uid);
-    console.log("auth id", this.auth.user.uid);
     ref.onSnapshot((snapshot) => {
       this.chatRooms = [];
       this.loading = false;
       snapshot.forEach((doc) => {
-        console.log(doc.data());
+        //console.log(doc.data());
         this.chatRooms.unshift({
           users: doc.data().users,
           lastMessage: { content: "", read: false },
@@ -79,8 +78,7 @@ export class ChatRoomProvider {
                   .loadMessagesChatLastChat(
                     this._chat.GetChatName(socio.PER_UUID)
                   )
-                  .subscribe((message) => {
-                    console.log(message);
+                  .subscribe((message) => {                  
                     chat.lastMessage = message;
                   });
                 this._sopernw

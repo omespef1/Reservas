@@ -15,7 +15,7 @@ export class WaitingClockComponent {
   text: string;
 
   constructor() {
-    console.log('Hello WaitingClockComponent Component');
+    //console.log('Hello WaitingClockComponent Component');
     this.text = 'Hello World';
   }
 

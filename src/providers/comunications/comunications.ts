@@ -29,7 +29,7 @@ export class ComunicationsProvider {
   }
 
   Get(UrlService: string, loading: boolean = true, content: string = "Cargando...", requiteEmpCodi = true) {
-    console.log('haciendo Get...');
+    //console.log('haciendo Get...');
     // this._events.publish('onBackground');
     this.loading = this.load.create({
       content: content,
@@ -62,7 +62,7 @@ export class ComunicationsProvider {
       let bodyRequest: any = {
         headers:  new HttpHeaders(headerDict),       
       }
-      console.log(stringUrl);
+      //console.log(stringUrl);
       return this.http.get(stringUrl,bodyRequest).retryWhen(error => {
         return error
           .flatMap((error: any) => {
@@ -78,8 +78,8 @@ export class ComunicationsProvider {
       })
         .subscribe((resp: any) => {
           // this._events.publish('offBackground');
-          console.log(stringUrl);
-          // console.log(resp);
+          //console.log(stringUrl);
+          // //console.log(resp);
           if (loading)
             this.loading.dismiss();
           if (resp.Retorno == 1) {
@@ -89,7 +89,7 @@ export class ComunicationsProvider {
           resolve(resp);
         }, (err: HttpErrorResponse) => {
           // this._events.publish('offBackground');
-          console.log(err);
+          //console.log(err);
           this.ErrMessage(err.error);
           if (loading)
             this.loading.dismiss();
@@ -99,7 +99,7 @@ export class ComunicationsProvider {
   }
 
   GetCentralizacion(target: string, contentText: string = "", loading: boolean = true) {
-    console.log('haciendo get a centralzación...');
+    //console.log('haciendo get a centralzación...');
     if (contentText == "")
       contentText = "Consultando información de clientes...";
     if (loading) {
@@ -111,7 +111,7 @@ export class ComunicationsProvider {
     let promise = new Promise((resolve, reject) => {
       if (loading)
         this.loading.present();
-      console.log(`${appCentralizacionUrl}${target}`);
+      //console.log(`${appCentralizacionUrl}${target}`);
 
       const headerDict = {
         'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ export class ComunicationsProvider {
         }, (err: HttpErrorResponse) => {
 
           this.ErrMessage(err.error);
-          console.log(err);
+          //console.log(err);
           if (loading)
             this.loading.dismiss();
         })
@@ -155,8 +155,8 @@ export class ComunicationsProvider {
   }
 
   Post(params: any, urlService: string, content: string = "Cargando...",showLoading=true) {
-    console.log(params);
-    console.log('haciendo post...');
+    //console.log(params);
+    //console.log('haciendo post...');
     this.loading = this.load.create({
       content: content,
       spinner: 'ios'
@@ -164,7 +164,7 @@ export class ComunicationsProvider {
     let promise = new Promise((resolve, reject) => {
       if(showLoading)
       this.loading.present();
-      console.log(this._sesion.GetClientUrl() + urlService);
+      //console.log(this._sesion.GetClientUrl() + urlService);
         const headerDict = {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -193,14 +193,14 @@ export class ComunicationsProvider {
         .subscribe((resp: any) => {
           if(showLoading)
           this.loading.dismiss();
-          // console.log(resp)
+          // //console.log(resp)
           if (resp.Retorno == 1) {
             this.ErrMessage(resp.TxtError);
             resp = null;
           }
           resolve(resp);
         }, (err: HttpErrorResponse) => {
-          console.log(err);
+          //console.log(err);
           this.ErrMessage(err.error);
           if(showLoading)
           this.loading.dismiss();
@@ -220,8 +220,8 @@ export class ComunicationsProvider {
     });
     let promise = new Promise((resolve, reject) => {
       this.loading.present();
-      console.log(this._sesion.GetClientUrl() + urlService);
-      console.log(params);
+      //console.log(this._sesion.GetClientUrl() + urlService);
+      //console.log(params);
       return this.http.put(this._sesion.GetClientUrl() + urlService, params).retryWhen(error => {
         return error
           .flatMap((error: any) => {
@@ -236,14 +236,14 @@ export class ComunicationsProvider {
 
         .subscribe((resp: any) => {
           this.loading.dismiss();
-          //console.log(resp)
+          ////console.log(resp)
           if (resp.Retorno == 1) {
             this.ErrMessage(resp.TxtError);
             resp = null;
           }
           resolve(resp);
         }, (err: HttpErrorResponse) => {
-          console.log(err);
+          //console.log(err);
           this.ErrMessage(err.error);
           this.loading.dismiss();
         })
@@ -268,7 +268,7 @@ export class ComunicationsProvider {
     let bodyRequest: any = {
       headers:  new HttpHeaders(headerDict),              
     }
- console.log(data);
+ //console.log(data);
     
     return this.http
       .post(this._sesion.GetClientUrl() + urlService, data)

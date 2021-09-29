@@ -24,11 +24,11 @@ export class NetworkingNewsViewerPage {
     this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.notice.osa_livi);
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NetworkingNewsViewerPage');
+    //console.log('ionViewDidLoad NetworkingNewsViewerPage');
   }
 
   getVideoIframe(url) {
-    console.log(url);
+    //console.log(url);
     var video, results;
  
     if (url === null) {

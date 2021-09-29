@@ -126,7 +126,7 @@ export class RunwayEventPage {
           this.SendCotization(this.BuildCotiz(gntoper));
         })
       }).catch(err => {
-        console.log(err);
+        //console.log(err);
       })
 
 

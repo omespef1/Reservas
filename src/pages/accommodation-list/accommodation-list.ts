@@ -171,9 +171,7 @@ export class AccommodationListPage {
    }
  
   //Agrega la reserva seleccionada al carrito de compra
-  async AddCart(booking: bookingInfo) {
-     // let  test = this.session.verifyCarShopping(booking);
-     // console.log( await test);
+  async AddCart(booking: bookingInfo) {    
      try {
       await  this.session.addShoppingList(booking);    
      await  this.verifyItemsCar(); 

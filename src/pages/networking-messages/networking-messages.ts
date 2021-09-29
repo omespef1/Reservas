@@ -37,13 +37,13 @@ export class NetworkingMessagesPage implements OnInit,OnDestroy {
 
   ionViewDidLoad() {
    var suscription = this._chatRooms.loadChatRooms()
-    console.log('ionViewDidLoad NetworkingMessagesPage');
+    //console.log('ionViewDidLoad NetworkingMessagesPage');
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    console.log('destruidos last');
+    //console.log('destruidos last');
     
   }
 
@@ -66,7 +66,7 @@ export class NetworkingMessagesPage implements OnInit,OnDestroy {
   //   const uiid = this._auth.GetUuidPartnerFromKeyPair(users);
   // //  return "Prueba";
   //   return this._auth.GetUserName(uiid).subscribe(resp=>{
-  //     console.log(resp.payload.data());
+  //     //console.log(resp.payload.data());
   //   })
   }
 

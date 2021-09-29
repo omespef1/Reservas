@@ -23,7 +23,7 @@ export class NotificationsPushProvider {
   ];
   
   constructor(private _modal:ModalController,private _session:sessions,private _http:HttpClient) {
-    console.log("Hello NotificationsPushProvider Provider");
+    
   }
 
 
@@ -34,14 +34,11 @@ export class NotificationsPushProvider {
           "6796a626-5bef-4c76-8148-9df8833fe6d0",
           "343787359895"
         )
-          .handleNotificationOpened((notificationOpenedCallback) => {
-            // console.log(notificationOpenedCallback);
-            // this.open(notificationOpenedCallback);
+          .handleNotificationOpened((notificationOpenedCallback) => {         
           })
           .endInit();
 
-          window["plugins"].OneSignal.getIds((notificationIds)=>{
-            console.log(notificationIds);
+          window["plugins"].OneSignal.getIds((notificationIds)=>{          
           this._session.setOneSignalIds(notificationIds);
           });   
   }
@@ -63,13 +60,13 @@ export class NotificationsPushProvider {
 
   //   this.oneSignal.handleNotificationReceived().subscribe(noti => {
   //     // do something when notification is received
-  //     console.log("notificación recibida");
+  //     //console.log("notificación recibida");
   //     this.notificacion_Recibida(noti);
   //   });
 
   //   this.oneSignal.handleNotificationOpened().subscribe(() => {
   //     // do something when a notification is opened
-  //     console.log("notificación recibida");
+  //     //console.log("notificación recibida");
   //   });
 
   //   this.oneSignal.endInit();
@@ -77,8 +74,8 @@ export class NotificationsPushProvider {
   // }
 
   open(noti:OSNotificationOpenedResult){
-    console.log('la notificacion es ');
-    console.log(noti);
+    //console.log('la notificacion es ');
+    //console.log(noti);
    let modal =  this._modal.create(NotificationsPage, { 'notification': noti.notification });
    modal.present();
   }
@@ -115,9 +112,9 @@ players.push(playerId);
       };
       
       this._http.post('https://onesignal.com/api/v1/notifications', body).subscribe(data => {
-        console.log(data);
+        //console.log(data);
       } , error => {
-        console.log(error);
+        //console.log(error);
       });
   
   }

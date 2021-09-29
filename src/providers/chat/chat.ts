@@ -36,8 +36,8 @@ export class ChatProvider {
       })
   }
   loadMessagesChat(chatId: string) {
-    console.log("cargando mensajes...");
-    console.log(chatId);
+    //console.log("cargando mensajes...");
+    //console.log(chatId);
     let collection = this.afs
       .collection<message>("chat-rooms")
       .doc(chatId)
@@ -47,21 +47,18 @@ export class ChatProvider {
 
 
       return collection.snapshotChanges().map((resp)=>{
-      console.log(resp);
+      //console.log(resp);
         this.chats=[];    
         resp.forEach(element => {         
           this.chats.unshift(element);          
           if(element.payload.doc.data().uid != this._auth.user.uid && !element.payload.doc.data().read ){
             collection.doc(element.payload.doc.id).update({read:true}).then(()=>{ console.log("leido")});
           }  
-        });      
-        console.log('termina de llenar')             
+        });                        
       })
   }
 
   loadMessagesChatLastChat(chatId: string) {
-    console.log("cargando mensajes...");
-    console.log(chatId);
     let collection = this.afs
       .collection<message>("chat-rooms")
       .doc(chatId)
@@ -97,18 +94,18 @@ export class ChatProvider {
   }
 
   // loginWithSms() {
-  //   console.log("entra phone");
+  //   //console.log("entra phone");
   //   this.captcha = new firebase.auth.RecaptchaVerifier("sign-in-number", {
   //     size: "invisible",
   //     callback: function (response) {
-  //       console.log("reCAPTCHA solved, allow signInWithPhoneNumber.");
+  //       //console.log("reCAPTCHA solved, allow signInWithPhoneNumber.");
   //       var phoneNumber = "+573192972505";
   //       var appVerifier = this.captcha.recaptchaVerifier;
   //       firebase
   //         .auth()
   //         .signInWithPhoneNumber(phoneNumber, appVerifier)
   //         .then(function (confirmationResult) {
-  //           console.log("mensaje enviado");
+  //           //console.log("mensaje enviado");
   //           // SMS sent. Prompt user to type the code from the message, then sign the
   //           // user in with confirmationResult.confirm(code).
   //           this.captcha.confirmationResult = confirmationResult;
@@ -116,7 +113,7 @@ export class ChatProvider {
   //         .catch(function (error) {
   //           // Error; SMS not sent
   //           // ...
-  //           console.log("error");
+  //           //console.log("error");
   //         });
   //     },
   //   });

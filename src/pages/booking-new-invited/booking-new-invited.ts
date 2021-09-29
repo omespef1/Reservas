@@ -26,7 +26,7 @@ export class BookingNewInvitedPage {
   now:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,private _service:InvitedProvider,private _sesion:sessions,private _general:general) {
     _sesion.GetLoggedin().then((user:user)=>{
-      console.log(user);
+      //console.log(user);
       this.user = user;
       this.now = new Date().toISOString();
     })
@@ -56,9 +56,9 @@ export class BookingNewInvitedPage {
   
     //this.invitedDate.setHours(hours,minutes);
     // this.invited.Fecha = new Date(year,Month,days,hours,minutes).toLocaleDateString();
-    // console.log(this.invited.Fecha);
+    // //console.log(this.invited.Fecha);
     this._service.SetInvited(this.invited).then((resp:transaction)=>{
-      console.log(resp);
+      //console.log(resp);
       if(resp!=undefined && resp.Retorno==0){
         
         this._general.showToastMessage(`Has invitado a ${this.invited.Nombre} ${this.invited.Apellido}!`,'bottom');

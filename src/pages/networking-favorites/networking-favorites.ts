@@ -60,7 +60,7 @@ export class NetworkingFavoritesPage {
       this._sofanet
         .GetSoFanet(this._sesion.GetClientEmpCodi(), netUser.per_cont)
         .then((resp: transaction) => {
-          console.log(resp);
+          //console.log(resp);
           if (resp != null && resp.ObjTransaction != null) {
             this.favorites = resp.ObjTransaction;
             

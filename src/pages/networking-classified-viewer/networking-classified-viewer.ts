@@ -21,7 +21,7 @@ classified:soclanw;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NetworkingClassifiedViewerPage');
+    //console.log('ionViewDidLoad NetworkingClassifiedViewerPage');
   }
 
 }

@@ -81,10 +81,10 @@ export class NetworkingProfilePage {
       this.user = await (<any>this._sessions.GetLoggedin());
     else {
       this.myProfile = this.navParams.get("profile");
-      console.log("el perfil es", this.myProfile);
+      //console.log("el perfil es", this.myProfile);
     }
 
-    console.log(this.myProfile);
+    //console.log(this.myProfile);
     this.GetProfessions();
     this.GetSectors();
     if (this.myProfileMode) {
@@ -107,7 +107,7 @@ export class NetworkingProfilePage {
       });
   }
   goChat() {
-    console.log(this.myProfile);
+    //console.log(this.myProfile);
     if (this.myProfile.per_uuid == undefined || this.myProfile.per_uuid == null) {
       this._general.showCustomAlert(
         "No permitido!",
@@ -141,7 +141,7 @@ export class NetworkingProfilePage {
   }
 
   GetSoPernw() {
-    console.log(this.user);
+    //console.log(this.user);
     this._sopernw
       .GetSoPernw(
         this._sessions.GetClientEmpCodi(),
@@ -154,7 +154,7 @@ export class NetworkingProfilePage {
 
         if (resp != null && resp.Retorno == 0) {
           this.myProfile = resp.ObjTransaction;
-          console.log(this.myProfile);
+          //console.log(this.myProfile);
           if (this.myProfile == null) {
             this.myProfile = new sopernw();
             this.myProfile.details = [];
@@ -170,7 +170,7 @@ export class NetworkingProfilePage {
   }
 
   GetSoPernwOtherProfile() {
-    console.log(this.myProfile);
+    //console.log(this.myProfile);
     this._sopernw
       .GetSoPernw(
         this._sessions.GetClientEmpCodi(),
@@ -214,7 +214,7 @@ export class NetworkingProfilePage {
       "Palabras clave",
       options,
       (resp: any) => {
-        console.log(resp);
+        //console.log(resp);
 
         this.myProfile.per_tags = resp[0];
       },
@@ -293,7 +293,7 @@ export class NetworkingProfilePage {
       "Sector económico",
       options,
       (resp: any) => {
-        console.log(resp);
+        //console.log(resp);
 
         this.myProfile.ite_seco = resp;
       },
@@ -326,7 +326,7 @@ export class NetworkingProfilePage {
       "Profesión",
       options,
       (resp: any) => {
-        console.log(resp);
+        //console.log(resp);
 
         this.myProfile.ite_prof = resp;
       },
@@ -368,14 +368,14 @@ export class NetworkingProfilePage {
                     per_cont: this.ProfileBd.ObjTransaction.per_cont,
                     per_foto: this.foto,
                   }).then(()=>{
-                    console.log('photo actualizada');
+                    //console.log('photo actualizada');
                   })
                 }
               }
                 
               for(let detail of this.myProfile.details){
                   this._sodpern.UpdateSoDpernPhoto({ emp_codi:this.ProfileBd.ObjTransaction.emp_codi,per_cont:this.ProfileBd.ObjTransaction.per_cont,dpe_fpro : detail.dpe_fpro,dpe_proy:detail.dpe_proy}).then(()=>{
-                    console.log('detalle foto actualizada');
+                    //console.log('detalle foto actualizada');
                   })
 
 
@@ -410,7 +410,7 @@ export class NetworkingProfilePage {
           this.ProfileBd = profile;
           for(let detail of this.myProfile.details){
             this._sodpern.UpdateSoDpernPhoto({ emp_codi:this.ProfileBd.ObjTransaction.emp_codi,per_cont:this.ProfileBd.ObjTransaction.per_cont,dpe_fpro : detail.dpe_fpro,dpe_proy:detail.dpe_proy}).then(()=>{
-              console.log('detalle foto actualizada');
+              //console.log('detalle foto actualizada');
             })
           }
         })
@@ -449,7 +449,7 @@ export class NetworkingProfilePage {
       "Años de experiencia",
       options,
       (resp: any) => {
-        console.log(resp);
+        //console.log(resp);
         if ((this.myProfile.per_aexp = resp[0] < 0)) {
           this._general.showToastMessage(
             "Años de experiencia no puede ser un valor negativo",

@@ -18,7 +18,7 @@ export class HistoryDetailPage {
 detail:detalleConsumo;
   constructor(public navCtrl: NavController, public navParams: NavParams,private _view:ViewController) {
     this.detail = this.navParams.get('detalle');
-    console.log(this.detail);
+    //console.log(this.detail);
   }
 
   ionViewDidLoad() {
@@ -26,7 +26,7 @@ detail:detalleConsumo;
   }
 
   closeModal(){
-    console.log('cerrando');
+    //console.log('cerrando');
    this._view.dismiss();
   }
 

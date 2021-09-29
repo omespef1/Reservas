@@ -58,8 +58,7 @@ export class NetworkingNewsPage {
     this._aeosapp.GetNews(this._sessions.GetClientEmpCodi()).then((resp:transaction)=>{
       this.getting=false;
     if(resp!=null && resp.Retorno==0){
-      this.news = resp.ObjTransaction;
-      console.log(resp.ObjTransaction);
+      this.news = resp.ObjTransaction;      
 
       if(this.news!=null && this.news.length>0){
         for(let notice of this.news){
@@ -79,10 +78,10 @@ export class NetworkingNewsPage {
   }
 
   GetPhoto(myNew:aeosapp){
-    console.log('cargando foto');
+    //console.log('cargando foto');
     this._aeosapp.GetPhoto(myNew.emp_codi,myNew.osa_cont).then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){
-        console.log(resp.ObjTransaction);
+        //console.log(resp.ObjTransaction);
          myNew.osa_bmpr = "data:image/jpeg;base64," + resp.ObjTransaction.osa_bmpr;
       }
     })
@@ -90,20 +89,20 @@ export class NetworkingNewsPage {
 
   setFilter($event){
     //let orderClassifieds = this.classifieds;
-    console.log($event);
-console.log(this.news);
+    //console.log($event);
+//console.log(this.news);
     switch ($event) {
       case "M":
-        console.log("desc");
+        //console.log("desc");
    this.news.sort((a, b) => (a.osa_fini < b.osa_fini) ? 1 : ((b.osa_fini < a.osa_fini) ? -1 : 0))
        break;
       case "A":
-        console.log("asc");
+        //console.log("asc");
         this.news.sort((a, b) => (a.osa_fini > b.osa_fini) ? 1 : ((b.osa_fini > a.osa_fini) ? -1 : 0))
        
         break;
         case "O":
-          console.log("asc");
+          //console.log("asc");
           this.news.sort((a, b) => (a.osa_nomb > b.osa_nomb) ? 1 : ((b.osa_nomb > a.osa_nomb) ? -1 : 0))
          
           break;
@@ -113,7 +112,7 @@ console.log(this.news);
   }
 
   getVideoIframe(url) {
-    console.log(url);
+    //console.log(url);
     var video, results;
  
     if (url === null) {

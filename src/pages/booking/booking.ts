@@ -180,7 +180,7 @@ export class BookingPage {
  //Agrega la reserva seleccionada al carrito de compra
  async AddCart(booking: bookingInfo) {
     // let  test = this.session.verifyCarShopping(booking);
-    // console.log( await test);
+    // //console.log( await test);
     try {
      await  this.session.addShoppingList(booking);    
     await  this.verifyItemsCar(); 

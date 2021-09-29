@@ -11,8 +11,7 @@ import { transaction } from '../../class/models/models';
 */
 @Injectable()
 export class EerevetProvider {
-  constructor(private _comu: ComunicationsProvider) {
-    console.log("Hello EerevetProvider Provider");
+  constructor(private _comu: ComunicationsProvider) {    
   }
 
   GetEeRevet(emp_codi: number) {

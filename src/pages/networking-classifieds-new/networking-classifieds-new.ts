@@ -91,7 +91,7 @@ load(){
       if (resp != null && resp.Retorno == 0) {
         // if(this.file!=undefined){
         //   this._soclanw.uploadPhoto(this.file,this._sesion.GetClientEmpCodi(),resp.number).subscribe(resp=>{
-        //     console.log(resp);
+        //     //console.log(resp);
         //   })
         // }
       
@@ -111,7 +111,7 @@ load(){
     });
   }
   updateClassified(){
-    console.log(this.classified);
+    //console.log(this.classified);
     this.sending=true;        
     this._soclanw.UpdateSoClanw(this.classified).then((resp: transaction) => {
       this.sending = false;
@@ -142,7 +142,7 @@ load(){
 
   changeListener($event){
     this.file = $event.target.files[0];
-    console.log(this.file);
+    //console.log(this.file);
   }
 loadCamera(){
  this.camera.openeditprofile().then((resp:string)=>{

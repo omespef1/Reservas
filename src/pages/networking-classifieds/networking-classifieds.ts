@@ -59,11 +59,11 @@ export class NetworkingClassifiedsPage implements OnInit {
   ionViewDidLoad() {
     
    
-    console.log('ionViewDidLoad NetworkingClassifiedsPage');
+    //console.log('ionViewDidLoad NetworkingClassifiedsPage');
   }
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation'); 
+    //console.log('Begin async operation'); 
      setTimeout(() => {
       this.pushClassified(this.classifieds.length,this.classifieds.length+10)
       infiniteScroll.complete();
@@ -129,7 +129,7 @@ export class NetworkingClassifiedsPage implements OnInit {
 
 
   GetPhoto(classified:soclanw){
-    console.log('obteniendo imagenes..');
+    //console.log('obteniendo imagenes..');
     this._soclanw.GetPhoto(classified.emp_codi,classified.cla_cont).then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){  
         if(resp.ObjTransaction.cla_foto!='' && resp.ObjTransaction.cla_foto!=null)      
@@ -142,15 +142,15 @@ export class NetworkingClassifiedsPage implements OnInit {
 
   setFilter($event){
     //let orderClassifieds = this.classifieds;
-    console.log($event);
-console.log(this.classifieds);
+    //console.log($event);
+//console.log(this.classifieds);
     switch ($event) {
       case "M":
-        console.log("desc");
+        //console.log("desc");
    this.classifieds.sort((a, b) => (a.cla_fech < b.cla_fech) ? 1 : ((b.cla_fech < a.cla_fech) ? -1 : 0))
        break;
       case "A":
-        console.log("asc");
+        //console.log("asc");
         this.classifieds.sort((a, b) => (a.cla_fech > b.cla_fech) ? 1 : ((b.cla_fech > a.cla_fech) ? -1 : 0))
         // this.classifieds.sort((a, b) =>
         // a.cla_fech < b.cla_fech ? 1 :  a.cla_fech < b.cla_fech ?-1:0

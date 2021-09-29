@@ -54,11 +54,11 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
     this.userProfile = this.nav.get("profile");
     this.idChat = this._chat.GetChatName(this.userProfile.per_uuid);
     this.GetPhoto(this.userProfile.per_uuid);
-    console.log(this.userProfile);
+    //console.log(this.userProfile);
     this.element = document.getElementsByClassName("scroll-content");
     this._chat.SetNewChatRoom(this.userProfile, this.idChat).then(() => {
       //this.element.scrollTop = this.element.scrollHeight;
-      console.log("nuevo elemento");
+      //console.log("nuevo elemento");
   this.listener =    this._chat.loadMessagesChat(this.idChat).subscribe(()=>{
         setTimeout(() => {
           this.content.scrollToBottom();
@@ -79,7 +79,7 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
       this._chat
         .sendMessage(this.message, this.idChat)
         .then(() => {
-          console.log("mensaje enviado");
+          //console.log("mensaje enviado");
           this.message = "";   
          
         })
@@ -115,7 +115,7 @@ export class NetworkingChatPage implements OnInit,OnDestroy  {
   }
   ngOnDestroy(): void {
     
-    console.log('destruido');
+    //console.log('destruido');
     this.listener.unsubscribe();
     this._chat.chats=[];
     //Called once, before the instance is destroyed.

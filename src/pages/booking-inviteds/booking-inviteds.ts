@@ -41,7 +41,7 @@ export class BookingInvitedsPage {
 
   async GetInviteds(refresher: Refresher = null) {
     this.user = <user>await this._sesion.GetLoggedin();
-    // console.log(user);
+    // //console.log(user);
     this._service
       .GetInviteds(this._sesion.GetClientEmpCodi(), this.user.Sbe_codi)
       .then((resp: transaction) => {

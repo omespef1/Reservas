@@ -14,7 +14,7 @@ import { tokens } from '../../class/models/models';
 export class SopernwProvider {
 
   constructor(private _comu:ComunicationsProvider) {
-    console.log('Hello SopernwProvider Provider');
+    //console.log('Hello SopernwProvider Provider');
   }
 
 
@@ -35,7 +35,6 @@ DeleteSoPernw(emp_codi:number,per_cont:number){
 }
 
 GeSoPernw(emp_codi:number, per_tags:string,top:number){
-  console.log("top es",top);
   return this._comu.Get(`sopernw/GetSoPernw?emp_codi=${emp_codi}&per_tags=${per_tags}&top=${top}`,false,'',false)
   
 }
@@ -52,8 +51,7 @@ GetSoPernwByUuid(uuid:string){
   
 }
 
-updateTokens(tokens:any){
-  console.log("tokens", tokens);
+updateTokens(tokens:any){  
   return this._comu.Post({emp_codi:tokens.emp_codi,per_cont:tokens.per_cont,per_uuid:tokens.per_uuid, per_osid:tokens.per_osid},`SoPernw/UpdateTokens`,'',false)
 }
 updatePhoto(photo:networkingPhoto){

@@ -20,12 +20,12 @@ export class NetworkingChatLoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NetworkingChatLoginPage');
+    //console.log('ionViewDidLoad NetworkingChatLoginPage');
   }
 
 
   ingresar( proveedor: string ){
-    console.log( proveedor );
+    //console.log( proveedor );
 
     
 

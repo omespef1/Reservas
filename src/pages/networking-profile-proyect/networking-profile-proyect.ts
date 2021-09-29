@@ -24,7 +24,7 @@ export class NetworkingProfileProyectPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NetworkingProfileProyectPage');
+    //console.log('ionViewDidLoad NetworkingProfileProyectPage');
   }
 
 

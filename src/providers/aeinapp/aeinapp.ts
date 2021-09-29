@@ -14,7 +14,7 @@ import { general } from '../../class/general/general';
 @Injectable()
 export class AeinappProvider {
   constructor(private _comu: ComunicationsProvider, private _sesion: sessions,private _general:general) {
-    console.log("Hello AeinappProvider Provider");
+    //console.log("Hello AeinappProvider Provider");
   }
   async SetAeInApp(coa_tipo:string) {
     let log = new aeinapp();

@@ -61,13 +61,13 @@ export class NetworkingSearchPage {
   ) {}
 
   ionViewDidLoad() {
-    console.log(this.navParams.get("mode"));
+    //console.log(this.navParams.get("mode"));
 
     this.mode =
       this.navParams.get("mode") == undefined
         ? modeSearchProfile.search
         : modeSearchProfile.allProfilesApprobed;
-    console.log(this.mode);
+    //console.log(this.mode);
     if (this.mode == modeSearchProfile.allProfilesApprobed) this.loadProfiles();
     if (this.mode == modeSearchProfile.search) this.loadProfiles(10);
   }
@@ -85,7 +85,7 @@ export class NetworkingSearchPage {
   }
 
   GetSoPernw() {
-    console.log(this.mode);
+    //console.log(this.mode);
     switch (this.mode) {
       case modeSearchProfile.search:
         this.loadProfiles();
@@ -110,7 +110,7 @@ export class NetworkingSearchPage {
             throw new Error("Secotres económicos no disponibles.");
 
           this.loading = false;
-          console.log(resp);
+          //console.log(resp);
           if (resp != null && resp.Retorno == 0) {
             this.profilesAll = resp.ObjTransaction;
             this.profiles = resp.ObjTransaction;
@@ -174,7 +174,7 @@ export class NetworkingSearchPage {
     });
   }
   async addToFavorites(profile: any) {
-    console.log(profile);
+    //console.log(profile);
     let favorite: sofanet = {
       emp_codi: this._session.GetClientEmpCodi(),
       emp_codf: this._session.GetClientEmpCodi(),
@@ -200,8 +200,8 @@ export class NetworkingSearchPage {
   }
 
   setFilter($event: any) {
-    console.log($event);
-    console.log(this.profiles);
+    //console.log($event);
+    //console.log(this.profiles);
     switch ($event) {
       case "O":
         this.profiles.sort((a, b) =>
@@ -229,7 +229,7 @@ export class NetworkingSearchPage {
         );
         break;
       default:
-        console.log("default");
+        //console.log("default");
     }
   }
 
@@ -244,7 +244,7 @@ export class NetworkingSearchPage {
         "El socio seleccionado aún no ha creado su perfil en nogal-conecta."
       );
     } else {
-      console.log("perfil enviado", profile);
+      //console.log("perfil enviado", profile);
       // this.navCtrl.push(NetworkingChatPage, { 'profile': profile})
       this.navCtrl.push(NetworkingChatPage, {
         profile: {

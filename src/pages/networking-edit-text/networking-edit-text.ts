@@ -26,7 +26,7 @@ export class NetworkingEditTextPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NetworkingEditTextPage');
+    //console.log('ionViewDidLoad NetworkingEditTextPage');
   }
 
   closeModal(){

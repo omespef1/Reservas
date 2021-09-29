@@ -13,14 +13,12 @@ import { sofanet } from '../../class/models/models';
 export class SofanetProvider {
 
   constructor(private _comu:ComunicationsProvider) {
-    console.log('Hello SoFanetProvider Provider');
+    //console.log('Hello SoFanetProvider Provider');
   }
 GetSoFanet(emp_codi:number,per_cont:number){
   return this._comu.Get(`SoFanet?emp_codi=${emp_codi}&per_cont=${per_cont}`,false,'',false);
 }
-  SetSoFanet(favorite:sofanet){
-
-    console.log(favorite);
+  SetSoFanet(favorite:sofanet){  
   return this._comu.Post(favorite,`SoFanet`,'',false);
   }
   deleteSoFanet(emp_codi:number,fan_cont:number){

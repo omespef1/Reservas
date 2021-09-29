@@ -62,7 +62,7 @@ export class NetworkingBusinessAreaPage {
 //  }
 
   GetPhoto(event:eerevet){
-    console.log('consultando foto');
+    //console.log('consultando foto');
   this._eerevet.GetPhoto(this._session.GetClientEmpCodi(),event.rev_cont)
      .then((resp:transaction)=>{
        if(resp!=null && resp.Retorno==0){
@@ -76,15 +76,15 @@ export class NetworkingBusinessAreaPage {
 
   setFilter($event){
     //let orderClassifieds = this.classifieds;
-    console.log($event);
-console.log(this.events);
+    //console.log($event);
+//console.log(this.events);
     switch ($event) {
       case "M":
-        console.log("desc");
+        //console.log("desc");
    this.events.sort((a, b) => (a.rev_fini < b.rev_fini) ? 1 : ((b.rev_fini < a.rev_fini) ? -1 : 0))
        break;
       case "A":
-        console.log("asc");
+        //console.log("asc");
         this.events.sort((a, b) => (a.rev_fini > b.rev_fini) ? 1 : ((b.rev_fini > a.rev_fini) ? -1 : 0))
         // this.classifieds.sort((a, b) =>
         // a.cla_fech < b.cla_fech ? 1 :  a.cla_fech < b.cla_fech ?-1:0

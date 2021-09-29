@@ -13,7 +13,7 @@ import { networkingDetailPhoto } from '../../class/models/models';
 export class SodpernProvider {
 
   constructor(public http: HttpClient,private _comu:ComunicationsProvider) {
-    console.log('Hello SodpernProvider Provider');
+   
   }
 
   deleteSoDpern(emp_codi:number, dpe_proy:number){

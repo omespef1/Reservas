@@ -12,7 +12,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class CameraProvider {
 
   constructor(private actionsheetCtrl:ActionSheetController, private camera:Camera) {
-    console.log('Hello CameraProvider Provider');
+    //console.log('Hello CameraProvider Provider');
   }
 
 

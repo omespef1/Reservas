@@ -113,7 +113,7 @@ export class ConfirmPage {
       "Modo de transporte",
       inputs,
       (transport: any) => {
-        console.log(transport[0]);
+        //console.log(transport[0]);
         newBooking.transport = transport[0];
 
         this._general.showCustomAlertInputsButtons(

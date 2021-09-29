@@ -31,14 +31,10 @@ this._sesions.GetLoggedin().then((resp:user)=>{
 })
   }
 
-  ionViewDidLoad() {
-    console.log(this.params);
-    console.log('ionViewDidLoad TermsPage');
+  ionViewDidLoad() {   
   }
 
-  Ok(){
-    debugger;
-    console.log('acepto');
+  Ok(){   
     this.accepting=true;
     this._aeinapp.SetAeInApp('T').then((resp:transaction)=>{
       if(resp!=null && resp.Retorno==0){

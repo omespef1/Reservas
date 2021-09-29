@@ -83,11 +83,11 @@ export class MenuPage implements OnInit {
       urlIcon: "assets/imgs/guest-post.svg",
       page: BookingInvitedsPage,
     },   
-    // {
-    //   name: "Nogal Conecta",
-    //   urlIcon: "assets/imgs/conecta1.svg",
-    //   page: NetworkingMenuPage,
-    // },
+    {
+      name: "Nogal Conecta",
+      urlIcon: "assets/imgs/conecta1.svg",
+      page: NetworkingMenuPage,
+    },
     {
       name: "Perfil socio",
       urlIcon: "assets/imgs/partner-profile.svg",
@@ -120,7 +120,7 @@ export class MenuPage implements OnInit {
        let user:user = resp;        
           this._partner.GetBeneficiarieslikeInviteds(this._sesion.GetClientEmpCodi(),user.Mac_nume).then((beneficiaries:transaction)=>{
               if(beneficiaries!=null){
-                console.log(beneficiaries.ObjTransaction);
+                //console.log(beneficiaries.ObjTransaction);
                this._sesion.SetBeneficiariesInviteds(beneficiaries.ObjTransaction);
               }
 
@@ -140,7 +140,7 @@ export class MenuPage implements OnInit {
       notification.ter_codi = user.Ter_Codi;
       this._one.PostNewNotificationId(notification).then((resp: transaction) => {
         if (resp.ObjTransaction) {
-          console.log("notificacion guardada");
+          //console.log("notificacion guardada");
         }
       });
     }
@@ -148,8 +148,12 @@ export class MenuPage implements OnInit {
   }
   openTab(page: number) {
     //Esta linea fija como raiz de las tabs networking, descomentar para activar networking
-    // if (page == 8) this.navCtrl.setRoot(NetworkingMenuPage);
-    // else
+     if (page == 8) {
+      this.navCtrl.setRoot(NetworkingMenuPage);
+      console.log('root');
+     }
+   
+     else
      this.navCtrl.setRoot(TabsPage, { tabSelected: page });
   }
   goProfile() {
@@ -160,7 +164,7 @@ export class MenuPage implements OnInit {
     this._agrrements.GetBanners().then((resp: transaction) => {
       this.loadingBanner = false;
       if (resp != null && resp.Retorno == 0) {
-        console.log(resp);
+        //console.log(resp);
         this.banners = resp.ObjTransaction;
       }
     });
