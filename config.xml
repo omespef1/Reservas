@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.digitalware.Clubes" version="21.0.6.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.digitalware.Clubes" version="21.0.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <platform name="android">
         <preference name="codePushDeploymentKey" value="YDL6Ju1BDkD4WU2kI0n90B0cRG-kdf141308-4bb6-41d4-b539-5c17aa14f24f" />
         <allow-intent href="market:*" />
         <preference name="AutoHideSplashScreen" value="false" />
         <preference name="loadUrlTimeoutValue" value="70000" />
         <preference name="android-minSdkVersion" value="23" />
-        <preference name="android-targetSdkVersion" value="29" />
+        <preference name="android-targetSdkVersion" value="30" />
         <preference name="ShowSplashScreen" value="true" />
         <preference name="ShowSplashScreenSpinner" value="true" />
         <preference name="FadeSplashScreen" value="true" />
@@ -135,7 +135,8 @@
     </plugin>
     <plugin name="cordova-plugin-file" spec="^6.0.2" />
     <plugin name="onesignal-cordova-plugin" spec="^2.11.0" />
+    <plugin name="cordova-plugin-network-information" spec="^2.0.2" />
     <engine name="browser" spec="^5.0.4" />
     <engine name="ios" spec="^5.1.1" />
-    <engine name="android" spec="8.1.0" />
+    <engine name="android" spec="^8.1.0" />
 </widget>

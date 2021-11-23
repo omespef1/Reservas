@@ -24,6 +24,14 @@ export class general {
     });
     alertCtrl.present();
   }
+
+  ShowError(title: string, msg: string) {
+    let alertCtrl = this.alert.create({
+      title: title,
+      subTitle: msg,    
+    });
+    alertCtrl.present();
+  }
   //Muestra una alerta con una promesa que se resuelve cuando hacen click en el botón Aceptar
   ShowMessageAlertAction(title: string, msg: string): Promise<any> {
     let promise = new Promise((resolve, reject) => {

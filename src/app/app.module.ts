@@ -157,9 +157,12 @@ import { EventOnesignalIdHandlerProvider } from '../providers/event-onesignal-id
 import { GntipdoProvider } from '../providers/gntipdo/gntipdo';
 import { ConfigProvider } from '../providers/config/config';
 import { LinkifyPipe } from '../pipes/linkify/linkify';
+import { AppVersionService } from '../providers/version/version.service';
+import { NetworkService } from '../providers/network/network';
 
 
  
+import { Network } from '@ionic-native/network';
 
 
 
@@ -386,7 +389,10 @@ import { LinkifyPipe } from '../pipes/linkify/linkify';
     CameraProvider,
     EventOnesignalIdHandlerProvider,
     GntipdoProvider,
-    ConfigProvider
+    ConfigProvider,
+    AppVersionService,
+    Network,
+    NetworkService
   ]
 })
 export class AppModule {}

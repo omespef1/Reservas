@@ -25,7 +25,7 @@ this.developerFacebook = developerFacebook;
 this.developerMail = developerMail;
 this.developerWeb = developerWeb;
 this.developerTwitter = developerTwitter
-this.appCopyright = appCopyright;
+this.appCopyright = appCopyright + new Date().getFullYear().toString();
   }
   //Abre en el navegador una url
   openBrowser(url:string){

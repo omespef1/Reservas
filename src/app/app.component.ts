@@ -94,7 +94,7 @@ export class MyApp {
   }
 
   async LoadInitialParams() {
-    let emp_codi = await this._sessions.getEmpCodiSession();
+    let emp_codi = await this._sessions.GetClientEmpCodi();
     this._pqr.GetPqPccapp(emp_codi).then((resp: any) => {
       if (resp != null) {
         this._sessions.setAmbientPqr(resp.ObjTransaction);

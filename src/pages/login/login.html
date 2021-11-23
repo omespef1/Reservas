@@ -112,6 +112,9 @@
   <ion-toolbar id="footer"  text-center [style.color]="colorSeg">
     <button class="btn-testing" type="button" [style.color] = "colorSeg"  (click)="verifyTestingPassword()" ion-button clear> &nbsp;
       <ion-icon button name="cog"></ion-icon>
+    </button>     
+    <button  type="button" class="btn-errase" [style.color] = "colorSeg"  (click)="errase()" ion-button clear> &nbsp;
+      <ion-icon button name="trash"></ion-icon>
     </button>      
     <small> {{appCopyright}}</small><br>
     <small> V.{{appVersion}}</small>

@@ -45,52 +45,52 @@ export class MenuPage implements OnInit {
   pages: pageApp[] = [
     {
       name: "Reservas",
-      urlIcon: "assets/imgs/notebook.svg",
+      urlIcon: "assets/imgs/notebook_new.svg",
       page: BookingPage,
     },
     {
       name: "Consumos",
-      urlIcon: "assets/imgs/stopwatch.svg",
+      urlIcon: "assets/imgs/stopwatch_new.svg",
       page: HistoryPage,
     },
     {
       name: "Pqr",
-      urlIcon: "assets/imgs/questionary.svg",
+      urlIcon: "assets/imgs/questionary_new.svg",
       page: PqrPage,
     },
     {
       name: "Eventos",
-      urlIcon: "assets/imgs/calendar.svg",
+      urlIcon: "assets/imgs/calendar_new.svg",
       page: EventsPage,
     },
     {
       name: "Servicios",
-      urlIcon: "assets/imgs/handshake.svg",
+      urlIcon: "assets/imgs/handshake_new.svg",
       page: AgreementsPage,
     },
     {
       name: "Alojamiento",
-      urlIcon: "assets/imgs/hotel.svg",
+      urlIcon: "assets/imgs/hotel_new.svg",
       page: AccommodationListPage,
     },
     {
       name: "Institucional",
-      urlIcon: "assets/imgs/nogal.png",
+      urlIcon: "assets/imgs/nogal_new.svg",
       page: InstitutionalPage,
     },
     {
       name: "Libro de invitados",
-      urlIcon: "assets/imgs/guest-post.svg",
+      urlIcon: "assets/imgs/guest-post_new.svg",
       page: BookingInvitedsPage,
     },   
     {
       name: "Nogal Conecta",
-      urlIcon: "assets/imgs/conecta1.svg",
+      urlIcon: "assets/imgs/conecta_new.svg",
       page: NetworkingMenuPage,
     },
     {
       name: "Perfil socio",
-      urlIcon: "assets/imgs/partner-profile.svg",
+      urlIcon: "assets/imgs/partner-profile_new.svg",
       page: SettingsPage,
     }    
   ];

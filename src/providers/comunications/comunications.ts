@@ -7,6 +7,7 @@ import { LoadingController, ToastController, Events, Platform } from 'ionic-angu
 import { general } from '../../class/general/general';
 import { sessions } from '../../class/sessions/sessions';
 import { HTTP } from '@ionic-native/http';
+import { catchError } from 'rxjs/operators';
 
 /*
   Generated class for the ComunicationsProvider provider.
@@ -67,14 +68,11 @@ export class ComunicationsProvider {
         return error
           .flatMap((error: any) => {
             this.loading.dismiss();
-            if (error.status === 503) {
               return Observable.of(error.status).delay(1000)
-            }
-            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
           })
-          .take(5)
-          .retry(10)
-          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+          .take(3)
+          .retry(3)
+          .concat(Observable.throw({ error: `No fue posible conectar con el servidor. Verifique que el mismo se encuentre disponible.` }));
       })
         .subscribe((resp: any) => {
           // this._events.publish('offBackground');
@@ -126,13 +124,14 @@ export class ComunicationsProvider {
       return this.http.get(`${appCentralizacionUrl}${target}`,bodyRequest).retryWhen(error => {
         return error
           .flatMap((error: any) => {
-            if (error.status === 503) {
+            // if (error.status === 503) {
               return Observable.of(error.status).delay(1000)
-            }
-            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+            // }
+          
           })
-          .take(5)
-          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+          .take(3)
+          .retry(3)
+          .concat(Observable.throw({ error: `No fue posible conectar con el servidor. Verifique que el mismo se encuentre disponible.` }));
       })
         .subscribe((resp: any) => {
           if (loading)
@@ -181,13 +180,14 @@ export class ComunicationsProvider {
         return error
           .flatMap((error: any) => {
             this.loading.dismiss();
-            if (error.status === 503) {
+            // if (error.status === 503) {
               return Observable.of(error.status).delay(1000)
-            }
-            return Observable.throw({ error: `Servicio no disponible. Error ${error.status}` });
+            // }
+           
           })
-          .take(5)          
-          .concat(Observable.throw({ error: `Hubo un error conectando con el servidor, contacte con su administrador` }));
+          .take(3)
+          .retry(3)
+          .concat(Observable.throw({ error: `No fue posible conectar con el servidor. Verifique que el mismo se encuentre disponible.` }));
       })
 
         .subscribe((resp: any) => {

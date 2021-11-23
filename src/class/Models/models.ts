@@ -75,6 +75,12 @@ export interface transaction {
   TxtError: string;
   ObjTransaction: any;
 }
+
+export interface transactionT<T> {
+  Retorno: number;
+  TxtError: string;
+  ObjTransaction: T;
+}
 export interface transactionNumber {
   Retorno: number;
   TxtError: string;
@@ -240,6 +246,8 @@ export interface GnConex {
   CNX_CSEG: string;
   CNX_CTER: string;
   CNX_FCLA: string;
+  CNX_NOMB:string;
+  EMP_CODI:number;
 }
 export interface GnEmpre {
   Emp_Codi: number;
