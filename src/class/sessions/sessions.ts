@@ -240,9 +240,13 @@ GetBeneficiariesInviteds(){
   FindProfessions(professions:item[],code:number){
     let data = professions.filter(
       (t) => t.Ite_cont == code
-    )[0];
-    const result = data == undefined ? "Sin Definir" : data.Ite_nomb;
-    return result;
+    );
+    if(data!=null && data!=undefined){
+      return data[0].Ite_nomb;
+    }
+    else
+    return "Sin Definir";
+
   
   }
 

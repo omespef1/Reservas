@@ -65,16 +65,18 @@ export class ChatRoomProvider {
             let soprenw = this._sopernw
               .GetSoPernwByUuid(uiidPartner)
               .then((sopernw: transaction) => {
-                let socio = sopernw.ObjTransaction[0];
-                let data: any = resp.payload.data();
-                chat.displayNameUser = data.displayName;
-                chat.oneSignalId = data.OneSignalId;
-                chat.profession = this._session.FindProfessions(
-                  professions,
-                  socio.ITE_PROF
-                );
-                chat.loaded = true;
-        this.subscription=        this._chat
+                if(sopernw.Retorno==0 && sopernw.ObjTransaction[0]!=undefined){
+                  let socio = sopernw.ObjTransaction[0];
+                  let data: any = resp.payload.data();
+                  chat.displayNameUser = data.displayName;
+                  chat.oneSignalId = data.OneSignalId;
+             
+                    chat.profession = this._session.FindProfessions(
+                      professions,
+                      socio.ITE_PROF
+                    );                                                                               
+                  chat.loaded = true;
+                  this.subscription=        this._chat
                   .loadMessagesChatLastChat(
                     this._chat.GetChatName(socio.PER_UUID)
                   )
@@ -88,9 +90,15 @@ export class ChatRoomProvider {
                       chat.partnerPhoto = `data:image/jpeg;base64,${resp.ObjTransaction}`;
                     }
                   });
+                }
+               
+             
+
               });
           });
         }
+
+        
 
         // ...
       });

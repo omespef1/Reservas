@@ -3,6 +3,20 @@
 ion-app.platform-ios14 ion-content { pointer-events: auto; /*fix scroll bloqueado en ios14*/ }
 ion-app.platform-ios13 ion-content { pointer-events: auto; /*fix scroll bloqueado on ios13*/ }
 
+
+.tabs-ios .tab-button {
+  max-width: 240px;
+  min-height: 49px;
+  font-size: 8px;
+  font-weight: 100;
+  color: #8c8c8c;
+  padding: 0 1px 13px;
+}
+
+.tab-button-icon {
+  padding: 8px !important;
+}
+
 ion-card-header {
   color: white !important;
   background-color: color($colors, primary);

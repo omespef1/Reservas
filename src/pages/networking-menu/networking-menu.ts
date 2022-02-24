@@ -246,7 +246,7 @@ goMenu(){
 
 goDonations(){
  let url = this._sessions.getUrlDonations();
- if(url=="")
+ if(url==undefined || url==null)
  this._general.showToastMessage('Funcionalidad no activada. Consulte con su administrador del sistema','bottom');
  else
   this._general.openUrl(url);

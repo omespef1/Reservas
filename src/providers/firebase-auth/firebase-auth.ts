@@ -34,14 +34,38 @@ export class FirebaseAuthProvider {
   }
 
   loginWithMail(user: string, password: string,displayName:string,oneSignalId:string,emp_codi:number,per_cont:number) {    
-      this.afAuth
-      .auth
-      .signInWithEmailAndPassword(user, password)
-      .then(value => {      
-       // this.updateUser(displayName);
-       this.addUser(displayName,oneSignalId);
-        this.updateTokens(emp_codi,per_cont,oneSignalId);
-      })
+
+    return this.afAuth.auth.
+    fetchSignInMethodsForEmail(user)
+    .then((signInMethods) => {
+
+      if (signInMethods.length > 0) {
+
+        this.afAuth
+        .auth
+        .signInWithEmailAndPassword(user, password)
+        .then(value => {      
+         // this.updateUser(displayName);
+         this.addUser(displayName,oneSignalId);
+          this.updateTokens(emp_codi,per_cont,oneSignalId);
+        })
+      }
+
+      else {
+
+        this.afAuth.auth
+        .createUserWithEmailAndPassword(user, password)
+        .then((responseAuth) => {
+          this.addUser(displayName,oneSignalId); 
+        })
+        
+      }
+
+    }
+    )
+
+
+     
       .catch( (err:any)=> {   
         //console.log(err);
          if(err.code =="auth/user-not-found"){         

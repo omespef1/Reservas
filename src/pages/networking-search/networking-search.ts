@@ -14,7 +14,6 @@ import { SofanetProvider } from "../../providers/sofanet/sofanet";
 import { general } from "../../class/general/general";
 import { NetworkingChatPage } from "../networking-chat/networking-chat";
 import { FirebaseAuthProvider } from "../../providers/firebase-auth/firebase-auth";
-import { throwError } from "rxjs";
 
 /**
  * Generated class for the NetworkingSearchPage page.
